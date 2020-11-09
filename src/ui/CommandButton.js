@@ -49,13 +49,13 @@ class CommandButton extends React.PureComponent<any, any> {
       />
     );
   }
-
+  // eslint-disable-next-line no-undef
   _onUIEnter = (command: UICommand, event: SyntheticEvent<HTMLButtonElement>): void => {
     if (command.shouldRespondToUIEvent(event)) {
       this._execute(command, event);
     }
   };
-
+  // eslint-disable-next-line no-undef
   _execute = (value: any, event: SyntheticEvent<HTMLButtonElement>): void => {
     const {command, editorState, dispatch, editorView} = this.props;
     command.execute(editorState, dispatch, editorView, event);

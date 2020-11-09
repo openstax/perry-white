@@ -22,7 +22,7 @@ const AtomicNodeKeyCodes = new Set([
 
 export default function handleEditorKeyDown(
   view: EditorView,
-  event: KeyboardEvent
+  event: KeyboardEvent // eslint-disable-line no-undef
 ): boolean {
   const {selection, tr} = view.state;
   const {from, to} = selection;

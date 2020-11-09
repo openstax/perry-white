@@ -14,7 +14,7 @@ export type DocLayoutEditorValue = {
   width: ?number,
 };
 
-type Props = {
+type Props = { // eslint-disable-line no-unused-vars
   initialValue: ?DocLayoutEditorValue,
   close: (val: ?DocLayoutEditorValue) => void,
 };
@@ -37,14 +37,15 @@ class DocLayoutEditor extends React.PureComponent<any, any> {
     //   layout: PropTypes.string,
     //   width: PropTypes.number,
     // }),
-    
+
     close: function (props: any, propName: string) {
-      var fn = props[propName];
+      const fn = props[propName];
       if (!fn.prototype ||
         (typeof fn.prototype.constructor !== 'function' &&
           fn.prototype.constructor.length !== 1)) {
         return new Error(propName + 'must be a function with 1 arg of type DocLayoutEditorValue');
       }
+      return undefined;
     }
   }
 

@@ -7,7 +7,7 @@ import {uploadImageFiles} from '../ImageUploadPlaceholderPlugin';
 // https://prosemirror.net/examples/upload/
 export default function handleEditorDrop(
   view: EditorView,
-  event: DragEvent
+  event: DragEvent // eslint-disable-line no-undef
 ): boolean {
   const {dataTransfer} = event;
   if (!dataTransfer) {

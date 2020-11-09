@@ -29,7 +29,7 @@ function isImageUploadPlaceholderPlugin(plugin: Plugin): boolean {
   return plugin instanceof ImageUploadPlaceholderPlugin;
 }
 
-function isImageFileType(file: File): boolean {
+function isImageFileType(file: File): boolean {  // eslint-disable-line no-undef
   return file && IMAGE_FILE_TYLES.has(file.type);
 }
 
@@ -51,7 +51,7 @@ function defer(fn: Function): Function {
 
 export function uploadImageFiles(
   view: EditorView,
-  files: Array<File>,
+  files: Array<File>,  // eslint-disable-line no-undef
   coords: ?{x: number, y: number}
 ): boolean {
   const {runtime, state, readOnly, disabled} = view;
@@ -151,7 +151,7 @@ class ImageUploadPlaceholderPlugin extends Plugin {
   constructor() {
     super({
       // [FS] IRAD-1005 2020-07-07
-      // Upgrade outdated packages.    
+      // Upgrade outdated packages.
       key: new PluginKey('ImageUploadPlaceholderPlugin'),
       state: {
         init() {

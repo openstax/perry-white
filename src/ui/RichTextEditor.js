@@ -43,6 +43,7 @@ class RichTextEditor extends React.PureComponent<any, any> {
   }
 
   render(): React.Element<any> {
+
     const {
       autoFocus,
       children,
@@ -117,17 +118,22 @@ class RichTextEditor extends React.PureComponent<any, any> {
     if (readOnly === true) {
       return;
     }
+    const state = editorState || Editor.EDITOR_EMPTY_STATE;
 
     if (onChange) {
       // [FS-AFQ][20-FEB-2020]
       // Collaboration
       onChange({
-        state: editorState || Editor.EDITOR_EMPTY_STATE,
-        transaction: tr        
+        state,
+        transaction: tr
       });
+    } else {
+      this.setState({ editorState: state.apply(tr) });
+      //this.state.editorView.updateState()
     }
 
-    
+
+
   };
 
   _onReady = (editorView: EditorView): void => {

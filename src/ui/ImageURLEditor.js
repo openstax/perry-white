@@ -12,10 +12,10 @@ import './czi-image-url-editor.css';
 
 import type {ImageLike} from '../Types';
 
-type Props = {
+type Props = {  // eslint-disable-line no-unused-vars
   initialValue: ?ImageLike,
   close: (href: ?ImageLike) => void,
-}; 
+};
 
 class ImageURLEditor extends React.PureComponent<any, any> {
   _img = null;
@@ -27,12 +27,13 @@ class ImageURLEditor extends React.PureComponent<any, any> {
   static propsTypes = {
     initialValue: PropTypes.object,
 	close: function(props:any, propName:string) {
-        var fn = props[propName];
+        const fn = props[propName];
         if(!fn.prototype ||
            (typeof fn.prototype.constructor !== 'function' &&
             fn.prototype.constructor.length !== 1)) {
             return new Error(propName + 'must be a function with 1 arg of type ImageLike');
         }
+        return undefined;
     }
   }
 

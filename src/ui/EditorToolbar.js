@@ -80,7 +80,7 @@ class EditorToolbar extends React.PureComponent<any, any> {
     const buttons = Object.keys(group)
       .map(label => {
         const obj = group[label];
-
+        console.log(label);
         if (isReactClass(obj)) {
           // JSX requies the component to be named with upper camel case.
           const ThatComponent = obj;
@@ -94,14 +94,18 @@ class EditorToolbar extends React.PureComponent<any, any> {
             />
           );
         } else if (obj instanceof UICommand) {
+          console.log('react');
           return this._renderButton(label, obj);
         } else if (Array.isArray(obj)) {
+          console.log('ara');
           return this._renderMenuButton(label, obj);
         } else {
+          console.log('nop');
           return null;
         }
       })
       .filter(Boolean);
+    console.log(buttons);
     return (
       <div className="czi-custom-buttons" key={'g' + String(index)}>
         {buttons}

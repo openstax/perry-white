@@ -132,7 +132,7 @@ function handleMouseMove(view: EditorView, event: PointerEvent): void {
   let forMarginLeft = false;
   let cell = -1;
 
-  if (target instanceof HTMLTableCellElement){
+  if (target instanceof HTMLTableCellElement){  // eslint-disable-line no-undef
     const { left, right } = target.getBoundingClientRect();
     const offsetLeft = event.clientX - left;
     // [FS] IRAD-949 2020-05-27
@@ -560,9 +560,7 @@ function batchMouseHandler(
   let view = null;
   const onMouseEvent = () => {
     if (view && target) {
-      let pointerEvent: PointerEvent;
-
-      pointerEvent = {
+      const pointerEvent = {
         target,
         clientX,
         clientY,

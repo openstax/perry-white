@@ -5,20 +5,20 @@ import { EditorState, TextSelection } from 'prosemirror-state';
 import { Transform } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
-
-import convertFromJSON from '../convertFromJSON';
-import RichTextEditor from '../ui/RichTextEditor';
-import uuid from '../uuid';
-import LicitRuntime from './LicitRuntime';
-import SimpleConnector from './SimpleConnector';
-import CollabConnector from './CollabConnector';
-import { EMPTY_DOC_JSON } from '../createEmptyEditorState';
-import type { EditorRuntime } from '../Types';
-import createPopUp from '../ui/createPopUp';
-import {atViewportCenter} from '../ui/PopUpPosition';
-import AlertInfo from '../ui/AlertInfo';
-
-import './licit.css';
+import { DOMSerializer } from 'prosemirror-model';
+import convertFromJSON from '../../src/convertFromJSON';
+import RichTextEditor from '../../src/index';
+import uuid from '../../src/uuid';
+import Runtime from './CustomRuntime';
+import SimpleConnector from '../../src/client/SimpleConnector';
+import CollabConnector from '../../src/client/CollabConnector';
+import { EMPTY_DOC_JSON } from '../../src/createEmptyEditorState';
+import type { EditorRuntime } from '../../src/Types';
+import createPopUp from '../../src/ui/createPopUp';
+import {atViewportCenter} from '../../src/ui/PopUpPosition';
+import AlertInfo from '../../src/ui/AlertInfo';
+import convertFromHTML from '../../src/convertFromHTML';
+import './editor.css';
 
 /**
  * LICIT properties:
@@ -37,7 +37,7 @@ import './licit.css';
  *  plugins [plugins] External Plugins into the editor.
  *  fitToContent {boolean} [false] Fit to content behavour.
  */
-class Licit extends React.Component<any, any> {
+class DemoEditor extends React.Component<any, any> {
   _runtime: EditorRuntime;
   _connector: any;
   _clientID: string;
@@ -72,9 +72,11 @@ class Licit extends React.Component<any, any> {
     const fitToContent = props.fitToContent || false;// [FS] IRAD-996 2020-06-30
     // [FS] 2020-07-03
     // Handle Image Upload from Angular App
-    const runtime = props.runtime ? props.runtime : new LicitRuntime();
+    const runtime = props.runtime ? props.runtime : new Runtime();
     const plugins = props.plugins || null;
-    let editorState = convertFromJSON(data, null, plugins);
+    console.log(props.html);
+    let editorState = convertFromHTML(props.html, null, plugins);
+//    let editorState = convertFromJSON(data, null, plugins);
     // [FS] IRAD-1067 2020-09-19
     // The editorState will return null if the doc Json is mal-formed
     if (null === editorState) {
@@ -110,7 +112,7 @@ class Licit extends React.Component<any, any> {
       this._connector.updateSchema(this.state.editorState.schema);
     }
   }
-  
+
   // [FS] IRAD-1067 2020-09-19
   // Alert funtion to show document is corrupted
   showAlert() {
@@ -124,7 +126,7 @@ class Licit extends React.Component<any, any> {
         }
       },
     });
-  
+
 
   }
 
@@ -182,24 +184,42 @@ class Licit extends React.Component<any, any> {
     return true;
   }
 
+  onExport = () => {
+    console.log(this._editorView );
+
+    const {schema} = this._editorView.state;
+    const div = document.createElement('div');
+    const fragment = DOMSerializer
+          .fromSchema(schema)
+          .serializeFragment(this._editorView.state.doc.content);
+
+    div.appendChild(fragment);
+
+    console.log(div.innerHTML);
+
+  }
+
   render(): React.Element<any> {
     const { editorState, width, height, readOnly, disabled, embedded, fitToContent, runtime } = this.state;
     // [FS] IRAD-978 2020-06-05
     // Using 100vw & 100vh (100% viewport) is not ideal for a component which is expected to be a part of a page,
     // so changing it to 100%  width & height which will occupy the area relative to its parent.
     return (
-      <RichTextEditor
-        editorState={editorState}
-        embedded={embedded}
-        fitToContent={fitToContent}
-        height={height}
-        onChange={this._onChange}
-        onReady={this._onReady}
-        readOnly={readOnly}
-        runtime={runtime}
-        width={width}
-        disabled={disabled}
-      />
+      <div style={{ height: '100%' }}>
+        <RichTextEditor
+          disabled={disabled}
+          editorState={editorState}
+          embedded={embedded}
+          fitToContent={fitToContent}
+          height={height}
+          onChange={this._onChange}
+          onReady={this._onReady}
+          readOnly={readOnly}
+          runtime={runtime}
+          width={width}
+        />
+        <button onClick={this.onExport}>Export</button>
+      </div>
     );
   }
 
@@ -260,7 +280,7 @@ class Licit extends React.Component<any, any> {
     if (this.state.readOnly) {
       // It should be possible to load content into the editor in readonly as well.
       // It should not be necessary to make the component writable any time during the process
-      let propsCopy = {};
+      const propsCopy = {};
       this._skipSCU = true;
       Object.assign(propsCopy, props);
       // make writable without content change
@@ -275,4 +295,4 @@ class Licit extends React.Component<any, any> {
   };
 }
 
-export default Licit;
+export default DemoEditor;

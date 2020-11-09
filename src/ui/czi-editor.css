@@ -29,8 +29,9 @@
   font-family: var(--czi-content-font-family);
   font-size: var(--czi-content-font-size);
   line-height: var(--czi-content-line-height);
-  /*[FS] IRAD-1011 2020-07-10
-    White space issue in FF 
+
+  /* [FS] IRAD-1011 2020-07-10
+    White space issue in FF
     https://github.com/ProseMirror/prosemirror-view/commit/06147b49efec62f06738ce593a365f0d1d953858#diff-a2771f42f3074df8a6954ad49a080d84
     */
   white-space: break-spaces;
@@ -111,13 +112,17 @@
 
 /* FS IRAD-1040 2020-17-09
   fit to content style  */
+.prosemirror-editor-wrapper.fitToContent {
+  height: 100%;
+  overflow: auto;
+}
+
 .prosemirror-editor-wrapper.fitToContent .ProseMirror {
+  height: fit-content;
   background: white;
   border-radius: unset;
-   min-height: unset;
-  padding: 5px;
+  min-height: 100%;
   width: unset;
-  margin-bottom: 5px;
 }
 
 @media only print {

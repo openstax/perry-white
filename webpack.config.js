@@ -22,10 +22,10 @@ var isDev = env.NODE_ENV === 'development' || 0;
 var options = {
   mode: 'production',
   entry: {
-    licit: path.join(__dirname, 'licit', 'client', 'index.js'),
+    'pm-plus-r': path.join(__dirname, 'src', 'index.js'),
   },
   output: {
-    path: path.join(__dirname, 'bin'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js'
   },
   module: {
@@ -61,8 +61,13 @@ var options = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
+              outputPath: (url, resourcePath, context) => {
+                const relativePath = path.relative(context, resourcePath);
+                const cleaned = relativePath.replace(/src\//, '') // .replace(/fonts\/.*/, 'fonts');
+                return cleaned
+              },
+              // name: '[name].[ext]',
+//              outputPath: 'fonts/'
             }
           }
         ]
@@ -82,7 +87,9 @@ var options = {
     ]
   },
   resolve: {
-    alias: {}
+    // alias: {
+    //   fonts: path.resolve(__dirname, 'src', 'ui', 'fonts'),
+    // },
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -90,17 +97,16 @@ var options = {
       'window.jQuery': 'jquery',
     }),
     // type checker 
-    ... (env.NODE_ENV === 'development') ? [new FlowWebpackPlugin({flowArgs: ['--show-all-errors']})] : [],
-    // clean the web folder
-    new CleanWebpackPlugin(),
+    // ... (env.NODE_ENV === 'development') ? [new FlowWebpackPlugin({flowArgs: ['--show-all-errors']})] : [],
+
     // expose and write the allowed env vars on the compiled bundle
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV)
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'licit', 'index.html'),
+      template: path.join(__dirname, 'demo', 'index.html'),
       filename: 'index.html',
-      chunks: ['licit'],
+      chunks: ['pm-plus-r'],
       inlineSource: isDev ? '$^' : '.(js|css)$'
     }),
     new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin),

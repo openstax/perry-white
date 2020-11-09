@@ -1,10 +1,11 @@
 // @flow
-
+//
+export { COMMAND_GROUPS, TABLE_COMMANDS_GROUP } from './ui/EditorToolbarConfig';
 export { EditorState } from 'prosemirror-state';
 export { default as isEditorStateEmpty } from './isEditorStateEmpty';
 export { default as uuid } from './ui/uuid';
-// [FS] IRAD-978 2020-06-05
-// Export Licit as a component
-export { default as Licit } from './client/Licit.js';
 export { ImageLike, EditorRuntime } from './Types';
-export { GET, POST } from './client/http';
+// export { GET, POST } from './client/http';
+import Editor from './ui/RichTextEditor';
+
+export default Editor;

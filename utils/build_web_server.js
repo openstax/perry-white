@@ -1,17 +1,19 @@
 const WebpackDevServer = require('webpack-dev-server'),
-    webpack = require('webpack'),
-    config = require('../webpack.config'),
-    env = require('./env'),
-    path = require('path'),
-    formidable = require('formidable'),
-    mv = require('mv'),
+      webpack = require('webpack'),
+      config = require('../webpack.config'),
+      env = require('./env'),
+      path = require('path');
+    // formidable = require('formidable'),
+    // mv = require('mv'),
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    uuidv4 = require('uuid').v4,
-    express = require('express');
+    //uuidv4 = require('uuid').v4,
+    // express = require('express');
 
 const options = (config.chromeExtensionBoilerplate || {});
 const excludeEntriesToHotReload = (options.notHotReload || []);
+
+config.entry.licit = path.join(__dirname, '..', 'licit', 'client', 'index.js');
 
 for (const entryName in config.entry) {
   if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
@@ -34,7 +36,7 @@ const server =
   new WebpackDevServer(compiler, {
     hot: true,
     contentBase: path.join(__dirname, '../bin'),
-    headers: { 'Access-Control-Allow-Origin': '*' },     
+    headers: { 'Access-Control-Allow-Origin': '*' },
   });
 
 server.listen(env.PORT);

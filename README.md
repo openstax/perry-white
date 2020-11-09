@@ -3,25 +3,18 @@
 
 
 
-
-
-
-
-
-
-
-<h1 align="center">Licit Editor</h1>
+<h1 align="center">Perry White</h1>
 
 <div align="center">
-  <strong>WYSIWYG editor based on ProseMirror & React</strong>
+  <strong>WYSIWYG editor based on ProseMirror & React</strong>  <i>Perry White</i> was the newspaper editor for Clark Kent in SuperMan.
 </div>
 <div align="center">
   Includes significant text markup including size, face, color, line spacing, strikethrough, bold, italic, etc.; multi-level bullet/number lists; images with text wrapping and resizing; and a powerful table (with images and markup within table)
 </div>
+
 &nbsp;
 <div align="center">
   
-![GitHub last commit](https://img.shields.io/github/last-commit/MO-Movia/licit)
 ![Website](https://img.shields.io/website?down_color=red&down_message=Offline&up_color=green&up_message=Online&url=http://www.greathints.com)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
@@ -30,8 +23,6 @@
 </div>
 <div align="center">
   <h3>
-    <a href="https://github.com/MO-Movia/licit/wiki">Wiki
-    </a>
     <span> | </span>
     <a href="http://greathints.com/licit">Demo
     </a>
@@ -41,7 +32,13 @@
   </h3>
 </div>
 
-## Getting Started  
+## History
+
+Perry White is based on several projects.
+
+* The base editor is [ProseMirror](https://prosemirror.net).
+* [CZI-Prosemirror](https://github.com/chanzuckerberg/czi-prosemirror) built on top of that and added React rendering
+* That was extended further by the [Licit Editor](https://github.com/MO-Movia/licit-fork)
 
 ### Getting repository
 

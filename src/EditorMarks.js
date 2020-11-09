@@ -18,6 +18,7 @@ import TextNoWrapMarkSpec from './TextNoWrapMarkSpec';
 import TextNodeSpec from './TextNodeSpec';
 import TextSelectionMarkSpec from './TextSelectionMarkSpec';
 import TextSuperMarkSpec from './TextSuperMarkSpec';
+import TextSubMarkSpec from './TextSubMarkSpec';
 import TextUnderlineMarkSpec from './TextUnderlineMarkSpec';
 import CustomStyleMarkSpec from './CustomStyleMarkSpec';
 
@@ -30,6 +31,7 @@ const {
   MARK_NO_BREAK,
   MARK_STRIKE,
   MARK_STRONG,
+  MARK_SUB,
   MARK_SUPER,
   MARK_TEXT_COLOR,
   MARK_TEXT_HIGHLIGHT,
@@ -58,6 +60,7 @@ const marks = {
   [MARK_SPACER]: SpacerMarkSpec,
   [MARK_STRIKE]: StrikeMarkSpec,
   [MARK_STRONG]: StrongMarkSpec,
+  [MARK_SUB]: TextSubMarkSpec,
   [MARK_SUPER]: TextSuperMarkSpec,
   [MARK_TEXT_COLOR]: TextColorMarkSpec,
   [MARK_TEXT_HIGHLIGHT]: TextHighlightMarkSpec,

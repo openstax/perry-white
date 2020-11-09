@@ -9,6 +9,8 @@ const WebpackDevServer = require('webpack-dev-server'),
 const options = config.chromeExtensionBoilerplate || {};
 const excludeEntriesToHotReload = options.notHotReload || [];
 
+config.entry['pm-plus-r'] = path.join(__dirname, '..', 'demo', 'client', 'index.js');
+
 for (const entryName in config.entry) {
   if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
     config.entry[entryName] = [

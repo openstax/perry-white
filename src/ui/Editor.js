@@ -235,6 +235,7 @@ class Editor extends React.PureComponent<any, any> {
   }
 
   render(): React.Element<any> {
+    console.log(this.props);
     const { embedded, fitToContent, readOnly } = this.props;
     let className = '';
     //  FS IRAD-1040 2020-17-09

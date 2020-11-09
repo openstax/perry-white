@@ -9,11 +9,11 @@ import {MARK_TEXT_COLOR, MARK_FONT_SIZE} from '../MarkNames';
 class ListItemNodeView {
   // This implements the `NodeView` interface
   // The outer DOM node that represents the list item element.
-  dom: HTMLLIElement;
+  dom: HTMLLIElement;  // eslint-disable-line no-undef
 
   // This implements the `NodeView` interface.
   // The DOM node that should hold the node's content.
-  contentDOM: HTMLLIElement;
+  contentDOM: HTMLLIElement;  // eslint-disable-line no-undef
 
   _nodeUpdated: ?Node;
 

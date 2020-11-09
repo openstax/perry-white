@@ -1,2 +1,4 @@
 /bin
 /dist
+src/ui/mathquill-editor
+src/ui/katex.min.css
