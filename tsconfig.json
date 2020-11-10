@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "checkJs": false,
+        "allowJs": true,
+        "target": "es5",
+        "downlevelIteration": true,
+        "jsx": "react"
+    },
+    "include": ["./src/**/*"]
+}
