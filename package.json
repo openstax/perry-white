@@ -1,6 +1,6 @@
 {
   "name": "perry-white",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "subversion": "1",
   "description": "Rich text editor built with ProseMirror plus React",
   "main": "dist/index.js",
@@ -60,7 +60,6 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "7.20.3",
-    "exports-loader": "^1.1.0",
     "express": "^4.17.1",
     "file-loader": "^6.1.0",
     "flatted": "^3.0.4",
@@ -92,6 +91,7 @@
   "dependencies": {
     "browserkeymap": "2.0.2",
     "color": "3.1.2",
+    "exports-loader": "^1.1.0",
     "node-mathquill": "0.10.2",
     "nullthrows": "1.1.1",
     "prosemirror-collab": "1.2.2",
