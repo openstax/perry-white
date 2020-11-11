@@ -1,16 +1,18 @@
 {
   "name": "perry-white",
-  "version": "0.0.3-0",
+  "version": "0.0.6",
   "subversion": "1",
   "description": "Rich text editor built with ProseMirror plus React",
+  "main": "dist/index.js",
+  "module": "dist/perry-white.modern.js",
   "source": "src/index.ts",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MO-Movia/licit.git"
+    "url": "git@github.com:nathanstitt/perry-white.git"
   },
   "scripts": {
-    "build:clean": "rm -rf dist/ && rm -f modusoperandi-licit-*.*.*.tgz",
+    "build:clean": "rm -rf dist/ && rm -f perry-white*.*.*.tgz",
     "build:tsc": "tsc",
     "build:css": "cp src/ui/*.css dist/ui && cp src/ui/mathquill-editor/*.css dist/ui/mathquill-editor && cp src/*.css dist",
     "build:dist": "npm run build:clean && npm run build:tsc && npm run build:css && npm run build:bundle",
@@ -21,6 +23,10 @@
     "start": "NODE_ENV=development node scripts/webserver.js",
     "postinstall": "node fix_pm_tables_dist.js"
   },
+  "files": [
+      "dist/*",
+      "fix_pm_tables_dist.js"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
