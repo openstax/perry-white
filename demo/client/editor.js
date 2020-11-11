@@ -12,7 +12,6 @@ import Runtime from './CustomRuntime'
 import SimpleConnector from '../../src/client/SimpleConnector'
 import CollabConnector from '../../src/client/CollabConnector'
 import { EMPTY_DOC_JSON } from '../../src/createEmptyEditorState'
-import type { EditorRuntime } from '../../src/Types'
 import createPopUp from '../../src/ui/createPopUp'
 import {atViewportCenter} from '../../src/ui/PopUpPosition'
 import AlertInfo from '../../src/ui/AlertInfo'
@@ -36,16 +35,16 @@ import './editor.css'
  *  plugins [plugins] External Plugins into the editor.
  *  fitToContent {boolean} [false] Fit to content behavour.
  */
-class DemoEditor extends React.Component<any, any> {
-    _runtime: EditorRuntime
-    _connector: any
-    _clientID: string
-    _editorView: EditorView // This will be handy in updating document's content.
-    _skipSCU: boolean // Flag to decide whether to skip shouldComponentUpdate
+class DemoEditor extends React.Component {
+    _runtime
+    _connector
+    _clientID
+    _editorView
+    _skipSCU
 
     _popUp = null
 
-    constructor(props: any, context: any) {
+    constructor(props, context) {
 
         super(props, context)
 
@@ -129,7 +128,7 @@ class DemoEditor extends React.Component<any, any> {
 
     }
 
-    setContent = (content: any = {}): void => {
+    setContent = (content = {}) => {
         const { doc, tr, schema } = this._connector.getState()
         const document = content
             ? schema.nodeFromJSON(content)
@@ -144,7 +143,7 @@ class DemoEditor extends React.Component<any, any> {
         this._editorView.dispatch(transaction)
     }
 
-    shouldComponentUpdate(nextProps: any, nextState: any) {
+    shouldComponentUpdate(nextProps, nextState) {
         // Only interested if properties are set from outside.
         if (!this._skipSCU) {
             this._skipSCU = false
@@ -213,7 +212,7 @@ class DemoEditor extends React.Component<any, any> {
         )
     }
 
-    _onChange = (data): void => {
+    _onChange = (data) => {
         const { transaction } = data
         // debugger
 
@@ -230,7 +229,7 @@ class DemoEditor extends React.Component<any, any> {
         }
     }
 
-    _onReady = (editorView: EditorView): void => {
+    _onReady = (editorView) => {
         // [FS][06-APR-2020][IRAD-922]
         // Showing focus in the editor.
         const { state, dispatch } = editorView
@@ -268,7 +267,7 @@ class DemoEditor extends React.Component<any, any> {
      *  embedded {boolean} [false] Disable/Enable inline behaviour.
      * fitToContent {boolean} [false] Fit to content behavour.
      */
-    setProps = (props: any): void => {
+    setProps = (props) => {
         if (this.state.readOnly) {
             // It should be possible to load content into the editor in readonly as well.
             // It should not be necessary to make the component writable any time during the process

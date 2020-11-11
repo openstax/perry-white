@@ -2,7 +2,6 @@
 
 var webpack = require('webpack'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
-  FlowWebpackPlugin = require('flow-webpack-plugin'),
   HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
@@ -34,26 +33,6 @@ var options = {
                 test: /\.(ts|tsx|js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                options: {
-                    // https://stackoverflow.com/questions/51860043/javascript-es6-typeerror-class-constructor-client-cannot-be-invoked-without-ne
-                    // ES6 classes are supported in any recent Node version, they shouldn't be transpiled. es2015 should be excluded from Babel configuration, it's preferable to use env preset set to node target.
-                    presets: [['@babel/preset-env', { 'targets': { 'node': true } }], '@babel/preset-react', '@babel/preset-flow'],
-                    plugins: [
-                        '@babel/plugin-proposal-class-properties',
-                        '@babel/plugin-proposal-export-default-from',
-                        [
-                            '@babel/plugin-transform-runtime',
-                            {
-                                helpers: true,
-                                regenerator: true,
-                            },
-                        ],
-                        'flow-react-proptypes',
-                        '@babel/plugin-proposal-object-rest-spread',
-                        '@babel/plugin-transform-flow-strip-types',
-                        '@babel/plugin-syntax-dynamic-import',
-                    ],
-                },
             },
             {
                 test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -65,7 +44,7 @@ var options = {
                                 const relativePath = path.relative(context, resourcePath);
                                 const cleaned = relativePath.replace(/src\//, '') // .replace(/fonts\/.*/, 'fonts');
                                 return cleaned
-                            },
+                            }
                             // name: '[name].[ext]',
                             //              outputPath: 'fonts/'
                         }
@@ -99,7 +78,6 @@ var options = {
             'window.jQuery': 'jquery',
         }),
         // type checker
-        // ... (env.NODE_ENV === 'development') ? [new FlowWebpackPlugin({flowArgs: ['--show-all-errors']})] : [],
 
         // expose and write the allowed env vars on the compiled bundle
         new webpack.DefinePlugin({

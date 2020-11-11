@@ -1,12 +1,10 @@
-// @flow
-
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 
 import Editor from './editor'
 import CustomRuntime from './CustomRuntime'
 
-function main(): void {
+function main() {
     const el = document.createElement('div')
     el.id = 'pm-plus-r-demo-app'
     el.style.setProperty('margin', 'auto')
