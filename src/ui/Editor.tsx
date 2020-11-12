@@ -37,7 +37,7 @@ export class Editor extends React.Component<Props, State> {
     constructor(props: any, context: any) {
         super(props, context)
         this._id = uuid()
-        console.log(props)
+
         this.state = {
             contentHeight: NaN,
             contentOverflowHidden: false,
@@ -67,8 +67,6 @@ export class Editor extends React.Component<Props, State> {
         //        const editorState = this.props.editorState || this.state.editorState || createEmptyEditorState()
         runtime = runtime || EMPTY_EDITOR_RUNTIME
         const {editorView, editorState} = this.state
-
-        console.log({ editorState, runtime  })
 
         const toolbar =
             !!readOnly === true ? null : (

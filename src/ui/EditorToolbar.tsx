@@ -43,7 +43,6 @@ class EditorToolbar extends React.Component<Props, State> {
         if (this.props.editorView && this.state.cmd_groups.length == 0) {
             const { filterCommandGroups } = this.props.editorView.runtime
 
-            console.log({ filterCommandGroups })
             this.setState({
                 cmd_groups: filterCommandGroups ? filterCommandGroups(COMMAND_GROUPS) : COMMAND_GROUPS
             })
