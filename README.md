@@ -20,3 +20,5 @@ Perry White is based on several projects.
 * [CZI-Prosemirror](https://github.com/chanzuckerberg/czi-prosemirror) built on top of that and added React rendering
 * That was extended further by the [Licit Editor](https://github.com/MO-Movia/licit)
 * This fork converts from flow to Typescript, adds a few plugins and removes several that were not wanted
+
+### [DEMO](https://nathanstitt.github.io/perry-white/)
