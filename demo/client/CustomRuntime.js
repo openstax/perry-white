@@ -50,7 +50,9 @@ class CustomRuntime {
     }
 
     filterCommandGroups(groups) {
-        console.log(groups)
+        // groups.forEach(g => {
+        //     delete g['[font_download] Font Type']
+        // })
         return groups
     }
 }

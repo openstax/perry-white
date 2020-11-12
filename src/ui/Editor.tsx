@@ -62,8 +62,9 @@ export class Editor extends React.Component<Props, State> {
 
         editorState = editorState || createEmptyEditorState()
         runtime = runtime || EMPTY_EDITOR_RUNTIME
-
         const {editorView} = this.state
+
+        console.log({ editorView, runtime  })
 
         const toolbar =
             !!readOnly === true ? null : (

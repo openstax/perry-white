@@ -36,20 +36,26 @@ class EditorToolbar extends React.Component<Props, State> {
     state = {
         expanded: false,
         wrapped: null,
-        cmd_groups: []
+        cmd_groups: [] // COMMAND_GROUPS //[]
     }
 
-    constructor(props: Props) {
-        super(props)
-        console.log(props)
-        const { filterCommandGroups } = props.editorView.runtime
-        this.setState({
-            cmd_groups: filterCommandGroups ? filterCommandGroups(COMMAND_GROUPS) : COMMAND_GROUPS
-        })
+    componentDidUpdate() {
+        if (this.props.editorView && this.state.cmd_groups.length == 0) {
+            const { filterCommandGroups } = this.props.editorView.runtime
+
+            console.log({ filterCommandGroups })
+            this.setState({
+                cmd_groups: filterCommandGroups ? filterCommandGroups(COMMAND_GROUPS) : COMMAND_GROUPS
+            })
+
+        }
+        console.log(this.props.editorView)
+
     }
 
     render() {
         const {wrapped, expanded, cmd_groups} = this.state
+        console.log(this.props.editorView)
         const className = cx('czi-editor-toolbar', {expanded, wrapped})
         const wrappedButton = wrapped ? (
             <CustomButton
@@ -66,6 +72,7 @@ class EditorToolbar extends React.Component<Props, State> {
             <div className={className}>
                 <div className="czi-editor-toolbar-flex">
                     <div className="czi-editor-toolbar-body">
+
                         <div
                             className="czi-editor-toolbar-body-content"
                             ref={this._onBodyRef}

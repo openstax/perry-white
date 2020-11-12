@@ -1,39 +1,43 @@
-/*eslint-disable */
+const path = require('path')
+const webpack = require('webpack')
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const webpack = require('webpack'),
-      CopyWebpackPlugin = require('copy-webpack-plugin'),
-      HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin'),
-      HtmlWebpackPlugin = require('html-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin'),
-      ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
-      WriteFilePlugin = require('write-file-webpack-plugin'),
-      env = require('./utils/env'),
-      fileSystem = require('fs'),
-      path = require('path');
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
-// [FS] IRAD-1005 2020-07-07
-// Upgrade outdated packages.
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-var isDev = env.NODE_ENV === 'developmeexnt' || 0;
-// isDev = false;
-
-var options = {
-    mode: isDev ? 'development' : 'production' ,
+module.exports = {
+    mode: isDevelopment ? 'development' : 'production',
     entry: {
-        'perry-white': path.join(__dirname, 'src', 'index.ts'),
-        'styles': path.join(__dirname, 'src', 'styles.scss'),
+        main: './demo/client/index.js',
+        styles: path.join(__dirname, 'src', 'styles.scss'),
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        path: path.join(__dirname, 'docs'),
+        filename: '[name].bundle.js',
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
-                test: /\.(ts|tsx|js|jsx)$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+
+                use: [
+                    isDevelopment && {
+                        loader: 'babel-loader',
+                        options: { plugins: ['react-refresh/babel'] },
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: { transpileOnly: true },
+                    },
+                ].filter(Boolean),
             },
             {
                 test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -46,8 +50,6 @@ var options = {
                                 const cleaned = relativePath.replace(/src\//, '') // .replace(/fonts\/.*/, 'fonts');
                                 return cleaned
                             }
-                            // name: '[name].[ext]',
-                            //              outputPath: 'fonts/'
                         }
                     }
                 ]
@@ -60,67 +62,32 @@ var options = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            // Prefer `dart-sass`
-                            implementation: require('sass'),
+                            implementation: require('sass'), // dart-sass
                         },
                     },
                 ],
             },
-            {
-                test: /\.html$/,
-                loader: 'html-loader',
-                exclude: /node_modules/
-            },
-        ]
-    },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'],
 
-
-        // alias: {
-        //   fonts: path.resolve(__dirname, 'src', 'ui', 'fonts'),
-        // },
+        ],
     },
     plugins: [
+        isDevelopment && new ReactRefreshPlugin(),
+        new ForkTsCheckerWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            filename: './index.html',
+            template: './demo/index.html',
+        }),
         new webpack.ProvidePlugin({
             // jQuery (for Mathquill)
             'window.jQuery': 'jquery',
         }),
-        // type checker
 
-        // expose and write the allowed env vars on the compiled bundle
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV)
-        }),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'demo', 'index.html'),
-            filename: 'index.html',
-
-            inlineSource: isDev ? '$^' : '.(js|css)$'
-        }),
-        new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin),
-        new WriteFilePlugin()
-    ]
-};
-
-if (env.NODE_ENV === 'development') {
-    options.devtool = 'source-map';
-    options.optimization = {
-        minimize: false
-    }
-    options.plugins.push(
-        new webpack.HotModuleReplacementPlugin(),
-    )
-    options.plugins.push(
-        new ReactRefreshWebpackPlugin(),
-    )
-} else {
-    // [FS] IRAD-1005 2020-07-10
-    // Upgrade outdated packages.
-    options.optimization =  {
-        minimize: true,
-        minimizer: [new TerserPlugin()],
+    ].filter(Boolean),
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    devServer: {
+        hot: true,
+        port: 3008,
     }
 }
-
-module.exports = options;
