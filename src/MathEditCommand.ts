@@ -17,7 +17,7 @@ import createPopUp from './ui/createPopUp'
 function insertMath(
     tr: Transaction,
     schema: Schema,
-    latex: string | null | undefined,
+    math: string | null | undefined,
 ): Transaction {
     // @ts-ignore
     const {selection} = tr
@@ -35,7 +35,7 @@ function insertMath(
     }
 
     const attrs = {
-        latex,
+        math,
     }
 
     const node = image.create(attrs, null, null)
@@ -95,7 +95,7 @@ class MathEditCommand extends UICommand {
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
         view: EditorView | null | undefined,
-        latex: string | null | undefined,
+        math: string | null | undefined,
     ): boolean => {
         if (dispatch) {
             const {selection, schema} = state
@@ -103,9 +103,9 @@ class MathEditCommand extends UICommand {
             // @ts-ignore
             tr = view ? hideCursorPlaceholder(view.state) : tr
             tr = tr.setSelection(selection)
-            if (latex) {
+            if (math) {
                 // @ts-ignore
-                tr = insertMath(tr, schema, latex)
+                tr = insertMath(tr, schema, math)
             }
             dispatch(tr)
             view && view.focus()

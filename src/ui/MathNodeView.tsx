@@ -45,28 +45,28 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
         const readOnly = false
         const {editorView, node, selected, focused} = this.props
         const {attrs} = node
-        const {latex} = attrs
+        const {math} = attrs
         const {isEditing} = this.state
 
-        console.log(editorView)
-        //editorView.runtime
+        console.log(this.props)
+
 
         const active = (focused || isEditing) && !readOnly
-        const className = cx('czi-math-view-body', {active, selected})
-        const html = renderLaTeXAsHTML(latex)
+        const className = cx('czi-math-view-body', 'math-rendered', {active, selected})
+        const html = renderLaTeXAsHTML(math)
         return (
             <span
                 className={className}
                 data-active={active ? 'true' : null}
-                data-latex={latex || ''}
+                data-math={math || ''}
                 id={this._id}
-                title={latex}
+                title={math}
             >
                 <img
-                    alt={latex}
+                    alt={math}
                     className="czi-math-view-body-img"
                     src={EMPTY_SRC}
-                    title={latex}
+                    title={math}
                 />
                 <span
                     className="czi-math-view-body-content"
@@ -89,6 +89,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             onEditStart: this._onEditStart,
             onEditEnd: this._onEditEnd,
         }
+        console.log(node.attrs)
         if (this._inlineEditor) {
             this._inlineEditor.update(editorProps)
         } else {
@@ -114,7 +115,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
 
     _onChange = (
         value:
-            | {align: string | null | undefined; latex: string}
+            | {align: string | null | undefined; math: string}
             | null
             | undefined,
     ): void => {
@@ -123,13 +124,13 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
         }
 
         const align = value ? value.align : null
-        const latex = value ? value.latex : null
+        const math = value ? value.math : null
 
         const {getPos, node, editorView} = this.props
         const pos = getPos()
         const attrs = {
             ...node.attrs,
-            latex,
+            math,
             align,
         }
 

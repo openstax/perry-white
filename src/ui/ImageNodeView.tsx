@@ -83,8 +83,7 @@ function resolveURL(
     return src
 }
 
-class ImageViewBody extends React.Component<any, any> {
-    props: NodeViewProps
+class ImageViewBody extends React.Component<NodeViewProps, any> {
 
     _body = null
     _id = uuid()
@@ -274,7 +273,7 @@ class ImageViewBody extends React.Component<any, any> {
         }
     }
 
-    _resolveOriginalSize = async (): Promise<void> => {
+    async _resolveOriginalSize(): Promise<void> {
         if (!this._mounted) {
             // unmounted;
             return

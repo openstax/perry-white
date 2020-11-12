@@ -27,10 +27,10 @@ function patchGoogleEquationElement(el: HTMLElement): void {
         return
     }
 
-    // Replace `<img src="..." />` with `<math data-latex="..." />`.
+    // Replace `<img src="..." />` with `<math data-math="..." />`.
     // Note that this requires the schema to support `MathNodeSpec`.
     const math = ownerDocument.createElement('math')
-    math.setAttribute('data-latex', content)
+    math.setAttribute('data-math', content)
     parentElement.insertBefore(math, el)
     parentElement.removeChild(el)
 }

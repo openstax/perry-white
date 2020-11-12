@@ -8,7 +8,11 @@ const EditorDemo = ({ defaultValue }) => {
     const [editorView, setEditorView] = useState()
     const [htmlContent, setHTMLContent] = useState('')
     const defaultEditorState = useMemo(() => convertFromHTML(defaultValue, null, null));
-    const setContent = (d) => setHTMLContent(convertToHTML(editorView.state))
+    const setContent = (d) => {
+        const html = convertToHTML(editorView.state)
+        console.log(html)
+        setHTMLContent(html)
+    }
 
     return (
         <div style={{ height: '100%' }}>

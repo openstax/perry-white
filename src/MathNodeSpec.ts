@@ -8,7 +8,7 @@ function getAttrs(dom: HTMLElement) {
 
     return {
         align,
-        latex: dom.getAttribute('data-latex') || null,
+        math: dom.getAttribute('data-math') || null,
     }
 }
 
@@ -16,28 +16,28 @@ const MathNodeSpec: NodeSpec = {
     inline: true,
     attrs: {
         align: {default: null},
-        latex: {default: ''},
+        math: {default: ''},
     },
     group: 'inline',
     draggable: true,
     parseDOM: [
-        {tag: 'math[data-latex]', getAttrs},
-        {tag: 'span[data-latex]', getAttrs},
+        {tag: 'div[data-math]', getAttrs},
+        {tag: 'span[data-math]', getAttrs},
     ],
     toDOM(node) {
         // Normally, the DOM structure of the math node is rendered by
         // `MathNodeView`. This method is only called when user selects a
         // math node and copies it, which triggers the "serialize to HTML" flow that
         // calles this method.
-        const {align, latex} = node.attrs
+        const {align, math} = node.attrs
         const domAttrs: any = {}
         if (align) {
             domAttrs.align = align
         }
-        if (latex) {
-            domAttrs['data-latex'] = latex
+        if (math) {
+            domAttrs['data-math'] = math
         }
-        return ['span', domAttrs]
+        return [(align == 'center' ? 'div' : 'span'), domAttrs]
     },
 }
 

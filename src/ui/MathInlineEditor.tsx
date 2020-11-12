@@ -17,7 +17,7 @@ const MathAlignValues = {
 
 export type MathInlineEditorValue = {
     align: string | null | undefined
-    latex: string
+    math: string
 }
 
 class MathInlineEditor extends React.Component<any, any> {
@@ -36,7 +36,7 @@ class MathInlineEditor extends React.Component<any, any> {
     }
 
     render() {
-        const {align, latex} = this.props.value || {}
+        const {align, math} = this.props.value || {}
         const onClick = this._onClick
         const buttons = Object.keys(MathAlignValues).map(key => {
             const {value, text} = MathAlignValues[key]
@@ -57,8 +57,8 @@ class MathInlineEditor extends React.Component<any, any> {
                 <CustomButton
                     key="edit"
                     label="Edit"
-                    onClick={this._editLatex}
-                    value={latex || ''}
+                    onClick={this._editMath}
+                    value={math || ''}
                 />
             </div>
         )
@@ -69,24 +69,24 @@ class MathInlineEditor extends React.Component<any, any> {
         this.props.onSelect({...value, align})
     }
 
-    _editLatex = (latex: string): void => {
+    _editMath = (math: string): void => {
         if (this._popUp) {
             return
         }
         const {editorView, value} = this.props
         const props = {
             runtime: editorView ? editorView.runtime : null,
-            initialValue: (value && value.latex) || '',
+            initialValue: (value && value.math) || '',
         }
         this._popUp = createPopUp(MathEditor, props, {
             autoDismiss: false,
             modal: true,
-            onClose: latex => {
+            onClose: math => {
                 if (this._popUp) {
                     this._popUp = null
-                    if (latex !== undefined) {
+                    if (math !== undefined) {
                         const value = this.props.value || {}
-                        this.props.onSelect({...value, latex})
+                        this.props.onSelect({...value, math})
                     }
                     this.props.onEditEnd()
                 }
