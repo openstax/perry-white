@@ -1,6 +1,6 @@
-import hyphenize from "./hyphenize"
+import hyphenize from './hyphenize'
 
-const BLOCK_TAG_SELECTOR = "p,h1,h2,h3,h4,h5,h6,li".replace(
+const BLOCK_TAG_SELECTOR = 'p,h1,h2,h3,h4,h5,h6,li'.replace(
     /\w+/g,
     m => `${m}[style]`,
 )
@@ -15,24 +15,24 @@ export default function patchElementInlineStyles(doc: Document): void {
 const NODE_TYPE_TEXT = 3
 const NODE_TYPE_ELEMENT = 1
 const INLINE_STYLE_NAMES = [
-    "backgroundColor",
-    "color",
-    "fontFamily",
-    "fontSize",
-    "fontStyle",
-    "fontWeight",
-    "textDecoration",
-    "textIndent",
+    'backgroundColor',
+    'color',
+    'fontFamily',
+    'fontSize',
+    'fontStyle',
+    'fontWeight',
+    'textDecoration',
+    'textIndent',
 ]
 
 const INLINE_ELEMENT_NODE_NAMES = new Set([
-    "A",
-    "B",
-    "EM",
-    "I",
-    "SPAN",
-    "STRONG",
-    "U",
+    'A',
+    'B',
+    'EM',
+    'I',
+    'SPAN',
+    'STRONG',
+    'U',
 ])
 
 function patchBlockElement(el: HTMLElement): void {
@@ -49,15 +49,15 @@ function patchBlockElementStyle(
     const elementStyle = element.style
     const value = elementStyle && elementStyle[inlineStyleName]
 
-    if (inlineStyleName === "textIndent" && value) {
+    if (inlineStyleName === 'textIndent' && value) {
         // This is the workaround to fix the issue that people with mix both
         // text-indent and margin-left together.
         // For instance, `margin-left: -100px` and `text-indent: 100px` shall
         // offset each other.
-        const marginLeft = elementStyle.marginLeft || ""
-        if (value === "-" + marginLeft || marginLeft === "-" + value) {
-            elementStyle.marginLeft = ""
-            elementStyle.textIndent = ""
+        const marginLeft = elementStyle.marginLeft || ''
+        if (value === '-' + marginLeft || marginLeft === '-' + value) {
+            elementStyle.marginLeft = ''
+            elementStyle.textIndent = ''
         }
     }
 
@@ -66,7 +66,7 @@ function patchBlockElementStyle(
     }
 
     // Remove the style.
-    elementStyle[inlineStyleName] = ""
+    elementStyle[inlineStyleName] = ''
 
     const childNodes = Array.from(element.childNodes)
     childNodes.forEach((node:any) => {
@@ -80,7 +80,7 @@ function patchBlockElementStyle(
             }
         } else if (nodeType === NODE_TYPE_TEXT) {
             if (ownerDocument && parentElement) {
-                const span: any = ownerDocument.createElement("span")
+                const span: any = ownerDocument.createElement('span')
                 span.style[inlineStyleName] = value
                 parentElement.insertBefore(span, node)
                 span.appendChild(node)

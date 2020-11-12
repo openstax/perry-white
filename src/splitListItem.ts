@@ -1,9 +1,9 @@
-import uuid from "./ui/uuid"
-import {Fragment, Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
-import {canSplit} from "prosemirror-transform"
-import {LIST_ITEM, ORDERED_LIST, BULLET_LIST, PARAGRAPH} from "./NodeNames"
-import {findParentNodeOfType} from "prosemirror-utils"
+import uuid from './ui/uuid'
+import {Fragment, Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
+import {canSplit} from 'prosemirror-transform'
+import {LIST_ITEM, ORDERED_LIST, BULLET_LIST, PARAGRAPH} from './NodeNames'
+import {findParentNodeOfType} from 'prosemirror-utils'
 
 // Splits a list item by the current cursor's position.
 // Some examples:
@@ -115,7 +115,7 @@ function splitEmptyListItem(tr: Transaction, schema: Schema): Transaction {
         return tr
     }
     const listItemFound = findParentNodeOfType(listItemType)(tr.selection)
-    if (!listItemFound || listItemFound.node.textContent !== "") {
+    if (!listItemFound || listItemFound.node.textContent !== '') {
         // Cursor is not inside an empty list item.
         return tr
     }
@@ -177,7 +177,7 @@ function splitEmptyListItem(tr: Transaction, schema: Schema): Transaction {
     const sourceListNode = listFound.node
     const listAttrs = {...sourceListNode.attrs}
     if (orderedListType === sourceListNode.type) {
-        listAttrs.counterReset = "none"
+        listAttrs.counterReset = 'none'
         listAttrs.following = name
     }
 

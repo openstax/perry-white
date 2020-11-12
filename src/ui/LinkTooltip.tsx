@@ -1,14 +1,11 @@
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
-import scrollIntoView from "smooth-scroll-into-view-if-needed"
-
-import sanitizeURL from "../sanitizeURL"
-import CustomButton from "./CustomButton"
-
-import "./czi-link-tooltip.css"
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
+import scrollIntoView from 'smooth-scroll-into-view-if-needed'
+import sanitizeURL from '../sanitizeURL'
+import CustomButton from './CustomButton'
 
 function isBookMarkHref(href: string): boolean {
-    return !!href && href.indexOf("#") === 0 && href.length >= 2
+    return !!href && href.indexOf('#') === 0 && href.length >= 2
 }
 
 class LinkTooltip extends React.Component<any, any> {
@@ -69,10 +66,10 @@ class LinkTooltip extends React.Component<any, any> {
                 ;(async () => {
                     // https://www.npmjs.com/package/smooth-scroll-into-view-if-needed
                     await scrollIntoView(el, {
-                        scrollMode: "if-needed",
+                        scrollMode: 'if-needed',
                         // block: 'nearest',
                         // inline: 'nearest',
-                        behavior: "smooth",
+                        behavior: 'smooth',
                     })
                 })()
             }

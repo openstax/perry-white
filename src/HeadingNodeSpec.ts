@@ -1,9 +1,9 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import ParagraphNodeSpec from "./ParagraphNodeSpec"
-import {getParagraphNodeAttrs, toParagraphDOM} from "./ParagraphNodeSpec"
+import ParagraphNodeSpec from './ParagraphNodeSpec'
+import {getParagraphNodeAttrs, toParagraphDOM} from './ParagraphNodeSpec'
 
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
 const TAG_NAME_TO_LEVEL = {
     H1: 1,
@@ -19,44 +19,44 @@ const TAG_NAME_TO_LEVEL = {
 
 export const HEADING_NAMES = [
     {
-        name: "Normal",
+        name: 'Normal',
         level: 0,
     },
     {
-        name: "Heading 1",
+        name: 'Heading 1',
         level: 1,
     },
     {
-        name: "Heading 2",
+        name: 'Heading 2',
         level: 2,
     },
     {
-        name: "Heading 3",
+        name: 'Heading 3',
         level: 3,
     },
     {
-        name: "Heading 4",
+        name: 'Heading 4',
         level: 4,
     },
     {
-        name: "Title",
+        name: 'Title',
         customstyles: [
             {
-                stylename: "Title",
+                stylename: 'Title',
                 // 'fontsize' : 30,
                 // 'fontname' : 'Acme',
                 strong: true,
                 em: true,
-                color: "Green",
+                color: 'Green',
             },
         ],
     },
     {
-        name: "Quote",
+        name: 'Quote',
         style: [
             {
-                "font-size": 20,
-                "font-name": "Arial",
+                'font-size': 20,
+                'font-name': 'Arial',
             },
         ],
     },
@@ -73,12 +73,12 @@ const HeadingNodeSpec: NodeSpec = {
     },
     defining: true,
     parseDOM: [
-        {tag: "h1", getAttrs},
-        {tag: "h2", getAttrs},
-        {tag: "h3", getAttrs},
-        {tag: "h4", getAttrs},
-        {tag: "h5", getAttrs},
-        {tag: "h6", getAttrs},
+        {tag: 'h1', getAttrs},
+        {tag: 'h2', getAttrs},
+        {tag: 'h3', getAttrs},
+        {tag: 'h4', getAttrs},
+        {tag: 'h5', getAttrs},
+        {tag: 'h6', getAttrs},
     ],
     toDOM,
 }

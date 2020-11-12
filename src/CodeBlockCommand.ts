@@ -1,11 +1,11 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {findParentNodeOfType, ContentNodeWithPos} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {findParentNodeOfType, ContentNodeWithPos} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {CODE_BLOCK} from "./NodeNames"
-import noop from "./noop"
-import toggleCodeBlock from "./toggleCodeBlock"
-import UICommand from "./ui/UICommand"
+import {CODE_BLOCK} from './NodeNames'
+import noop from './noop'
+import toggleCodeBlock from './toggleCodeBlock'
+import UICommand from './ui/UICommand'
 
 class CodeBlockCommand extends UICommand {
     isActive = (state: EditorState): boolean => {

@@ -1,7 +1,7 @@
 import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 
-import {DirectEditorProps, EditorRuntime} from "../Types"
+import {DirectEditorProps, EditorRuntime} from '../Types'
 
 // https://github.com/ProseMirror/prosemirror-view/blob/master/src/index.js
 class CustomEditorView extends EditorView {
@@ -25,5 +25,9 @@ class CustomEditorView extends EditorView {
     }
 
 }
+
+// export function isCustomEditorView(v: any): pet is Fish {
+//   return (pet as Fish).swim !== undefined;
+// }
 
 export default CustomEditorView

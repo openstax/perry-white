@@ -1,7 +1,7 @@
-import {Node} from "prosemirror-model"
-import {EditorView} from "prosemirror-view"
+import {Node} from 'prosemirror-model'
+import {EditorView} from 'prosemirror-view'
 // @ts-ignore it is exported
-import {TableView} from "prosemirror-tables"
+import {TableView} from 'prosemirror-tables'
 
 // A custom table view that renders the margin-left style.
 export default class TableNodeView extends TableView {
@@ -19,6 +19,6 @@ export default class TableNodeView extends TableView {
     _updateMargin(node: Node): void {
         const marginLeft = (node.attrs && node.attrs.marginLeft) || 0
         // @ts-ignore
-        this.table.style.marginLeft = marginLeft ? `${marginLeft}px` : ""
+        this.table.style.marginLeft = marginLeft ? `${marginLeft}px` : ''
     }
 }

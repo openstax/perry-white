@@ -1,11 +1,11 @@
-import {Schema} from "prosemirror-model"
-import {Transaction} from "prosemirror-state"
+import {Schema} from 'prosemirror-model'
+import {Transaction} from 'prosemirror-state'
 
-import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import compareNumber from "./compareNumber"
-import isInsideListItem from "./isInsideListItem"
-import isListNode from "./isListNode"
-import {unwrapNodesFromList} from "./toggleList"
+import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import compareNumber from './compareNumber'
+import isInsideListItem from './isInsideListItem'
+import isListNode from './isListNode'
+import {unwrapNodesFromList} from './toggleList'
 
 export default function toggleBlockquote(
     tr: Transaction,

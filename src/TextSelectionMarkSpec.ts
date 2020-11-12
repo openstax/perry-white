@@ -1,21 +1,21 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const TextSelectionMarkSpec: MarkSpec = {
     attrs: {
-        id: "",
+        id: '',
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            tag: "czi-text-selection",
+            tag: 'czi-text-selection',
         },
     ],
 
     toDOM(node: Node) {
-        return ["czi-text-selection", {class: "czi-text-selection"}, 0]
+        return ['czi-text-selection', {class: 'czi-text-selection'}, 0]
     },
 }
 

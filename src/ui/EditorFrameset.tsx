@@ -1,7 +1,5 @@
-import cx from "classnames"
-import * as React from "react"
-
-import "./czi-editor-frameset.css"
+import cx from 'classnames'
+import * as React from 'react'
 
 export type EditorFramesetProps = {
     body: React.ReactElement<any> | null | undefined
@@ -10,19 +8,19 @@ export type EditorFramesetProps = {
     fitToContent: boolean | null | undefined
     header: React.ReactElement<any> | null | undefined
     height: (string | number) | null | undefined
-    toolbarPlacement?: "header" | "body" | null
+    toolbarPlacement?: 'header' | 'body' | null
     toolbar: React.ReactElement<any> | null | undefined
     width: (string | number) | null | undefined
 }
 
-export const FRAMESET_BODY_CLASSNAME = "czi-editor-frame-body"
+export const FRAMESET_BODY_CLASSNAME = 'czi-editor-frame-body'
 
 function toCSS(val: (number | string) | null | undefined): string {
-    if (typeof val === "number") {
-        return val + "px"
+    if (typeof val === 'number') {
+        return val + 'px'
     }
     if (val === undefined || val === null) {
-        return "auto"
+        return 'auto'
     }
     return String(val)
 }
@@ -44,35 +42,36 @@ class EditorFrameset extends React.Component<any, any> {
         } = this.props
 
         const useFixedLayout = width !== undefined || height !== undefined
-        let mainClassName = ""
+        let mainClassName = ''
         //  FS IRAD-1040 2020-17-09
         //  wrapping style for fit to content mode
         if (fitToContent) {
             mainClassName = cx(className, {
-                "czi-editor-frameset": true,
-                "with-fixed-layout": useFixedLayout,
+                'czi-editor-frameset': true,
+                'with-fixed-layout': useFixedLayout,
                 fitToContent: fitToContent,
             })
         } else {
             mainClassName = cx(className, {
-                "czi-editor-frameset": true,
-                "with-fixed-layout": useFixedLayout,
+
+                'czi-editor-frameset': true,
+                'with-fixed-layout': useFixedLayout,
                 embedded: embedded,
             })
         }
 
         const mainStyle = {
             width: toCSS(
-                width === undefined && useFixedLayout ? "auto" : width,
+                width === undefined && useFixedLayout ? 'auto' : width,
             ),
             height: toCSS(
-                height === undefined && useFixedLayout ? "auto" : height,
+                height === undefined && useFixedLayout ? 'auto' : height,
             ),
         }
 
         const toolbarHeader =
-            toolbarPlacement === "header" || !toolbarPlacement ? toolbar : null
-        const toolbarBody = toolbarPlacement === "body" && toolbar
+            toolbarPlacement === 'header' || !toolbarPlacement ? toolbar : null
+        const toolbarBody = toolbarPlacement === 'body' && toolbar
 
         return (
             <div className={mainClassName} style={mainStyle}>

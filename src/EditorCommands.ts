@@ -1,35 +1,35 @@
-import * as ProsemirrorTables from "prosemirror-tables"
+import * as ProsemirrorTables from 'prosemirror-tables'
 // [FS][07-MAY-2020][IRAD-956]
 // import BlockquoteInsertNewLineCommand from './BlockquoteInsertNewLineCommand';
 // import BlockquoteToggleCommand from './BlockquoteToggleCommand';
-import DocLayoutCommand from "./DocLayoutCommand"
-import HeadingCommand from "./HeadingCommand"
-import HistoryRedoCommand from "./HistoryRedoCommand"
-import HistoryUndoCommand from "./HistoryUndoCommand"
-import HorizontalRuleCommand from "./HorizontalRuleCommand"
-import ImageFromURLCommand from "./ImageFromURLCommand"
-import ImageUploadCommand from "./ImageUploadCommand"
-import IndentCommand from "./IndentCommand"
-import LinkSetURLCommand from "./LinkSetURLCommand"
-import ListItemInsertNewLineCommand from "./ListItemInsertNewLineCommand"
-import ListItemMergeCommand from "./ListItemMergeCommand"
-import ListSplitCommand from "./ListSplitCommand"
-import ListToggleCommand from "./ListToggleCommand"
-import * as MarkNames from "./MarkNames"
-import MarkToggleCommand from "./MarkToggleCommand"
-import MarksClearCommand from "./MarksClearCommand"
-import MathEditCommand from "./MathEditCommand"
-import PrintCommand from "./PrintCommand"
-import TableBackgroundColorCommand from "./TableBackgroundColorCommand"
-import TableBorderColorCommand from "./TableBorderColorCommand"
-import TableInsertCommand from "./TableInsertCommand"
-import TableMergeCellsCommand from "./TableMergeCellsCommand"
-import TextAlignCommand from "./TextAlignCommand"
-import TextColorCommand from "./TextColorCommand"
-import TextHighlightCommand from "./TextHighlightCommand"
-import TextInsertTabSpaceCommand from "./TextInsertTabSpaceCommand"
-import TextLineSpacingCommand from "./TextLineSpacingCommand"
-import createCommand from "./createCommand"
+import DocLayoutCommand from './DocLayoutCommand'
+import HeadingCommand from './HeadingCommand'
+import HistoryRedoCommand from './HistoryRedoCommand'
+import HistoryUndoCommand from './HistoryUndoCommand'
+import HorizontalRuleCommand from './HorizontalRuleCommand'
+import ImageFromURLCommand from './ImageFromURLCommand'
+import ImageUploadCommand from './ImageUploadCommand'
+import IndentCommand from './IndentCommand'
+import LinkSetURLCommand from './LinkSetURLCommand'
+import ListItemInsertNewLineCommand from './ListItemInsertNewLineCommand'
+import ListItemMergeCommand from './ListItemMergeCommand'
+import ListSplitCommand from './ListSplitCommand'
+import ListToggleCommand from './ListToggleCommand'
+import * as MarkNames from './MarkNames'
+import MarkToggleCommand from './MarkToggleCommand'
+import MarksClearCommand from './MarksClearCommand'
+import MathEditCommand from './MathEditCommand'
+import PrintCommand from './PrintCommand'
+import TableBackgroundColorCommand from './TableBackgroundColorCommand'
+import TableBorderColorCommand from './TableBorderColorCommand'
+import TableInsertCommand from './TableInsertCommand'
+import TableMergeCellsCommand from './TableMergeCellsCommand'
+import TextAlignCommand from './TextAlignCommand'
+import TextColorCommand from './TextColorCommand'
+import TextHighlightCommand from './TextHighlightCommand'
+import TextInsertTabSpaceCommand from './TextInsertTabSpaceCommand'
+import TextLineSpacingCommand from './TextLineSpacingCommand'
+import createCommand from './createCommand'
 
 const {
     addColumnAfter,
@@ -65,8 +65,8 @@ const {
 // editable tables, even though those don't work in ProseMirror. The only way
 // to turn these off is globally, which you might want to do with the
 // following code:
-document.execCommand("enableObjectResizing", false, "false")
-document.execCommand("enableInlineTableEditing", false, "false")
+document.execCommand('enableObjectResizing', false, 'false')
+document.execCommand('enableInlineTableEditing', false, 'false')
 // [FS][07-MAY-2020][IRAD-956]
 //  export const BLOCKQUOTE_TOGGLE = new BlockquoteToggleCommand();
 //  export const BLOCKQUOTE_INSERT_NEW_LINE = new BlockquoteInsertNewLineCommand();
@@ -88,8 +88,8 @@ export const INDENT_LESS = new IndentCommand(-1)
 export const INDENT_MORE = new IndentCommand(1)
 export const LINK_SET_URL = new LinkSetURLCommand()
 export const LIST_ITEM_INSERT_NEW_LINE = new ListItemInsertNewLineCommand()
-export const LIST_ITEM_MERGE_DOWN = new ListItemMergeCommand("down")
-export const LIST_ITEM_MERGE_UP = new ListItemMergeCommand("up")
+export const LIST_ITEM_MERGE_DOWN = new ListItemMergeCommand('down')
+export const LIST_ITEM_MERGE_UP = new ListItemMergeCommand('up')
 export const LIST_SPLIT = new ListSplitCommand()
 export const MATH_EDIT = new MathEditCommand()
 export const OL = new ListToggleCommand(true)
@@ -115,10 +115,10 @@ export const TABLE_SPLIT_ROW = createCommand(splitCell)
 export const TABLE_TOGGLE_HEADER_CELL = createCommand(toggleHeaderCell)
 export const TABLE_TOGGLE_HEADER_COLUMN = createCommand(toggleHeaderColumn)
 export const TABLE_TOGGLE_HEADER_ROW = createCommand(toggleHeaderRow)
-export const TEXT_ALIGN_CENTER = new TextAlignCommand("center")
-export const TEXT_ALIGN_JUSTIFY = new TextAlignCommand("justify")
-export const TEXT_ALIGN_LEFT = new TextAlignCommand("left")
-export const TEXT_ALIGN_RIGHT = new TextAlignCommand("right")
+export const TEXT_ALIGN_CENTER = new TextAlignCommand('center')
+export const TEXT_ALIGN_JUSTIFY = new TextAlignCommand('justify')
+export const TEXT_ALIGN_LEFT = new TextAlignCommand('left')
+export const TEXT_ALIGN_RIGHT = new TextAlignCommand('right')
 export const TEXT_COLOR = new TextColorCommand()
 export const TEXT_HIGHLIGHT = new TextHighlightCommand()
 export const TEXT_INSERT_TAB_SPACE = new TextInsertTabSpaceCommand()

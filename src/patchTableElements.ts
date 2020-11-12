@@ -1,10 +1,10 @@
-import {PT_TO_PX_RATIO} from "./convertToCSSPTValue"
-import convertToCSSPTValue from "./convertToCSSPTValue"
-import toHexColor from "./ui/toHexColor"
+import {PT_TO_PX_RATIO} from './convertToCSSPTValue'
+import convertToCSSPTValue from './convertToCSSPTValue'
+import toHexColor from './ui/toHexColor'
 
 export default function patchTableElements(doc: Document): void {
-    Array.from(doc.querySelectorAll("td")).forEach(patchTableCell)
-    Array.from(doc.querySelectorAll("tr[style^=height]")).forEach(patchTableRow)
+    Array.from(doc.querySelectorAll('td')).forEach(patchTableCell)
+    Array.from(doc.querySelectorAll('tr[style^=height]')).forEach(patchTableRow)
 }
 
 // The height of each line: ~= 21px
@@ -20,7 +20,7 @@ function patchTableCell(tdElement: HTMLElement): void {
     const {backgroundColor, width} = style
     if (backgroundColor) {
         const tdBgColor = toHexColor(backgroundColor)
-        const selector = "span[style*=background-color]"
+        const selector = 'span[style*=background-color]'
         const spans = Array.from(tdElement.querySelectorAll(selector))
         spans.some((spanElement:any) => {
             const spanStyle = spanElement.style
@@ -30,7 +30,7 @@ function patchTableCell(tdElement: HTMLElement): void {
             const spanBgColor = toHexColor(spanStyle.backgroundColor)
             if (spanBgColor === tdBgColor) {
                 // The span has the same bg color as the cell does, erase its bg color.
-                spanStyle.backgroundColor = ""
+                spanStyle.backgroundColor = ''
             }
         })
     }
@@ -42,7 +42,7 @@ function patchTableCell(tdElement: HTMLElement): void {
         }
         const pxValue = ptValue * PT_TO_PX_RATIO
         // Attribute "data-colwidth" is defined at 'prosemirror-tables';
-        tdElement.setAttribute("data-colwidth", String(Math.round(pxValue)))
+        tdElement.setAttribute('data-colwidth', String(Math.round(pxValue)))
     }
 }
 
@@ -57,7 +57,7 @@ function patchTableRow(trElement: HTMLElement): void {
     if (!height) {
         return
     }
-    const firstCell = trElement.querySelector("td, th")
+    const firstCell = trElement.querySelector('td, th')
     if (!firstCell) {
         return
     }
@@ -66,7 +66,7 @@ function patchTableRow(trElement: HTMLElement): void {
         return
     }
 
-    const pEls = firstCell.querySelectorAll("p")
+    const pEls = firstCell.querySelectorAll('p')
     const heightNeeded = ptValue - LINE_HEIGHT_PT_VALUE * pEls.length
     if (heightNeeded < 0) {
         return
@@ -76,7 +76,7 @@ function patchTableRow(trElement: HTMLElement): void {
         return
     }
     const frag = doc.createDocumentFragment()
-    const line = doc.createElement("p")
+    const line = doc.createElement('p')
     while (pElsNeeded > 0) {
         pElsNeeded--
         frag.appendChild(line.cloneNode(false))

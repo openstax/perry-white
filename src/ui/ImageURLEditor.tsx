@@ -1,14 +1,11 @@
-import * as React from "react"
-import * as PropTypes from "prop-types"
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
 
-import CustomButton from "./CustomButton"
-import preventEventDefault from "./preventEventDefault"
-import resolveImage from "./resolveImage"
+import CustomButton from './CustomButton'
+import preventEventDefault from './preventEventDefault'
+import resolveImage from './resolveImage'
 
-import "./czi-form.css"
-import "./czi-image-url-editor.css"
-
-import {ImageLike} from "../Types"
+import {ImageLike} from '../Types'
 
 type Props = {
     // eslint-disable-line no-unused-vars
@@ -37,12 +34,12 @@ class ImageURLEditor extends React.Component<Props, State> {
             const fn = props[propName]
             if (
                 !fn.prototype ||
-                (typeof fn.prototype.constructor !== "function" &&
+                (typeof fn.prototype.constructor !== 'function' &&
                     fn.prototype.constructor.length !== 1)
             ) {
                 return new Error(
                     propName +
-                        "must be a function with 1 arg of type ImageLike",
+                        'must be a function with 1 arg of type ImageLike',
                 )
             }
             return undefined
@@ -79,7 +76,7 @@ class ImageURLEditor extends React.Component<Props, State> {
                                 onChange={this._onSrcChange}
                                 placeholder="Paste URL of Image..."
                                 type="text"
-                                value={src || ""}
+                                value={src || ''}
                             />
                             {preview}
                         </div>
@@ -104,7 +101,7 @@ class ImageURLEditor extends React.Component<Props, State> {
 
     _onSrcChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
         // @ts-ignore
-        const src = e.target.value 
+        const src = e.target.value
         this.setState(
             {
                 src,

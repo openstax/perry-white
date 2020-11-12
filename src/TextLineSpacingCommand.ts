@@ -1,16 +1,16 @@
-import UICommand from "./ui/UICommand"
-import {AllSelection, TextSelection} from "prosemirror-state"
-import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import {Schema} from "prosemirror-model"
-import {Transaction} from "prosemirror-state"
+import UICommand from './ui/UICommand'
+import {AllSelection, TextSelection} from 'prosemirror-state'
+import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import {EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import {Schema} from 'prosemirror-model'
+import {Transaction} from 'prosemirror-state'
 import {
     DOUBLE_LINE_SPACING,
     SINGLE_LINE_SPACING,
     LINE_SPACING_115,
     LINE_SPACING_150,
-} from "./ui/toCSSLineSpacing"
+} from './ui/toCSSLineSpacing'
 
 export function setTextLineSpacing(
     tr: Transaction,
@@ -91,8 +91,8 @@ function createGroup(): Array<{
 }> {
     const group = {
         Single: new TextLineSpacingCommand(SINGLE_LINE_SPACING),
-        "1.15": new TextLineSpacingCommand(LINE_SPACING_115),
-        "1.5": new TextLineSpacingCommand(LINE_SPACING_150),
+        '1.15': new TextLineSpacingCommand(LINE_SPACING_115),
+        '1.5': new TextLineSpacingCommand(LINE_SPACING_150),
         Double: new TextLineSpacingCommand(DOUBLE_LINE_SPACING),
     }
     return [group]

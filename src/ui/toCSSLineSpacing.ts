@@ -1,8 +1,8 @@
 // Line spacing names and their values.
-export const LINE_SPACING_100 = "125%"
-export const LINE_SPACING_115 = "138%"
-export const LINE_SPACING_150 = "165%"
-export const LINE_SPACING_200 = "232%"
+export const LINE_SPACING_100 = '125%'
+export const LINE_SPACING_115 = '138%'
+export const LINE_SPACING_150 = '165%'
+export const LINE_SPACING_200 = '232%'
 
 export const SINGLE_LINE_SPACING = LINE_SPACING_100
 export const DOUBLE_LINE_SPACING = LINE_SPACING_200
@@ -14,7 +14,7 @@ const NUMBER_VALUE_PATTERN = /^\d+(.\d+)?$/
 // Doc.
 export default function toCSSLineSpacing(source: any): string {
     if (!source) {
-        return ""
+        return ''
     }
 
     let strValue = String(source)
@@ -22,7 +22,7 @@ export default function toCSSLineSpacing(source: any): string {
     // e.g. line-height: 1.5;
     if (NUMBER_VALUE_PATTERN.test(strValue)) {
         const numValue = parseFloat(strValue)
-        strValue = String(Math.round(numValue * 100)) + "%"
+        strValue = String(Math.round(numValue * 100)) + '%'
     }
 
     // Google Doc exports line spacing with wrong values. For instance:
@@ -35,19 +35,19 @@ export default function toCSSLineSpacing(source: any): string {
     // - Double => 232%
     // The following `if` block will calibrate the value if applicable.
 
-    if (strValue === "100%") {
+    if (strValue === '100%') {
         return LINE_SPACING_100
     }
 
-    if (strValue === "115%") {
+    if (strValue === '115%') {
         return LINE_SPACING_115
     }
 
-    if (strValue === "150%") {
+    if (strValue === '150%') {
         return LINE_SPACING_150
     }
 
-    if (strValue === "200%") {
+    if (strValue === '200%') {
         return LINE_SPACING_200
     }
 

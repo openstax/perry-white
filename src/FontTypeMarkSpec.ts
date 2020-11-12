@@ -1,23 +1,21 @@
-import {Node} from "prosemirror-model"
-import {MarkSpec} from "./Types"
+import {Node} from 'prosemirror-model'
+import {MarkSpec} from './Types'
 
 // [FS] IRAD-1061 2020-09-19
 // Now loaded locally, so that it work in closed network as well.
 //import injectStyleSheet from './injectStyleSheet';
-import "./fonts.css"
-
 export const FONT_TYPE_NAMES = [
     // SERIF
-    "Aclonica",
-    "Acme",
-    "Alegreya", //'Arial',//??? - Commented out fonts that are not available to download using https://fonts.googleapis.com/css?family=
-    "Arial Black",
-    "Georgia",
-    "Tahoma",
-    "Times New Roman",
-    "Times",
-    "Verdana", // MONOSPACE
-    "Courier New", //'Lucida Console',//???
+    'Aclonica',
+    'Acme',
+    'Alegreya', //'Arial',//??? - Commented out fonts that are not available to download using https://fonts.googleapis.com/css?family=
+    'Arial Black',
+    'Georgia',
+    'Tahoma',
+    'Times New Roman',
+    'Times',
+    'Verdana', // MONOSPACE
+    'Courier New', //'Lucida Console',//???
     //'Monaco',//???
     //'monospace',//???
 ]
@@ -45,16 +43,16 @@ const RESOLVED_FONT_NAMES = new Set([])
 
 const FontTypeMarkSpec: MarkSpec = {
     attrs: {
-        name: "",
+        name: '',
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            style: "font-family",
+            style: 'font-family',
             getAttrs: name => {
                 return {
-                    name: name ? name.replace(/[\"\']/g, "") : "",
+                    name: name ? name.replace(/[\"\']/g, '') : '',
                 }
             },
         },
@@ -69,7 +67,7 @@ const FontTypeMarkSpec: MarkSpec = {
             }
             attrs.style = `font-family: ${name}`
         }
-        return ["span", attrs, 0]
+        return ['span', attrs, 0]
     },
 }
 

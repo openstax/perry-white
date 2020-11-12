@@ -23,8 +23,8 @@ export default function bindScrollHandler(
     // elements.
     while (el) {
         const overflow = defaultView.getComputedStyle(el).overflow
-        if ((onScroll && overflow === "auto") || overflow === "scroll") {
-            el.addEventListener("scroll", onScroll, false)
+        if ((onScroll && overflow === 'auto') || overflow === 'scroll') {
+            el.addEventListener('scroll', onScroll, false)
             els.push(el)
         }
         el = el.parentElement
@@ -34,7 +34,7 @@ export default function bindScrollHandler(
         dispose() {
             while (onScroll && els.length) {
                 el = els.pop()
-                el && el.removeEventListener("scroll", onScroll, false)
+                el && el.removeEventListener('scroll', onScroll, false)
             }
             onScroll = null
             rid && window.cancelAnimationFrame(rid)

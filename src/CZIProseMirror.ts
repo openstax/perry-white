@@ -1,8 +1,8 @@
-import {EditorView} from "prosemirror-view"
+import {EditorView} from 'prosemirror-view'
 
-import convertToJSON from "./convertToJSON"
-import CustomEditorView from "./ui/CustomEditorView"
-import UICommand from "./ui/UICommand"
+import convertToJSON from './convertToJSON'
+import CustomEditorView from './ui/CustomEditorView'
+import UICommand from './ui/UICommand'
 
 const commandsRegistery = new Map<any, any>()
 const viewsRegistery = new Map<any, any>()
@@ -24,27 +24,27 @@ export function exportJSON(id: string | null | undefined): Object {
     }
     const view = viewsRegistery.get(String(id))
     if (!view) {
-        throw new Error("view ${id} does not exist")
+        throw new Error('view ${id} does not exist')
     }
     return convertToJSON(view.state)
 }
 
 export function registerEditorView(id: string, view: EditorView): void {
     if (viewsRegistery.has(id)) {
-        throw new Error("view ${id} already registered")
+        throw new Error('view ${id} already registered')
     }
     if (!(view instanceof CustomEditorView)) {
         throw new Error(`invalid view ${id}`)
     }
     if (!id) {
-        throw new Error("id is required")
+        throw new Error('id is required')
     }
     viewsRegistery.set(id, view)
 }
 
 export function releaseEditorView(id: string): void {
     if (!viewsRegistery.has(id)) {
-        throw new Error("view ${id} was released")
+        throw new Error('view ${id} was released')
     }
     viewsRegistery.delete(id)
 }
@@ -79,10 +79,10 @@ export function registerCommand(name: string, command: UICommand): void {
         throw new Error(`invalid command ${name}`)
     }
     if (!name) {
-        throw new Error("invalid command name")
+        throw new Error('invalid command name')
     }
     if (commandsRegistery.has(name)) {
-        throw new Error("command ${name} already registered")
+        throw new Error('command ${name} already registered')
     }
     commandsRegistery.set(name, command)
 }

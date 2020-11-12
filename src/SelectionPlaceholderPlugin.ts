@@ -1,9 +1,7 @@
-import {EditorState, Plugin, PluginKey, Transaction} from "prosemirror-state"
-import {Decoration, DecorationSet} from "prosemirror-view"
+import {EditorState, Plugin, PluginKey, Transaction} from 'prosemirror-state'
+import {Decoration, DecorationSet} from 'prosemirror-view'
 
-import "./ui/czi-selection-placeholder.css"
-
-const PLACE_HOLDER_ID = {name: "SelectionPlaceholderPlugin"}
+const PLACE_HOLDER_ID = {name: 'SelectionPlaceholderPlugin'}
 
 let singletonInstance = null
 
@@ -11,7 +9,7 @@ let singletonInstance = null
 const SPEC = {
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    key: new PluginKey("SelectionPlaceholderPlugin"),
+    key: new PluginKey('SelectionPlaceholderPlugin'),
     state: {
         init() {
             return DecorationSet.empty
@@ -30,7 +28,7 @@ const SPEC = {
                     action.add.from,
                     action.add.to,
                     {
-                        class: "czi-selection-placeholder",
+                        class: 'czi-selection-placeholder',
                     },
                     {
                         id: PLACE_HOLDER_ID,
@@ -74,7 +72,7 @@ function findSelectionPlaceholder(
         return null
     }
     if (!state.plugins.includes(singletonInstance)) {
-        console.warn("SelectionPlaceholderPlugin is not installed")
+        console.warn('SelectionPlaceholderPlugin is not installed')
         return null
     }
     const decos = singletonInstance.getState(state)

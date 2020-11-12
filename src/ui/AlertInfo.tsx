@@ -1,7 +1,5 @@
-import * as React from "react"
-import { ImageLike } from '../Types';
-
-import "./czi-form.css"
+import * as React from 'react'
+import { ImageLike } from '../Types'
 
 interface Props {
     initialValue: any

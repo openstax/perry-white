@@ -1,18 +1,18 @@
-import HTMLMutator from "./HTMLMutator"
-import nullthrows from "nullthrows"
-import uuid from "./ui/uuid"
+import HTMLMutator from './HTMLMutator'
+import nullthrows from 'nullthrows'
+import uuid from './ui/uuid'
 
-import {ATTRIBUTE_LIST_STYLE_TYPE} from "./ListItemNodeSpec"
+import {ATTRIBUTE_LIST_STYLE_TYPE} from './ListItemNodeSpec'
 import {
     ATTRIBUTE_INDENT,
     EMPTY_CSS_VALUE,
     convertMarginLeftToIndentValue,
-} from "./ParagraphNodeSpec"
+} from './ParagraphNodeSpec'
 import {
     ATTRIBUTE_COUNTER_RESET,
     ATTRIBUTE_FOLLOWING,
-} from "./OrderedListNodeSpec"
-import {ATTRIBUTE_CSS_BEFORE_CONTENT} from "./patchStyleElements"
+} from './OrderedListNodeSpec'
+import {ATTRIBUTE_CSS_BEFORE_CONTENT} from './patchStyleElements'
 
 export default function patchListElements(doc: Document): void {
     // In Google Doc, lists are exported as indented
@@ -23,15 +23,15 @@ export default function patchListElements(doc: Document): void {
     // Before proceeding further, it needs to convert the nested list elements
     // into indented list elements.
     liftNestedListElements(doc)
-    Array.from(doc.querySelectorAll("ol, ul")).forEach(patchListElementsElement)
+    Array.from(doc.querySelectorAll('ol, ul')).forEach(patchListElementsElement)
 }
 
 // This assumes that every 36pt maps to one indent level.
-const CHAR_BULLET = "\u25cf"
-const CHAR_CIRCLE = "\u25cb"
-const CHAR_SQUARE = "\u25a0"
-const CHAR_BOX = "\u274f"
-const CHAR_ZERO_SPACE = "\u200B"
+const CHAR_BULLET = '\u25cf'
+const CHAR_CIRCLE = '\u25cb'
+const CHAR_SQUARE = '\u25a0'
+const CHAR_BOX = '\u274f'
+const CHAR_ZERO_SPACE = '\u200B'
 const INLINE_NODE_NAME_PATTERN = /^(#text)|(A|SPAN|B|STRONG)$/
 
 function patchListElementsElement(listElement: HTMLElement): void {
@@ -47,7 +47,7 @@ function patchListElementsElement(listElement: HTMLElement): void {
     // before the list.
     if (
         parentElement &&
-        parentElement.nodeName === "BODY" &&
+        parentElement.nodeName === 'BODY' &&
         parentElement.firstChild === listElement
     ) {
         const tt = parentElement.ownerDocument.createTextNode(CHAR_ZERO_SPACE)
@@ -59,7 +59,7 @@ function patchListElementsElement(listElement: HTMLElement): void {
         patchPaddingStyle(listItemElement)
 
         const bc =
-            listItemElement.getAttribute(ATTRIBUTE_CSS_BEFORE_CONTENT) || ""
+            listItemElement.getAttribute(ATTRIBUTE_CSS_BEFORE_CONTENT) || ''
         if (beforeContent === undefined) {
             beforeContent = bc
         }
@@ -67,7 +67,7 @@ function patchListElementsElement(listElement: HTMLElement): void {
             beforeContent = null
         }
 
-        const ml = (style && style.marginLeft) || ""
+        const ml = (style && style.marginLeft) || ''
         if (marginLeft === undefined) {
             marginLeft = ml
         }
@@ -89,43 +89,43 @@ function patchListElementsElement(listElement: HTMLElement): void {
         let listStyleType
         switch (true) {
             case beforeContent.indexOf(CHAR_BULLET) > -1:
-                listStyleType = "disc"
+                listStyleType = 'disc'
                 break
 
             case beforeContent.indexOf(CHAR_CIRCLE) > -1:
-                listStyleType = "circle"
+                listStyleType = 'circle'
                 break
 
             case beforeContent.indexOf(CHAR_SQUARE) > -1:
-                listStyleType = "square"
+                listStyleType = 'square'
                 break
 
             case beforeContent.indexOf(CHAR_BOX) > -1:
-                listStyleType = "box"
+                listStyleType = 'box'
                 break
 
-            case beforeContent.indexOf("lower-latin") > -1:
-                listStyleType = "lower-latin"
+            case beforeContent.indexOf('lower-latin') > -1:
+                listStyleType = 'lower-latin'
                 break
 
-            case beforeContent.indexOf("upper-latin") > -1:
-                listStyleType = "upper-latin"
+            case beforeContent.indexOf('upper-latin') > -1:
+                listStyleType = 'upper-latin'
                 break
 
-            case beforeContent.indexOf("lower-roman") > -1:
-                listStyleType = "lower-roman"
+            case beforeContent.indexOf('lower-roman') > -1:
+                listStyleType = 'lower-roman'
                 break
 
-            case beforeContent.indexOf("upper-roman") > -1:
-                listStyleType = "upper-roman"
+            case beforeContent.indexOf('upper-roman') > -1:
+                listStyleType = 'upper-roman'
                 break
 
-            case beforeContent.indexOf("-") > -1:
-                listStyleType = "dash"
+            case beforeContent.indexOf('-') > -1:
+                listStyleType = 'dash'
                 break
 
             default:
-                console.log("unknown list style type", beforeContent)
+                console.log('unknown list style type', beforeContent)
                 break
         }
         if (listStyleType) {
@@ -158,7 +158,7 @@ function patchPaddingStyle(listItemElement: HTMLElement): void {
 
     if (contentIsInline) {
         // Wrap all inline content with <p /> with the padding style applied.
-        const pEl = doc.createElement("p")
+        const pEl = doc.createElement('p')
         Object.assign(pEl.style, {
             lineHeight,
             paddingBottom,
@@ -202,24 +202,24 @@ function patchPaddingStyle(listItemElement: HTMLElement): void {
 //   <li>AA</li>
 // </ol>
 function liftNestedListElements(doc: Document): void {
-    const selector = "li > ol, li > ul"
+    const selector = 'li > ol, li > ul'
     const els = Array.from(doc.querySelectorAll(selector))
     const htmlMutator = new HTMLMutator(doc)
 
     els.forEach(list => {
         const indent = findIndentLevel(list)
-        list.setAttribute("data-indent", String(indent))
+        list.setAttribute('data-indent', String(indent))
 
         const parentListItem = nullthrows(list.parentElement)
         const parentList = nullthrows(parentListItem.parentElement)
         const parentListNodeName = parentList.nodeName.toLowerCase()
         const isLast = parentList.lastElementChild === parentListItem
-        const style = parentList.getAttribute("style") || ""
+        const style = parentList.getAttribute('style') || ''
 
         // The parent list will be split into two lists and the second list should
         // follow the first list.
-        const followingName = parentList.getAttribute("name") || uuid()
-        parentList.setAttribute("name", followingName)
+        const followingName = parentList.getAttribute('name') || uuid()
+        parentList.setAttribute('name', followingName)
 
         // Stub HTML snippets that will lift the list.
 
@@ -251,8 +251,8 @@ function liftNestedListElements(doc: Document): void {
         if (isLast) {
             // The new list after list is an empty list, comment it out.
             htmlMutator
-                .insertHTMLAfter("<!--", list)
-                .insertHTMLAfter("-->", parentList)
+                .insertHTMLAfter('<!--', list)
+                .insertHTMLAfter('-->', parentList)
         }
     })
 
@@ -264,9 +264,9 @@ function findIndentLevel(el: Element): number {
     let currentEl = el.parentElement
     while (currentEl) {
         const {nodeName} = currentEl
-        if (nodeName === "OL" || nodeName === "UL") {
+        if (nodeName === 'OL' || nodeName === 'UL') {
             indent++
-        } else if (nodeName !== "LI") {
+        } else if (nodeName !== 'LI') {
             break
         }
         currentEl = currentEl.parentElement

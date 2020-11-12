@@ -1,9 +1,9 @@
-import {Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
+import {Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
 
-import isListNode from "./isListNode"
-import joinDown from "./joinDown"
-import joinUp from "./joinUp"
+import isListNode from './isListNode'
+import joinDown from './joinDown'
+import joinUp from './joinUp'
 
 export default function joinListNode(
     tr: Transaction,

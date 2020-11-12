@@ -1,10 +1,10 @@
-import {Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
-import {MARK_LINK} from "./MarkNames"
-import {BLOCKQUOTE, CODE_BLOCK, HEADING, PARAGRAPH} from "./NodeNames"
-import {clearMarks} from "./clearMarks"
-import compareNumber from "./compareNumber"
-import isListNode from "./isListNode"
+import {Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
+import {MARK_LINK} from './MarkNames'
+import {BLOCKQUOTE, CODE_BLOCK, HEADING, PARAGRAPH} from './NodeNames'
+import {clearMarks} from './clearMarks'
+import compareNumber from './compareNumber'
+import isListNode from './isListNode'
 
 export default function toggleCodeBlock(
     tr: Transaction,

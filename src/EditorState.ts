@@ -1,4 +1,4 @@
-import {EditorState} from "prosemirror-state"
+import {EditorState} from 'prosemirror-state'
 
 const ProseMirrorEditorState = EditorState
 

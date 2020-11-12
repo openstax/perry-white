@@ -1,34 +1,32 @@
-import cx from "classnames"
-import {Node} from "prosemirror-model"
-import {Decoration} from "prosemirror-view"
-import {NodeSelection} from "prosemirror-state"
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import cx from 'classnames'
+import {Node} from 'prosemirror-model'
+import {Decoration} from 'prosemirror-view'
+import {NodeSelection} from 'prosemirror-state'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import CustomNodeView from "./CustomNodeView"
-import {FRAMESET_BODY_CLASSNAME} from "./EditorFrameset"
-import Icon from "./Icon"
-import ImageInlineEditor from "./ImageInlineEditor"
-import ImageResizeBox from "./ImageResizeBox"
-import {MIN_SIZE} from "./ImageResizeBox"
-import {atAnchorBottomCenter} from "./PopUpPosition"
-import ResizeObserver from "./ResizeObserver"
-import createPopUp from "./createPopUp"
-import resolveImage from "./resolveImage"
-import uuid from "./uuid"
+import CustomNodeView from './CustomNodeView'
+import {FRAMESET_BODY_CLASSNAME} from './EditorFrameset'
+import Icon from './Icon'
+import ImageInlineEditor from './ImageInlineEditor'
+import ImageResizeBox from './ImageResizeBox'
+import {MIN_SIZE} from './ImageResizeBox'
+import {atAnchorBottomCenter} from './PopUpPosition'
+import ResizeObserver from './ResizeObserver'
+import createPopUp from './createPopUp'
+import resolveImage from './resolveImage'
+import uuid from './uuid'
 
-import "./czi-image-view.css"
-
-import {EditorRuntime} from "../Types"
-import {NodeViewProps} from "./CustomNodeView"
-import {ResizeObserverEntry} from "./ResizeObserver"
+import {EditorRuntime} from '../Types'
+import {NodeViewProps} from './CustomNodeView'
+import {ResizeObserverEntry} from './ResizeObserver'
 
 const EMPTY_SRC =
-    "data:image/gif;base64," +
-    "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    'data:image/gif;base64,' +
+    'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
-    /* This value must be synced with the margin defined at .czi-image-view */
-    const IMAGE_MARGIN = 2
+/* This value must be synced with the margin defined at .czi-image-view */
+const IMAGE_MARGIN = 2
 
 const MAX_SIZE = 100000
 const IMAGE_PLACEHOLDER_SIZE = 24
@@ -214,8 +212,8 @@ class ImageViewBody extends React.Component<any, any> {
 
         const errorView = error ? Icon.get('error') : null
         const errorTitle = error
-                         ? `Unable to load image from ${attrs.src || ''}`
-                         : undefined
+            ? `Unable to load image from ${attrs.src || ''}`
+            : undefined
 
         return (
             <span
@@ -383,8 +381,8 @@ class ImageViewBody extends React.Component<any, any> {
 
     _onBodyResize = (info: ResizeObserverEntry): void => {
         const width = this._body
-                    ? getMaxResizeWidth(ReactDOM.findDOMNode(this._body))
-                    : MAX_SIZE
+            ? getMaxResizeWidth(ReactDOM.findDOMNode(this._body))
+            : MAX_SIZE
 
         this.setState({
             maxSize: {

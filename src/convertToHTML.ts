@@ -1,4 +1,4 @@
-import {EditorState} from "prosemirror-state"
+import {EditorState} from 'prosemirror-state'
 import { DOMSerializer } from 'prosemirror-model'
 
 export default function convertToHTML(state: EditorState): string {

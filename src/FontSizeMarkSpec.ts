@@ -1,18 +1,18 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {toClosestFontPtSize} from "./toClosestFontPtSize"
+import {toClosestFontPtSize} from './toClosestFontPtSize'
 
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const FontSizeMarkSpec: MarkSpec = {
     attrs: {
         pt: {default: null},
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            style: "font-size",
+            style: 'font-size',
             getAttrs: getAttrs,
         },
     ],
@@ -20,12 +20,12 @@ const FontSizeMarkSpec: MarkSpec = {
         const {pt} = node.attrs
         const domAttrs = pt
             ? {
-                  style: `font-size: ${pt}pt;`,
-                  class: "czi-font-size-mark",
-              }
+                style: `font-size: ${pt}pt;`,
+                class: 'czi-font-size-mark',
+            }
             : null
 
-        return ["span", domAttrs, 0]
+        return ['span', domAttrs, 0]
     },
 }
 

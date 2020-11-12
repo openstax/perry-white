@@ -1,6 +1,6 @@
 // This implements the interface of `EditorRuntime`.
-import {ImageLike} from "../Types"
-import {POST} from "./http"
+import {ImageLike} from '../Types'
+import {POST} from './http'
 
 class ExampleRuntime {
     // Image Proxy
@@ -10,8 +10,8 @@ class ExampleRuntime {
 
     getProxyImageSrc(src: string): string {
         // This simulate a fake proxy.
-        const suffix = "proxied=1"
-        return src.indexOf("?") === -1 ? `${src}?${suffix}` : `${src}&${suffix}`
+        const suffix = 'proxied=1'
+        return src.indexOf('?') === -1 ? `${src}?${suffix}` : `${src}&${suffix}`
     }
 
     // Image Upload
@@ -29,18 +29,18 @@ class ExampleRuntime {
         return new Promise((resolve, reject) => {
             // Use uploaded image URL.
             // @ts-ignore
-            const url = "/saveimage?fn=" + blob.name
-            POST(url, blob, "application/octet-stream").then(
+            const url = '/saveimage?fn=' + blob.name
+            POST(url, blob, 'application/octet-stream').then(
                 (data: string) => {
                     img = JSON.parse(data)
                     resolve(img)
                 },
                 err => {
                     img = {
-                        id: "",
+                        id: '',
                         width: 0,
                         height: 0,
-                        src: "",
+                        src: '',
                     }
                     resolve(img)
                 },

@@ -1,24 +1,24 @@
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
 const CSS_ROTATE_PATTERN = /rotate\(([0-9\.]+)rad\)/i
-const EMPTY_CSS_VALUE = new Set(["0%", "0pt", "0px"])
+const EMPTY_CSS_VALUE = new Set(['0%', '0pt', '0px'])
 
 function getAttrs(dom: HTMLElement) {
     const {cssFloat, display, marginTop, marginLeft} = dom.style
     let {width, height} = dom.style
-    let align = dom.getAttribute("data-align") || dom.getAttribute("align")
+    let align = dom.getAttribute('data-align') || dom.getAttribute('align')
     if (align) {
         align = /(left|right|center)/.test(align) ? align : null
-    } else if (cssFloat === "left" && !display) {
-        align = "left"
-    } else if (cssFloat === "right" && !display) {
-        align = "right"
-    } else if (!cssFloat && display === "block") {
-        align = "block"
+    } else if (cssFloat === 'left' && !display) {
+        align = 'left'
+    } else if (cssFloat === 'right' && !display) {
+        align = 'right'
+    } else if (!cssFloat && display === 'block') {
+        align = 'block'
     }
 
-    width = width || dom.getAttribute("width")
-    height = height || dom.getAttribute("height")
+    width = width || dom.getAttribute('width')
+    height = height || dom.getAttribute('height')
 
     let crop = null
     let rotate = null
@@ -27,8 +27,8 @@ function getAttrs(dom: HTMLElement) {
         // Special case for Google doc's image.
         const ps = parentElement.style
         if (
-            ps.display === "inline-block" &&
-            ps.overflow === "hidden" &&
+            ps.display === 'inline-block' &&
+            ps.overflow === 'hidden' &&
             ps.width &&
             ps.height &&
             marginLeft &&
@@ -54,14 +54,14 @@ function getAttrs(dom: HTMLElement) {
 
     return {
         align,
-        alt: dom.getAttribute("alt") || null,
+        alt: dom.getAttribute('alt') || null,
         crop,
         height: parseInt(height, 10) || null,
         rotate,
-        src: dom.getAttribute("src") || null,
-        title: dom.getAttribute("title") || null,
+        src: dom.getAttribute('src') || null,
+        title: dom.getAttribute('title') || null,
         width: parseInt(width, 10) || null,
-        objectId: dom.getAttribute("objectId") || null,
+        objectId: dom.getAttribute('objectId') || null,
     }
 }
 
@@ -70,20 +70,20 @@ const ImageNodeSpec: NodeSpec = {
     inline: true,
     attrs: {
         align: {default: null},
-        alt: {default: ""},
+        alt: {default: ''},
         crop: {default: null},
         height: {default: null},
         rotate: {default: null},
         src: {default: null},
-        title: {default: ""},
+        title: {default: ''},
         width: {default: null},
         objectId: {default: null},
     },
-    group: "inline",
+    group: 'inline',
     draggable: true,
-    parseDOM: [{tag: "img[src]", getAttrs}],
+    parseDOM: [{tag: 'img[src]', getAttrs}],
     toDOM(node) {
-        return ["img", node.attrs]
+        return ['img', node.attrs]
     },
 }
 

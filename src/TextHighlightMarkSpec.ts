@@ -1,23 +1,23 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {isTransparent, toCSSColor} from "./ui/toCSSColor"
+import {isTransparent, toCSSColor} from './ui/toCSSColor'
 
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const TextHighlightMarkSpec: MarkSpec = {
     attrs: {
-        highlightColor: "",
+        highlightColor: '',
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            tag: "span[style*=background-color]",
+            tag: 'span[style*=background-color]',
             getAttrs: (dom: HTMLElement) => {
                 const {backgroundColor} = dom.style
                 const color = toCSSColor(backgroundColor)
                 return {
-                    highlightColor: isTransparent(color) ? "" : color,
+                    highlightColor: isTransparent(color) ? '' : color,
                 }
             },
         },
@@ -25,11 +25,11 @@ const TextHighlightMarkSpec: MarkSpec = {
 
     toDOM(node: Node) {
         const {highlightColor} = node.attrs
-        let style = ""
+        let style = ''
         if (highlightColor) {
             style += `background-color: ${highlightColor};`
         }
-        return ["span", {style}, 0]
+        return ['span', {style}, 0]
     },
 }
 

@@ -1,13 +1,11 @@
-import {Plugin, PluginKey} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import {Plugin, PluginKey} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import isEditorStateEmpty from "./isEditorStateEmpty"
+import isEditorStateEmpty from './isEditorStateEmpty'
 
-import "./ui/czi-editor.css"
-
-const CLASS_NAME_HAS_PLACEHOLDER = "czi-has-placeholder"
+const CLASS_NAME_HAS_PLACEHOLDER = 'czi-has-placeholder'
 
 class ContentPlaceholderView {
     _el = null
@@ -16,15 +14,15 @@ class ContentPlaceholderView {
     _visible = null
 
     constructor(editorView: EditorView) {
-        const el: any = document.createElement("div")
+        const el: any = document.createElement('div')
 
         this._el = el
         this._view = editorView
 
-        el.className = "czi-editor-content-placeholder"
+        el.className = 'czi-editor-content-placeholder'
         editorView.dom.parentNode.appendChild(el)
-        document.addEventListener("focusin", this._checkFocus, true)
-        document.addEventListener("focusout", this._checkFocus, false)
+        document.addEventListener('focusin', this._checkFocus, true)
+        document.addEventListener('focusout', this._checkFocus, false)
 
         this.update(editorView)
 
@@ -64,11 +62,11 @@ class ContentPlaceholderView {
         const left = bodyRect.left - parentElRect.left
         const top = bodyRect.top - parentElRect.top
 
-        el.style.left = left + "px"
-        el.style.top = top + "px"
+        el.style.left = left + 'px'
+        el.style.top = top + 'px'
         el.style.padding = bodyStyle.padding
-        el.style.display = "block"
-        el.style.width = bodyEl.offsetWidth + "px"
+        el.style.display = 'block'
+        el.style.width = bodyEl.offsetWidth + 'px'
 
         ReactDOM.render(<div>{placeholder}</div>, el)
     }
@@ -81,8 +79,8 @@ class ContentPlaceholderView {
             el.parentNode && el.parentNode.removeChild(el)
             ReactDOM.unmountComponentAtNode(el)
         }
-        document.removeEventListener("focusin", this._checkFocus, true)
-        document.removeEventListener("focusout", this._checkFocus, false)
+        document.removeEventListener('focusin', this._checkFocus, true)
+        document.removeEventListener('focusout', this._checkFocus, false)
         this._view = null
         this._el = null
         this._focused = false
@@ -149,7 +147,7 @@ class ContentPlaceholderView {
             const view = this._view
             this._visible = true
             if (el) {
-                el.style.display = "block"
+                el.style.display = 'block'
             }
             if (view) {
                 this.update(view)
@@ -164,7 +162,7 @@ class ContentPlaceholderView {
             const view = this._view
             this._visible = false
             if (el) {
-                el.style.display = "none"
+                el.style.display = 'none'
             }
             if (view) {
                 view.dom.classList.remove(CLASS_NAME_HAS_PLACEHOLDER)
@@ -178,7 +176,7 @@ class ContentPlaceholderPlugin extends Plugin {
         super({
             // [FS] IRAD-1005 2020-07-07
             // Upgrade outdated packages.
-            key: new PluginKey("ContentPlaceholderPlugin"),
+            key: new PluginKey('ContentPlaceholderPlugin'),
             view(editorView: EditorView) {
                 return new ContentPlaceholderView(editorView)
             },

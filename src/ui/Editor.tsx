@@ -1,311 +1,137 @@
-import cx from "classnames"
-import {DOMSerializer, Schema} from "prosemirror-model"
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
-import webfontloader from "webfontloader"
+import {Transaction} from 'prosemirror-state'
+import * as React from 'react'
+import cx from 'classnames'
 
-import "prosemirror-gapcursor/style/gapcursor.css"
-import "prosemirror-view/style/prosemirror.css"
+import CustomEditorView from './CustomEditorView'
+import createEmptyEditorState from '../createEmptyEditorState'
+import EditingArea from './EditingArea'
+import EditorFrameset from './EditorFrameset'
+import EditorToolbar from './EditorToolbar'
+import Frag from './Frag'
+import uuid from './uuid'
 
-import {
-    exportJSON,
-    registerEditorView,
-    registeryKeys,
-    releaseEditorView,
-} from "../CZIProseMirror"
-import {BOOKMARK, IMAGE, LIST_ITEM, MATH} from "../NodeNames"
-import WebFontLoader from "../WebFontLoader"
-import {preLoadFonts} from "../FontTypeMarkSpec"
-import createEmptyEditorState from "../createEmptyEditorState"
-import normalizeHTML from "../normalizeHTML"
-import BookmarkNodeView from "./BookmarkNodeView"
-import CustomEditorView from "./CustomEditorView"
-import CustomNodeView from "./CustomNodeView"
-import ImageNodeView from "./ImageNodeView"
-import ListItemNodeView from "./ListItemNodeView"
-import MathNodeView from "./MathNodeView"
-import handleEditorDrop from "./handleEditorDrop"
-import handleEditorKeyDown from "./handleEditorKeyDown"
-import handleEditorPaste from "./handleEditorPaste"
-import uuid from "./uuid"
+import {EditorFramesetProps} from './EditorFrameset'
+import {EditorProps} from './EditingArea'
 
-import "./czi-editor.css"
+type Props = EditorFramesetProps & EditorProps & {children?: any | null | undefined}
 
-import {EditorRuntime} from "../Types"
-
-export interface ChangeArgs {
-    state: EditorState
-    transaction: Transaction<any>
+interface State {
+    contentHeight?: number
+    editorState?: object
+    contentOverflowHidden?: boolean
+    editorView?: CustomEditorView
 }
 
-export type EditorProps = {
-    id?: string
-    autoFocus?: boolean | null | undefined
-    disabled?: boolean | null | undefined
-    dispatchTransaction?: (tr: Transaction) => void | null | undefined
-    editorState?: EditorState | null | undefined
-    embedded?: boolean | null | undefined
-    fitToContent?: boolean | null | undefined
-    onBlur?: () => void | null | undefined
-    onChange?: (ChangeArgs) => void | null | undefined
-    onReady?: (view: EditorView) => void | null | undefined
-    // Mapping for custom node views.
-    nodeViews?:
-                                  | {
-                                      [nodeName: string]: CustomNodeView
-                                  }
-                                | null
-                                | undefined
-    placeholder?: (string | React.ReactElement<any>) | null | undefined
-    readOnly?: boolean | null | undefined
-    runtime?: EditorRuntime | null | undefined
-    transformPastedHTML?: (html: string) => string
-}
+const EMPTY_EDITOR_RUNTIME = {}
 
-// Export utilities for debugging.
-// window.CZIProseMirror = {
-//     exportJSON,
-//     registeryKeys,
-// }
+export class Editor extends React.Component<Props, State> {
+    props: Props
 
-const AUTO_FOCUS_DELAY = 350
+    state: State
 
-// Default custom node views.
-export const DEFAULT_NODE_VIEWS = Object.freeze({
-    [IMAGE]: ImageNodeView,
-    [MATH]: MathNodeView,
-    [BOOKMARK]: BookmarkNodeView,
-    [LIST_ITEM]: ListItemNodeView,
-})
+    _id: string
 
-const EDITOR_EMPTY_STATE = Object.freeze(createEmptyEditorState())
-
-// Monkey patch the `scrollIntoView` mathod of 'Transaction'.
-// Why this is necessary?
-// It appears that promse-mirror does call `scrollIntoView` extensively
-// from many of the built-in transformations, thus cause unwanted page
-// scrolls. To make the behavior more manageable, this patched method asks
-// developer to explicitly use `scrollIntoView(true)` to enforce page scroll.
-const scrollIntoView = Transaction.prototype.scrollIntoView
-const scrollIntoViewPatched = function(forced: boolean): Transaction {
-    if (forced === true && scrollIntoView) {
-        return scrollIntoView.call(this)
-    } else {
-        return this
-    }
-}
-Transaction.prototype.scrollIntoView = scrollIntoViewPatched as () => Transaction<any>
-
-// Sets the implementation so that `FontTypeMarkSpec` can load custom fonts.
-WebFontLoader.setImplementation(webfontloader)
-// FS IRAD-988 2020-06-18
-preLoadFonts()
-
-const handleDOMEvents = {
-    drop: handleEditorDrop,
-    keydown: handleEditorKeyDown,
-    paste: handleEditorPaste,
-}
-
-function bindNodeView(NodeView: any): Function {
-    return (node, view, getPos, decorations) => {
-        return new NodeView(node, view, getPos, decorations)
-    }
-}
-
-function getSchema(editorState: EditorState | null | undefined): Schema {
-    return editorState ? editorState.schema : EDITOR_EMPTY_STATE.schema
-}
-
-class Editor extends React.Component<EditorProps, any> {
-    static EDITOR_EMPTY_STATE = EDITOR_EMPTY_STATE
-
-    _autoFocusTimer: number = 0
-    _id = uuid()
-    _editorView = null
-
-    props: EditorProps
-
-    state = {
-        isPrinting: false,
-    }
-
-    static defaultProps = {
-        transformPastedHTML: normalizeHTML,
-    }
-
-    componentDidMount(): void {
-        const {
-            onReady,
-            editorState,
-            readOnly,
-            runtime,
-            placeholder,
-            disabled,
-            dispatchTransaction,
-            nodeViews,
-            transformPastedHTML,
-        } = this.props
-
-        const editorNode = document.getElementById(this._id)
-        if (editorNode) {
-            const effectiveNodeViews = Object.assign(
-                {},
-                DEFAULT_NODE_VIEWS,
-                nodeViews,
-            )
-            const boundNodeViews = {}
-            const schema = getSchema(editorState)
-            const {nodes} = schema
-
-            Object.keys(effectiveNodeViews).forEach(nodeName => {
-                const nodeView = effectiveNodeViews[nodeName]
-                // Only valid and supported node views should be used.
-                if (nodes[nodeName]) {
-                    boundNodeViews[nodeName] = bindNodeView(nodeView)
-                }
-            })
-
-            // Reference: http://prosemirror.net/examples/basic/
-            const view = (this._editorView = new CustomEditorView(editorNode, {
-                clipboardSerializer: DOMSerializer.fromSchema(schema),
-                dispatchTransaction,
-                editable: this._isEditable,
-                nodeViews: boundNodeViews,
-                state: editorState || EDITOR_EMPTY_STATE,
-                transformPastedHTML,
-                handleDOMEvents,
-            }))
-
-            view.runtime = runtime
-            view.placeholder = placeholder
-            view.readOnly = !!readOnly
-            view.disabled = !!disabled
-            view.updateState(editorState || EDITOR_EMPTY_STATE)
-
-            // Expose the view to CZIProseMirror so developer could debug it.
-            registerEditorView(this._id, view)
-
-            onReady && onReady(view)
-
-            this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
-            this._autoFocusTimer = (this.props.autoFocus
-                ? setTimeout(this.focus, AUTO_FOCUS_DELAY)
-                : 0) as number
+    constructor(props: any, context: any) {
+        super(props, context)
+        this._id = uuid()
+        this.state = {
+            contentHeight: NaN,
+            contentOverflowHidden: false,
+            editorView: null,
         }
-
-        window.addEventListener("beforeprint", this._onPrintStart, false)
-        window.addEventListener("afterprint", this._onPrintEnd, false)
-    }
-
-    componentDidUpdate(prevProps: EditorProps): void {
-        const view = this._editorView
-        if (view) {
-            const prevSchema = getSchema(prevProps.editorState)
-            const currSchema = getSchema(this.props.editorState)
-            if (prevSchema !== currSchema) {
-                // schema should never change.
-                // TODO: re-create the editor view if schema changed.
-                console.error("editor schema changed.")
-            }
-
-            const {
-                runtime,
-                editorState,
-                placeholder,
-                readOnly,
-                disabled,
-            } = this.props
-            const {isPrinting} = this.state
-            const state = editorState || EDITOR_EMPTY_STATE
-            view.runtime = runtime
-            view.placeholder = placeholder
-            view.readOnly = !!readOnly || isPrinting
-            view.disabled = !!disabled
-            view.updateState(state)
-
-            this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
-            this._autoFocusTimer = (
-                !prevProps.autoFocus && this.props.autoFocus
-                    ? setTimeout(this.focus, AUTO_FOCUS_DELAY)
-                : 0
-            ) as number
-        }
-    }
-
-    componentWillUnmount(): void {
-        this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
-        this._editorView && this._editorView.destroy()
-        this._editorView = null
-        releaseEditorView(this._id)
-        window.removeEventListener("beforeprint", this._onPrintStart, false)
-        window.removeEventListener("afterprint", this._onPrintEnd, false)
     }
 
     render() {
-        const {embedded, fitToContent, readOnly} = this.props
-        let className = ""
-        //  FS IRAD-1040 2020-17-09
-        //  wrapping style for fit to content mode
-        if (fitToContent) {
-            className = cx("prosemirror-editor-wrapper", {
-                fitToContent,
-                readOnly,
-            })
-        } else {
-            className = cx("prosemirror-editor-wrapper", {embedded, readOnly})
-        }
+        const {
+            autoFocus,
+            children,
+            className,
+            disabled,
+            embedded,
+            header,
+            height,
+            onChange,
+            nodeViews,
+            placeholder,
+            readOnly,
+            width,
+            fitToContent,
+        } = this.props
+
+        let {editorState, runtime} = this.props
+
+        editorState = editorState || createEmptyEditorState()
+        runtime = runtime || EMPTY_EDITOR_RUNTIME
+
+        const {editorView} = this.state
+
+        const toolbar =
+            !!readOnly === true ? null : (
+                <EditorToolbar
+                    disabled={disabled}
+                    dispatchTransaction={this._dispatchTransaction}
+                    editorState={editorState || EditingArea.EDITOR_EMPTY_STATE}
+                    editorView={editorView}
+                    readOnly={readOnly}
+                />
+            )
+
+        const body = (
+            <Frag>
+                <EditingArea
+                    autoFocus={autoFocus}
+                    disabled={disabled}
+                    dispatchTransaction={this._dispatchTransaction}
+                    editorState={editorState}
+                    embedded={embedded}
+                    fitToContent={fitToContent}
+                    id={this._id}
+                    nodeViews={nodeViews}
+                    onChange={onChange}
+                    onReady={this._onReady}
+                    placeholder={placeholder}
+                    readOnly={readOnly}
+                    runtime={runtime}
+                />
+                {children}
+            </Frag>
+        )
+
         return (
-            <div
-                className={className}
-                data-czi-prosemirror-editor-id={this._id}
-                id={this._id}
-                onBlur={this._onBlur}
+            <EditorFrameset
+                body={body}
+                className={cx('perry-white', className)}
+                embedded={embedded}
+                fitToContent={fitToContent}
+                header={header}
+                height={height}
+                toolbar={toolbar}
+                width={width}
             />
         )
     }
 
-    _onBlur = (): void => {
-        const {onBlur} = this.props
-        const view = this._editorView
-        if (view && !view.disabled && !view.readOnly && onBlur) {
-            onBlur()
-        }
-    }
-
-    focus = (): void => {
-        const view = this._editorView
-        if (view && !view.disabled && !view.readOnly) {
-            view.focus()
-        }
-    }
-    // [FS-AFQ][20-FEB-2020]
-    // Collaboration
-    _dispatchTransaction = (transaction: Transaction): void => {
-        const {editorState, readOnly, onChange} = this.props
-        if (readOnly === true || !onChange) {
+    _dispatchTransaction = (tr: Transaction): void => {
+        const {onChange, editorState, readOnly} = this.props
+        if (readOnly === true) {
             return
         }
-        onChange({
-            state: editorState || EDITOR_EMPTY_STATE,
-            transaction,
-        })
+        const state = editorState || EditingArea.EDITOR_EMPTY_STATE
+
+        if (onChange) {
+            onChange({ state, transaction: tr })
+        } else {
+            // @ts-ignore
+            this.setState({editorState: state.apply(tr)})
+            //this.state.editorView.updateState()
+        }
     }
 
-    _isEditable = (): boolean => {
-        const {disabled, readOnly} = this.props
-        const {isPrinting} = this.state
-        return !isPrinting && !!this._editorView && !readOnly && !disabled
-    }
-
-    _onPrintStart = (): void => {
-        this.setState({isPrinting: true})
-    }
-
-    _onPrintEnd = (): void => {
-        this.setState({isPrinting: false})
+    _onReady = (editorView: CustomEditorView): void => {
+        if (editorView !== this.state.editorView) {
+            this.setState({editorView})
+            const {onReady} = this.props
+            onReady && onReady(editorView)
+        }
     }
 }
-
-export default Editor

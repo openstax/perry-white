@@ -1,14 +1,14 @@
-import {Schema} from "prosemirror-model"
-import {EditorState} from "prosemirror-state"
-import {Step} from "prosemirror-transform"
-import {EditorView} from "prosemirror-view"
-import {Transaction} from "prosemirror-state"
-import SetDocAttrStep from "./SetDocAttrStep"
-import DocLayoutEditor from "./ui/DocLayoutEditor"
-import UICommand from "./ui/UICommand"
-import createPopUp from "./ui/createPopUp"
+import {Schema} from 'prosemirror-model'
+import {EditorState} from 'prosemirror-state'
+import {Step} from 'prosemirror-transform'
+import {EditorView} from 'prosemirror-view'
+import {Transaction} from 'prosemirror-state'
+import SetDocAttrStep from './SetDocAttrStep'
+import DocLayoutEditor from './ui/DocLayoutEditor'
+import UICommand from './ui/UICommand'
+import createPopUp from './ui/createPopUp'
 
-import {DocLayoutEditorValue} from "./ui/DocLayoutEditor"
+import {DocLayoutEditorValue} from './ui/DocLayoutEditor'
 
 function setDocLayout(
     tr: Transaction,
@@ -21,8 +21,8 @@ function setDocLayout(
         return tr
     }
 
-    tr = tr.step((new SetDocAttrStep("width", width || null)) as any as Step)
-    tr = tr.step((new SetDocAttrStep("layout", layout || null)) as any as Step)
+    tr = tr.step((new SetDocAttrStep('width', width || null)) as any as Step)
+    tr = tr.step((new SetDocAttrStep('layout', layout || null)) as any as Step)
     return tr
 }
 

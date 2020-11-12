@@ -1,4 +1,4 @@
-import {EditorView} from "prosemirror-view"
+import {EditorView} from 'prosemirror-view'
 
 import {
     BACKSPACE,
@@ -7,7 +7,7 @@ import {
     LEFT_ARROW,
     RIGHT_ARROW,
     UP_ARROW,
-} from "./KeyCodes"
+} from './KeyCodes'
 
 const AtomicNodeKeyCodes = new Set([
     BACKSPACE,

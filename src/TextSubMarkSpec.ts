@@ -1,17 +1,17 @@
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const TextSubMarkSpec: MarkSpec = {
     parseDOM: [
-        {tag: "sub"},
+        {tag: 'sub'},
         {
-            style: "vertical-align",
+            style: 'vertical-align',
             getAttrs: value => {
-                return value === "sub" && null
+                return value === 'sub' && null
             },
         },
     ],
     toDOM() {
-        return ["sub", 0]
+        return ['sub', 0]
     },
 }
 

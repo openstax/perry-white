@@ -1,5 +1,4 @@
-import "./czi-loading-indicator.css"
-import * as React from "react"
+import * as React from 'react'
 
 // https://loading.io/css/
 class LoadingIndicator extends React.Component<any, any> {

@@ -1,24 +1,24 @@
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 // https://bitbucket.org/atlassian/atlaskit/src/34facee3f461/packages/editor-core/src/schema/nodes/?at=master
 const TextUnderlineMarkSpec: MarkSpec = {
     parseDOM: [
-        {tag: "u"},
+        {tag: 'u'},
         {
-            style: "text-decoration-line",
+            style: 'text-decoration-line',
             getAttrs: value => {
-                return value === "underline" && null
+                return value === 'underline' && null
             },
         },
         {
-            style: "text-decoration",
+            style: 'text-decoration',
             getAttrs: value => {
-                return value === "underline" && null
+                return value === 'underline' && null
             },
         },
     ],
     toDOM() {
-        return ["u", 0]
+        return ['u', 0]
     },
 }
 

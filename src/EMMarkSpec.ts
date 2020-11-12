@@ -1,9 +1,9 @@
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
-const EM_DOM = ["em", 0]
+const EM_DOM = ['em', 0]
 
 const EMMarkSpec: MarkSpec = {
-    parseDOM: [{tag: "i"}, {tag: "em"}, {style: "font-style=italic"}],
+    parseDOM: [{tag: 'i'}, {tag: 'em'}, {style: 'font-style=italic'}],
     toDOM() {
         return EM_DOM
     },

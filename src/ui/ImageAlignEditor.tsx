@@ -1,23 +1,22 @@
-import "./czi-inline-editor.css"
-import CustomButton from "./CustomButton"
-import * as React from "react"
+import CustomButton from './CustomButton'
+import * as React from 'react'
 
 const ImageAlignValues = {
     NONE: {
         value: null,
-        text: "Inline",
+        text: 'Inline',
     },
     LEFT: {
-        value: "left",
-        text: "Float left",
+        value: 'left',
+        text: 'Float left',
     },
     CENTER: {
-        value: "center",
-        text: "Center",
+        value: 'center',
+        text: 'Center',
     },
     RIGHT: {
-        value: "right",
-        text: "Float right",
+        value: 'right',
+        text: 'Float right',
     },
 }
 

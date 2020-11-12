@@ -1,5 +1,5 @@
-import {MarkSpec} from "./Types"
-import {Node} from "prosemirror-model"
+import {MarkSpec} from './Types'
+import {Node} from 'prosemirror-model'
 
 const CustomStyleMarkSpec: MarkSpec = {
     attrs: {
@@ -10,13 +10,13 @@ const CustomStyleMarkSpec: MarkSpec = {
         highlightColor: {default: null},
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            style: "font-family",
+            style: 'font-family',
             getAttrs: fontname => {
                 return {
-                    fontname: fontname ? fontname.replace(/[\"\']/g, "") : "",
+                    fontname: fontname ? fontname.replace(/[\"\']/g, '') : '',
                 }
             },
         },
@@ -25,7 +25,7 @@ const CustomStyleMarkSpec: MarkSpec = {
     toDOM(node: Node) {
         const {fontname, fontsize, color, highlightColor} = node.attrs
         const attrs: any = {}
-        let style = ""
+        let style = ''
         if (fontname) {
             style += `font-family: ${fontname};`
         }
@@ -40,7 +40,7 @@ const CustomStyleMarkSpec: MarkSpec = {
         }
 
         attrs.style = style
-        return ["span", attrs]
+        return ['span', attrs]
     },
 }
 

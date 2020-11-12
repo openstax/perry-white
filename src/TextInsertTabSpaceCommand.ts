@@ -1,14 +1,14 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {EditorState, TextSelection} from "prosemirror-state"
-import {Transaction} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import {Fragment, Schema} from 'prosemirror-model'
+import {EditorState, TextSelection} from 'prosemirror-state'
+import {Transaction} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {MARK_SPACER} from "./MarkNames"
-import {HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import {HAIR_SPACE_CHAR, SPACER_SIZE_TAB} from "./SpacerMarkSpec"
-import applyMark from "./applyMark"
-import UICommand from "./ui/UICommand"
+import {MARK_SPACER} from './MarkNames'
+import {HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import {HAIR_SPACE_CHAR, SPACER_SIZE_TAB} from './SpacerMarkSpec'
+import applyMark from './applyMark'
+import UICommand from './ui/UICommand'
 
 function insertTabSpace(tr: Transaction, schema: Schema): Transaction {
     const {selection} = tr

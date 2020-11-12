@@ -1,13 +1,13 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
-export const DOM_ATTRIBUTE_SIZE = "data-spacer-size"
-export const SPACER_SIZE_TAB = "tab"
-export const SPACER_SIZE_TAB_LARGE = "tab-large"
+export const DOM_ATTRIBUTE_SIZE = 'data-spacer-size'
+export const SPACER_SIZE_TAB = 'tab'
+export const SPACER_SIZE_TAB_LARGE = 'tab-large'
 
 // See http://jkorpela.fi/chars/spaces.html
-export const HAIR_SPACE_CHAR = "\u200A"
+export const HAIR_SPACE_CHAR = '\u200A'
 
 const SpacerMarkSpec: MarkSpec = {
     attrs: {
@@ -15,8 +15,8 @@ const SpacerMarkSpec: MarkSpec = {
     },
     defining: true,
     draggable: false,
-    excludes: "_",
-    group: "inline",
+    excludes: '_',
+    group: 'inline',
     inclusive: false,
     inline: true,
     spanning: false,
@@ -34,7 +34,7 @@ const SpacerMarkSpec: MarkSpec = {
     toDOM(node: Node) {
         const {size} = node.attrs
         return [
-            "span",
+            'span',
             {
                 [DOM_ATTRIBUTE_SIZE]: size,
             },

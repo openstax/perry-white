@@ -1,7 +1,7 @@
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import {Transaction} from "prosemirror-state"
-import UICommand from "./ui/UICommand"
+import {EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import {Transaction} from 'prosemirror-state'
+import UICommand from './ui/UICommand'
 
 type ExecuteCall = (
     state: EditorState,

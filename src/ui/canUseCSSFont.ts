@@ -17,7 +17,7 @@ export default function canUseCSSFont(fontName: string): Promise<boolean> {
         // Feature is not supported, install the CSS anyway
         // https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/check#Browser_compatibility
         // TODO: Polyfill this.
-        console.log("FontFaceSet is not supported")
+        console.log('FontFaceSet is not supported')
         return Promise.resolve(false)
     }
 
@@ -25,7 +25,7 @@ export default function canUseCSSFont(fontName: string): Promise<boolean> {
         // https://stackoverflow.com/questions/5680013/how-to-be-notified-once-a-web-font-has-loaded
         // All fonts in use by visible text have loaded.
         const check = () => {
-            if (doc.fonts.status !== "loaded") {
+            if (doc.fonts.status !== 'loaded') {
                 setTimeout(check, 350)
                 return
             }

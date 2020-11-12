@@ -11,7 +11,7 @@ class WebFontLoader {
             impl.load(params)
         } else {
             console.warn(
-                "Method WebFontLoader.load does not have an implementation",
+                'Method WebFontLoader.load does not have an implementation',
             )
         }
     }

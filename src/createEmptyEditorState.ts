@@ -1,18 +1,18 @@
-import {Schema} from "prosemirror-model"
-import {EditorState} from "prosemirror-state"
-import {Plugin} from "prosemirror-state"
+import {Schema} from 'prosemirror-model'
+import {EditorState} from 'prosemirror-state'
+import {Plugin} from 'prosemirror-state'
 
-import convertFromJSON from "./convertFromJSON"
+import convertFromJSON from './convertFromJSON'
 
 export const EMPTY_DOC_JSON = {
-    type: "doc",
+    type: 'doc',
     content: [
         {
-            type: "paragraph",
+            type: 'paragraph',
             content: [
                 {
-                    type: "text",
-                    text: " ",
+                    type: 'text',
+                    text: ' ',
                 },
             ],
         },

@@ -41,7 +41,6 @@ module.exports = {
         'Document': true,
         'Element': false,
         'Event': false,
-        'HTMLElement': false,
         'Image': false,
         'Map': false,
         'MouseEvent': false,
@@ -60,6 +59,9 @@ module.exports = {
         'require': false,
         'requestAnimationFrame': false,
         'setTimeout': false,
+        HTMLElement: false,
+        HTMLButtonElement: false,
+        HTMLInputElement: false,
         'window': false
     }
 }

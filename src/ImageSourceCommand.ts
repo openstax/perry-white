@@ -1,18 +1,18 @@
-import {Class} from "utility-types"
+import {Class} from 'utility-types'
 
-import {Fragment, Schema} from "prosemirror-model"
-import {EditorState, TextSelection, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import {Fragment, Schema} from 'prosemirror-model'
+import {EditorState, TextSelection, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 import {
     hideCursorPlaceholder,
     showCursorPlaceholder,
-} from "./CursorPlaceholderPlugin"
-import {IMAGE} from "./NodeNames"
-import UICommand from "./ui/UICommand"
-import createPopUp from "./ui/createPopUp"
+} from './CursorPlaceholderPlugin'
+import {IMAGE} from './NodeNames'
+import UICommand from './ui/UICommand'
+import createPopUp from './ui/createPopUp'
 
-import {ImageLike} from "./Types"
+import {ImageLike} from './Types'
 
 function insertImage(
     tr: Transaction,
@@ -34,9 +34,9 @@ function insertImage(
     }
 
     const attrs = {
-        src: src || "",
-        alt: "",
-        title: "",
+        src: src || '',
+        alt: '',
+        title: '',
     }
 
     const node = image.create(attrs, null, null)
@@ -49,7 +49,7 @@ class ImageSourceCommand extends UICommand {
     _popUp = null
 
     getEditor(): Class<React.Component<any, any>> {
-        throw new Error("Not implemented")
+        throw new Error('Not implemented')
     }
 
     isEnabled = (

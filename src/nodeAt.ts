@@ -1,4 +1,4 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
 export default function nodeAt(
     doc: Node,

@@ -1,43 +1,22 @@
-import "./czi-mathquill-editor.css"
-import * as MathQuillEditorSymbols from "./MathQuillEditorSymbols"
-import MathQuillEditorSymbolsPanel from "./MathQuillEditorSymbolsPanel"
-import * as React from "react"
-import * as ReactDOM from "react-dom"
-import canUseCSSFont from "./../canUseCSSFont"
-import cx from "classnames"
-
-// [FS] IRAD-1061 2020-09-19
-// Now loaded locally, so that it work in closed network as well.
-//import injectStyleSheet from './../injectStyleSheet';
-import "./mathquill.min.css"
+import * as MathQuillEditorSymbols from './MathQuillEditorSymbols'
+import MathQuillEditorSymbolsPanel from './MathQuillEditorSymbolsPanel'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import cx from 'classnames'
 
 // MathQuill requires this to get JQuery exported as global.
 // eslint-disable-next-line no-unused-vars
-import jquery from "jquery"
+import jquery from 'jquery'
 
-import {MathQuillEditorSymbol} from "./MathQuillEditorSymbols"
+import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
 
 // [FS] IRAD-1010 2020-07-24
 // With the latest to generate export default MathQuill these options need to be passed into exports loader
 // Moved this from webpack config to here, so that package could load fine with other application.
-const MQLoader = require("exports-loader?exports=default|MathQuill&type=module!node-mathquill/build/mathquill.js")
+const MQLoader = require('exports-loader?exports=default|MathQuill&type=module!node-mathquill/build/mathquill.js')
 const MathQuill = MQLoader.default
 
 const MQ = MathQuill.getInterface(2)
-const CSS_CDN_URL =
-    "//cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css"
-    const CSS_FONT = "Symbola"
-
-// (async function () {
-//   const fontSupported = await canUseCSSFont(CSS_FONT);
-//   if (!fontSupported) {
-//     console.info('Add CSS from ', CSS_CDN_URL);
-//     // [FS] IRAD-1061 2020-09-19
-//     // Now loaded locally, so that it work in closed network as well.
-//     //injectStyleSheet(CSS_CDN_URL);
-//   }
-//   // injectStyleSheet(CSS_CDN_URL);
-// })();
 
 class MathQuillElement extends React.Component<any, any> {
     shouldComponentUpdate(): boolean {
@@ -64,7 +43,7 @@ class MathQuillEditor extends React.Component<any, any> {
     _element = null
     _ignoreEditEvents = 4
     _mathField = null
-    _latex = ""
+    _latex = ''
 
     render() {
         const {value} = this.props
@@ -76,7 +55,7 @@ class MathQuillEditor extends React.Component<any, any> {
         ].map(this._renderPanel)
 
         const empty = !value
-        const className = cx("czi-mathquill-editor", {empty})
+        const className = cx('czi-mathquill-editor', {empty})
         return (
             <div className={className}>
                 <div className="czi-mathquill-editor-main">
@@ -90,14 +69,14 @@ class MathQuillEditor extends React.Component<any, any> {
     componentDidUpdate(): void {
         const mathField = this._mathField
         if (this._latex !== this.props.value && mathField) {
-            mathField.latex(this.props.value || " ")
+            mathField.latex(this.props.value || ' ')
         }
     }
 
     componentDidMount(): void {
         const config = {
-            autoCommands: "pi theta sqrt sum",
-            autoOperatorNames: "sin cos",
+            autoCommands: 'pi theta sqrt sum',
+            autoOperatorNames: 'sin cos',
             restrictMismatchedBrackets: true,
             handlers: {
                 edit: this._onEdit,
@@ -108,12 +87,12 @@ class MathQuillEditor extends React.Component<any, any> {
         this._mathField = mathField
 
         // TODO: Remove this if MathQuill supports `\displaystyle`.
-        const rawLatex = (this.props.value || "").replace(/\\displaystyle/g, "")
+        const rawLatex = (this.props.value || '').replace(/\\displaystyle/g, '')
 
-        mathField.latex(rawLatex || " ")
+        mathField.latex(rawLatex || ' ')
         mathField.focus()
         if (rawLatex && !mathField.latex()) {
-            console.error("unable to process latex", rawLatex)
+            console.error('unable to process latex', rawLatex)
         }
     }
 
@@ -136,9 +115,9 @@ class MathQuillEditor extends React.Component<any, any> {
         if (!mathField || !cmd || !latex) {
             return
         }
-        if (cmd === "write") {
+        if (cmd === 'write') {
             mathField.write(latex)
-        } else if (cmd === "cmd") {
+        } else if (cmd === 'cmd') {
             mathField.cmd(latex)
         }
         mathField.focus()

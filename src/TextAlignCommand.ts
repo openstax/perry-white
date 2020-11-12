@@ -1,10 +1,10 @@
-import {Schema} from "prosemirror-model"
-import {AllSelection, EditorState, TextSelection} from "prosemirror-state"
-import {Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {Schema} from 'prosemirror-model'
+import {AllSelection, EditorState, TextSelection} from 'prosemirror-state'
+import {Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import UICommand from "./ui/UICommand"
+import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import UICommand from './ui/UICommand'
 
 export function setTextAlign(
     tr: Transaction,

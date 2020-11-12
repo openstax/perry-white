@@ -1,5 +1,5 @@
-import ResizeObserver from "resize-observer-polyfill"
-import nullthrows from "nullthrows"
+import ResizeObserver from 'resize-observer-polyfill'
+import nullthrows from 'nullthrows'
 
 // flow type copied from
 // https://github.com/que-etc/resize-observer-polyfill/blob/master/src/index.js.flow

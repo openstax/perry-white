@@ -1,8 +1,8 @@
-import isNodeSelectionForNodeType from "./isNodeSelectionForNodeType"
-import {EditorState} from "prosemirror-state"
-import {MATH} from "./NodeNames"
-import {AllSelection, TextSelection} from "prosemirror-state"
-import {MARK_FONT_SIZE, MARK_TEXT_COLOR} from "./MarkNames"
+import isNodeSelectionForNodeType from './isNodeSelectionForNodeType'
+import {EditorState} from 'prosemirror-state'
+import {MATH} from './NodeNames'
+import {AllSelection, TextSelection} from 'prosemirror-state'
+import {MARK_FONT_SIZE, MARK_TEXT_COLOR} from './MarkNames'
 
 const VALID_MATH_MARK_NAMES = new Set([MARK_FONT_SIZE, MARK_TEXT_COLOR])
 

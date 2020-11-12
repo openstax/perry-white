@@ -1,7 +1,7 @@
-import {EditorState} from "prosemirror-state"
-import {HEADING} from "../NodeNames"
-import {findParentNodeOfType} from "prosemirror-utils"
-export const HEADING_NAME_DEFAULT = "Normal"
+import {EditorState} from 'prosemirror-state'
+import {HEADING} from '../NodeNames'
+import {findParentNodeOfType} from 'prosemirror-utils'
+export const HEADING_NAME_DEFAULT = 'Normal'
 // [FS] IRAD-1042 2020-09-15
 // To find the selected heading
 

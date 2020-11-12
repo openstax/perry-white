@@ -1,10 +1,7 @@
-import "./czi-tooltip-surface.css"
-import "./czi-animations.css"
-
-import * as React from "react"
-import createPopUp from "./createPopUp"
-import {atAnchorBottomCenter} from "./PopUpPosition"
-import uuid from "./uuid"
+import * as React from 'react'
+import createPopUp from './createPopUp'
+import {atAnchorBottomCenter} from './PopUpPosition'
+import uuid from './uuid'
 
 class TooltipView extends React.Component<any, any> {
     render() {

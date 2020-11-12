@@ -1,9 +1,8 @@
-import renderLaTeXAsHTML from "../renderLaTeXAsHTML"
-import "./czi-mathquill-editor-symbols-panel.css"
-import CustomButton from "../CustomButton"
-import * as React from "react"
+import renderLaTeXAsHTML from '../renderLaTeXAsHTML'
+import CustomButton from '../CustomButton'
+import * as React from 'react'
 
-import {MathQuillEditorSymbol} from "./MathQuillEditorSymbols"
+import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
 
 class MathQuillEditorSymbolsPanel extends React.Component<any, any> {
     props: {

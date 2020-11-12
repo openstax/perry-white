@@ -1,6 +1,6 @@
-import {EditorView} from "prosemirror-view"
+import {EditorView} from 'prosemirror-view'
 
-import {uploadImageFiles} from "../ImageUploadPlaceholderPlugin"
+import {uploadImageFiles} from '../ImageUploadPlaceholderPlugin'
 
 // workaround to support ClipboardEvent as a valid type.
 // https://github.com/facebook/flow/issues/1856

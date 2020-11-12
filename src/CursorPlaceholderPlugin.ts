@@ -1,9 +1,6 @@
-import {EditorState, Plugin, Transaction, PluginKey} from "prosemirror-state"
-import {Decoration, DecorationSet} from "prosemirror-view"
-
-import "./ui/czi-cursor-placeholder.css"
-
-const PLACE_HOLDER_ID = {name: "CursorPlaceholderPlugin"}
+import {EditorState, Plugin, Transaction, PluginKey} from 'prosemirror-state'
+import {Decoration, DecorationSet} from 'prosemirror-view'
+const PLACE_HOLDER_ID = {name: 'CursorPlaceholderPlugin'}
 
 let singletonInstance = null
 
@@ -11,7 +8,7 @@ let singletonInstance = null
 const SPEC = {
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    key: new PluginKey("CursorPlaceholderPlugin"),
+    key: new PluginKey('CursorPlaceholderPlugin'),
     state: {
         init() {
             return DecorationSet.empty
@@ -23,8 +20,8 @@ const SPEC = {
                 return set
             }
             if (action.add) {
-                const widget = document.createElement("czi-cursor-placeholder")
-                widget.className = "czi-cursor-placeholder"
+                const widget = document.createElement('czi-cursor-placeholder')
+                widget.className = 'czi-cursor-placeholder'
                 const deco = Decoration.widget(action.add.pos, widget, {
                     id: PLACE_HOLDER_ID,
                 })

@@ -1,11 +1,11 @@
-import {Transform} from "prosemirror-transform"
-import {EditorState} from "prosemirror-state"
-import {Schema} from "prosemirror-model"
-import SimpleConnector from "./SimpleConnector"
-import {SetStateCall} from "./SimpleConnector"
-import EditorConnection from "./EditorConnection"
-import Reporter from "./Reporter"
-import * as ReactDOM from "react-dom"
+import {Transform} from 'prosemirror-transform'
+import {EditorState} from 'prosemirror-state'
+import {Schema} from 'prosemirror-model'
+import SimpleConnector from './SimpleConnector'
+import {SetStateCall} from './SimpleConnector'
+import EditorConnection from './EditorConnection'
+import Reporter from './Reporter'
+import * as ReactDOM from 'react-dom'
 
 type IdStrict = number
 
@@ -32,15 +32,15 @@ class CollabConnector extends SimpleConnector {
         // instead used running hostname and configured port.
         const url =
             window.location.protocol +
-            "//" +
+            '//' +
             window.location.hostname +
-            ":3002/docs/" +
+            ':3002/docs/' +
             docID
         this._connection = new EditorConnection(setState, new Reporter(), url)
 
         this._connection.view = {
             updateState: s => {
-                console.log("update", s)
+                console.log('update', s)
                 setState({editorState: s}, () => {})
             },
         }
@@ -48,11 +48,11 @@ class CollabConnector extends SimpleConnector {
 
     onEdit = (transaction: Transform): void => {
         if (!this._connection.ready) {
-            console.warn("not ready")
+            console.warn('not ready')
             return
         }
         ReactDOM.unstable_batchedUpdates(() => {
-            this._connection.dispatch({type: "transaction", transaction})
+            this._connection.dispatch({type: 'transaction', transaction})
         })
     }
 

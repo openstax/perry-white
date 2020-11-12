@@ -1,13 +1,13 @@
-import convertToCSSPTValue from "./convertToCSSPTValue"
+import convertToCSSPTValue from './convertToCSSPTValue'
 
 export const LAYOUT = {
-    DESKTOP_SCREEN_4_3: "desktop_screen_4_3",
-    DESKTOP_SCREEN_16_9: "desktop_screen_16_9",
-    US_LETTER_LANDSCAPE: "us_letter_landscape",
-    US_LETTER_PORTRAIT: "us_letter_portrait",
+    DESKTOP_SCREEN_4_3: 'desktop_screen_4_3',
+    DESKTOP_SCREEN_16_9: 'desktop_screen_16_9',
+    US_LETTER_LANDSCAPE: 'us_letter_landscape',
+    US_LETTER_PORTRAIT: 'us_letter_portrait',
 }
 
-export const ATTRIBUTE_LAYOUT = "data-layout"
+export const ATTRIBUTE_LAYOUT = 'data-layout'
 
 export function getAttrs(el: HTMLElement): Object {
     const attrs: any = {
@@ -47,6 +47,6 @@ const DocNodeSpec = {
         padding: {default: null},
         width: {default: null},
     },
-    content: "block+",
+    content: 'block+',
 }
 export default DocNodeSpec

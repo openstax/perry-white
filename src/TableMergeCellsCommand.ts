@@ -1,11 +1,11 @@
-import {Schema} from "prosemirror-model"
-import {Node} from "prosemirror-model"
-import {EditorState, Transaction} from "prosemirror-state"
-import {CellSelection, mergeCells} from "prosemirror-tables"
-import {EditorView} from "prosemirror-view"
+import {Schema} from 'prosemirror-model'
+import {Node} from 'prosemirror-model'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {CellSelection, mergeCells} from 'prosemirror-tables'
+import {EditorView} from 'prosemirror-view'
 
-import {PARAGRAPH, TABLE_CELL, TEXT} from "./NodeNames"
-import UICommand from "./ui/UICommand"
+import {PARAGRAPH, TABLE_CELL, TEXT} from './NodeNames'
+import UICommand from './ui/UICommand'
 
 function isBlankParagraphNode(node: Node | null | undefined): boolean {
     if (!node) {
@@ -21,7 +21,7 @@ function isBlankParagraphNode(node: Node | null | undefined): boolean {
     if (firstChild !== lastChild) {
         return false
     }
-    return firstChild.type.name === TEXT && firstChild.text === " "
+    return firstChild.type.name === TEXT && firstChild.text === ' '
 }
 
 function purgeConsecutiveBlankParagraphNodes(

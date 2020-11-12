@@ -1,4 +1,4 @@
-import {fromHTMlElement} from "./rects"
+import {fromHTMlElement} from './rects'
 
 export default function isElementFullyVisible(el: HTMLElement): boolean {
     const {x, y, w, h} = fromHTMlElement(el)

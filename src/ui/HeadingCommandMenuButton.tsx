@@ -1,15 +1,15 @@
-import CommandMenuButton from "./CommandMenuButton"
-import HeadingCommand from "../HeadingCommand"
-import CustomStyleCommand from "../CustomStyleCommand"
+import CommandMenuButton from './CommandMenuButton'
+import HeadingCommand from '../HeadingCommand'
+import CustomStyleCommand from '../CustomStyleCommand'
 import { UICommands} from './UICommand'
-import * as React from "react"
-import {findActiveHeading} from "./findActiveHeading"
-import findActiveCustomStyle from "./findActiveCustomStyle"
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import {HEADING_NAMES} from "../HeadingNodeSpec"
-import {HEADING_NAME_DEFAULT} from "./findActiveHeading"
-import {Transaction} from "prosemirror-state"
+import * as React from 'react'
+import {findActiveHeading} from './findActiveHeading'
+import findActiveCustomStyle from './findActiveCustomStyle'
+import {EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import {HEADING_NAMES} from '../HeadingNodeSpec'
+import {HEADING_NAME_DEFAULT} from './findActiveHeading'
+import {Transaction} from 'prosemirror-state'
 
 
 const HEADING_COMMANDS: UICommands = {
@@ -60,7 +60,7 @@ class HeadingCommandMenuButton extends React.Component<Props, any> {
         return (
             <CommandMenuButton
                 className="width-100" // [FS] IRAD-1008 2020-07-16
-            // Disable font type menu on editor disable state
+                // Disable font type menu on editor disable state
                 commandGroups={COMMAND_GROUPS}
                 disabled={editorView && editorView.editable ? false : true}
                 dispatch={dispatch}

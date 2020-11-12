@@ -1,14 +1,14 @@
-import {Schema} from "prosemirror-model"
-import {EditorState} from "prosemirror-state"
-import {Transaction} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
-import {AllSelection, TextSelection} from "prosemirror-state"
-import applyMark from "./applyMark"
-import {MARK_CUSTOMSTYLES} from "./MarkNames"
-import {HEADING} from "./NodeNames"
-import noop from "./noop"
-import UICommand from "./ui/UICommand"
+import {Schema} from 'prosemirror-model'
+import {EditorState} from 'prosemirror-state'
+import {Transaction} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
+import {AllSelection, TextSelection} from 'prosemirror-state'
+import applyMark from './applyMark'
+import {MARK_CUSTOMSTYLES} from './MarkNames'
+import {HEADING} from './NodeNames'
+import noop from './noop'
+import UICommand from './ui/UICommand'
 // [FS] IRAD-1042 2020-09-14
 // Fix: To display selected style.
 function toggleCustomStyle(markType, attrs, state, tr, dispatch) {
@@ -119,9 +119,9 @@ class CustomStyleCommand extends UICommand {
         propsCopy.forEach(style => {
             attrs = Object.assign(attrs, style)
             Object.entries(style).forEach(([key, value]) => {
-                if (isInline && typeof value === "boolean") {
+                if (isInline && typeof value === 'boolean') {
                     delete attrs[key]
-                } else if (!isInline && typeof value != "boolean") {
+                } else if (!isInline && typeof value != 'boolean') {
                     delete attrs[key]
                 }
             })

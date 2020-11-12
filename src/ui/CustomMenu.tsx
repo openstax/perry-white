@@ -1,7 +1,4 @@
-import * as React from "react"
-
-import "./czi-custom-menu.css"
-import "./czi-custom-scrollbar.css"
+import * as React from 'react'
 
 class CustomMenu extends React.Component<any, any> {
     render() {

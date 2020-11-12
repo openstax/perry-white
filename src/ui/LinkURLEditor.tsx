@@ -1,41 +1,18 @@
-import * as React from "react"
-import * as PropTypes from "prop-types"
-
-import sanitizeURL from "../sanitizeURL"
-import CustomButton from "./CustomButton"
-import {ENTER} from "./KeyCodes"
-import preventEventDefault from "./preventEventDefault"
-
-import "./czi-form.css"
-import "./czi-image-url-editor.css"
+import * as React from 'react'
+import sanitizeURL from '../sanitizeURL'
+import CustomButton from './CustomButton'
+import {ENTER} from './KeyCodes'
+import preventEventDefault from './preventEventDefault'
 
 const BAD_CHARACTER_PATTER = /\s/
 
 type Props = {
     // eslint-disable-line no-unused-vars
     href: string | null | undefined
-    close: (href: string | null | undefined) => void
+    close: (href?: string) => void
 }
 
-class LinkURLEditor extends React.Component<any, any> {
-    // Upgrade outdated packages.
-    // To take care of the property type declaration.
-    static propsTypes = {
-        href: PropTypes.string,
-        close: function(props: any, propName: string) {
-            const fn = props[propName]
-            if (
-                !fn.prototype ||
-                (typeof fn.prototype.constructor !== "function" &&
-                    fn.prototype.constructor.length !== 1)
-            ) {
-                return new Error(
-                    propName + "must be a function with 1 arg of type string",
-                )
-            }
-            return undefined
-        },
-    }
+class LinkURLEditor extends React.Component<Props, any> {
 
     state = {
         url: this.props.href,
@@ -47,10 +24,10 @@ class LinkURLEditor extends React.Component<any, any> {
 
         const error = url ? BAD_CHARACTER_PATTER.test(url) : false
 
-        let label = "Apply"
+        let label = 'Apply'
         let disabled = !!error
         if (href) {
-            label = url ? "Apply" : "Remove"
+            label = url ? 'Apply' : 'Remove'
             disabled = error
         } else {
             disabled = error || !url
@@ -68,7 +45,7 @@ class LinkURLEditor extends React.Component<any, any> {
                             placeholder="Paste a URL"
                             spellCheck={false}
                             type="text"
-                            value={url || ""}
+                            value={url || ''}
                         />
                     </fieldset>
                     <div className="czi-form-buttons">

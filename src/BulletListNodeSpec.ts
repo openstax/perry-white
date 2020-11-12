@@ -1,12 +1,12 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {ATTRIBUTE_LIST_STYLE_TYPE} from "./ListItemNodeSpec"
-import {LIST_ITEM} from "./NodeNames"
-import {ATTRIBUTE_INDENT, MIN_INDENT_LEVEL} from "./ParagraphNodeSpec"
+import {ATTRIBUTE_LIST_STYLE_TYPE} from './ListItemNodeSpec'
+import {LIST_ITEM} from './NodeNames'
+import {ATTRIBUTE_INDENT, MIN_INDENT_LEVEL} from './ParagraphNodeSpec'
 
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
-const AUTO_LIST_STYLE_TYPES = ["disc", "square", "circle"]
+const AUTO_LIST_STYLE_TYPES = ['disc', 'square', 'circle']
 
 const BulletListNodeSpec: NodeSpec = {
     attrs: {
@@ -15,11 +15,11 @@ const BulletListNodeSpec: NodeSpec = {
         listStyleType: {default: null},
         objectId: {default: null},
     },
-    group: "block",
-    content: LIST_ITEM + "+",
+    group: 'block',
+    content: LIST_ITEM + '+',
     parseDOM: [
         {
-            tag: "ul",
+            tag: 'ul',
             getAttrs(dom: HTMLElement) {
                 const listStyleType =
                     dom.getAttribute(ATTRIBUTE_LIST_STYLE_TYPE) || null
@@ -27,7 +27,7 @@ const BulletListNodeSpec: NodeSpec = {
                 const indent = dom.hasAttribute(ATTRIBUTE_INDENT)
                     ? parseInt(dom.getAttribute(ATTRIBUTE_INDENT), 10)
                     : MIN_INDENT_LEVEL
-                const objectId = dom.getAttribute("objectId") || null
+                const objectId = dom.getAttribute('objectId') || null
                 return {
                     indent,
                     listStyleType,
@@ -49,14 +49,14 @@ const BulletListNodeSpec: NodeSpec = {
 
         let htmlListStyleType = listStyleType
 
-        if (!htmlListStyleType || htmlListStyleType === "disc") {
+        if (!htmlListStyleType || htmlListStyleType === 'disc') {
             htmlListStyleType =
                 AUTO_LIST_STYLE_TYPES[indent % AUTO_LIST_STYLE_TYPES.length]
         }
 
         attrs.type = htmlListStyleType
         attrs.objectId = objectId
-        return ["ul", attrs, 0]
+        return ['ul', attrs, 0]
     },
 }
 

@@ -1,11 +1,9 @@
-import cx from "classnames"
-import nullthrows from "nullthrows"
-import * as React from "react"
+import cx from 'classnames'
+import nullthrows from 'nullthrows'
+import * as React from 'react'
 
-import clamp from "./clamp"
-import uuid from "./uuid"
-
-import "./czi-image-resize-box.css"
+import clamp from './clamp'
+import uuid from './uuid'
 
 type Props = {
     height: number
@@ -18,16 +16,16 @@ export const MIN_SIZE = 20
 export const MAX_SIZE = 10000
 
 function setWidth(el: HTMLElement, width: number, height: number): void {
-    el.style.width = width + "px"
+    el.style.width = width + 'px'
 }
 
 function setHeight(el: HTMLElement, width: number, height: number): void {
-    el.style.height = height + "px"
+    el.style.height = height + 'px'
 }
 
 function setSize(el: HTMLElement, width: number, height: number): void {
-    el.style.width = Math.round(width) + "px"
-    el.style.height = Math.round(height) + "px"
+    el.style.width = Math.round(width) + 'px'
+    el.style.height = Math.round(height) + 'px'
 }
 
 const ResizeDirection = {
@@ -53,9 +51,9 @@ class ImageResizeBoxControl extends React.Component<any, any> {
 
     _active = false
     _el = null
-    _h = ""
+    _h = ''
     _rafID = 0
-    _w = ""
+    _w = ''
     _x1 = 0
     _x2 = 0
     _y1 = 0
@@ -71,7 +69,7 @@ class ImageResizeBoxControl extends React.Component<any, any> {
         const {direction} = this.props
 
         const className = cx({
-            "czi-image-resize-box-control": true,
+            'czi-image-resize-box-control': true,
             [direction]: true,
         })
 
@@ -112,7 +110,7 @@ class ImageResizeBoxControl extends React.Component<any, any> {
 
         const {boxID, direction, width, height} = this.props
         const el = nullthrows(document.getElementById(boxID))
-        el.className += " " + direction
+        el.className += ' ' + direction
 
         this._el = el
         this._x1 = e.clientX
@@ -124,8 +122,8 @@ class ImageResizeBoxControl extends React.Component<any, any> {
         this._ww = width
         this._hh = height
 
-        document.addEventListener("mousemove", this._onMouseMove, true)
-        document.addEventListener("mouseup", this._onMouseUp, true)
+        document.addEventListener('mousemove', this._onMouseMove, true)
+        document.addEventListener('mouseup', this._onMouseUp, true)
     }
 
     _end(): void {
@@ -134,13 +132,13 @@ class ImageResizeBoxControl extends React.Component<any, any> {
         }
 
         this._active = false
-        document.removeEventListener("mousemove", this._onMouseMove, true)
-        document.removeEventListener("mouseup", this._onMouseUp, true)
+        document.removeEventListener('mousemove', this._onMouseMove, true)
+        document.removeEventListener('mouseup', this._onMouseUp, true)
 
         const el = nullthrows(this._el)
         el.style.width = this._w
         el.style.height = this._h
-        el.className = "czi-image-resize-box"
+        el.className = 'czi-image-resize-box'
         this._el = null
 
         this._rafID && cancelAnimationFrame(this._rafID)
@@ -186,8 +184,8 @@ class ImageResizeBox extends React.Component<any, any> {
         const {onResizeEnd, width, height, src} = this.props
 
         const style = {
-            height: height + "px",
-            width: width + "px",
+            height: height + 'px',
+            width: width + 'px',
         }
 
         const boxID = this._id

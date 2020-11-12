@@ -1,8 +1,8 @@
-import isOrderedListNode from "./isOrderedListNode"
-import isListNode from "./isListNode"
-import {Fragment} from "prosemirror-model"
-import {Node} from "prosemirror-model"
-import {Transaction} from "prosemirror-state"
+import isOrderedListNode from './isOrderedListNode'
+import isListNode from './isListNode'
+import {Fragment} from 'prosemirror-model'
+import {Node} from 'prosemirror-model'
+import {Transaction} from 'prosemirror-state'
 
 type JointInfo = {
     content: Fragment
@@ -35,7 +35,7 @@ type JointInfo = {
 // Island will be joined into one list node.
 // Note that this transform may change the current user selection.
 export default function consolidateListNodes(tr: Transaction): Transaction {
-    if (tr.getMeta("dryrun")) {
+    if (tr.getMeta('dryrun')) {
         // This transform is potentially expensive to perform, so skip it if
         // the transform is performed as "dryrun".
         return tr
@@ -195,7 +195,7 @@ function setCounterLinked(
 ): Transaction {
     const node = tr.doc.nodeAt(pos)
     const currentValue = node.attrs.counterReset || null
-    const nextValue = linked ? "none" : null
+    const nextValue = linked ? 'none' : null
     if (nextValue !== currentValue) {
         const nodeAttrs = {...node.attrs, counterReset: nextValue}
         tr = tr.setNodeMarkup(pos, node.type, nodeAttrs, node.marks)

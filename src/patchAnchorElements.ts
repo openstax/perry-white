@@ -1,12 +1,12 @@
 import {
     ATTRIBUTE_BOOKMARK_ID,
     ATTRIBUTE_BOOKMARK_VISIBLE,
-} from "./BookmarkNodeSpec"
+} from './BookmarkNodeSpec'
 
 const BLOCK_NODE_NAME_PATTERN = /(P|H1|H2|H3|H4|H5|H6)/
 
 export default function patchAnchorElements(doc: Document): void {
-    Array.from(doc.querySelectorAll("a[id]")).forEach(patchAnchorElement)
+    Array.from(doc.querySelectorAll('a[id]')).forEach(patchAnchorElement)
 }
 
 function patchAnchorElement(node: HTMLElement): void {
@@ -21,9 +21,9 @@ function patchAnchorElement(node: HTMLElement): void {
         //   <a id="t.0"></a>
         //   <table class="c23">
         // and these anchor link should not be visible.
-        const visible = node.id.indexOf("t.") !== 0
+        const visible = node.id.indexOf('t.') !== 0
 
-        visible && node.setAttribute(ATTRIBUTE_BOOKMARK_VISIBLE, "true")
+        visible && node.setAttribute(ATTRIBUTE_BOOKMARK_VISIBLE, 'true')
     }
     const nextNode = node.nextElementSibling
     if (!nextNode) {

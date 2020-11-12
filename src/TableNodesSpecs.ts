@@ -1,13 +1,13 @@
-import toCSSColor from "./ui/toCSSColor"
-import {Node} from "prosemirror-model"
-import {tableNodes} from "prosemirror-tables"
+import toCSSColor from './ui/toCSSColor'
+import {Node} from 'prosemirror-model'
+import {tableNodes} from 'prosemirror-tables'
 
-const NO_VISIBLE_BORDER_WIDTH = new Set(["0pt", "0px"])
+const NO_VISIBLE_BORDER_WIDTH = new Set(['0pt', '0px'])
 
 // https://github.com/ProseMirror/prosemirror-tables/blob/master/demo.js
 const TableNodesSpecs = tableNodes({
-    tableGroup: "block",
-    cellContent: "block+",
+    tableGroup: 'block',
+    cellContent: 'block+',
     cellAttributes: {
         borderColor: {
             default: null,
@@ -16,7 +16,7 @@ const TableNodesSpecs = tableNodes({
                 const {borderColor, borderWidth} = dom.style
 
                 if (NO_VISIBLE_BORDER_WIDTH.has(borderWidth)) {
-                    return "transparent"
+                    return 'transparent'
                 }
 
                 return (borderColor && toCSSColor(borderColor)) || null
@@ -24,7 +24,7 @@ const TableNodesSpecs = tableNodes({
             setDOMAttr(value, attrs) {
                 if (value) {
                     attrs.style =
-                        (attrs.style || "") + `;border-color: ${value};`
+                        (attrs.style || '') + `;border-color: ${value};`
                 }
             },
         },
@@ -38,7 +38,7 @@ const TableNodesSpecs = tableNodes({
             setDOMAttr(value, attrs) {
                 if (value) {
                     attrs.style =
-                        (attrs.style || "") + `;background-color: ${value};`
+                        (attrs.style || '') + `;background-color: ${value};`
                 }
             },
         },
@@ -53,10 +53,10 @@ const TableNodeSpec = Object.assign({}, TableNodesSpecs.table, {
     },
     parseDOM: [
         {
-            tag: "table",
+            tag: 'table',
             getAttrs(dom: HTMLElement): Object | null | undefined {
                 const {marginLeft} = dom.style
-                const objectId = dom.getAttribute("objectId") || null
+                const objectId = dom.getAttribute('objectId') || null
                 if (marginLeft && /\d+px/.test(marginLeft)) {
                     return {
                         marginLeft: parseFloat(marginLeft),
@@ -78,7 +78,7 @@ const TableNodeSpec = Object.assign({}, TableNodesSpecs.table, {
         if (marginLeft) {
             domAttrs.style = `margin-left: ${marginLeft}px`
         }
-        return ["table", domAttrs, 0]
+        return ['table', domAttrs, 0]
     },
 })
 Object.assign(TableNodesSpecs, {table: TableNodeSpec})

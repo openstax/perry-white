@@ -1,5 +1,5 @@
 const TextNodeSpec = {
-    group: "inline",
+    group: 'inline',
 }
 
 export default TextNodeSpec

@@ -1,9 +1,9 @@
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
-const CODE_DOM = ["code", 0]
+const CODE_DOM = ['code', 0]
 
 const CodeMarkSpec: MarkSpec = {
-    parseDOM: [{tag: "code"}],
+    parseDOM: [{tag: 'code'}],
     toDOM() {
         return CODE_DOM
     },

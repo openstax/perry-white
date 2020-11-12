@@ -1,13 +1,13 @@
-import nullthrows from "nullthrows"
-import {Fragment, Schema} from "prosemirror-model"
-import {EditorState, Transaction} from "prosemirror-state"
-import {TextSelection} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import nullthrows from 'nullthrows'
+import {Fragment, Schema} from 'prosemirror-model'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {TextSelection} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import nodeAt from "./nodeAt"
-import UICommand from "./ui/UICommand"
+import {HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import nodeAt from './nodeAt'
+import UICommand from './ui/UICommand'
 
 function mergeListItemUp(tr: Transaction, schema: Schema): Transaction {
     // This merge a list item to is previous list item of the selection is at the
@@ -46,7 +46,7 @@ function mergeListItemUp(tr: Transaction, schema: Schema): Transaction {
     }
 
     const paragraphNode = node.firstChild
-    const textNode = schema.text(" ")
+    const textNode = schema.text(' ')
 
     // Delete the list item
     tr = tr.delete(pos - 2, pos + node.nodeSize)
@@ -126,7 +126,7 @@ function mergeListItemDown(tr: Transaction, schema: Schema): Transaction {
         return tr
     }
 
-    const textNode = schema.text(" ")
+    const textNode = schema.text(' ')
     // Delete the next node.
     tr = tr.delete(deleteFrom, deleteFrom + nextNode.nodeSize)
     // Append extra space character to its previous list item.
@@ -141,7 +141,7 @@ function mergeListItemDown(tr: Transaction, schema: Schema): Transaction {
 }
 
 class ListItemMergeCommand extends UICommand {
-    _direction = ""
+    _direction = ''
 
     constructor(direction: string) {
         super()
@@ -160,10 +160,10 @@ class ListItemMergeCommand extends UICommand {
         const {selection, schema} = state
         let {tr} = state
         const direction = this._direction
-        if (direction === "down") {
+        if (direction === 'down') {
             // @ts-ignore
             tr = mergeListItemDown(tr.setSelection(selection), schema)
-        } else if (direction === "up") {
+        } else if (direction === 'up') {
             // @ts-ignore
             tr = mergeListItemUp(tr.setSelection(selection), schema)
         }

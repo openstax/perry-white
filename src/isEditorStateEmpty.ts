@@ -1,13 +1,13 @@
-import {EditorState} from "prosemirror-state"
+import {EditorState} from 'prosemirror-state'
 
-const ZERO_WIDTH_SPACE_CHAR = "\u200b"
+const ZERO_WIDTH_SPACE_CHAR = '\u200b'
 
 export default function isEditorStateEmpty(editorState: EditorState): boolean {
     const {doc} = editorState
     const {nodeSize} = doc
     if (nodeSize < 2) {
         const text = doc.textContent
-        return !text || text === " "
+        return !text || text === ' '
     } else if (nodeSize < 10) {
         let isEmpty = true
         doc.nodesBetween(0, doc.nodeSize - 2, (node, ii) => {
@@ -16,7 +16,7 @@ export default function isEditorStateEmpty(editorState: EditorState): boolean {
                 if (nodeType.isText) {
                     const text = doc.textContent
                     isEmpty =
-                        !text || text === " " || text === ZERO_WIDTH_SPACE_CHAR
+                        !text || text === ' ' || text === ZERO_WIDTH_SPACE_CHAR
                 } else if (nodeType.isAtom) {
                     // e.g. Image, Video...etc.
                     isEmpty = false

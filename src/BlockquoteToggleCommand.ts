@@ -1,10 +1,10 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {BLOCKQUOTE} from "./NodeNames"
-import toggleBlockquote from "./toggleBlockquote"
-import UICommand from "./ui/UICommand"
+import {BLOCKQUOTE} from './NodeNames'
+import toggleBlockquote from './toggleBlockquote'
+import UICommand from './ui/UICommand'
 
 class BlockquoteToggleCommand extends UICommand {
     isActive = (state: EditorState): boolean => {

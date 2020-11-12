@@ -1,8 +1,8 @@
 // https://github.com/ProseMirror/prosemirror-commands/blob/master/src/commands.js
 
-import {NodeSelection, Transaction} from "prosemirror-state"
-import {canJoin} from "prosemirror-transform"
-import {joinPoint} from "prosemirror-transform"
+import {NodeSelection, Transaction} from 'prosemirror-state'
+import {canJoin} from 'prosemirror-transform'
+import {joinPoint} from 'prosemirror-transform'
 
 // Join the selected block, or the closest ancestor of the selection
 // that can be joined, with the sibling after it.

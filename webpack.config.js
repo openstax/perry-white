@@ -1,15 +1,15 @@
 /*eslint-disable */
 
-var webpack = require('webpack'),
-  CopyWebpackPlugin = require('copy-webpack-plugin'),
-  HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin'),
-  
-  WriteFilePlugin = require('write-file-webpack-plugin'),
-  env = require('./utils/env'),
-  fileSystem = require('fs'),
-  path = require('path');
+const webpack = require('webpack'),
+      CopyWebpackPlugin = require('copy-webpack-plugin'),
+      HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin'),
+      HtmlWebpackPlugin = require('html-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
+      ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
+      WriteFilePlugin = require('write-file-webpack-plugin'),
+      env = require('./utils/env'),
+      fileSystem = require('fs'),
+      path = require('path');
 
 // [FS] IRAD-1005 2020-07-07
 // Upgrade outdated packages.
@@ -22,6 +22,7 @@ var options = {
     mode: isDev ? 'development' : 'production' ,
     entry: {
         'perry-white': path.join(__dirname, 'src', 'index.ts'),
+        'styles': path.join(__dirname, 'src', 'styles.scss'),
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -52,10 +53,17 @@ var options = {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /\.s[ac]ss$/i,
                 use: [
                     'style-loader',
                     'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            // Prefer `dart-sass`
+                            implementation: require('sass'),
+                        },
+                    },
                 ],
             },
             {
@@ -67,6 +75,7 @@ var options = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
+
 
         // alias: {
         //   fonts: path.resolve(__dirname, 'src', 'ui', 'fonts'),
@@ -86,7 +95,7 @@ var options = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'demo', 'index.html'),
             filename: 'index.html',
-            chunks: ['perry-white'],
+
             inlineSource: isDev ? '$^' : '.(js|css)$'
         }),
         new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin),
@@ -99,7 +108,12 @@ if (env.NODE_ENV === 'development') {
     options.optimization = {
         minimize: false
     }
-    
+    options.plugins.push(
+        new webpack.HotModuleReplacementPlugin(),
+    )
+    options.plugins.push(
+        new ReactRefreshWebpackPlugin(),
+    )
 } else {
     // [FS] IRAD-1005 2020-07-10
     // Upgrade outdated packages.

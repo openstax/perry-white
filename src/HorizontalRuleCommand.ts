@@ -1,9 +1,9 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {Transaction, EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {Fragment, Schema} from 'prosemirror-model'
+import {Transaction, EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import {HORIZONTAL_RULE} from "./NodeNames"
-import UICommand from "./ui/UICommand"
+import {HORIZONTAL_RULE} from './NodeNames'
+import UICommand from './ui/UICommand'
 
 function insertHorizontalRule(tr: Transaction, schema: Schema): Transaction {
     // @ts-ignore

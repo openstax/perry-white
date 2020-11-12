@@ -1,19 +1,19 @@
-import {Schema} from "prosemirror-model"
-import BlockquoteNodeSpec from "./BlockquoteNodeSpec"
-import BookmarkNodeSpec from "./BookmarkNodeSpec"
-import BulletListNodeSpec from "./BulletListNodeSpec"
-import DocNodeSpec from "./DocNodeSpec"
-import HardBreakNodeSpec from "./HardBreakNodeSpec"
-import HeadingNodeSpec from "./HeadingNodeSpec"
-import HorizontalRuleNodeSpec from "./HorizontalRuleNodeSpec"
-import ImageNodeSpec from "./ImageNodeSpec"
-import ListItemNodeSpec from "./ListItemNodeSpec"
-import MathNodeSpec from "./MathNodeSpec"
-import * as NodeNames from "./NodeNames"
-import OrderedListNodeSpec from "./OrderedListNodeSpec"
-import ParagraphNodeSpec from "./ParagraphNodeSpec"
-import TableNodesSpecs from "./TableNodesSpecs"
-import TextNodeSpec from "./TextNodeSpec"
+import {Schema} from 'prosemirror-model'
+import BlockquoteNodeSpec from './BlockquoteNodeSpec'
+import BookmarkNodeSpec from './BookmarkNodeSpec'
+import BulletListNodeSpec from './BulletListNodeSpec'
+import DocNodeSpec from './DocNodeSpec'
+import HardBreakNodeSpec from './HardBreakNodeSpec'
+import HeadingNodeSpec from './HeadingNodeSpec'
+import HorizontalRuleNodeSpec from './HorizontalRuleNodeSpec'
+import ImageNodeSpec from './ImageNodeSpec'
+import ListItemNodeSpec from './ListItemNodeSpec'
+import MathNodeSpec from './MathNodeSpec'
+import * as NodeNames from './NodeNames'
+import OrderedListNodeSpec from './OrderedListNodeSpec'
+import ParagraphNodeSpec from './ParagraphNodeSpec'
+import TableNodesSpecs from './TableNodesSpecs'
+import TextNodeSpec from './TextNodeSpec'
 
 const {
     BLOCKQUOTE,

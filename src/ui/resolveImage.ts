@@ -1,6 +1,6 @@
-import * as url from "url"
+import * as url from 'url'
 
-import isOffline from "./isOffline"
+import isOffline from './isOffline'
 
 export type ImageResult = {
     complete: boolean
@@ -41,7 +41,7 @@ function processPromise(
         height: 0,
         naturalHeight: 0,
         naturalWidth: 0,
-        src: src || "",
+        src: src || '',
         width: 0,
     }
 
@@ -50,7 +50,7 @@ function processPromise(
         return
     }
 
-    const srcStr = src || ""
+    const srcStr = src || ''
     if (!srcStr) {
         resolve(result)
         return
@@ -107,9 +107,9 @@ function processPromise(
 
     const {body} = document
     if (body) {
-        img = document.createElement("img")
+        img = document.createElement('img')
         img.style.cssText =
-            "position:fixed;left:-10000000000px;width:auto;height:auto;"
+            'position:fixed;left:-10000000000px;width:auto;height:auto;'
         img.onload = onLoad
         img.onerror = onError
         img.src = srcStr

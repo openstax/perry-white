@@ -1,6 +1,4 @@
-import * as React from "react"
-
-import "./czi-frag.css"
+import * as React from 'react'
 
 class Frag extends React.Component<any, any> {
     render() {

@@ -11,19 +11,19 @@ const excludeEntriesToHotReload = options.notHotReload || []
 
 config.entry['perry-white'] = path.join(__dirname, '..', 'demo', 'client', 'index.js')
 
-for (const entryName in config.entry) {
-    if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
-        console.log("HOT RELOAD", entryName)
-        config.entry[entryName] = [
-            'webpack-dev-server/client?http://localhost:' + env.PORT,
-            'webpack/hot/dev-server',
-        ].concat(config.entry[entryName])
-    }
-}
+// for (const entryName in config.entry) {
+//     if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
+//         console.log("HOT RELOAD", entryName)
+//         config.entry[entryName] = [
+//             'webpack-dev-server/client?http://localhost:' + env.PORT,
+//             'webpack/hot/dev-server',
+//         ].concat(config.entry[entryName])
+//     }
+// }
 
-config.plugins = [new webpack.HotModuleReplacementPlugin()].concat(
-    config.plugins || []
-)
+// config.plugins = [new webpack.HotModuleReplacementPlugin()].concat(
+//     config.plugins || []
+// )
 
 delete config.chromeExtensionBoilerplate
 

@@ -1,14 +1,14 @@
-import nullthrows from "nullthrows"
-import {EditorState, Transaction} from "prosemirror-state"
-import {setCellAttr} from "prosemirror-tables"
-import {EditorView} from "prosemirror-view"
+import nullthrows from 'nullthrows'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {setCellAttr} from 'prosemirror-tables'
+import {EditorView} from 'prosemirror-view'
 
-import ColorEditor from "./ui/ColorEditor"
-import {atAnchorRight} from "./ui/PopUpPosition"
-import UICommand from "./ui/UICommand"
-import createPopUp from "./ui/createPopUp"
+import ColorEditor from './ui/ColorEditor'
+import {atAnchorRight} from './ui/PopUpPosition'
+import UICommand from './ui/UICommand'
+import createPopUp from './ui/createPopUp'
 
-const setCellBackgroundBlack = setCellAttr("background", "#000000")
+const setCellBackgroundBlack = setCellAttr('background', '#000000')
 
 class TableBackgroundColorCommand extends UICommand {
     _popUp = null
@@ -60,7 +60,7 @@ class TableBackgroundColorCommand extends UICommand {
         hex: string | null | undefined,
     ): boolean => {
         if (dispatch && hex !== undefined) {
-            const cmd = setCellAttr("background", hex)
+            const cmd = setCellAttr('background', hex)
             // @ts-ignore
             cmd(state, dispatch, view)
             return true

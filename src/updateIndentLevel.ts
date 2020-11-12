@@ -1,12 +1,12 @@
-import clamp from "./ui/clamp"
-import compareNumber from "./compareNumber"
-import consolidateListNodes from "./consolidateListNodes"
-import isListNode from "./isListNode"
-import transformAndPreserveTextSelection from "./transformAndPreserveTextSelection"
-import {AllSelection, TextSelection, Transaction} from "prosemirror-state"
-import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import {Fragment, Schema} from "prosemirror-model"
-import {MAX_INDENT_LEVEL, MIN_INDENT_LEVEL} from "./ParagraphNodeSpec"
+import clamp from './ui/clamp'
+import compareNumber from './compareNumber'
+import consolidateListNodes from './consolidateListNodes'
+import isListNode from './isListNode'
+import transformAndPreserveTextSelection from './transformAndPreserveTextSelection'
+import {AllSelection, TextSelection, Transaction} from 'prosemirror-state'
+import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import {Fragment, Schema} from 'prosemirror-model'
+import {MAX_INDENT_LEVEL, MIN_INDENT_LEVEL} from './ParagraphNodeSpec'
 
 export default function updateIndentLevel(
     tr: Transaction,

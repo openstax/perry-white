@@ -1,10 +1,10 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
+import {Fragment, Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
 
-import {MARK_TEXT_SELECTION} from "./MarkNames"
-import {PARAGRAPH, TEXT} from "./NodeNames"
-import applyMark from "./applyMark"
-import uuid from "./ui/uuid"
+import {MARK_TEXT_SELECTION} from './MarkNames'
+import {PARAGRAPH, TEXT} from './NodeNames'
+import applyMark from './applyMark'
+import uuid from './ui/uuid'
 
 export type SelectionMemo = {
     schema: Schema
@@ -24,7 +24,7 @@ export default function transformAndPreserveTextSelection(
     schema: Schema,
     fn: (memo: SelectionMemo) => Transaction,
 ): Transaction {
-    if (tr.getMeta("dryrun")) {
+    if (tr.getMeta('dryrun')) {
         // There's no need to preserve the selection in dryrun mode.
         return fn({tr, schema})
     }

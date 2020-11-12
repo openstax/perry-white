@@ -1,14 +1,14 @@
-import ColorEditor from "./ui/ColorEditor"
-import UICommand from "./ui/UICommand"
-import applyMark from "./applyMark"
-import createPopUp from "./ui/createPopUp"
-import findNodesWithSameMark from "./findNodesWithSameMark"
-import isTextStyleMarkCommandEnabled from "./isTextStyleMarkCommandEnabled"
-import nullthrows from "nullthrows"
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import {MARK_TEXT_HIGHLIGHT} from "./MarkNames"
-import {Transaction} from "prosemirror-state"
+import ColorEditor from './ui/ColorEditor'
+import UICommand from './ui/UICommand'
+import applyMark from './applyMark'
+import createPopUp from './ui/createPopUp'
+import findNodesWithSameMark from './findNodesWithSameMark'
+import isTextStyleMarkCommandEnabled from './isTextStyleMarkCommandEnabled'
+import nullthrows from 'nullthrows'
+import {EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import {MARK_TEXT_HIGHLIGHT} from './MarkNames'
+import {Transaction} from 'prosemirror-state'
 
 class TextHighlightCommand extends UICommand {
     _popUp = null

@@ -1,6 +1,6 @@
-import {EditorView} from "prosemirror-view"
+import {EditorView} from 'prosemirror-view'
 
-import {uploadImageFiles} from "../ImageUploadPlaceholderPlugin"
+import {uploadImageFiles} from '../ImageUploadPlaceholderPlugin'
 
 // https://prosemirror.net/examples/upload/
 export default function handleEditorDrop(

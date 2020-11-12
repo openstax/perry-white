@@ -1,8 +1,8 @@
-import {InputRule} from "prosemirror-inputrules"
-import {EditorState, Transaction} from "prosemirror-state"
+import {InputRule} from 'prosemirror-inputrules'
+import {EditorState, Transaction} from 'prosemirror-state'
 
-import {BLOCKQUOTE} from "./NodeNames"
-import toggleBlockquote from "./toggleBlockquote"
+import {BLOCKQUOTE} from './NodeNames'
+import toggleBlockquote from './toggleBlockquote'
 
 // Given a blockquote node type, returns an input rule that turns `"> "`
 // at the start of a textblock into a blockquote.

@@ -1,4 +1,4 @@
-@font-face { font-family: Symbola; src: url(./font/Symbola.eot); src: local("Symbola Regular"), local("Symbola"), url(./font/Symbola.woff2) format("woff2"), url(./font/Symbola.woff) format("woff"), url(./font/Symbola.ttf) format("truetype"), url(./font/Symbola.svg#Symbola) format("svg"); }
+@font-face { font-family: Symbola; src: url(./ui/mathquill-editor/font/Symbola.eot); src: local("Symbola Regular"), local("Symbola"), url(./ui/mathquill-editor/font/Symbola.woff2) format("woff2"), url(./ui/mathquill-editor/font/Symbola.woff) format("woff"), url(./ui/mathquill-editor/font/Symbola.ttf) format("truetype"), url(./ui/mathquill-editor/font/Symbola.svg#Symbola) format("svg"); }
 .mq-editable-field { display: -moz-inline-box; display: inline-block; }
 .mq-editable-field .mq-cursor { border-left: 1px solid #000; margin-left: -1px; position: relative; z-index: 1; padding: 0; display: -moz-inline-box; display: inline-block; }
 .mq-editable-field .mq-cursor.mq-blink { visibility: hidden; }

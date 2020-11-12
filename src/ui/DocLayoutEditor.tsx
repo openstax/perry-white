@@ -1,21 +1,18 @@
-import * as React from "react"
-import {LAYOUT} from "../DocNodeSpec"
-import CustomButton from "./CustomButton"
-import CustomRadioButton from "./CustomRadioButton"
-import preventEventDefault from "./preventEventDefault"
-
-import "./czi-body-layout-editor.css"
-import "./czi-form.css"
+import * as React from 'react'
+import {LAYOUT} from '../DocNodeSpec'
+import CustomButton from './CustomButton'
+import CustomRadioButton from './CustomRadioButton'
+import preventEventDefault from './preventEventDefault'
 
 export type DocLayoutEditorValue = {
     layout: string | null | undefined
     width: number | null | undefined
 }
 
-type Props = {
+interface Props {
     // eslint-disable-line no-unused-vars
     initialValue: DocLayoutEditorValue | null | undefined
-    close: (val: DocLayoutEditorValue | null | undefined) => void
+    close: (val?: DocLayoutEditorValue) => void
 }
 
 type State = {
@@ -24,7 +21,7 @@ type State = {
     width: number | null | undefined
 }
 
-class DocLayoutEditor extends React.Component<any, any> {
+class DocLayoutEditor extends React.Component<Props, any> {
     _unmounted = false
 
     // [FS] IRAD-1005 2020-07-07
@@ -40,12 +37,12 @@ class DocLayoutEditor extends React.Component<any, any> {
             const fn = props[propName]
             if (
                 !fn.prototype ||
-                (typeof fn.prototype.constructor !== "function" &&
+                (typeof fn.prototype.constructor !== 'function' &&
                     fn.prototype.constructor.length !== 1)
             ) {
                 return new Error(
                     propName +
-                        "must be a function with 1 arg of type DocLayoutEditorValue",
+                        'must be a function with 1 arg of type DocLayoutEditorValue',
                 )
             }
             return undefined
@@ -54,7 +51,7 @@ class DocLayoutEditor extends React.Component<any, any> {
 
     state: State
 
-    constructor(props: Object, context: Object) {
+    constructor(props: Props, context: Object) {
         super(props, context)
         const {width, layout} = this.props.initialValue || {}
         this.state = {
@@ -139,7 +136,7 @@ class DocLayoutEditor extends React.Component<any, any> {
 
     _apply = (): void => {
         const {selectedValue} = this.state
-        if (typeof selectedValue === "string") {
+        if (typeof selectedValue === 'string') {
             this.props.close({width: null, layout: selectedValue})
         } else {
             this.props.close({width: selectedValue, layout: null})

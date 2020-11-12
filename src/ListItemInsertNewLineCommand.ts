@@ -1,11 +1,11 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {EditorState, Transaction} from "prosemirror-state"
-import {TextSelection} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import {Fragment, Schema} from 'prosemirror-model'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {TextSelection} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {HARD_BREAK, LIST_ITEM} from "./NodeNames"
-import UICommand from "./ui/UICommand"
+import {HARD_BREAK, LIST_ITEM} from './NodeNames'
+import UICommand from './ui/UICommand'
 
 // This handles the case when user press SHIFT + ENTER key to insert a new line
 // into list item.

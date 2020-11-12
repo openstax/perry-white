@@ -1,11 +1,11 @@
-import {Schema} from "prosemirror-model"
-import {DOMParser} from "prosemirror-model"
-import {EditorState} from "prosemirror-state"
-import {Plugin} from "prosemirror-state"
+import {Schema} from 'prosemirror-model'
+import {DOMParser} from 'prosemirror-model'
+import {EditorState} from 'prosemirror-state'
+import {Plugin} from 'prosemirror-state'
 
-import {getAttrs} from "./DocNodeSpec"
-import EditorPlugins from "./EditorPlugins"
-import EditorSchema from "./EditorSchema"
+import {getAttrs} from './DocNodeSpec'
+import EditorPlugins from './EditorPlugins'
+import EditorSchema from './EditorSchema'
 
 export default function convertFromDOMElement(
     el: HTMLElement,
@@ -14,7 +14,7 @@ export default function convertFromDOMElement(
 ): EditorState {
     const effectiveSchema = schema || EditorSchema
     const effectivePlugins = plugins || EditorPlugins
-    const bodyEl = el.querySelector("body")
+    const bodyEl = el.querySelector('body')
 
     // https://prosemirror.net/docs/ref/#model.ParseOptions.preserveWhitespace
     const doc = DOMParser.fromSchema(effectiveSchema).parse(el, {

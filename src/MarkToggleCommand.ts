@@ -1,9 +1,9 @@
-import {toggleMark} from "prosemirror-commands"
-import {EditorState, Transaction, TextSelection} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {toggleMark} from 'prosemirror-commands'
+import {EditorState, Transaction, TextSelection} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import findNodesWithSameMark from "./findNodesWithSameMark"
-import UICommand from "./ui/UICommand"
+import findNodesWithSameMark from './findNodesWithSameMark'
+import UICommand from './ui/UICommand'
 
 class MarkToggleCommand extends UICommand {
     _markName: string

@@ -1,7 +1,7 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
+import {Fragment, Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
 
-import {PARAGRAPH, TABLE, TABLE_CELL, TABLE_ROW} from "./NodeNames"
+import {PARAGRAPH, TABLE, TABLE_CELL, TABLE_ROW} from './NodeNames'
 
 // const ZERO_WIDTH_SPACE_CHAR = '\u200b';
 

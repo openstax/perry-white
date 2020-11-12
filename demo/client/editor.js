@@ -3,7 +3,6 @@ import { TextSelection } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import * as React from 'react'
 import { DOMSerializer } from 'prosemirror-model'
-import { hot } from 'react-hot-loader';
 import convertFromJSON from '../../src/convertFromJSON'
 import convertToHTML from '../../src/convertToHTML'
 import { Editor } from '../../src/index'
@@ -16,7 +15,7 @@ import createPopUp from '../../src/ui/createPopUp'
 import {atViewportCenter} from '../../src/ui/PopUpPosition'
 import AlertInfo from '../../src/ui/AlertInfo'
 import convertFromHTML from '../../src/convertFromHTML'
-import './editor.css'
+import './editor.scss'
 
 /**
  * properties:
@@ -73,7 +72,7 @@ class DemoEditor extends React.Component {
         const runtime = props.runtime ? props.runtime : new Runtime()
         const plugins = props.plugins || null
         let editorState = convertFromHTML(props.html, null, plugins)
-        console.log({ editorState })
+        //console.log({ editorState })
         //    let editorState = convertFromJSON(data, null, plugins)
         // [FS] IRAD-1067 2020-09-19
         // The editorState will return null if the doc Json is mal-formed
@@ -286,4 +285,4 @@ class DemoEditor extends React.Component {
     }
 }
 
-export default hot(module)(DemoEditor)
+export default DemoEditor

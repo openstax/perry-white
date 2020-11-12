@@ -1,18 +1,18 @@
-import {Fragment, Schema} from "prosemirror-model"
-import {EditorState, Transaction} from "prosemirror-state"
-import {TextSelection} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {Fragment, Schema} from 'prosemirror-model'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {TextSelection} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 // eslint-disable-next-line no-unused-vars
-import * as React from "react"
+import * as React from 'react'
 
 import {
     hideCursorPlaceholder,
     showCursorPlaceholder,
-} from "./CursorPlaceholderPlugin"
-import {MATH} from "./NodeNames"
-import MathEditor from "./ui/MathEditor"
-import UICommand from "./ui/UICommand"
-import createPopUp from "./ui/createPopUp"
+} from './CursorPlaceholderPlugin'
+import {MATH} from './NodeNames'
+import MathEditor from './ui/MathEditor'
+import UICommand from './ui/UICommand'
+import createPopUp from './ui/createPopUp'
 
 function insertMath(
     tr: Transaction,

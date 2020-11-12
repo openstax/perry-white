@@ -1,13 +1,10 @@
-import "./czi-vars.css"
-import "./czi-pop-up.css"
+import {PopUpParams, ViewProps} from './PopUp'
 
-import {PopUpParams, ViewProps} from "./PopUp"
-
-import PopUp from "./PopUp"
+import PopUp from './PopUp'
 // eslint-disable-next-line no-unused-vars
-import * as React from "react"
-import * as ReactDOM from "react-dom"
-import uuid from "./uuid"
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import uuid from './uuid'
 
 export type PopUpHandle = {
     close: (val: any) => void
@@ -18,18 +15,18 @@ let modalsCount = 0
 let popUpsCount = 0
 
 const Z_INDEX_BASE = 9999
-const MODAL_MASK_ID = "pop-up-modal-mask-" + uuid()
+const MODAL_MASK_ID = 'pop-up-modal-mask-' + uuid()
 
 function showModalMask(): void {
     const root: any = document.body || document.documentElement
     let element = document.getElementById(MODAL_MASK_ID)
     if (!element) {
-        element = document.createElement("div")
+        element = document.createElement('div')
         element.id = MODAL_MASK_ID
-        element.className = "czi-pop-up-modal-mask"
-        element.setAttribute("data-mask-type", "czi-pop-up-modal-mask")
-        element.setAttribute("role", "dialog")
-        element.setAttribute("aria-modal", "true")
+        element.className = 'czi-pop-up-modal-mask'
+        element.setAttribute('data-mask-type', 'czi-pop-up-modal-mask')
+        element.setAttribute('role', 'dialog')
+        element.setAttribute('aria-modal', 'true')
     }
 
     if (root && !element.parentElement) {
@@ -37,7 +34,7 @@ function showModalMask(): void {
     }
     const style: any = element.style
 
-    const selector = ".czi-pop-up-element[data-pop-up-modal]"
+    const selector = '.czi-pop-up-element[data-pop-up-modal]'
     const zIndex = Array.from(document.querySelectorAll(selector)).reduce(
         // @ts-ignore
         (zz, el) => Math.max(zz, Number(el.style.zIndex)),
@@ -65,7 +62,7 @@ function getRootElement(
         document.documentElement
     let element = document.getElementById(id)
     if (!element && forceCreation) {
-        element = document.createElement("div")
+        element = document.createElement('div')
     }
 
     if (!element) {
@@ -73,10 +70,10 @@ function getRootElement(
     }
 
     if (popUpParams && popUpParams.modal) {
-        element.setAttribute("data-pop-up-modal", "y")
+        element.setAttribute('data-pop-up-modal', 'y')
     }
 
-    element.className = "czi-pop-up-element czi-vars"
+    element.className = 'czi-pop-up-element czi-vars'
     element.id = id
 
     const style: any = element.style
@@ -87,8 +84,8 @@ function getRootElement(
 
     // Populates the default ARIA attributes here.
     // http://accessibility.athena-ict.com/aria/examples/dialog.shtml
-    element.setAttribute("role", "dialog")
-    element.setAttribute("aria-modal", "true")
+    element.setAttribute('role', 'dialog')
+    element.setAttribute('aria-modal', 'true')
     if (root && !element.parentElement) {
         root.appendChild(element)
     }
@@ -151,9 +148,9 @@ export default function createPopUp(
     popUpParams.modal = modal
 
     popUpsCount++
-                        if (modal) {
-                            modalsCount++
-                        }
+    if (modal) {
+        modalsCount++
+    }
 
     const closePopUp = value => {
         if (!handle) {

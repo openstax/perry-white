@@ -3,17 +3,17 @@ import {
     getVersion,
     receiveTransaction,
     sendableSteps,
-} from "prosemirror-collab"
-import {EditorState} from "prosemirror-state"
-import {Step} from "prosemirror-transform"
-import {EditorView} from "prosemirror-view"
-import EditorPlugins from "../EditorPlugins"
-import EditorSchema from "../EditorSchema"
-import uuid from "../uuid"
-import {GET, POST} from "./http"
+} from 'prosemirror-collab'
+import {EditorState} from 'prosemirror-state'
+import {Step} from 'prosemirror-transform'
+import {EditorView} from 'prosemirror-view'
+import EditorPlugins from '../EditorPlugins'
+import EditorSchema from '../EditorSchema'
+import uuid from '../uuid'
+import {GET, POST} from './http'
 // [FS] IRAD-1040 2020-09-02
-import {Schema} from "prosemirror-model"
-import {stringify} from "flatted"
+import {Schema} from 'prosemirror-model'
+import {stringify} from 'flatted'
 
 function badVersion(err: any) {
     return err.status == 400 && /invalid version/i.test(String(err))
@@ -46,7 +46,7 @@ class EditorConnection {
         this.schema = null
         this.report = report
         this.url = url
-        this.state = new State(null, "start")
+        this.state = new State(null, 'start')
         this.request = null
         this.backOff = 0
         this.view = null
@@ -63,7 +63,7 @@ class EditorConnection {
     // All state changes go through this
     dispatch = (action: any): void => {
         let newEditState = null
-        if (action.type == "loaded") {
+        if (action.type == 'loaded') {
             const editState = EditorState.create({
                 doc: action.doc,
                 plugins: EditorPlugins.concat([
@@ -73,25 +73,25 @@ class EditorConnection {
                     }),
                 ]),
             })
-            this.state = new State(editState, "poll")
+            this.state = new State(editState, 'poll')
             this.ready = true
             this.onReady(editState)
             this.poll()
-        } else if (action.type == "restart") {
-            this.state = new State(null, "start")
+        } else if (action.type == 'restart') {
+            this.state = new State(null, 'start')
             this.start()
-        } else if (action.type == "poll") {
-            this.state = new State(this.state.edit, "poll")
+        } else if (action.type == 'poll') {
+            this.state = new State(this.state.edit, 'poll')
             this.poll()
-        } else if (action.type == "recover") {
+        } else if (action.type == 'recover') {
             if (action.error.status && action.error.status < 500) {
                 this.report.failure(action.error)
                 this.state = new State(null, null)
             } else {
-                this.state = new State(this.state.edit, "recover")
+                this.state = new State(this.state.edit, 'recover')
                 this.recover(action.error)
             }
-        } else if (action.type == "transaction") {
+        } else if (action.type == 'transaction') {
             newEditState = this.state.edit
                 ? this.state.edit.apply(action.transaction)
                 : null
@@ -100,19 +100,19 @@ class EditorConnection {
         if (newEditState) {
             let sendable
             if (newEditState.doc.content.size > 40000) {
-                if (this.state.comm !== "detached") {
-                    this.report.failure("Document too big. Detached.")
+                if (this.state.comm !== 'detached') {
+                    this.report.failure('Document too big. Detached.')
                 }
-                this.state = new State(newEditState, "detached")
+                this.state = new State(newEditState, 'detached')
             } else if (
-                (this.state.comm == "poll" || action.requestDone) &&
+                (this.state.comm == 'poll' || action.requestDone) &&
                 (sendable = this.sendable(newEditState))
             ) {
                 this.closeRequest()
-                this.state = new State(newEditState, "send")
+                this.state = new State(newEditState, 'send')
                 this.send(newEditState, sendable)
             } else if (action.requestDone) {
-                this.state = new State(newEditState, "poll")
+                this.state = new State(newEditState, 'poll')
                 this.poll()
             } else {
                 this.state = new State(newEditState, this.state.comm)
@@ -133,7 +133,7 @@ class EditorConnection {
                 this.report.success()
                 this.backOff = 0
                 this.dispatch({
-                    type: "loaded",
+                    type: 'loaded',
                     doc: this.getEffectiveSchema().nodeFromJSON(data.doc_json),
                     version: data.version,
                     users: data.users,
@@ -150,8 +150,8 @@ class EditorConnection {
     // for a new version of the document to be created if the client
     // is already up-to-date.
     poll(): void {
-        const query = "version=" + getVersion(this.state.edit)
-        this.run(GET(this.url + "/events?" + query)).then(
+        const query = 'version=' + getVersion(this.state.edit)
+        this.run(GET(this.url + '/events?' + query)).then(
             data => {
                 this.report.success()
                 data = JSON.parse(data)
@@ -165,7 +165,7 @@ class EditorConnection {
                         data.clientIDs,
                     )
                     this.dispatch({
-                        type: "transaction",
+                        type: 'transaction',
                         transaction: tr,
                         requestDone: true,
                     })
@@ -177,9 +177,9 @@ class EditorConnection {
                 if (err.status == 410 || badVersion(err)) {
                     // Too far behind. Revert to server state
                     this.report.failure(err)
-                    this.dispatch({type: "restart"})
+                    this.dispatch({type: 'restart'})
                 } else if (err) {
-                    this.dispatch({type: "recover", error: err})
+                    this.dispatch({type: 'recover', error: err})
                 }
             },
         )
@@ -201,20 +201,20 @@ class EditorConnection {
             steps: steps ? steps.steps.map(s => s.toJSON()) : [],
             clientID: steps ? steps.clientID : 0,
         })
-        this.run(POST(this.url + "/events", json, "application/json")).then(
+        this.run(POST(this.url + '/events', json, 'application/json')).then(
             data => {
                 this.report.success()
                 this.backOff = 0
                 const tr = steps
                     ? receiveTransaction(
-                          this.state.edit,
-                          steps.steps,
-                          repeat(steps.clientID, steps.steps.length),
-                      )
+                        this.state.edit,
+                        steps.steps,
+                        repeat(steps.clientID, steps.steps.length),
+                    )
                     : this.state.edit.tr
 
                 this.dispatch({
-                    type: "transaction",
+                    type: 'transaction',
                     transaction: tr,
                     requestDone: true,
                 })
@@ -224,12 +224,12 @@ class EditorConnection {
                     // The client's document conflicts with the server's version.
                     // Poll for changes and then try again.
                     this.backOff = 0
-                    this.dispatch({type: "poll"})
+                    this.dispatch({type: 'poll'})
                 } else if (badVersion(err)) {
                     this.report.failure(err)
-                    this.dispatch({type: "restart"})
+                    this.dispatch({type: 'restart'})
                 } else {
-                    this.dispatch({type: "recover", error: err})
+                    this.dispatch({type: 'recover', error: err})
                 }
             },
         )
@@ -240,7 +240,7 @@ class EditorConnection {
     updateSchema(schema: Schema) {
         // to avoid cyclic reference error, use flatted string.
         const schemaFlatted = stringify(schema)
-        this.run(POST(this.url + "/schema/", schemaFlatted, "text/plain")).then(
+        this.run(POST(this.url + '/schema/', schemaFlatted, 'text/plain')).then(
             data => {
                 console.log("collab server's schema updated")
                 // [FS] IRAD-1040 2020-09-08
@@ -261,8 +261,8 @@ class EditorConnection {
         }
         this.backOff = newBackOff
         setTimeout(() => {
-            if (this.state.comm == "recover") {
-                this.dispatch({type: "poll"})
+            if (this.state.comm == 'recover') {
+                this.dispatch({type: 'poll'})
             }
         }, this.backOff)
     }

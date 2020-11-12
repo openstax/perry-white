@@ -1,11 +1,11 @@
-import {Class} from "utility-types"
+import {Class} from 'utility-types'
 
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import {EditorState} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 
-import ImageSourceCommand from "./ImageSourceCommand"
-import ImageUploadEditor from "./ui/ImageUploadEditor"
+import ImageSourceCommand from './ImageSourceCommand'
+import ImageUploadEditor from './ui/ImageUploadEditor'
 
 class ImageUploadCommand extends ImageSourceCommand {
     isEnabled = (

@@ -5,5 +5,5 @@ export default function toSafeHTMLDocument(
     html: string,
 ): Document | null | undefined {
     const parser = new window.DOMParser()
-    return parser.parseFromString(html, "text/html")
+    return parser.parseFromString(html, 'text/html')
 }

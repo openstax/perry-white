@@ -1,18 +1,17 @@
-import "./czi-inline-editor.css"
-import CustomButton from "./CustomButton"
-import CustomEditorView from "./CustomEditorView"
-import MathEditor from "./MathEditor"
-import * as React from "react"
-import createPopUp from "./createPopUp"
+import CustomButton from './CustomButton'
+import CustomEditorView from './CustomEditorView'
+import MathEditor from './MathEditor'
+import * as React from 'react'
+import createPopUp from './createPopUp'
 
 const MathAlignValues = {
     NONE: {
         value: null,
-        text: "Inline",
+        text: 'Inline',
     },
     CENTER: {
-        value: "center",
-        text: "Break text",
+        value: 'center',
+        text: 'Break text',
     },
 }
 
@@ -59,7 +58,7 @@ class MathInlineEditor extends React.Component<any, any> {
                     key="edit"
                     label="Edit"
                     onClick={this._editLatex}
-                    value={latex || ""}
+                    value={latex || ''}
                 />
             </div>
         )
@@ -77,7 +76,7 @@ class MathInlineEditor extends React.Component<any, any> {
         const {editorView, value} = this.props
         const props = {
             runtime: editorView ? editorView.runtime : null,
-            initialValue: (value && value.latex) || "",
+            initialValue: (value && value.latex) || '',
         }
         this._popUp = createPopUp(MathEditor, props, {
             autoDismiss: false,

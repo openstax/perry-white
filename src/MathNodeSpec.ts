@@ -1,14 +1,14 @@
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
 function getAttrs(dom: HTMLElement) {
-    let align = dom.getAttribute("data-align") || dom.getAttribute("align")
+    let align = dom.getAttribute('data-align') || dom.getAttribute('align')
     if (align) {
         align = /(left|right|center)/.test(align) ? align : null
     }
 
     return {
         align,
-        latex: dom.getAttribute("data-latex") || null,
+        latex: dom.getAttribute('data-latex') || null,
     }
 }
 
@@ -16,13 +16,13 @@ const MathNodeSpec: NodeSpec = {
     inline: true,
     attrs: {
         align: {default: null},
-        latex: {default: ""},
+        latex: {default: ''},
     },
-    group: "inline",
+    group: 'inline',
     draggable: true,
     parseDOM: [
-        {tag: "math[data-latex]", getAttrs},
-        {tag: "span[data-latex]", getAttrs},
+        {tag: 'math[data-latex]', getAttrs},
+        {tag: 'span[data-latex]', getAttrs},
     ],
     toDOM(node) {
         // Normally, the DOM structure of the math node is rendered by
@@ -35,9 +35,9 @@ const MathNodeSpec: NodeSpec = {
             domAttrs.align = align
         }
         if (latex) {
-            domAttrs["data-latex"] = latex
+            domAttrs['data-latex'] = latex
         }
-        return ["span", domAttrs]
+        return ['span', domAttrs]
     },
 }
 

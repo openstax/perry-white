@@ -1,12 +1,12 @@
-import nullthrows from "nullthrows"
-import {EditorState, TextSelection, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import insertTable from "./insertTable"
-import {atAnchorRight} from "./ui/PopUpPosition"
-import TableGridSizeEditor from "./ui/TableGridSizeEditor"
-import UICommand from "./ui/UICommand"
-import createPopUp from "./ui/createPopUp"
-import {TableGridSizeEditorValue} from "./ui/TableGridSizeEditor"
+import nullthrows from 'nullthrows'
+import {EditorState, TextSelection, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import insertTable from './insertTable'
+import {atAnchorRight} from './ui/PopUpPosition'
+import TableGridSizeEditor from './ui/TableGridSizeEditor'
+import UICommand from './ui/UICommand'
+import createPopUp from './ui/createPopUp'
+import {TableGridSizeEditorValue} from './ui/TableGridSizeEditor'
 
 class TableInsertCommand extends UICommand {
     _popUp = null
@@ -28,7 +28,7 @@ class TableInsertCommand extends UICommand {
             if (bOK) {
                 const $head = selection.$head
                 for (let d = $head.depth; d > 0; d--) {
-                    if ($head.node(d).type.spec.tableRole == "row") {
+                    if ($head.node(d).type.spec.tableRole == 'row') {
                         return false
                     }
                 }

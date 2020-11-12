@@ -1,15 +1,14 @@
-import cx from "classnames"
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import cx from 'classnames'
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 
-import CommandMenu from "./CommandMenu"
-import CustomButton from "./CustomButton"
-import UICommand from "./UICommand"
-import createPopUp from "./createPopUp"
-import uuid from "./uuid"
+import CommandMenu from './CommandMenu'
+import CustomButton from './CustomButton'
+import UICommand from './UICommand'
+import createPopUp from './createPopUp'
+import uuid from './uuid'
 
-import "./czi-custom-menu-button.css"
 
 interface CommandGroup {
     [key: string]: UICommand
@@ -74,7 +73,7 @@ class CommandMenuButton extends React.Component<Props, State> {
 
         const {expanded} = this.state
         const buttonClassName = cx(className, {
-            "czi-custom-menu-button": true,
+            'czi-custom-menu-button': true,
             expanded,
         })
 

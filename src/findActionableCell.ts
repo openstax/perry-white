@@ -1,9 +1,9 @@
-import {Node} from "prosemirror-model"
-import {EditorState, TextSelection} from "prosemirror-state"
-import {CellSelection, TableMap} from "prosemirror-tables"
-import {findParentNodeOfType} from "prosemirror-utils"
+import {Node} from 'prosemirror-model'
+import {EditorState, TextSelection} from 'prosemirror-state'
+import {CellSelection, TableMap} from 'prosemirror-tables'
+import {findParentNodeOfType} from 'prosemirror-utils'
 
-import {TABLE_CELL, TABLE_HEADER} from "./NodeNames"
+import {TABLE_CELL, TABLE_HEADER} from './NodeNames'
 
 type Result = {
     node: Node
@@ -36,9 +36,9 @@ function findActionableCellFromSelection(
     return posFound === null
         ? null
         : {
-              node: nodeFound,
-              pos: posFound,
-          }
+            node: nodeFound,
+            pos: posFound,
+        }
 }
 
 export default function findActionableCell(

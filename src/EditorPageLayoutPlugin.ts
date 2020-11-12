@@ -1,11 +1,11 @@
-import {EditorState, Plugin, PluginKey} from "prosemirror-state"
+import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
 
-import {ATTRIBUTE_LAYOUT, LAYOUT} from "./DocNodeSpec"
+import {ATTRIBUTE_LAYOUT, LAYOUT} from './DocNodeSpec'
 
 const SPEC = {
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    key: new PluginKey("EditorPageLayoutPlugin"),
+    key: new PluginKey('EditorPageLayoutPlugin'),
     props: {
         attributes: renderAttributes,
     },
@@ -14,12 +14,12 @@ const SPEC = {
 function renderAttributes(editorState: EditorState): Object {
     const {doc} = editorState
     const attrs: any = {
-        class: "czi-prosemirror-editor",
+        class: 'czi-prosemirror-editor',
     }
 
     const {width, padding, layout} = doc.attrs
 
-    let style = ""
+    let style = ''
     let computedLayout
     if (width) {
         const inWidth = width / 72

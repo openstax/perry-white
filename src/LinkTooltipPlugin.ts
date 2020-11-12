@@ -1,27 +1,25 @@
-import {EditorState, Plugin, PluginKey} from "prosemirror-state"
-import {TextSelection} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
+import {TextSelection} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import {MARK_LINK} from "./MarkNames"
+import {MARK_LINK} from './MarkNames'
 import {
     hideSelectionPlaceholder,
     showSelectionPlaceholder,
-} from "./SelectionPlaceholderPlugin"
-import applyMark from "./applyMark"
-import findNodesWithSameMark from "./findNodesWithSameMark"
-import lookUpElement from "./lookUpElement"
-import LinkTooltip from "./ui/LinkTooltip"
-import LinkURLEditor from "./ui/LinkURLEditor"
-import {atAnchorTopCenter} from "./ui/PopUpPosition"
-import createPopUp from "./ui/createPopUp"
-
-import "./ui/czi-pop-up.css"
+} from './SelectionPlaceholderPlugin'
+import applyMark from './applyMark'
+import findNodesWithSameMark from './findNodesWithSameMark'
+import lookUpElement from './lookUpElement'
+import LinkTooltip from './ui/LinkTooltip'
+import LinkURLEditor from './ui/LinkURLEditor'
+import {atAnchorTopCenter} from './ui/PopUpPosition'
+import createPopUp from './ui/createPopUp'
 
 // https://prosemirror.net/examples/tooltip/
 const SPEC = {
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    key: new PluginKey("LinkTooltipPlugin"),
+    key: new PluginKey('LinkTooltipPlugin'),
     view(editorView: EditorView) {
         return new LinkTooltipView(editorView)
     },
@@ -67,7 +65,7 @@ class LinkTooltipView {
             this.destroy()
             return
         }
-        const anchorEl = lookUpElement(domFound.node, el => el.nodeName === "A")
+        const anchorEl = lookUpElement(domFound.node, el => el.nodeName === 'A')
         if (!anchorEl) {
             this.destroy()
             return

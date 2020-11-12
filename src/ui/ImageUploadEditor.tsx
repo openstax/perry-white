@@ -1,15 +1,12 @@
-import cx from "classnames"
-import * as React from "react"
+import cx from 'classnames'
+import * as React from 'react'
 
-import CustomButton from "./CustomButton"
-import LoadingIndicator from "./LoadingIndicator"
-import preventEventDefault from "./preventEventDefault"
-import uuid from "./uuid"
+import CustomButton from './CustomButton'
+import LoadingIndicator from './LoadingIndicator'
+import preventEventDefault from './preventEventDefault'
+import uuid from './uuid'
 
-import "./czi-form.css"
-import "./czi-image-upload-editor.css"
-
-import {EditorRuntime, ImageLike} from "../Types"
+import {EditorRuntime, ImageLike} from '../Types'
 
 class ImageUploadEditor extends React.Component<any, any> {
     _img = null
@@ -32,13 +29,13 @@ class ImageUploadEditor extends React.Component<any, any> {
 
     render() {
         const {id, error, pending} = this.state
-        const className = cx("czi-image-upload-editor", {pending, error})
-        let label: React.ReactNode = "Choose an image file..."
+        const className = cx('czi-image-upload-editor', {pending, error})
+        let label: React.ReactNode = 'Choose an image file...'
 
         if (pending) {
             label = <LoadingIndicator />
         } else if (error) {
-            label = "Something went wrong, please try again"
+            label = 'Something went wrong, please try again'
         }
 
         return (
@@ -72,7 +69,7 @@ class ImageUploadEditor extends React.Component<any, any> {
     _onSelectFile = (event: React.SyntheticEvent): void => {
         // @ts-ignore
         const file = event.target.files && event.target.files[0]
-        if (file && typeof file === "object") {
+        if (file && typeof file === 'object') {
             this._upload(file)
         }
     }
@@ -100,7 +97,7 @@ class ImageUploadEditor extends React.Component<any, any> {
             const runtime = this.props.runtime || {}
             const {canUploadImage, uploadImage} = runtime
             if (!canUploadImage || !uploadImage || !canUploadImage()) {
-                throw new Error("feature is not available")
+                throw new Error('feature is not available')
             }
             this.setState({pending: true, error: null})
             const image = await uploadImage(file)

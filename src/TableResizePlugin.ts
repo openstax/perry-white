@@ -27,20 +27,20 @@
 // - Let user set the left margin of the table.
 // - Let user set the right margin of the table.
 // @ts-nocheck
-import TableNodeView from "./ui/TableNodeView"
-import {Node} from "prosemirror-model"
-import {EditorState, Plugin, PluginKey, Transaction} from "prosemirror-state"
+import TableNodeView from './ui/TableNodeView'
+import {Node} from 'prosemirror-model'
+import {EditorState, Plugin, PluginKey, Transaction} from 'prosemirror-state'
 
-import {Decoration, DecorationSet, EditorView} from "prosemirror-view"
-import {findParentNodeOfTypeClosestToPos} from "prosemirror-utils"
-import nullthrows from "nullthrows"
+import {Decoration, DecorationSet, EditorView} from 'prosemirror-view'
+import {findParentNodeOfTypeClosestToPos} from 'prosemirror-utils'
+import nullthrows from 'nullthrows'
 import {
     cellAround,
     pointsAtCell,
     setAttr,
     tableNodeTypes,
     TableMap,
-} from "prosemirror-tables"
+} from 'prosemirror-tables'
 
 type DraggingInfo = {
     columnElements: Array<HTMLElement>
@@ -59,7 +59,7 @@ type PointerEvent = {
     clientY: number
 }
 
-const PLUGIN_KEY = new PluginKey("tableColumnResizing")
+const PLUGIN_KEY = new PluginKey('tableColumnResizing')
 
 // [FS] IRAD-949 2020-05-27
 // Fix:Cell Resize Handler causes edit diificult to firsrst/last two chars in the cell.
@@ -91,7 +91,7 @@ class ResizeState {
     apply(tr: Transaction): ResizeState {
         let state = this
         const action = tr.getMeta(PLUGIN_KEY)
-        if (action && typeof action.setCellPos === "number") {
+        if (action && typeof action.setCellPos === 'number') {
             return new ResizeState(
                 action.setCellPos,
                 action.setForMarginLeft,
@@ -143,12 +143,12 @@ function handleMouseMove(view: EditorView, event: PointerEvent): void {
         if (offsetLeft <= HANDLE_WIDTH) {
             if (target.cellIndex === 0) {
                 forMarginLeft = true
-                cell = edgeCell(view, event, "right")
+                cell = edgeCell(view, event, 'right')
             } else {
-                cell = edgeCell(view, event, "left")
+                cell = edgeCell(view, event, 'left')
             }
         } else if (right - event.clientX <= HANDLE_WIDTH) {
-            cell = edgeCell(view, event, "right")
+            cell = edgeCell(view, event, 'right')
         }
     }
 
@@ -193,8 +193,8 @@ function handleMouseDown(view: EditorView, event: MouseEvent): boolean {
     let dragMoveHandler = null
 
     const finish = (event: MouseEvent) => {
-        window.removeEventListener("mouseup", finish, true)
-        window.removeEventListener("mousemove", move, true)
+        window.removeEventListener('mouseup', finish, true)
+        window.removeEventListener('mousemove', move, true)
         dragStarted && handleDragEnd(view, event)
         cancelDrag = null
     }
@@ -216,8 +216,8 @@ function handleMouseDown(view: EditorView, event: MouseEvent): boolean {
     }
 
     cancelDrag = finish
-    window.addEventListener("mouseup", finish, true)
-    window.addEventListener("mousemove", move, true)
+    window.addEventListener('mouseup', finish, true)
+    window.addEventListener('mousemove', move, true)
     event.preventDefault()
     return true
 }
@@ -304,10 +304,10 @@ function handleDragMove(view: EditorView, event: PointerEvent): void {
     tableElementStyle.marginLeft = `${ml}px`
     // [FS] IRAD-993 2020-06-26
     // Fix:Table exceeds the canvas
-    tableElementStyle.width = Math.round(totalWidth - ml) + "px"
-    tableElementStyle.minWidth = ""
+    tableElementStyle.width = Math.round(totalWidth - ml) + 'px'
+    tableElementStyle.minWidth = ''
     columnElements.forEach((colEl, index) => {
-        colEl.style.width = Math.round(widths[index]) + "px"
+        colEl.style.width = Math.round(widths[index]) + 'px'
     })
 }
 
@@ -356,7 +356,7 @@ function handleDragEnd(view: EditorView, event: any): void {
             tr = tr.setNodeMarkup(
                 start + pos,
                 null,
-                setAttr(attrs, "colwidth", colwidth),
+                setAttr(attrs, 'colwidth', colwidth),
             )
         }
     }
@@ -392,11 +392,11 @@ function calculateDraggingInfo(
 ): DraggingInfo | null | undefined {
     const {cellPos, forMarginLeft} = resizeState
     const dom = view.domAtPos(cellPos)
-    const tableEl = dom.node.closest("table")
-    const tableWrapper = tableEl.closest(".tableWrapper")
-    const colGroupEl = tableEl.querySelector("colgroup")
+    const tableEl = dom.node.closest('table')
+    const tableWrapper = tableEl.closest('.tableWrapper')
+    const colGroupEl = tableEl.querySelector('colgroup')
     const colEls = colGroupEl
-        ? Array.from(colGroupEl.querySelectorAll("col"))
+        ? Array.from(colGroupEl.querySelectorAll('col'))
         : []
     const tableWrapperRect = tableWrapper.getBoundingClientRect()
     const tableRect = tableEl.getBoundingClientRect()
@@ -479,8 +479,8 @@ function calculateDraggingInfo(
 
 // Helper that finds the closest cell element from a given event target.
 function domCellAround(target: any): Element | null | undefined {
-    while (target && target.nodeName !== "TD" && target.nodeName !== "TH") {
-        target = target.classList.contains("ProseMirror")
+    while (target && target.nodeName !== 'TD' && target.nodeName !== 'TH') {
+        target = target.classList.contains('ProseMirror')
             ? null
             : target.parentElement
     }
@@ -495,7 +495,7 @@ function edgeCell(view: EditorView, event: PointerEvent, side: string): number {
     if (!$cell) {
         return -1
     }
-    if (side == "right") {
+    if (side == 'right') {
         return $cell.pos
     }
     const map = TableMap.get($cell.node(-1))
@@ -544,10 +544,10 @@ function handleDecorations(
         ) {
             const cellPos = map.map[index]
             const pos = start + cellPos + table.nodeAt(cellPos).nodeSize - 1
-            const dom = document.createElement("div")
-            let className = "column-resize-handle"
+            const dom = document.createElement('div')
+            let className = 'column-resize-handle'
             if (resizeState.forMarginLeft) {
-                className += " for-margin-left"
+                className += ' for-margin-left'
             }
             dom.className = className
             decorations.push(Decoration.widget(pos, dom))
@@ -621,7 +621,7 @@ export default class TableResizePlugin extends Plugin {
                 attributes(state: EditorState): Object | null | undefined {
                     const resizeState = PLUGIN_KEY.getState(state)
                     return resizeState.cellPos > -1
-                        ? {class: "resize-cursor"}
+                        ? {class: 'resize-cursor'}
                         : null
                 },
                 handleDOMEvents: {

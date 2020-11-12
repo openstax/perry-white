@@ -6,10 +6,10 @@ import {
     smartQuotes,
     textblockTypeInputRule,
     wrappingInputRule,
-} from "prosemirror-inputrules"
-import {NodeType, Schema} from "prosemirror-model"
+} from 'prosemirror-inputrules'
+import {NodeType, Schema} from 'prosemirror-model'
 
-import blockQuoteInputRule from "./blockQuoteInputRule"
+import blockQuoteInputRule from './blockQuoteInputRule'
 
 // This file is forked from
 // // https://github.com/ProseMirror/prosemirror-example-setup/blob/master/src/inputrules.js
@@ -48,7 +48,7 @@ function codeBlockRule(nodeType: NodeType): InputRule {
 // the number of `#` signs.
 function headingRule(nodeType: NodeType, maxLevel: number): InputRule {
     return textblockTypeInputRule(
-        new RegExp("^(#{1," + maxLevel + "})\\s$"),
+        new RegExp('^(#{1,' + maxLevel + '})\\s$'),
         nodeType,
         match => ({level: match[1].length}),
     )

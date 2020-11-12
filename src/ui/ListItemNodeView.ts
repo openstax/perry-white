@@ -1,6 +1,6 @@
-import {Node} from "prosemirror-model"
-import {Decoration, EditorView} from "prosemirror-view"
-import {MARK_TEXT_COLOR, MARK_FONT_SIZE} from "../MarkNames"
+import {Node} from 'prosemirror-model'
+import {Decoration, EditorView} from 'prosemirror-view'
+import {MARK_TEXT_COLOR, MARK_FONT_SIZE} from '../MarkNames'
 
 // This implements the `NodeView` interface
 // https://prosemirror.net/docs/ref/#view.NodeView
@@ -20,7 +20,7 @@ class ListItemNodeView {
         getPos: () => number,
         decorations: Array<Decoration>,
     ) {
-        const dom = document.createElement("li")
+        const dom = document.createElement('li')
         this.dom = dom
         this.contentDOM = dom
         this._updateDOM(node)
@@ -55,7 +55,7 @@ class ListItemNodeView {
 
         let cssColor
         let cssFontSize
-        let cssText = ""
+        let cssText = ''
         if (Array.isArray(marks)) {
             marks.forEach(mark => {
                 const {attrs, type} = mark
@@ -86,9 +86,9 @@ class ListItemNodeView {
 
         const {align} = node.attrs
         if (align) {
-            dom.setAttribute("data-align", align)
+            dom.setAttribute('data-align', align)
         } else {
-            dom.removeAttribute("data-align")
+            dom.removeAttribute('data-align')
         }
         return true
     }

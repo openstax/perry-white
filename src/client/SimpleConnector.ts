@@ -1,6 +1,6 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {Schema} from "prosemirror-model"
-import * as ReactDOM from "react-dom"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {Schema} from 'prosemirror-model'
+import * as ReactDOM from 'react-dom'
 
 export type SetStateCall = (
     state: {editorState: EditorState},

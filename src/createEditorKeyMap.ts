@@ -1,9 +1,9 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import * as EditorCommands from "./EditorCommands"
-import * as EditorKeyMap from "./EditorKeyMap"
-import UICommand from "./ui/UICommand"
+import * as EditorCommands from './EditorCommands'
+import * as EditorKeyMap from './EditorKeyMap'
+import UICommand from './ui/UICommand'
 
 type UserKeyCommand = (
     state: EditorState,

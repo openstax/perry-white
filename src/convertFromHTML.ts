@@ -1,16 +1,16 @@
-import {Schema} from "prosemirror-model"
-import {EditorState} from "prosemirror-state"
-import {Plugin} from "prosemirror-state"
+import {Schema} from 'prosemirror-model'
+import {EditorState} from 'prosemirror-state'
+import {Plugin} from 'prosemirror-state'
 
-import convertFromDOMElement from "./convertFromDOMElement"
-import normalizeHTML from "./normalizeHTML"
+import convertFromDOMElement from './convertFromDOMElement'
+import normalizeHTML from './normalizeHTML'
 
 export default function convertFromHTML(
     html: string,
     schema: Schema | null | undefined,
     plugins: Array<Plugin> | null | undefined,
 ): EditorState {
-    const root = document.createElement("html")
+    const root = document.createElement('html')
     const newHTML = normalizeHTML(html)
     root.innerHTML = newHTML
     return convertFromDOMElement(root, schema, plugins)

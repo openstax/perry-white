@@ -1,12 +1,10 @@
-import cx from "classnames"
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import cx from 'classnames'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import clamp from "./clamp"
-import htmlElementToRect from "./htmlElementToRect"
-import {fromHTMlElement, fromXY, isIntersected} from "./rects"
-
-import "./czi-table-grid-size-editor.css"
+import clamp from './clamp'
+import htmlElementToRect from './htmlElementToRect'
+import {fromHTMlElement, fromXY, isIntersected} from './rects'
 
 export type TableGridSizeEditorValue = {
     cols: number
@@ -23,12 +21,12 @@ class GridCell extends React.Component<any, any> {
     render() {
         const {x, y, selected} = this.props
         const style = {
-            left: x + "px",
-            top: y + "px",
-            width: CELL_SIZE + "px",
-            height: CELL_SIZE + "px",
+            left: x + 'px',
+            top: y + 'px',
+            width: CELL_SIZE + 'px',
+            height: CELL_SIZE + 'px',
         }
-        const className = cx("czi-table-grid-size-editor-cell", {
+        const className = cx('czi-table-grid-size-editor-cell', {
             selected,
         })
         return <div className={className} style={style} />
@@ -55,7 +53,7 @@ class TableGridSizeEditor extends React.Component<any, any> {
 
     componentWillUnmount(): void {
         if (this._entered) {
-            document.removeEventListener("mousemove", this._onMouseMove, true)
+            document.removeEventListener('mousemove', this._onMouseMove, true)
         }
         this._rafID && cancelAnimationFrame(this._rafID)
     }
@@ -98,7 +96,7 @@ class TableGridSizeEditor extends React.Component<any, any> {
             h = y + GUTTER_SIZE
             ii++
         }
-        const bodyStyle = {width: w + "px", height: h + "px"}
+        const bodyStyle = {width: w + 'px', height: h + 'px'}
 
         return (
             <div className="czi-table-grid-size-editor" ref={this._onRef}>
@@ -133,7 +131,7 @@ class TableGridSizeEditor extends React.Component<any, any> {
             this._my = my
             if (!this._entered) {
                 this._entered = true
-                document.addEventListener("mousemove", this._onMouseMove, true)
+                document.addEventListener('mousemove', this._onMouseMove, true)
             }
         }
     }

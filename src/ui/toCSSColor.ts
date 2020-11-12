@@ -1,11 +1,11 @@
-import Color from "color"
+import Color from 'color'
 
 const RGBA_PATTERN = /^rgba/i
-const RGBA_TRANSPARENT = "rgba(0,0,0,0)"
+const RGBA_TRANSPARENT = 'rgba(0,0,0,0)'
 
 const ColorMaping = {
     transparent: RGBA_TRANSPARENT,
-    inherit: "",
+    inherit: '',
 }
 
 export function isTransparent(source: any): boolean {
@@ -18,7 +18,7 @@ export function isTransparent(source: any): boolean {
 
 export function toCSSColor(source: any): string {
     if (!source) {
-        return ""
+        return ''
     }
     if (source in ColorMaping) {
         return ColorMaping[source]
@@ -35,15 +35,15 @@ export function toCSSColor(source: any): string {
         return rgba
     }
 
-    let hex = ""
+    let hex = ''
     try {
         hex = Color(source)
             .hex()
             .toLowerCase()
         ColorMaping[source] = hex
     } catch (ex) {
-        console.warn("unable to convert to hex", source)
-        ColorMaping[source] = ""
+        console.warn('unable to convert to hex', source)
+        ColorMaping[source] = ''
     }
     return hex
 }

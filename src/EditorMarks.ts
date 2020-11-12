@@ -1,26 +1,26 @@
-import {Schema} from "prosemirror-model"
+import {Schema} from 'prosemirror-model'
 
-import CodeMarkSpec from "./CodeMarkSpec"
-import DocNodeSpec from "./DocNodeSpec"
-import EMMarkSpec from "./EMMarkSpec"
-import FontSizeMarkSpec from "./FontSizeMarkSpec"
-import FontTypeMarkSpec from "./FontTypeMarkSpec"
-import LinkMarkSpec from "./LinkMarkSpec"
-import * as MarkNames from "./MarkNames"
-import {DOC, PARAGRAPH, TEXT} from "./NodeNames"
-import ParagraphNodeSpec from "./ParagraphNodeSpec"
-import SpacerMarkSpec from "./SpacerMarkSpec"
-import StrikeMarkSpec from "./StrikeMarkSpec"
-import StrongMarkSpec from "./StrongMarkSpec"
-import TextColorMarkSpec from "./TextColorMarkSpec"
-import TextHighlightMarkSpec from "./TextHighlightMarkSpec"
-import TextNoWrapMarkSpec from "./TextNoWrapMarkSpec"
-import TextNodeSpec from "./TextNodeSpec"
-import TextSelectionMarkSpec from "./TextSelectionMarkSpec"
-import TextSuperMarkSpec from "./TextSuperMarkSpec"
-import TextSubMarkSpec from "./TextSubMarkSpec"
-import TextUnderlineMarkSpec from "./TextUnderlineMarkSpec"
-import CustomStyleMarkSpec from "./CustomStyleMarkSpec"
+import CodeMarkSpec from './CodeMarkSpec'
+import DocNodeSpec from './DocNodeSpec'
+import EMMarkSpec from './EMMarkSpec'
+import FontSizeMarkSpec from './FontSizeMarkSpec'
+import FontTypeMarkSpec from './FontTypeMarkSpec'
+import LinkMarkSpec from './LinkMarkSpec'
+import * as MarkNames from './MarkNames'
+import {DOC, PARAGRAPH, TEXT} from './NodeNames'
+import ParagraphNodeSpec from './ParagraphNodeSpec'
+import SpacerMarkSpec from './SpacerMarkSpec'
+import StrikeMarkSpec from './StrikeMarkSpec'
+import StrongMarkSpec from './StrongMarkSpec'
+import TextColorMarkSpec from './TextColorMarkSpec'
+import TextHighlightMarkSpec from './TextHighlightMarkSpec'
+import TextNoWrapMarkSpec from './TextNoWrapMarkSpec'
+import TextNodeSpec from './TextNodeSpec'
+import TextSelectionMarkSpec from './TextSelectionMarkSpec'
+import TextSuperMarkSpec from './TextSuperMarkSpec'
+import TextSubMarkSpec from './TextSubMarkSpec'
+import TextUnderlineMarkSpec from './TextUnderlineMarkSpec'
+import CustomStyleMarkSpec from './CustomStyleMarkSpec'
 
 const {
     MARK_CODE,

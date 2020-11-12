@@ -1,5 +1,5 @@
 function hadnleMatch(matched: string): string {
-    return matched[0] + "-" + matched[1].toLowerCase()
+    return matched[0] + '-' + matched[1].toLowerCase()
 }
 
 const cached = {}

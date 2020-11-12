@@ -1,7 +1,7 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import UICommand from "./ui/UICommand"
+import UICommand from './ui/UICommand'
 
 class PrintCommand extends UICommand {
     isActive = (state: EditorState): boolean => {

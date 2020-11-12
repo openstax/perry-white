@@ -1,17 +1,15 @@
-import {EditorState, Plugin, PluginKey} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
 /* eslint-disable-next-line */
 import * as React from "react"
 
-import findActionableCell from "./findActionableCell"
-import {atAnchorTopRight} from "./ui/PopUpPosition"
-import TableCellMenu from "./ui/TableCellMenu"
-import bindScrollHandler from "./ui/bindScrollHandler"
-import createPopUp from "./ui/createPopUp"
-import isElementFullyVisible from "./ui/isElementFullyVisible"
-
-import "./ui/czi-pop-up.css"
+import findActionableCell from './findActionableCell'
+import {atAnchorTopRight} from './ui/PopUpPosition'
+import TableCellMenu from './ui/TableCellMenu'
+import bindScrollHandler from './ui/bindScrollHandler'
+import createPopUp from './ui/createPopUp'
+import isElementFullyVisible from './ui/isElementFullyVisible'
 
 class TableCellTooltipView {
     _cellElement: null | Node
@@ -113,7 +111,7 @@ class TableCellTooltipView {
 const SPEC = {
     // [FS] IRAD-1005 2020-07-07
     // Upgrade outdated packages.
-    key: new PluginKey("TableCellMenuPlugin"),
+    key: new PluginKey('TableCellMenuPlugin'),
     view(editorView: EditorView) {
         return new TableCellTooltipView(editorView)
     },

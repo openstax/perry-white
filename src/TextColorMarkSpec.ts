@@ -1,18 +1,18 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import toCSSColor from "./ui/toCSSColor"
+import toCSSColor from './ui/toCSSColor'
 
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const TextColorMarkSpec: MarkSpec = {
     attrs: {
-        color: "",
+        color: '',
     },
     inline: true,
-    group: "inline",
+    group: 'inline',
     parseDOM: [
         {
-            style: "color",
+            style: 'color',
             getAttrs: color => {
                 return {
                     color: toCSSColor(color),
@@ -22,11 +22,11 @@ const TextColorMarkSpec: MarkSpec = {
     ],
     toDOM(node: Node) {
         const {color} = node.attrs
-        let style = ""
+        let style = ''
         if (color) {
             style += `color: ${color};`
         }
-        return ["span", {style}, 0]
+        return ['span', {style}, 0]
     },
 }
 

@@ -1,15 +1,15 @@
-import {Node} from "prosemirror-model"
+import {Node} from 'prosemirror-model'
 
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
-export const ATTRIBUTE_LIST_STYLE_TYPE = "data-list-style-type"
+export const ATTRIBUTE_LIST_STYLE_TYPE = 'data-list-style-type'
 
 const ALIGN_PATTERN = /(left|right|center|justify)/
 
 function getAttrs(dom: HTMLElement) {
     const attrs:any = {}
     const {textAlign} = dom.style
-    let align = dom.getAttribute("data-align") || textAlign || ""
+    let align = dom.getAttribute('data-align') || textAlign || ''
     align = ALIGN_PATTERN.test(align) ? align : null
 
     if (align) {
@@ -27,9 +27,9 @@ const ListItemNodeSpec: NodeSpec = {
     // This spec does not support nested lists (e.g. `'paragraph block*'`)
     // as content because of the complexity of dealing with indentation
     // (context: https://github.com/ProseMirror/prosemirror/issues/92).
-    content: "paragraph",
+    content: 'paragraph',
 
-    parseDOM: [{tag: "li", getAttrs}],
+    parseDOM: [{tag: 'li', getAttrs}],
 
     // NOTE:
     // This method only defines the minimum HTML attributes needed when the node
@@ -40,9 +40,9 @@ const ListItemNodeSpec: NodeSpec = {
         const attrs:any = {}
         const {align} = node.attrs
         if (align) {
-            attrs["data-align"] = align
+            attrs['data-align'] = align
         }
-        return ["li", attrs, 0]
+        return ['li', attrs, 0]
     },
 }
 

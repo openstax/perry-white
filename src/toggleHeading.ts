@@ -1,11 +1,11 @@
-import {Schema} from "prosemirror-model"
-import {Transaction} from "prosemirror-state"
-import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import compareNumber from "./compareNumber"
-import isInsideListItem from "./isInsideListItem"
-import isListNode from "./isListNode"
-import {clearMarks} from "./clearMarks"
-import {unwrapNodesFromList} from "./toggleList"
+import {Schema} from 'prosemirror-model'
+import {Transaction} from 'prosemirror-state'
+import {BLOCKQUOTE, HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import compareNumber from './compareNumber'
+import isInsideListItem from './isInsideListItem'
+import isListNode from './isListNode'
+import {clearMarks} from './clearMarks'
+import {unwrapNodesFromList} from './toggleList'
 
 export default function toggleHeading(
     tr: Transaction,

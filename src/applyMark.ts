@@ -1,5 +1,5 @@
-import {MarkType, Schema} from "prosemirror-model"
-import {Transaction} from "prosemirror-state"
+import {MarkType, Schema} from 'prosemirror-model'
+import {Transaction} from 'prosemirror-state'
 
 function markApplies(doc, ranges, type) {
     for (let i = 0; i < ranges.length; i++) {

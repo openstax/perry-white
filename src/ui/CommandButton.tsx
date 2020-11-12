@@ -1,9 +1,9 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 
-import CustomButton from "./CustomButton"
-import UICommand from "./UICommand"
+import CustomButton from './CustomButton'
+import UICommand from './UICommand'
 
 interface Props {
     className?: string | null | undefined
@@ -53,7 +53,7 @@ class CommandButton extends React.Component<Props, any> {
     // eslint-disable-next-line no-undef
     _onUIEnter = (
         command: UICommand,
-        event: React.SyntheticEvent<HTMLButtonElement>,
+        event: React.SyntheticEvent<HTMLButtonElement>
     ): void => {
         if (command.shouldRespondToUIEvent(event)) {
             this._execute(command, event)

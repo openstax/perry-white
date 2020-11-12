@@ -1,14 +1,15 @@
-import {EditorState, Selection} from "prosemirror-state"
-import {Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import * as React from 'react'
+import {EditorState, Selection} from 'prosemirror-state'
+import {Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
 export type IsActiveCall = (state: EditorState) => boolean
 
 export type FindNodeTypeInSelectionCall = (selection: Selection) => Object
 
 const EventType = {
-    CLICK: "mouseup",
-    MOUSEENTER: "mouseenter",
+    CLICK: 'mouseup',
+    MOUSEENTER: 'mouseenter',
 }
 
 function dryRunEditorStateProxyGetter(
@@ -16,8 +17,8 @@ function dryRunEditorStateProxyGetter(
     propKey: string,
 ): any {
     const val = state[propKey]
-    if (propKey === "tr" && val instanceof Transaction) {
-        return val.setMeta("dryrun", true)
+    if (propKey === 'tr' && val instanceof Transaction) {
+        return val.setMeta('dryrun', true)
     }
     return val
 }
@@ -64,9 +65,9 @@ class UICommand {
 
         const dryRunState = Proxy
             ? new Proxy(state, {
-                  get: dryRunEditorStateProxyGetter,
-                  set: dryRunEditorStateProxySetter,
-              })
+                get: dryRunEditorStateProxyGetter,
+                set: dryRunEditorStateProxySetter,
+            })
             : state
 
         return this.execute(dryRunState, null, view)

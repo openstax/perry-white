@@ -48,6 +48,11 @@ class CustomRuntime {
             })
         })
     }
+
+    filterCommandGroups(groups) {
+        console.log(groups)
+        return groups
+    }
 }
 
 export default CustomRuntime

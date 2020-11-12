@@ -1,8 +1,8 @@
-import clamp from "./clamp"
-import {fromHTMlElement, fromXY, isIntersected} from "./rects"
+import clamp from './clamp'
+import {fromHTMlElement, fromXY, isIntersected} from './rects'
 
-import {PositionHandler} from "./PopUpPosition"
-import {Rect} from "./rects"
+import {PositionHandler} from './PopUpPosition'
+import {Rect} from './rects'
 
 export type PopUpDetails = {
     anchor: HTMLElement | null | undefined
@@ -49,19 +49,19 @@ class PopUpManager {
     }
 
     _observe(): void {
-        document.addEventListener("mousemove", this._onMouseChange, false)
-        document.addEventListener("mouseup", this._onMouseChange, false)
-        document.addEventListener("click", this._onClick, false)
-        window.addEventListener("scroll", this._onScroll, true)
-        window.addEventListener("resize", this._onResize, true)
+        document.addEventListener('mousemove', this._onMouseChange, false)
+        document.addEventListener('mouseup', this._onMouseChange, false)
+        document.addEventListener('click', this._onClick, false)
+        window.addEventListener('scroll', this._onScroll, true)
+        window.addEventListener('resize', this._onResize, true)
     }
 
     _unobserve(): void {
-        document.removeEventListener("mousemove", this._onMouseChange, false)
-        document.removeEventListener("mouseup", this._onMouseChange, false)
-        document.removeEventListener("click", this._onClick, false)
-        window.removeEventListener("scroll", this._onScroll, true)
-        window.removeEventListener("resize", this._onResize, true)
+        document.removeEventListener('mousemove', this._onMouseChange, false)
+        document.removeEventListener('mouseup', this._onMouseChange, false)
+        document.removeEventListener('click', this._onClick, false)
+        window.removeEventListener('scroll', this._onScroll, true)
+        window.removeEventListener('resize', this._onResize, true)
         this._rafID && cancelAnimationFrame(this._rafID)
     }
 
@@ -143,18 +143,18 @@ class PopUpManager {
             ) {
                 const ax = anchorRect
                     ? clamp(
-                          0,
-                          anchorRect.x - x + anchorRect.w / 2,
-                          bodyRect.w - anchorRect.w / 2,
-                      )
+                        0,
+                        anchorRect.x - x + anchorRect.w / 2,
+                        bodyRect.w - anchorRect.w / 2,
+                    )
                     : 0
                 this._positions.set(bridge, positionKey)
                 const bodyStyle = body.style
-                bodyStyle.position = "absolute"
+                bodyStyle.position = 'absolute'
                 bodyStyle.left = `${x}px`
                 bodyStyle.top = `${y}px`
                 bodyStyle.setProperty(
-                    "--czi-pop-up-anchor-offset-left",
+                    '--czi-pop-up-anchor-offset-left',
                     `${ax}px`,
                 )
                 bodyRect.x = x

@@ -1,7 +1,7 @@
 // @ts-ignore
-import stableSort from "stable"
-import toCSSColor from "./ui/toCSSColor"
-import toCSSLineSpacing from "./ui/toCSSLineSpacing"
+import stableSort from 'stable'
+import toCSSColor from './ui/toCSSColor'
+import toCSSLineSpacing from './ui/toCSSLineSpacing'
 
 const LIST_ITEM_PSEUDO_ELEMENT_BEFORE = /li:+before/
 const NODE_NAME_SELECTOR = /^[a-zA-Z]+\d*$/
@@ -17,13 +17,13 @@ type SelectorTextToCSSText = {
     selectorText: string
 }
 
-export const ATTRIBUTE_CSS_BEFORE_CONTENT = "data-attribute-css-before-content"
+export const ATTRIBUTE_CSS_BEFORE_CONTENT = 'data-attribute-css-before-content'
 
 // Node name only selector has less priority, we'll handle it
 // separately
 
 export default function patchStyleElements(doc: Document): void {
-    const els = Array.from(doc.querySelectorAll("style"))
+    const els = Array.from(doc.querySelectorAll('style'))
     if (!els.length) {
         return
     }
@@ -34,18 +34,18 @@ export default function patchStyleElements(doc: Document): void {
         const sheet = styleEl.sheet
         if (!sheet) {
             // TODO: Find out why the browser does not support this.
-            console.error("styleEl.sheet undefined", styleEl)
+            console.error('styleEl.sheet undefined', styleEl)
             return
         }
         const cssRules = sheet.cssRules
         if (!cssRules) {
             // TODO: Find out why the browser does not support this.
-            console.error("sheet.cssRules undefined", sheet)
+            console.error('sheet.cssRules undefined', sheet)
             return
         }
 
         Array.from(cssRules).forEach((rule: any, cssRuleIndex) => {
-            const selectorText = String(rule.selectorText || "")
+            const selectorText = String(rule.selectorText || '')
             if (!selectorText) {
                 // This could be `CSSImportRule.` created by @import().
                 // ignore it.
@@ -54,31 +54,31 @@ export default function patchStyleElements(doc: Document): void {
 
             if (!rule.styleMap) {
                 // TODO: Find out why the browser does not support this.
-                console.error("rule.styleMap undefined", rule)
+                console.error('rule.styleMap undefined', rule)
                 return
             }
-            let cssText = ""
+            let cssText = ''
             rule.styleMap.forEach((cssStyleValue, key) => {
                 let cssStyleValueStr = String(cssStyleValue)
                 // e.g. rules['color'] = 'red'.
-                if (key === "color") {
+                if (key === 'color') {
                     const color = toCSSColor(cssStyleValueStr)
                     if (!color) {
                         return
                     }
-                } else if (key === "background-color") {
+                } else if (key === 'background-color') {
                     const color = toCSSColor(cssStyleValueStr)
                     if (!color) {
                         return
                     }
-                } else if (key === "line-height") {
+                } else if (key === 'line-height') {
                     cssStyleValueStr = toCSSLineSpacing(cssStyleValueStr)
                 }
                 if (cssStyleValueStr) {
                     cssText += `${key}: ${cssStyleValueStr};`
                 }
             })
-            if (selectorText.indexOf(",") > -1) {
+            if (selectorText.indexOf(',') > -1) {
                 selectorText.split(/\s*,\s*/).forEach(st => {
                     buildSelectorTextToCSSText(
                         selectorTextToCSSTexts,
@@ -172,10 +172,10 @@ function buildSelectorTextToCSSText(
         // Google.
         // This converts `content:"\0025a0  "` to `\0025a0`
         beforeContent = cssText
-            .replace(/^content:\s*"\s*/, "")
-            .replace(/";*$/, "")
-        selectorText = selectorText.replace(/:+before/, "")
-        cssText = ""
+            .replace(/^content:\s*"\s*/, '')
+            .replace(/";*$/, '')
+        selectorText = selectorText.replace(/:+before/, '')
+        cssText = ''
     } else if (PSEUDO_ELEMENT_ANY.test(selectorText)) {
         // TODO: Handle this later.
         return
@@ -194,6 +194,6 @@ function applyInlineStyleSheetCSSTexts(
     el: HTMLElement,
 ): void {
     if (cssTexts.length) {
-        el.style.cssText = cssTexts.join(";") + ";" + el.style.cssText
+        el.style.cssText = cssTexts.join(';') + ';' + el.style.cssText
     }
 }

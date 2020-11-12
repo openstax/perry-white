@@ -1,16 +1,16 @@
-import clamp from "./ui/clamp"
-import convertToCSSPTValue from "./convertToCSSPTValue"
-import toCSSLineSpacing from "./ui/toCSSLineSpacing"
-import {Node} from "prosemirror-model"
+import clamp from './ui/clamp'
+import convertToCSSPTValue from './convertToCSSPTValue'
+import toCSSLineSpacing from './ui/toCSSLineSpacing'
+import {Node} from 'prosemirror-model'
 
-import {NodeSpec} from "./Types"
+import {NodeSpec} from './Types'
 
 // This assumes that every 36pt maps to one indent level.
 export const INDENT_MARGIN_PT_SIZE = 36
 export const MIN_INDENT_LEVEL = 0
 export const MAX_INDENT_LEVEL = 7
-export const ATTRIBUTE_INDENT = "data-indent"
-const cssVal = new Set<string>(["", "0%", "0pt", "0px"])
+export const ATTRIBUTE_INDENT = 'data-indent'
+const cssVal = new Set<string>(['', '0%', '0pt', '0px'])
 
 export const EMPTY_CSS_VALUE = cssVal
 
@@ -32,9 +32,9 @@ const ParagraphNodeSpec: NodeSpec = {
         paddingTop: {default: null},
         objectId: {default: null},
     },
-    content: "inline*",
-    group: "block",
-    parseDOM: [{tag: "p", getAttrs}],
+    content: 'inline*',
+    group: 'block',
+    parseDOM: [{tag: 'p', getAttrs}],
     toDOM,
 }
 
@@ -47,7 +47,7 @@ function getAttrs(dom: HTMLElement): any {
         paddingBottom,
     } = dom.style
 
-    let align = dom.getAttribute("align") || textAlign || ""
+    let align = dom.getAttribute('align') || textAlign || ''
     align = ALIGN_PATTERN.test(align) ? align : null
 
     let indent = parseInt(dom.getAttribute(ATTRIBUTE_INDENT), 10)
@@ -60,8 +60,8 @@ function getAttrs(dom: HTMLElement): any {
 
     const lineSpacing = lineHeight ? toCSSLineSpacing(lineHeight) : null
 
-    const id = dom.getAttribute("id") || ""
-    const objectId = dom.getAttribute("objectId") || null
+    const id = dom.getAttribute('id') || ''
+    const objectId = dom.getAttribute('objectId') || null
 
     return {align, indent, lineSpacing, paddingTop, paddingBottom, id, objectId}
 }
@@ -78,8 +78,8 @@ function toDOM(node: Node): Array<any> {
     } = node.attrs
     const attrs:any = {}
 
-    let style = ""
-    if (align && align !== "left") {
+    let style = ''
+    if (align && align !== 'left') {
         style += `text-align: ${align};`
     }
 
@@ -110,7 +110,7 @@ function toDOM(node: Node): Array<any> {
     }
     attrs.objectId = objectId
 
-    return ["p", attrs, 0]
+    return ['p', attrs, 0]
 }
 
 export const toParagraphDOM = toDOM

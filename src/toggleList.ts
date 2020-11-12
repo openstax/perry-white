@@ -1,15 +1,15 @@
-import consolidateListNodes from "./consolidateListNodes"
-import compareNumber from "./compareNumber"
-import nullthrows from "nullthrows"
-import {Fragment, Node, NodeType, Schema} from "prosemirror-model"
-import {TextSelection, Transaction} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
+import consolidateListNodes from './consolidateListNodes'
+import compareNumber from './compareNumber'
+import nullthrows from 'nullthrows'
+import {Fragment, Node, NodeType, Schema} from 'prosemirror-model'
+import {TextSelection, Transaction} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
 
-import {HEADING, LIST_ITEM, PARAGRAPH} from "./NodeNames"
-import isListNode from "./isListNode"
-import transformAndPreserveTextSelection from "./transformAndPreserveTextSelection"
+import {HEADING, LIST_ITEM, PARAGRAPH} from './NodeNames'
+import isListNode from './isListNode'
+import transformAndPreserveTextSelection from './transformAndPreserveTextSelection'
 
-import {SelectionMemo} from "./transformAndPreserveTextSelection"
+import {SelectionMemo} from './transformAndPreserveTextSelection'
 
 export default function toggleList(
     tr: Transaction,

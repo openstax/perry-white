@@ -1,25 +1,23 @@
-import "./czi-math-view.css"
-import CustomNodeView from "./CustomNodeView"
-import MathInlineEditor from "./MathInlineEditor"
-import * as React from "react"
-import createPopUp from "./createPopUp"
-import cx from "classnames"
-import renderLaTeXAsHTML from "./renderLaTeXAsHTML"
-import uuid from "./uuid"
-import {Decoration} from "prosemirror-view"
-import {FRAMESET_BODY_CLASSNAME} from "./EditorFrameset"
-import {Node} from "prosemirror-model"
-import {atAnchorBottomCenter} from "./PopUpPosition"
-import {NodeSelection} from "prosemirror-state"
+import CustomNodeView from './CustomNodeView'
+import MathInlineEditor from './MathInlineEditor'
+import * as React from 'react'
+import createPopUp from './createPopUp'
+import cx from 'classnames'
+import renderLaTeXAsHTML from './renderLaTeXAsHTML'
+import uuid from './uuid'
+import {Decoration} from 'prosemirror-view'
+import {FRAMESET_BODY_CLASSNAME} from './EditorFrameset'
+import {Node} from 'prosemirror-model'
+import {atAnchorBottomCenter} from './PopUpPosition'
+import {NodeSelection} from 'prosemirror-state'
 
-import {NodeViewProps} from "./CustomNodeView"
+import {NodeViewProps} from './CustomNodeView'
 
 const EMPTY_SRC =
-    "data:image/gif;base64," +
-    "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    'data:image/gif;base64,' +
+    'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-class MathViewBody extends React.Component<any, any> {
-    props: NodeViewProps
+class MathViewBody extends React.Component<NodeViewProps, any> {
 
     state = {
         isEditing: false,
@@ -45,19 +43,22 @@ class MathViewBody extends React.Component<any, any> {
     render() {
         // TODO: Resolve `readOnly`;
         const readOnly = false
-        const {node, selected, focused} = this.props
+        const {editorView, node, selected, focused} = this.props
         const {attrs} = node
         const {latex} = attrs
         const {isEditing} = this.state
 
+        console.log(editorView)
+        //editorView.runtime
+
         const active = (focused || isEditing) && !readOnly
-        const className = cx("czi-math-view-body", {active, selected})
+        const className = cx('czi-math-view-body', {active, selected})
         const html = renderLaTeXAsHTML(latex)
         return (
             <span
                 className={className}
-                data-active={active ? "true" : null}
-                data-latex={latex || ""}
+                data-active={active ? 'true' : null}
+                data-latex={latex || ''}
                 id={this._id}
                 title={latex}
             >
@@ -77,7 +78,7 @@ class MathViewBody extends React.Component<any, any> {
 
     _renderInlineEditor(): void {
         const el = document.getElementById(this._id)
-        if (!el || el.getAttribute("data-active") !== "true") {
+        if (!el || el.getAttribute('data-active') !== 'true') {
             this._inlineEditor && this._inlineEditor.close()
             return
         }
@@ -147,8 +148,8 @@ class MathViewBody extends React.Component<any, any> {
 class MathNodeView extends CustomNodeView {
     // @override
     createDOMElement(): HTMLElement {
-        const el = document.createElement("span")
-        el.className = "czi-math-view"
+        const el = document.createElement('span')
+        el.className = 'czi-math-view'
         this._updateDOM(el)
         return el
     }
@@ -167,9 +168,9 @@ class MathNodeView extends CustomNodeView {
 
     _updateDOM(el: HTMLElement): void {
         const {align} = this.props.node.attrs
-        let className = "czi-math-view"
+        let className = 'czi-math-view'
         if (align) {
-            className += " align-" + align
+            className += ' align-' + align
         }
         el.className = className
     }

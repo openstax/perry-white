@@ -1,5 +1,5 @@
-import {Node} from "prosemirror-model"
-import {Step, StepResult, Mappable} from "prosemirror-transform"
+import {Node} from 'prosemirror-model'
+import {Step, StepResult, Mappable} from 'prosemirror-transform'
 
 type SetDocAttrStepJSONValue = {
     key: string
@@ -13,7 +13,7 @@ class SetDocAttrStep extends Step {
     stepType: string
     value: any
 
-    constructor(key: string, value: any, stepType: string = "SetDocAttr") {
+    constructor(key: string, value: any, stepType: string = 'SetDocAttr') {
         super()
         this.stepType = stepType
         this.key = key
@@ -35,7 +35,7 @@ class SetDocAttrStep extends Step {
     // @ts-ignore
     invert(): SetDocAttrStep {
         // @ts-ignore
-        return new SetDocAttrStep(this.key, this.prevValue, "revertSetDocAttr")
+        return new SetDocAttrStep(this.key, this.prevValue, 'revertSetDocAttr')
     }
 
     // [FS] IRAD-1010 2020-07-27
@@ -49,7 +49,7 @@ class SetDocAttrStep extends Step {
         if (from.deleted && to.deleted) {
             return null
         }
-        return new SetDocAttrStep(this.key, this.value, "SetDocAttr")
+        return new SetDocAttrStep(this.key, this.value, 'SetDocAttr')
     }
 
     // @ts-ignore
@@ -63,7 +63,7 @@ class SetDocAttrStep extends Step {
                 // @ts-ignore
                 this.to >= other.from
         ) {
-            return new SetDocAttrStep(this.key, this.value, "SetDocAttr")
+            return new SetDocAttrStep(this.key, this.value, 'SetDocAttr')
         }
         return undefined
     }
@@ -84,6 +84,6 @@ class SetDocAttrStep extends Step {
 // [FS-AFQ][13-MAR-2020][IRAD-899]
 // Register this step so that capcomode can be dealt collaboratively.
 // @ts-ignore
-Step.jsonID("SetDocAttr", SetDocAttrStep)
+Step.jsonID('SetDocAttr', SetDocAttrStep)
 
 export default SetDocAttrStep

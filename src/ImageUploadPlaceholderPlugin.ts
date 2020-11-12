@@ -1,22 +1,20 @@
-import nullthrows from "nullthrows"
-import {Plugin, PluginKey, Transaction} from "prosemirror-state"
-import {EditorState, TextSelection} from "prosemirror-state"
-import {Decoration, DecorationSet} from "prosemirror-view"
-import {EditorView} from "prosemirror-view"
+import nullthrows from 'nullthrows'
+import {Plugin, PluginKey, Transaction} from 'prosemirror-state'
+import {EditorState, TextSelection} from 'prosemirror-state'
+import {Decoration, DecorationSet} from 'prosemirror-view'
+import {EditorView} from 'prosemirror-view'
 
-import {IMAGE} from "./NodeNames"
-import uuid from "./ui/uuid"
-
-import "./ui/czi-image-upload-placeholder.css"
+import {IMAGE} from './NodeNames'
+import uuid from './ui/uuid'
 
 const IMAGE_FILE_TYLES = new Set([
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-    "image/jpg",
+    'image/jpeg',
+    'image/gif',
+    'image/png',
+    'image/jpg',
 ])
 
-const TITLE = "Uploading..."
+const TITLE = 'Uploading...'
 
 const INNER_HTML = new Array(4).join(
     '<div class="czi-image-upload-placeholder-child"></div>',
@@ -81,7 +79,7 @@ export function uploadImageFiles(
 
     // A fresh object to act as the ID for this upload.
     const id = {
-        debugId: "image_upload_" + uuid(),
+        debugId: 'image_upload_' + uuid(),
     }
 
     const uploadNext = defer(() => {
@@ -157,7 +155,7 @@ class ImageUploadPlaceholderPlugin extends Plugin {
         super({
             // [FS] IRAD-1005 2020-07-07
             // Upgrade outdated packages.
-            key: new PluginKey("ImageUploadPlaceholderPlugin"),
+            key: new PluginKey('ImageUploadPlaceholderPlugin'),
             state: {
                 init() {
                     return DecorationSet.empty
@@ -168,9 +166,9 @@ class ImageUploadPlaceholderPlugin extends Plugin {
                     // See if the transaction adds or removes any placeholders
                     const action = tr.getMeta(this)
                     if (action && action.add) {
-                        const el = document.createElement("div")
+                        const el = document.createElement('div')
                         el.title = TITLE
-                        el.className = "czi-image-upload-placeholder"
+                        el.className = 'czi-image-upload-placeholder'
                         el.innerHTML = INNER_HTML
 
                         const deco = Decoration.widget(action.add.pos, el, {

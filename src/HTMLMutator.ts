@@ -1,5 +1,5 @@
-import nullthrows from "nullthrows"
-import uuid from "./ui/uuid"
+import nullthrows from 'nullthrows'
+import uuid from './ui/uuid'
 
 // Utility Class that allows developer to insert HTML snippets then updates
 // document's innerHTML accordingly.
@@ -13,11 +13,11 @@ export default class HTMLMutator {
     }
 
     insertHTMLBefore(html: string, el: Element): HTMLMutator {
-        return this._insertHTML(html, "before", el)
+        return this._insertHTML(html, 'before', el)
     }
 
     insertHTMLAfter(html: string, el: Element): HTMLMutator {
-        return this._insertHTML(html, "after", el)
+        return this._insertHTML(html, 'after', el)
     }
 
     execute(): void {
@@ -32,11 +32,11 @@ export default class HTMLMutator {
 
     _insertHTML(
         html: string,
-        position: "before" | "after",
+        position: 'before' | 'after',
         el: Element,
     ): HTMLMutator {
         if (el.ownerDocument !== this._doc) {
-            throw new Error("element does not belong to the document")
+            throw new Error('element does not belong to the document')
         }
         // This does not insert the HTML into the document directly.
         // Instead, this inserts a comment token that can be replaced by the HTML
@@ -44,14 +44,14 @@ export default class HTMLMutator {
         const token = `\u200b_HTMLMutator_token_${uuid()}_\u200b`
         const node = this._doc.createComment(token)
         const parentElement = nullthrows(el.parentElement)
-        if (position === "before") {
+        if (position === 'before') {
             parentElement.insertBefore(node, el)
-        } else if (position === "after") {
+        } else if (position === 'after') {
             parentElement.insertBefore(node, el.nextSibling)
         } else {
             throw new Error(`Invalid position ${position}`)
         }
-        this._htmls.set("<!--" + token + "-->", html)
+        this._htmls.set('<!--' + token + '-->', html)
         return this
     }
 }

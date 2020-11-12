@@ -1,10 +1,10 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 
-import CustomMenu from "./CustomMenu"
-import CustomMenuItem from "./CustomMenuItem"
-import UICommand from "./UICommand"
+import CustomMenu from './CustomMenu'
+import CustomMenuItem from './CustomMenuItem'
+import UICommand from './UICommand'
 
 class CommandMenu extends React.Component<any, any> {
     _activeCommand: UICommand | null | undefined = null

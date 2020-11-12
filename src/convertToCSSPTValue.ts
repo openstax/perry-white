@@ -13,7 +13,7 @@ export default function convertToCSSPTValue(styleValue: string): number {
     if (!value || !unit) {
         return 0
     }
-    if (unit === "px") {
+    if (unit === 'px') {
         value = PX_TO_PT_RATIO * value
     }
     return value

@@ -1,7 +1,7 @@
-import cx from "classnames"
-import * as React from "react"
+import cx from 'classnames'
+import * as React from 'react'
 
-import preventEventDefault from "./preventEventDefault"
+import preventEventDefault from './preventEventDefault'
 
 export type PointerSurfaceProps = {
     active?: boolean | null | undefined
@@ -58,7 +58,7 @@ class PointerSurface extends React.Component<any, any> {
                 onKeyPress={disabled ? preventEventDefault : this._onMouseUp}
                 onMouseDown={disabled ? preventEventDefault : this._onMouseDown}
                 onMouseEnter={
-                disabled ? preventEventDefault : this._onMouseEnter
+                    disabled ? preventEventDefault : this._onMouseEnter
                 }
                 onMouseLeave={disabled ? null : this._onMouseLeave}
                 onMouseUp={disabled ? preventEventDefault : this._onMouseUp}
@@ -77,7 +77,7 @@ class PointerSurface extends React.Component<any, any> {
         if (this._mul) {
             this._mul = false
             document.removeEventListener(
-                "mouseup",
+                'mouseup',
                 this._onMouseUpCapture,
                 true,
             )
@@ -113,7 +113,7 @@ class PointerSurface extends React.Component<any, any> {
         this._clicked = false
 
         if (!this._mul) {
-            document.addEventListener("mouseup", this._onMouseUpCapture, true)
+            document.addEventListener('mouseup', this._onMouseUpCapture, true)
             this._mul = true
         }
     }
@@ -121,7 +121,7 @@ class PointerSurface extends React.Component<any, any> {
     _onMouseUp = (e: React.SyntheticEvent<any>): void => {
         e.preventDefault()
 
-        if (this._clicked || e.type === "keypress") {
+        if (this._clicked || e.type === 'keypress') {
             const {onClick, value, disabled} = this.props
             !disabled && onClick && onClick(value, e)
         }
@@ -134,7 +134,7 @@ class PointerSurface extends React.Component<any, any> {
         if (this._mul) {
             this._mul = false
             document.removeEventListener(
-                "mouseup",
+                'mouseup',
                 this._onMouseUpCapture,
                 true,
             )

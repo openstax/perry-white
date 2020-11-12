@@ -1,17 +1,17 @@
-import {MarkSpec} from "./Types"
+import {MarkSpec} from './Types'
 
 const TextSuperMarkSpec: MarkSpec = {
     parseDOM: [
-        {tag: "sup"},
+        {tag: 'sup'},
         {
-            style: "vertical-align",
+            style: 'vertical-align',
             getAttrs: value => {
-                return value === "super" && null
+                return value === 'super' && null
             },
         },
     ],
     toDOM() {
-        return ["sup", 0]
+        return ['sup', 0]
     },
 }
 

@@ -1,5 +1,5 @@
-import {Step} from "prosemirror-transform"
-import EditorSchema from "./EditorSchema"
+import {Step} from 'prosemirror-transform'
+import EditorSchema from './EditorSchema'
 
 type RebaseResult = {
     docJSON: Object

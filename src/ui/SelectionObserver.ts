@@ -17,13 +17,13 @@ const EMPTY_SELECTION_VALUE = Object.freeze({from: 0, to: 0})
 
 function resolveSelectionValue(el: Element): SelectionValue {
     if (!window.getSelection) {
-        console.warn("window.getSelection() is not supported")
+        console.warn('window.getSelection() is not supported')
         return EMPTY_SELECTION_VALUE
     }
 
     const selection = window.getSelection()
     if (!selection.containsNode) {
-        console.warn("selection.containsNode() is not supported")
+        console.warn('selection.containsNode() is not supported')
         return EMPTY_SELECTION_VALUE
     }
 
@@ -63,15 +63,15 @@ export default class SelectionObserver {
     disconnect(): void {
         this._observables.forEach(obj => {
             const el = obj.target
-            el.removeEventListener("click", this._check, false)
-            el.removeEventListener("selectionchange", this._check, false)
+            el.removeEventListener('click', this._check, false)
+            el.removeEventListener('selectionchange', this._check, false)
         })
         this._observables = []
     }
 
     observe(el: Element): void {
         if (!window.getSelection) {
-            console.warn("window.getSelection() is not supported")
+            console.warn('window.getSelection() is not supported')
             return
         }
 
@@ -85,8 +85,8 @@ export default class SelectionObserver {
             selection: resolveSelectionValue(el),
         }
 
-        el.addEventListener("click", this._check, false)
-        el.addEventListener("selectionchange", this._check, false)
+        el.addEventListener('click', this._check, false)
+        el.addEventListener('selectionchange', this._check, false)
         this._observables.push(obj)
     }
 

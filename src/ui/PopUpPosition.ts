@@ -1,6 +1,6 @@
-import {isCollapsed} from "./rects"
+import {isCollapsed} from './rects'
 
-import {Rect} from "./rects"
+import {Rect} from './rects'
 
 export type PositionHandler = (
     anchorRect: Rect | null | undefined,

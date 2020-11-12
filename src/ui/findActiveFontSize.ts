@@ -1,21 +1,21 @@
-import {EditorState} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
+import {EditorState} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
 
-import {MARK_FONT_SIZE} from "../MarkNames"
-import {HEADING} from "../NodeNames"
-import findActiveMark from "../findActiveMark"
+import {MARK_FONT_SIZE} from '../MarkNames'
+import {HEADING} from '../NodeNames'
+import findActiveMark from '../findActiveMark'
 
 // This should map to `--czi-content-font-size` at `czi-editor.css`.
 const FONT_PT_SIZE_DEFAULT = 11
 
 // This should map to `czi-heading.css`.
 const MAP_HEADING_LEVEL_TO_FONT_PT_SIZE = {
-    "1": 20,
-    "2": 18,
-    "3": 16,
-    "4": 14,
-    "5": 11,
-    "6": 11,
+    '1': 20,
+    '2': 18,
+    '3': 16,
+    '4': 14,
+    '5': 11,
+    '6': 11,
 }
 
 export default function findActiveFontSize(state: EditorState): string {

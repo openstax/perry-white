@@ -1,6 +1,5 @@
-import "./czi-custom-menu-item.css"
-import CustomButton from "./CustomButton"
-import * as React from "react"
+import CustomButton from './CustomButton'
+import * as React from 'react'
 
 class CustomMenuItemSeparator extends React.Component<any, any> {
     render() {

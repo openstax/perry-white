@@ -1,8 +1,8 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import UICommand from "./ui/UICommand"
-import updateIndentLevel from "./updateIndentLevel"
+import UICommand from './ui/UICommand'
+import updateIndentLevel from './updateIndentLevel'
 
 class IndentCommand extends UICommand {
     _delta: number

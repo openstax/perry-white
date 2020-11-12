@@ -1,12 +1,12 @@
-import * as queryString from "query-string"
-import * as url from "url"
+import * as queryString from 'query-string'
+import * as url from 'url'
 export default function patchMathElements(doc: Document): void {
-    Array.from(doc.querySelectorAll("img")).forEach(patchGoogleEquationElement)
+    Array.from(doc.querySelectorAll('img')).forEach(patchGoogleEquationElement)
 }
 
 // See https://developers.google.com/chart/image/docs/chart_params#gcharts_cht
-const PARAM_CHART_CHART_TYPE = "cht"
-const PARAM_CHART_LABEL = "chl"
+const PARAM_CHART_CHART_TYPE = 'cht'
+const PARAM_CHART_LABEL = 'chl'
 
 // Google Doc exports math equation content as single image element that loads
 // its content from google. For example:
@@ -21,7 +21,7 @@ function patchGoogleEquationElement(el: HTMLElement): void {
     if (!ownerDocument || !parentElement) {
         return
     }
-    const src = el.getAttribute("src")
+    const src = el.getAttribute('src')
     const content = getGoogleEquationContent(src)
     if (!content) {
         return
@@ -29,8 +29,8 @@ function patchGoogleEquationElement(el: HTMLElement): void {
 
     // Replace `<img src="..." />` with `<math data-latex="..." />`.
     // Note that this requires the schema to support `MathNodeSpec`.
-    const math = ownerDocument.createElement("math")
-    math.setAttribute("data-latex", content)
+    const math = ownerDocument.createElement('math')
+    math.setAttribute('data-latex', content)
     parentElement.insertBefore(math, el)
     parentElement.removeChild(el)
 }
@@ -42,7 +42,7 @@ function getGoogleEquationContent(
         return null
     }
     const {host, pathname, query} = url.parse(src)
-    if (host !== "www.google.com" || pathname !== "/chart") {
+    if (host !== 'www.google.com' || pathname !== '/chart') {
         return null
     }
 
@@ -52,7 +52,7 @@ function getGoogleEquationContent(
 
     // Google exports math equation as a special chart with plan text only
     // contents.
-    if (chartType !== "tx" || !label) {
+    if (chartType !== 'tx' || !label) {
         return null
     }
 

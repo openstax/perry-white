@@ -1,10 +1,10 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import * as React from "react"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
+import * as React from 'react'
 
-import FontSizeCommand from "../FontSizeCommand"
-import CommandMenuButton from "./CommandMenuButton"
-import findActiveFontSize from "./findActiveFontSize"
+import FontSizeCommand from '../FontSizeCommand'
+import CommandMenuButton from './CommandMenuButton'
+import findActiveFontSize from './findActiveFontSize'
 
 export const FONT_PT_SIZES = [
     8,
@@ -43,11 +43,11 @@ class FontSizeCommandMenuButton extends React.Component<any, any> {
     render() {
         const {dispatch, editorState, editorView} = this.props
         const fontSize = findActiveFontSize(editorState)
-        const className = String(fontSize).length <= 2 ? "width-30" : "width-60"
+        const className = String(fontSize).length <= 2 ? 'width-30' : 'width-60'
         return (
             <CommandMenuButton
                 className={className} // [FS] IRAD-1008 2020-07-16
-            // Disable font size menu on editor disable state
+                // Disable font size menu on editor disable state
                 commandGroups={COMMAND_GROUPS}
                 disabled={editorView && editorView.editable ? false : true}
                 dispatch={dispatch}

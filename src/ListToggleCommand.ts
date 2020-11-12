@@ -1,11 +1,11 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {findParentNodeOfType} from "prosemirror-utils"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {findParentNodeOfType} from 'prosemirror-utils'
+import {EditorView} from 'prosemirror-view'
 
-import {BULLET_LIST, ORDERED_LIST} from "./NodeNames"
-import noop from "./noop"
-import toggleList from "./toggleList"
-import UICommand from "./ui/UICommand"
+import {BULLET_LIST, ORDERED_LIST} from './NodeNames'
+import noop from './noop'
+import toggleList from './toggleList'
+import UICommand from './ui/UICommand'
 
 class ListToggleCommand extends UICommand {
     _ordered: boolean

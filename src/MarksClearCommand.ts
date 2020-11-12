@@ -1,9 +1,9 @@
-import {EditorState, Transaction} from "prosemirror-state"
-import {AllSelection, TextSelection} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import {EditorState, Transaction} from 'prosemirror-state'
+import {AllSelection, TextSelection} from 'prosemirror-state'
+import {EditorView} from 'prosemirror-view'
 
-import {clearMarks, clearHeading} from "./clearMarks"
-import UICommand from "./ui/UICommand"
+import {clearMarks, clearHeading} from './clearMarks'
+import UICommand from './ui/UICommand'
 
 class MarksClearCommand extends UICommand {
     isActive = (state: EditorState): boolean => {

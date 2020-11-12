@@ -1,6 +1,6 @@
-import {Plugin} from "prosemirror-state"
-import {columnResizing} from "prosemirror-tables"
-import {EditorView} from "prosemirror-view"
+import {Plugin} from 'prosemirror-state'
+import {columnResizing} from 'prosemirror-tables'
+import {EditorView} from 'prosemirror-view'
 
 const TABLE_HANDLE_WIDTH = 10
 const TABLE_CELL_MINWIDTH = 25
@@ -12,7 +12,7 @@ function lookUpTableWrapper(event: Event): HTMLElement | null | undefined {
     if (!target || !target.closest) {
         return null
     }
-    return target.closest(".tableWrapper")
+    return target.closest('.tableWrapper')
 }
 
 function dispatchMouseEvent(type: string, clientX: number): void {
@@ -34,8 +34,8 @@ function calculateMaxClientX(
     const {clientX} = event
     const {left, width} = targetTable.getBoundingClientRect()
     const offsetX = clientX - left
-    const colgroup = targetTable.querySelector("colgroup")
-    const colsCount = colgroup ? colgroup.querySelectorAll("col").length : 0
+    const colgroup = targetTable.querySelector('colgroup')
+    const colsCount = colgroup ? colgroup.querySelectorAll('col').length : 0
     const cx = width - offsetX - colsCount * TABLE_CELL_MINWIDTH
     return Math.round(clientX + Math.max(0, cx))
 }
@@ -58,9 +58,9 @@ export default function createTableResizingPlugin(): Plugin {
             // fires a simulated event instead.
             event.stopImmediatePropagation()
             dispatchMouseEvent(event.type, maxClientX)
-        } else if (event.type === "mouseup") {
-            window.removeEventListener("mousemove", captureMouse, true)
-            window.removeEventListener("mouseup", captureMouse, true)
+        } else if (event.type === 'mouseup') {
+            window.removeEventListener('mousemove', captureMouse, true)
+            window.removeEventListener('mouseup', captureMouse, true)
         }
     }
 
@@ -74,8 +74,8 @@ export default function createTableResizingPlugin(): Plugin {
             maxClientX = targetTable
                 ? calculateMaxClientX(event, targetTable)
                 : Number.MAX_VALUE
-            window.addEventListener("mousemove", captureMouse, true)
-            window.addEventListener("mouseup", captureMouse, true)
+            window.addEventListener('mousemove', captureMouse, true)
+            window.addEventListener('mouseup', captureMouse, true)
             // @ts-ignore
             mousedown(view, event)
             return false

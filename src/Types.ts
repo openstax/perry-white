@@ -1,4 +1,5 @@
-import * as React from "react"
+import * as React from 'react'
+import { COMMAND_GROUPS_T } from './ui/EditorToolbarConfig'
 
 export type NodeSpec = {
     attrs?:
@@ -47,14 +48,14 @@ export type RenderCommentProps = {
     requestCommentThreadReflow: Function
 }
 
-export type ImageLike = {
+export interface ImageLike {
     height: number
     id: string
     src: string
     width: number
 }
 
-export type EditorRuntime = {
+export interface EditorRuntime {
     // Image Proxy
     canProxyImageSrc?: (src: string) => boolean
     getProxyImageSrc?: (src: string) => string
@@ -63,16 +64,19 @@ export type EditorRuntime = {
     canUploadImage?: () => boolean
     uploadImage?: (obj: Blob) => Promise<ImageLike>
 
-    // Comments
-    canComment?: () => boolean
-    createCommentThreadID?: () => string
-    renderComment?: (
-        props: RenderCommentProps,
-    ) => React.ReactElement<any> | null | undefined
+    // // Comments
+    // canComment?: () => boolean
+    // createCommentThreadID?: () => string
+    // renderComment?: (
+    //     props: RenderCommentProps,
+    // ) => React.ReactElement<any> | null | undefined
 
     // External HTML
     canLoadHTML?: () => boolean
     loadHTML?: () => Promise<string | null | undefined>
+
+    filterCommandGroups?(groups: COMMAND_GROUPS_T): COMMAND_GROUPS_T
+
 }
 
 export type EditorState = any
