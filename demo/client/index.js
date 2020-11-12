@@ -28,14 +28,7 @@ function main() {
     // null means no custom plugins to pass
     // the plugin object must contain a method getEffectiveSchema() which accept schema and returns schema.
     const plugins = null
-    ReactDOM.render(
-        <Editor
-            data={docJSON} debug={false} docID={0}
-            embedded={false}
-            fitToContent={true} html={docHTML} onChange={onChangeCB} onReady={onReadyCB}
-            plugins={plugins}
-            runtime={runTime}
-        />, el)
+    ReactDOM.render(<Editor defaultValue={docHTML} />, el)
 }
 
 function onChangeCB(data) {

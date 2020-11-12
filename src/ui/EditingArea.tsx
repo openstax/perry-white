@@ -272,18 +272,6 @@ class EditingArea extends React.Component<EditorProps, any> {
             view.focus()
         }
     }
-    // [FS-AFQ][20-FEB-2020]
-    // Collaboration
-    _dispatchTransaction = (transaction: Transaction): void => {
-        const {editorState, readOnly, onChange} = this.props
-        if (readOnly === true || !onChange) {
-            return
-        }
-        onChange({
-            state: editorState || EDITOR_EMPTY_STATE,
-            transaction,
-        })
-    }
 
     _isEditable = (): boolean => {
         const {disabled, readOnly} = this.props

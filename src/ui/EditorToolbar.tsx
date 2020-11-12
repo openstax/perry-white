@@ -49,13 +49,11 @@ class EditorToolbar extends React.Component<Props, State> {
             })
 
         }
-        console.log(this.props.editorView)
-
     }
 
     render() {
         const {wrapped, expanded, cmd_groups} = this.state
-        console.log(this.props.editorView)
+
         const className = cx('czi-editor-toolbar', {expanded, wrapped})
         const wrappedButton = wrapped ? (
             <CustomButton

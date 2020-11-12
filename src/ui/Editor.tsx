@@ -1,4 +1,4 @@
-import {Transaction} from 'prosemirror-state'
+import {EditorState, Transaction} from 'prosemirror-state'
 import * as React from 'react'
 import cx from 'classnames'
 
@@ -13,11 +13,14 @@ import uuid from './uuid'
 import {EditorFramesetProps} from './EditorFrameset'
 import {EditorProps} from './EditingArea'
 
-type Props = EditorFramesetProps & EditorProps & {children?: any | null | undefined}
+type Props = EditorFramesetProps & EditorProps & {
+    children?: any | null | undefined
+    defaultEditorState: EditorState
+}
 
 interface State {
     contentHeight?: number
-    editorState?: object
+    editorState?: EditorState
     contentOverflowHidden?: boolean
     editorView?: CustomEditorView
 }
@@ -34,10 +37,12 @@ export class Editor extends React.Component<Props, State> {
     constructor(props: any, context: any) {
         super(props, context)
         this._id = uuid()
+        console.log(props)
         this.state = {
             contentHeight: NaN,
             contentOverflowHidden: false,
             editorView: null,
+            editorState: props.defaultEditorState || createEmptyEditorState(),
         }
     }
 
@@ -50,7 +55,6 @@ export class Editor extends React.Component<Props, State> {
             embedded,
             header,
             height,
-            onChange,
             nodeViews,
             placeholder,
             readOnly,
@@ -58,20 +62,20 @@ export class Editor extends React.Component<Props, State> {
             fitToContent,
         } = this.props
 
-        let {editorState, runtime} = this.props
+        let { runtime} = this.props
 
-        editorState = editorState || createEmptyEditorState()
+        //        const editorState = this.props.editorState || this.state.editorState || createEmptyEditorState()
         runtime = runtime || EMPTY_EDITOR_RUNTIME
-        const {editorView} = this.state
+        const {editorView, editorState} = this.state
 
-        console.log({ editorView, runtime  })
+        console.log({ editorState, runtime  })
 
         const toolbar =
             !!readOnly === true ? null : (
                 <EditorToolbar
                     disabled={disabled}
                     dispatchTransaction={this._dispatchTransaction}
-                    editorState={editorState || EditingArea.EDITOR_EMPTY_STATE}
+                    editorState={editorState}
                     editorView={editorView}
                     readOnly={readOnly}
                 />
@@ -88,7 +92,6 @@ export class Editor extends React.Component<Props, State> {
                     fitToContent={fitToContent}
                     id={this._id}
                     nodeViews={nodeViews}
-                    onChange={onChange}
                     onReady={this._onReady}
                     placeholder={placeholder}
                     readOnly={readOnly}
@@ -112,12 +115,14 @@ export class Editor extends React.Component<Props, State> {
         )
     }
 
+
+
     _dispatchTransaction = (tr: Transaction): void => {
-        const {onChange, editorState, readOnly} = this.props
+        const {onChange, readOnly} = this.props
         if (readOnly === true) {
             return
         }
-        const state = editorState || EditingArea.EDITOR_EMPTY_STATE
+        const state = this.state.editorState || EditingArea.EDITOR_EMPTY_STATE
 
         if (onChange) {
             onChange({ state, transaction: tr })
