@@ -16,6 +16,7 @@
     "build:tsc": "tsc",
     "build:css": "sass src/styles.scss  > dist/styles.css",
     "build:demo": "node utils/build_bin.js",
+    "build:demo": "NODE_ENV=production webpack-cli",
     "build:bundle": "NODE_ENV=production microbundle --jsx React.createElement",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:js": "eslint \"**/*.{tsx,tsx}\"",
