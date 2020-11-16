@@ -49,6 +49,7 @@ class HeadingCommandMenuButton extends React.Component<Props, any> {
 
     render() {
         const {dispatch, editorState, editorView} = this.props
+
         let customStyleName
         const headingLevel = findActiveHeading(editorState)
         if (0 < headingLevel) {

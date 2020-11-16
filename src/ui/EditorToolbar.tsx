@@ -98,29 +98,28 @@ class EditorToolbar extends React.Component<Props, State> {
         group: Object,
         index: number,
     ) => {
-
         const buttons = Object
             .keys(group)
             .map(label => {
                 const obj = group[label]
-                if (obj instanceof UICommand) {
-                    return this._renderButton(label, obj)
+                if (isReactClass(obj)) {
+                    // JSX requies the component to be named with upper camel case.
+                    const ThatComponent = obj;
+                    const {editorState, editorView, dispatchTransaction} = this.props;
+                    return (
+                        <ThatComponent
+                            dispatch={dispatchTransaction}
+                            editorState={editorState}
+                            editorView={editorView}
+                            key={label}
+                        />
+                    );
+                } else if (obj instanceof UICommand) {
+                    return this._renderButton(label, obj);
                 } else if (Array.isArray(obj)) {
-                    return this._renderMenuButton(label, obj)
+                    return this._renderMenuButton(label, obj);
                 } else {
-                    if (isReactClass(obj) || (typeof obj === 'function')) {
-                        const TBComponent = obj
-                        return (
-                            <TBComponent
-                                dispatchTransaction={this.props.dispatchTransaction}
-                                editorState={this.props.editorState}
-                                editorView={this.props.editorView}
-                                key={label}
-                            />
-                        )
-                    } else {
-                        return null
-                    }
+                    return null;
                 }
             })
             .filter(Boolean)
@@ -145,6 +144,7 @@ class EditorToolbar extends React.Component<Props, State> {
             dispatchTransaction,
         } = this.props
         const {icon, title} = parseLabel(label)
+
         return (
             <CommandMenuButton
                 commandGroups={commandGroups}

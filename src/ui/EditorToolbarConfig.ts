@@ -36,7 +36,7 @@ export function parseLabel(input: string): ParsedIcon {
 
 const {
     // [FS][07-MAY-2020][IRAD-956]
-    // BLOCKQUOTE_TOGGLE,
+    BLOCKQUOTE_TOGGLE,
     CLEAR_FORMAT,
     DOC_LAYOUT,
     EM,
@@ -172,10 +172,7 @@ export const COMMAND_GROUPS:COMMAND_GROUPS_T = [
         '[functions] Math': MATH_EDIT,
 
         // [FS][07-MAY-2020][IRAD-956]
-        // '[format_quote] Block quote': BLOCKQUOTE_TOGGLE,
-    },
-    {
-        '[settings_overscan] Page layout': DOC_LAYOUT,
+        '[format_quote] Block quote': BLOCKQUOTE_TOGGLE,
     },
     {
         '[undo] Undo': HISTORY_UNDO,

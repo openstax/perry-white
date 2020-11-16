@@ -75,7 +75,7 @@ class CustomRuntime {
         // groups.forEach(g => {
         //     delete g['[font_download] Font Type']
         // })
-        groups[9]['[save] Save'] = new SaveCommand
+        groups[groups.length-1]['[save] Save'] = new SaveCommand
         return groups
     }
 }

@@ -1,7 +1,7 @@
 import * as ProsemirrorTables from 'prosemirror-tables'
 // [FS][07-MAY-2020][IRAD-956]
 // import BlockquoteInsertNewLineCommand from './BlockquoteInsertNewLineCommand';
-// import BlockquoteToggleCommand from './BlockquoteToggleCommand';
+import BlockquoteToggleCommand from './BlockquoteToggleCommand';
 import DocLayoutCommand from './DocLayoutCommand'
 import HeadingCommand from './HeadingCommand'
 import HistoryRedoCommand from './HistoryRedoCommand'
@@ -68,7 +68,7 @@ const {
 document.execCommand('enableObjectResizing', false, 'false')
 document.execCommand('enableInlineTableEditing', false, 'false')
 // [FS][07-MAY-2020][IRAD-956]
-//  export const BLOCKQUOTE_TOGGLE = new BlockquoteToggleCommand();
+export const BLOCKQUOTE_TOGGLE = new BlockquoteToggleCommand();
 //  export const BLOCKQUOTE_INSERT_NEW_LINE = new BlockquoteInsertNewLineCommand();
 export const CLEAR_FORMAT = new MarksClearCommand()
 export const DOC_LAYOUT = new DocLayoutCommand()
