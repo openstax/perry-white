@@ -12,14 +12,14 @@
   left: -1px;
   position: absolute;
   width: 3px;
-  -webkit-animation-name: czi_cursor_blink;
+  -webkit-animation-name: #{$prefix}cursor_blink;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-direction: alternate;
 }
 
-@-webkit-keyframes czi_cursor_blink {
+@-webkit-keyframes #{$prefix}cursor_blink {
   from { opacity: 1; }
   to { opacity: 0; }
 }

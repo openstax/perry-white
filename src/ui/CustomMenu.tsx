@@ -6,7 +6,7 @@ class CustomMenu extends React.Component<any, any> {
     render() {
         const {children} = this.props
         return (
-            <div className={prefixed('custom-scrollbar custom-menu')}>
+            <div className={`${prefixed('custom-menu')} ${prefixed('custom-scrollbar')}`}>
                 {children}
             </div>
         )

@@ -44,7 +44,7 @@
 }
 
 .#{$prefix}image-view-body.loading::before {
-  animation: czi_animation_blink normal 800ms infinite ease-in-out;
+  animation: #{$prefix}animation_blink normal 800ms infinite ease-in-out;
   background-color: #cdcdcd;
   bottom: 0;
   content: '';
@@ -110,7 +110,7 @@
   }
 }
 
-@keyframes czi_animation_blink {
+@keyframes #{$prefix}animation_blink {
   0% { opacity: 1; }
   50% { opacity: 0.5; }
   100% { opacity: 1; }

@@ -88,7 +88,7 @@ function toDOM(node: Node): Array<any> {
         style +=
             `line-height: ${cssLineSpacing};` + // This creates the local css variable `content-line-height`
             // that its children may apply.
-            prefixed(`content-line-height: ${cssLineSpacing}`)
+            prefixed(`content-line-height: ${cssLineSpacing}`, { format: 'cssVar' })
     }
 
     if (paddingTop && !EMPTY_CSS_VALUE.has(paddingTop)) {
