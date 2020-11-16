@@ -1,6 +1,6 @@
 {
   "name": "perry-white",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "subversion": "1",
   "description": "Rich text editor built with ProseMirror plus React",
   "main": "dist/index.js",
@@ -49,9 +49,12 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.12.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@types/classnames": "^2.2.11",
+    "@types/prosemirror-state": "^1.2.5",
     "@types/prosemirror-view": "^1.16.1",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
     "babel-eslint": "10.1.0",
@@ -100,11 +103,8 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
-    "write-file-webpack-plugin": "4.5.1",
-    "@types/classnames": "^2.2.11",
-    "@types/prosemirror-state": "^1.2.5",
-    "@types/uuid": "^8.3.0"
-    },
+    "write-file-webpack-plugin": "4.5.1"
+  },
   "dependencies": {
     "browserkeymap": "2.0.2",
     "color": "3.1.2",
