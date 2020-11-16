@@ -1,0 +1,55 @@
+.#{$prefix}image-upload-editor {
+  background: #fff;
+  box-shadow: var(--#{$prefix}overlay-shadow);
+  font-family: var(--#{$prefix}font-family);
+  font-size: var(--#{$prefix}font-size);
+  padding: 4px 10px;
+}
+
+.#{$prefix}image-upload-editor-body {
+  border: var(--#{$prefix}border-grey);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+  position: relative;
+  width: 450px;
+}
+
+.#{$prefix}image-upload-editor-body:hover {
+  border-color: var(--#{$prefix}selection-highlight-color);
+}
+
+.#{$prefix}image-upload-editor-label {
+  color: var(--#{$prefix}link-color);
+  padding: 8px;
+  text-align: center;
+}
+
+.#{$prefix}image-upload-editor-body:hover .#{$prefix}image-upload-editor-label {
+  text-decoration: underline;
+}
+
+.#{$prefix}image-upload-editor-input {
+  cursor: pointer;
+  font-size: 10000px;
+  left: 0;
+  opacity: 0;
+  padding: 10000px;
+  position: absolute;
+  top: 0;
+  width: 1000px;
+  height: 1000px;
+}
+
+.#{$prefix}image-upload-editor.pending .#{$prefix}image-upload-editor-input {
+  cursor: wait;
+}
+
+.#{$prefix}image-upload-editor.pending .#{$prefix}image-upload-editor-label {
+  color: unset;
+  text-decoration: none;
+}

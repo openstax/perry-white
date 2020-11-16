@@ -10,7 +10,7 @@ const viewsRegistery = new Map<any, any>()
 // This file exports methods to help developer to debug editor from web
 // inspector. To use this, add the following lines to export the utility.
 //
-//   import * as CZIProseMirror from 'czi-prosemirror/dist/CZIProseMirror';
+//   import * as CZIProseMirror from 'prosemirror/dist/CZIProseMirror';
 //   window.CZIProseMirror = CZIProseMirror;
 
 export function registeryKeys(): Array<string> {

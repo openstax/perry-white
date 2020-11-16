@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types'
 import CustomButton from './CustomButton'
 import preventEventDefault from './preventEventDefault'
 import resolveImage from './resolveImage'
-
+import {prefixed} from '../util'
 import {ImageLike} from '../Types'
 
 type Props = {
@@ -59,20 +59,20 @@ class ImageURLEditor extends React.Component<Props, State> {
         const {src, validValue} = this.state
         const preview = validValue ? (
             <div
-                className="czi-image-url-editor-input-preview"
+                className={prefixed('image-url-editor-input-preview')}
                 style={{backgroundImage: `url(${String(validValue.src)}`}}
             />
         ) : null
 
         return (
-            <div className="czi-image-url-editor">
-                <form className="czi-form" onSubmit={preventEventDefault}>
+            <div className={prefixed('image-url-editor')}>
+                <form className={prefixed('form')} onSubmit={preventEventDefault}>
                     <fieldset>
                         <legend>Insert Image</legend>
-                        <div className="czi-image-url-editor-src-input-row">
+                        <div className={prefixed('image-url-editor-src-input-row')}>
                             <input
                                 autoFocus={true}
-                                className="czi-image-url-editor-src-input"
+                                className={prefixed('image-url-editor-src-input')}
                                 onChange={this._onSrcChange}
                                 placeholder="Paste URL of Image..."
                                 type="text"
@@ -85,7 +85,7 @@ class ImageURLEditor extends React.Component<Props, State> {
                             license to use
                         </em>
                     </fieldset>
-                    <div className="czi-form-buttons">
+                    <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
                         <CustomButton
                             active={!!validValue}

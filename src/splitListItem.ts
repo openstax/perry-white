@@ -1,9 +1,9 @@
-import uuid from './ui/uuid'
 import {Fragment, Schema} from 'prosemirror-model'
 import {TextSelection, Transaction} from 'prosemirror-state'
 import {canSplit} from 'prosemirror-transform'
 import {LIST_ITEM, ORDERED_LIST, BULLET_LIST, PARAGRAPH} from './NodeNames'
 import {findParentNodeOfType} from 'prosemirror-utils'
+import { uuid } from './util'
 
 // Splits a list item by the current cursor's position.
 // Some examples:

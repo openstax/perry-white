@@ -53,7 +53,7 @@ class AlertInfo extends React.Component<Props, any> {
                     <legend>Unable to load the content in Editor</legend>
                     <legend>Please check the Json format</legend>
                     </fieldset> */}
-                {/* <div className="czi-form-buttons">
+                {/* <div className={prefixed('form-buttons')}>
                     <CustomButton label="Cancel" onClick={this._cancel} />
                     </div> */}
             </div>

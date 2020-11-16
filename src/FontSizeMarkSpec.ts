@@ -1,8 +1,8 @@
 import {Node} from 'prosemirror-model'
 
 import {toClosestFontPtSize} from './toClosestFontPtSize'
-
 import {MarkSpec} from './Types'
+import {prefixed} from './util'
 
 const FontSizeMarkSpec: MarkSpec = {
     attrs: {
@@ -21,7 +21,7 @@ const FontSizeMarkSpec: MarkSpec = {
         const domAttrs = pt
             ? {
                 style: `font-size: ${pt}pt;`,
-                class: 'czi-font-size-mark',
+                class: prefixed('font-size-mark'),
             }
             : null
 

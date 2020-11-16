@@ -7,7 +7,7 @@ import CommandMenu from './CommandMenu'
 import CustomButton from './CustomButton'
 import UICommand from './UICommand'
 import createPopUp from './createPopUp'
-import uuid from './uuid'
+import {prefixed,uuid} from '../util'
 
 
 interface CommandGroup {
@@ -73,7 +73,7 @@ class CommandMenuButton extends React.Component<Props, State> {
 
         const {expanded} = this.state
         const buttonClassName = cx(className, {
-            'czi-custom-menu-button': true,
+            [prefixed('custom-menu-button')]: true,
             expanded,
         })
 

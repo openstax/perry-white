@@ -4,7 +4,7 @@ import toCSSLineSpacing from './ui/toCSSLineSpacing'
 import {Node} from 'prosemirror-model'
 
 import {NodeSpec} from './Types'
-
+import {prefixed} from './util'
 // This assumes that every 36pt maps to one indent level.
 export const INDENT_MARGIN_PT_SIZE = 36
 export const MIN_INDENT_LEVEL = 0
@@ -86,9 +86,9 @@ function toDOM(node: Node): Array<any> {
     if (lineSpacing) {
         const cssLineSpacing = toCSSLineSpacing(lineSpacing)
         style +=
-            `line-height: ${cssLineSpacing};` + // This creates the local css variable `--czi-content-line-height`
+            `line-height: ${cssLineSpacing};` + // This creates the local css variable `content-line-height`
             // that its children may apply.
-            `--czi-content-line-height: ${cssLineSpacing}`
+            prefixed(`content-line-height: ${cssLineSpacing}`)
     }
 
     if (paddingTop && !EMPTY_CSS_VALUE.has(paddingTop)) {

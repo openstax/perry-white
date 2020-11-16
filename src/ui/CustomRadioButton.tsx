@@ -1,7 +1,7 @@
 import PointerSurface from './PointerSurface'
 import * as React from 'react'
 import cx from 'classnames'
-import uuid from './uuid'
+import { uuid, prefixed } from '../util'
 import preventEventDefault from './preventEventDefault'
 
 import {PointerSurfaceProps} from './PointerSurface'
@@ -34,7 +34,7 @@ class CustomRadioButton extends React.Component<any, any> {
             ...pointerProps
         } = this.props
 
-        const klass = cx(className, 'czi-custom-radio-button', {
+        const klass = cx(className, prefixed('custom-radio-button'), {
             checked: checked,
             inline: inline,
         })
@@ -49,15 +49,15 @@ class CustomRadioButton extends React.Component<any, any> {
             >
                 <input
                     checked={checked}
-                    className="czi-custom-radio-button-input"
+                    className={prefixed('custom-radio-button-input')}
                     disabled={disabled}
                     name={name || this._name}
                     onChange={preventEventDefault}
                     tabIndex={disabled ? null : 0}
                     type="radio"
                 />
-                <span className="czi-custom-radio-button-icon" />
-                <span className="czi-custom-radio-button-label">{label}</span>
+                <span className={prefixed('custom-radio-button-icon')} />
+                <span className={prefixed('custom-radio-button-label')}>{label}</span>
             </PointerSurface>
         )
     }

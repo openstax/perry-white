@@ -15,7 +15,7 @@ import {atAnchorBottomCenter} from './PopUpPosition'
 import ResizeObserver from './ResizeObserver'
 import createPopUp from './createPopUp'
 import resolveImage from './resolveImage'
-import uuid from './uuid'
+import {uuid, prefixed} from '../util'
 
 import {EditorRuntime} from '../Types'
 import {NodeViewProps} from './CustomNodeView'
@@ -25,8 +25,8 @@ const EMPTY_SRC =
     'data:image/gif;base64,' +
     'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
-/* This value must be synced with the margin defined at .czi-image-view */
-const IMAGE_MARGIN = 2
+    /* This value must be synced with the margin defined at .image-view */
+    const IMAGE_MARGIN = 2
 
 const MAX_SIZE = 100000
 const IMAGE_PLACEHOLDER_SIZE = 24
@@ -162,7 +162,7 @@ class ImageViewBody extends React.Component<NodeViewProps, any> {
             scale = maxSize.width / width
         }
 
-        const className = cx('czi-image-view-body', {
+        const className = cx(prefixed('image-view-body'), {
             active,
             error,
             focused,
@@ -225,13 +225,13 @@ class ImageViewBody extends React.Component<NodeViewProps, any> {
                 title={errorTitle}
             >
                 <span
-                    className='czi-image-view-body-img-clip'
+                    className={prefixed('image-view-body-img-clip')}
                     style={clipStyle}
                 >
                     <span style={imageStyle}>
                         <img
                             alt=''
-                            className='czi-image-view-body-img'
+                            className={prefixed('image-view-body-img')}
                             data-align={align}
                             height={height}
                             id={`${this._id}-img`}
@@ -295,7 +295,7 @@ class ImageViewBody extends React.Component<NodeViewProps, any> {
         // [FS] IRAD-992 2020-06-25
         // Fix:Image exceeds the canvas
         const clientHeight = document.getElementsByClassName(
-            'czi-prosemirror-editor',
+            prefixed('prosemirror-editor'),
             // @ts-ignore
         )[0].offsetHeight
         if (originalSize.height > clientHeight) {
@@ -397,7 +397,7 @@ class ImageNodeView extends CustomNodeView {
     // @override
     createDOMElement(): HTMLElement {
         const el = document.createElement('span')
-        el.className = 'czi-image-view'
+        el.className = prefixed('image-view')
         this._updateDOM(el)
         return el
     }
@@ -416,7 +416,7 @@ class ImageNodeView extends CustomNodeView {
 
     _updateDOM(el: HTMLElement): void {
         const {align} = this.props.node.attrs
-        let className = 'czi-image-view'
+        let className = prefixed('image-view')
         if (align) {
             className += ' align-' + align
         }

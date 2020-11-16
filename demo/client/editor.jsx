@@ -2,11 +2,12 @@ import React, { useState, useMemo } from 'react'
 import { Editor } from '../../src/index'
 import convertFromHTML from '../../src/convertFromHTML'
 import convertToHTML from '../../src/convertToHTML'
-
+import CustomRuntime from './CustomRuntime'
 
 const EditorDemo = ({ defaultValue }) => {
     const [editorView, setEditorView] = useState()
     const [htmlContent, setHTMLContent] = useState('')
+    const runtime = useMemo(() => new CustomRuntime())
     const defaultEditorState = useMemo(() => convertFromHTML(defaultValue, null, null));
     const setContent = (d) => {
         const html = convertToHTML(editorView.state)
@@ -20,6 +21,7 @@ const EditorDemo = ({ defaultValue }) => {
             <Editor
                 defaultEditorState={defaultEditorState}
                 fitToContent
+                runtime={runtime}
                 height="100%"
                 onReady={setEditorView}
                 width="100%"

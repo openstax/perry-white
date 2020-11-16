@@ -3,6 +3,7 @@ import CustomEditorView from './CustomEditorView'
 import MathEditor from './MathEditor'
 import * as React from 'react'
 import createPopUp from './createPopUp'
+import {prefixed} from '../util'
 
 const MathAlignValues = {
     NONE: {
@@ -52,7 +53,7 @@ class MathInlineEditor extends React.Component<any, any> {
         })
 
         return (
-            <div className="czi-inline-editor">
+            <div className={prefixed('inline-editor')}>
                 {buttons}
                 <CustomButton
                     key="edit"

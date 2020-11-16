@@ -1,5 +1,5 @@
 import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
-
+import {prefixed} from './util'
 import {ATTRIBUTE_LAYOUT, LAYOUT} from './DocNodeSpec'
 
 const SPEC = {
@@ -14,7 +14,7 @@ const SPEC = {
 function renderAttributes(editorState: EditorState): Object {
     const {doc} = editorState
     const attrs: any = {
-        class: 'czi-prosemirror-editor',
+        class: prefixed('prosemirror-editor'),
     }
 
     const {width, padding, layout} = doc.attrs

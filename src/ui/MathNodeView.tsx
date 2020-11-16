@@ -4,14 +4,14 @@ import * as React from 'react'
 import createPopUp from './createPopUp'
 import cx from 'classnames'
 import renderLaTeXAsHTML from './renderLaTeXAsHTML'
-import uuid from './uuid'
 import {Decoration} from 'prosemirror-view'
 import {FRAMESET_BODY_CLASSNAME} from './EditorFrameset'
 import {Node} from 'prosemirror-model'
 import {atAnchorBottomCenter} from './PopUpPosition'
 import {NodeSelection} from 'prosemirror-state'
-
+import { uuid } from '../util'
 import {NodeViewProps} from './CustomNodeView'
+import {prefixed} from '../util'
 
 const EMPTY_SRC =
     'data:image/gif;base64,' +
@@ -48,11 +48,8 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
         const {math} = attrs
         const {isEditing} = this.state
 
-        console.log(this.props)
-
-
         const active = (focused || isEditing) && !readOnly
-        const className = cx('czi-math-view-body', 'math-rendered', {active, selected})
+        const className = cx(prefixed('math-view-body'), 'math-rendered', {active, selected})
         const html = renderLaTeXAsHTML(math)
         return (
             <span
@@ -64,12 +61,12 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             >
                 <img
                     alt={math}
-                    className="czi-math-view-body-img"
+                    className={prefixed('math-view-body-img')}
                     src={EMPTY_SRC}
                     title={math}
                 />
                 <span
-                    className="czi-math-view-body-content"
+                    className={prefixed('math-view-body-content')}
                     dangerouslySetInnerHTML={{__html: html}}
                 />
             </span>
@@ -89,7 +86,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             onEditStart: this._onEditStart,
             onEditEnd: this._onEditEnd,
         }
-        console.log(node.attrs)
+
         if (this._inlineEditor) {
             this._inlineEditor.update(editorProps)
         } else {
@@ -150,7 +147,7 @@ class MathNodeView extends CustomNodeView {
     // @override
     createDOMElement(): HTMLElement {
         const el = document.createElement('span')
-        el.className = 'czi-math-view'
+        el.className = prefixed('math-view')
         this._updateDOM(el)
         return el
     }
@@ -169,7 +166,7 @@ class MathNodeView extends CustomNodeView {
 
     _updateDOM(el: HTMLElement): void {
         const {align} = this.props.node.attrs
-        let className = 'czi-math-view'
+    let className = prefixed('math-view')
         if (align) {
             className += ' align-' + align
         }

@@ -5,6 +5,7 @@ import Editor from './editor'
 import CustomRuntime from './CustomRuntime'
 
 function main() {
+
     const el = document.createElement('div')
     el.id = 'pm-plus-r-demo-app'
     el.style.setProperty('margin', 'auto')

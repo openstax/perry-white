@@ -3,6 +3,7 @@ import * as React from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import sanitizeURL from '../sanitizeURL'
 import CustomButton from './CustomButton'
+import {prefixed} from '../util'
 
 function isBookMarkHref(href: string): boolean {
     return !!href && href.indexOf('#') === 0 && href.length >= 2
@@ -29,11 +30,11 @@ class LinkTooltip extends React.Component<any, any> {
         // Change button in "Apply Link" missing in LICIT.
 
         return (
-            <div className="czi-link-tooltip">
-                <div className="czi-link-tooltip-body">
-                    <div className="czi-link-tooltip-row">
+            <div className={prefixed('link-tooltip')}>
+                <div className={prefixed('link-tooltip-body')}>
+                    <div className={prefixed('link-tooltip-row')}>
                         <CustomButton
-                            className="czi-link-tooltip-href"
+                            className={prefixed('link-tooltip-href')}
                             label={href}
                             onClick={this._openLink}
                             target="new"

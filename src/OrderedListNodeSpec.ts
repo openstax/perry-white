@@ -3,7 +3,7 @@ import {Node} from 'prosemirror-model'
 import {ATTRIBUTE_LIST_STYLE_TYPE} from './ListItemNodeSpec'
 import {LIST_ITEM} from './NodeNames'
 import {ATTRIBUTE_INDENT, MIN_INDENT_LEVEL} from './ParagraphNodeSpec'
-
+import {prefixed} from './util'
 import {NodeSpec} from './Types'
 
 export const ATTRIBUTE_COUNTER_RESET = 'data-counter-reset'
@@ -100,12 +100,12 @@ const OrderedListNodeSpec: NodeSpec = {
                 AUTO_LIST_STYLE_TYPES[indent % AUTO_LIST_STYLE_TYPES.length]
         }
 
-        const cssCounterName = `czi-counter-${indent}`
+        const cssCounterName = prefixed(`counter-${indent}`)
 
         attrs.style =
-            `--czi-counter-name: ${cssCounterName};` +
-            `--czi-counter-reset: ${following ? 'none' : start - 1};` +
-            `--czi-list-style-type: ${htmlListStyleType}`
+            prefixed(`counter-name: ${cssCounterName};`, { format: 'cssVar' }) +
+            prefixed(`counter-reset: ${following ? 'none' : start - 1};`, { format: 'cssVar' }) +
+            prefixed(`list-style-type: ${htmlListStyleType}`, { format: 'cssVar' })
 
         attrs.type = htmlListStyleType
 

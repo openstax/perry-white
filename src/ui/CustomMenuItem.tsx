@@ -1,9 +1,11 @@
 import CustomButton from './CustomButton'
 import * as React from 'react'
 
+import {prefixed} from '../util'
+
 class CustomMenuItemSeparator extends React.Component<any, any> {
     render() {
-        return <div className="czi-custom-menu-item-separator" />
+        return <div className={prefixed('custom-menu-item-separator')} />
     }
 }
 
@@ -26,7 +28,7 @@ class CustomMenuItem extends React.Component<any, any> {
     }
 
     render() {
-        return <CustomButton {...this.props} className="czi-custom-menu-item" />
+        return <CustomButton {...this.props} className={prefixed('custom-menu-item')} />
     }
 }
 

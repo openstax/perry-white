@@ -1,6 +1,8 @@
 import CustomButton from './CustomButton'
 import * as React from 'react'
 
+import {prefixed} from '../util'
+
 const ImageAlignValues = {
     NONE: {
         value: null,
@@ -46,7 +48,7 @@ class ImageInlineEditor extends React.Component<any, any> {
             )
         })
 
-        return <div className="czi-inline-editor custom-">{buttons}</div>
+        return <div className={prefixed('inline-editor custom-')}>{buttons}</div>
     }
 
     _onClick = (align: string | null | undefined): void => {

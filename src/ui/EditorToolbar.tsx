@@ -13,12 +13,13 @@ import Icon from './Icon'
 import ResizeObserver from './ResizeObserver'
 import UICommand from './UICommand'
 import isReactClass from './isReactClass'
+import {prefixed} from '../util'
 
 interface Props {
     disabled?: boolean | null | undefined
     dispatchTransaction?: (tr: Transaction) => void | null | undefined
     editorState: EditorState
-    editorView: CustomEditorView
+    editorView?: CustomEditorView
     onReady?: (view: EditorView) => void | null | undefined
     readOnly?: boolean | null | undefined
 }
@@ -44,7 +45,7 @@ class EditorToolbar extends React.Component<Props, State> {
             const { filterCommandGroups } = this.props.editorView.runtime
 
             this.setState({
-                cmd_groups: filterCommandGroups ? filterCommandGroups(COMMAND_GROUPS) : COMMAND_GROUPS
+                cmd_groups: filterCommandGroups ? filterCommandGroups.call(this.props.editorView.runtime, COMMAND_GROUPS) : COMMAND_GROUPS
             })
 
         }
@@ -53,11 +54,11 @@ class EditorToolbar extends React.Component<Props, State> {
     render() {
         const {wrapped, expanded, cmd_groups} = this.state
 
-        const className = cx('czi-editor-toolbar', {expanded, wrapped})
+        const className = cx(prefixed('editor-toolbar'), {expanded, wrapped})
         const wrappedButton = wrapped ? (
             <CustomButton
                 active={expanded}
-                className="czi-editor-toolbar-expand-button"
+                className={prefixed('editor-toolbar-expand-button')}
                 icon={Icon.get('more_horiz')}
                 key="expand"
                 onClick={this._toggleExpansion}
@@ -67,27 +68,27 @@ class EditorToolbar extends React.Component<Props, State> {
         ) : null
         return (
             <div className={className}>
-                <div className="czi-editor-toolbar-flex">
-                    <div className="czi-editor-toolbar-body">
+                <div className={prefixed('editor-toolbar-flex')}>
+                    <div className={prefixed('editor-toolbar-body')}>
 
                         <div
-                            className="czi-editor-toolbar-body-content"
+                            className={prefixed('editor-toolbar-body-content')}
                             ref={this._onBodyRef}
                         >
-                            <i className="czi-editor-toolbar-wrapped-anchor" />
+                            <i className={prefixed('editor-toolbar-wrapped-anchor')} />
                             {cmd_groups.map(this._renderButtonsGroup)}
-                            <div className="czi-editor-toolbar-background">
-                                <div className="czi-editor-toolbar-background-line" />
-                                <div className="czi-editor-toolbar-background-line" />
-                                <div className="czi-editor-toolbar-background-line" />
-                                <div className="czi-editor-toolbar-background-line" />
-                                <div className="czi-editor-toolbar-background-line" />
+                            <div className={prefixed('editor-toolbar-background')}>
+                                <div className={prefixed('editor-toolbar-background-line')} />
+                                <div className={prefixed('editor-toolbar-background-line')} />
+                                <div className={prefixed('editor-toolbar-background-line')} />
+                                <div className={prefixed('editor-toolbar-background-line')} />
+                                <div className={prefixed('editor-toolbar-background-line')} />
                             </div>
-                            <i className="czi-editor-toolbar-wrapped-anchor" />
+                            <i className={prefixed('editor-toolbar-wrapped-anchor')} />
                         </div>
                         {wrappedButton}
                     </div>
-                    <div className="czi-editor-toolbar-footer" />
+                    <div className={prefixed('editor-toolbar-footer')} />
                 </div>
             </div>
         )
@@ -97,37 +98,35 @@ class EditorToolbar extends React.Component<Props, State> {
         group: Object,
         index: number,
     ) => {
-        const buttons = Object.keys(group)
+
+        const buttons = Object
+            .keys(group)
             .map(label => {
                 const obj = group[label]
-                if (isReactClass(obj)) {
-                    // JSX requies the component to be named with upper camel case.
-                    const ThatComponent = obj
-                    const {
-                        editorState,
-                        editorView,
-                        dispatchTransaction,
-                    } = this.props
-                    return (
-                        <ThatComponent
-                            dispatch={dispatchTransaction}
-                            editorState={editorState}
-                            editorView={editorView}
-                            key={label}
-                        />
-                    )
-                } else if (obj instanceof UICommand) {
+                if (obj instanceof UICommand) {
                     return this._renderButton(label, obj)
                 } else if (Array.isArray(obj)) {
                     return this._renderMenuButton(label, obj)
                 } else {
-                    return null
+                    if (isReactClass(obj) || (typeof obj === 'function')) {
+                        const TBComponent = obj
+                        return (
+                            <TBComponent
+                                dispatchTransaction={this.props.dispatchTransaction}
+                                editorState={this.props.editorState}
+                                editorView={this.props.editorView}
+                                key={label}
+                            />
+                        )
+                    } else {
+                        return null
+                    }
                 }
             })
             .filter(Boolean)
 
         return (
-            <div className="czi-custom-buttons" key={'g' + String(index)}>
+            <div className={prefixed('custom-buttons')} key={'g' + String(index)}>
                 {buttons}
             </div>
         )

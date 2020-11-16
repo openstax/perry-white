@@ -3,7 +3,7 @@ import {EditorState} from 'prosemirror-state'
 import {MARK_FONT_TYPE} from '../MarkNames'
 import findActiveMark from '../findActiveMark'
 
-// This should map to `--czi-content-font-size` at `czi-editor.css`.
+// This should map to `content-font-size` at `editor.css`.
 export const FONT_TYPE_NAME_DEFAULT = 'Arial'
 
 export default function findActiveFontType(state: EditorState): string {

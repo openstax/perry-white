@@ -9,7 +9,7 @@ import {Step} from 'prosemirror-transform'
 import {EditorView} from 'prosemirror-view'
 import EditorPlugins from '../EditorPlugins'
 import EditorSchema from '../EditorSchema'
-import uuid from '../uuid'
+import { uuid } from '../util'
 import {GET, POST} from './http'
 // [FS] IRAD-1040 2020-09-02
 import {Schema} from 'prosemirror-model'

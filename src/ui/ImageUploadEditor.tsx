@@ -4,7 +4,7 @@ import * as React from 'react'
 import CustomButton from './CustomButton'
 import LoadingIndicator from './LoadingIndicator'
 import preventEventDefault from './preventEventDefault'
-import uuid from './uuid'
+import {prefixed,uuid} from '../util'
 
 import {EditorRuntime, ImageLike} from '../Types'
 
@@ -29,7 +29,7 @@ class ImageUploadEditor extends React.Component<any, any> {
 
     render() {
         const {id, error, pending} = this.state
-        const className = cx('czi-image-upload-editor', {pending, error})
+        const className = cx(prefixed('image-upload-editor'), {pending, error})
         let label: React.ReactNode = 'Choose an image file...'
 
         if (pending) {
@@ -40,16 +40,16 @@ class ImageUploadEditor extends React.Component<any, any> {
 
         return (
             <div className={className}>
-                <form className="czi-form" onSubmit={preventEventDefault}>
+                <form className={prefixed('form')} onSubmit={preventEventDefault}>
                     <fieldset>
                         <legend>Upload Image</legend>
-                        <div className="czi-image-upload-editor-body">
-                            <div className="czi-image-upload-editor-label">
+                        <div className={prefixed('image-upload-editor-body')}>
+                            <div className={prefixed('image-upload-editor-label')}>
                                 {label}
                             </div>
                             <input
                                 accept="image/png,image/gif,image/jpeg,image/jpg"
-                                className="czi-image-upload-editor-input"
+                                className={prefixed('image-upload-editor-input')}
                                 disabled={pending}
                                 id={id}
                                 key={id}
@@ -58,7 +58,7 @@ class ImageUploadEditor extends React.Component<any, any> {
                             />
                         </div>
                     </fieldset>
-                    <div className="czi-form-buttons">
+                    <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
                     </div>
                 </form>

@@ -36,6 +36,7 @@ class CommandButton extends React.Component<Props, any> {
             disabled =
                 !editorView || !command.isEnabled(editorState, editorView)
         }
+
         return (
             <CustomButton
                 active={command.isActive(editorState)}

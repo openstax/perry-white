@@ -4,6 +4,7 @@ import {EditorState, Transaction} from 'prosemirror-state'
 import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import webfontloader from 'webfontloader'
+import {prefixed} from '../util'
 
 import {
     registerEditorView,
@@ -23,7 +24,7 @@ import MathNodeView from './MathNodeView'
 import handleEditorDrop from './handleEditorDrop'
 import handleEditorKeyDown from './handleEditorKeyDown'
 import handleEditorPaste from './handleEditorPaste'
-import uuid from './uuid'
+import { uuid } from '../util'
 import {EditorRuntime} from '../Types'
 
 export interface ChangeArgs {
@@ -251,7 +252,7 @@ class EditingArea extends React.Component<EditorProps, any> {
         return (
             <div
                 className={className}
-                data-czi-prosemirror-editor-id={this._id}
+                { ...{[prefixed('prosemirror-editor-id', { format: 'data' })]: this._id}}
                 id={this._id}
                 onBlur={this._onBlur}
             />

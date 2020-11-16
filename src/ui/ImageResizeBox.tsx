@@ -2,8 +2,9 @@ import cx from 'classnames'
 import nullthrows from 'nullthrows'
 import * as React from 'react'
 
+import {prefixed} from '../util'
 import clamp from './clamp'
-import uuid from './uuid'
+import { uuid } from '../util'
 
 type Props = {
     height: number
@@ -69,7 +70,7 @@ class ImageResizeBoxControl extends React.Component<any, any> {
         const {direction} = this.props
 
         const className = cx({
-            'czi-image-resize-box-control': true,
+            [prefixed('image-resize-box-control')]: true,
             [direction]: true,
         })
 
@@ -138,7 +139,7 @@ class ImageResizeBoxControl extends React.Component<any, any> {
         const el = nullthrows(this._el)
         el.style.width = this._w
         el.style.height = this._h
-        el.className = 'czi-image-resize-box'
+        el.className = prefixed('image-resize-box')
         this._el = null
 
         this._rafID && cancelAnimationFrame(this._rafID)
@@ -205,9 +206,9 @@ class ImageResizeBox extends React.Component<any, any> {
         })
 
         return (
-            <span className="czi-image-resize-box" id={boxID} style={style}>
+            <span className={prefixed('image-resize-box')} id={boxID} style={style}>
                 {controls}
-                <img className="czi-image-resize-box-image" src={src} />
+                <img className={prefixed('image-resize-box-image')} src={src} />
             </span>
         )
     }

@@ -2,6 +2,8 @@ import {Node} from 'prosemirror-model'
 import {Decoration, EditorView} from 'prosemirror-view'
 import {MARK_TEXT_COLOR, MARK_FONT_SIZE} from '../MarkNames'
 
+import {prefixed} from '../util'
+
 // This implements the `NodeView` interface
 // https://prosemirror.net/docs/ref/#view.NodeView
 class ListItemNodeView {
@@ -71,15 +73,15 @@ class ListItemNodeView {
         }
 
         // The counter of the list item is a pseudo-element that uses
-        // the CSS variables (e.g `--czi-list-style-color`) for styling.
+        // the CSS variables (e.g `list-style-color`) for styling.
         // This defines the CSS variables scoped for the pseudo-element.
-        // See `src/ui/czi-list.css` for more details.
+        // See `src/ui/list.css` for more details.
         if (cssColor) {
-            cssText += `--czi-list-style-color: ${cssColor};`
+            cssText += prefixed(`list-style-color: ${cssColor};`, { format: 'cssVar' })
         }
 
         if (cssFontSize) {
-            cssText += `--czi-list-style-font-size: ${cssFontSize}pt;`
+            cssText += prefixed(`list-style-font-size: ${cssFontSize}pt;`, { format: 'cssVar' })
         }
 
         dom.style.cssText = cssText

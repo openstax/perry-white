@@ -1,0 +1,18 @@
+.#{$prefix}inline-editor {
+  background: #fff;
+  box-shadow: var(--#{$prefix}overlay-shadow);
+  display: flex;
+  flex-direction: row;
+  margin-top: 6px;
+  padding: 4px 10px;
+}
+
+.#{$prefix}inline-editor .#{$prefix}custom-button {
+  border: none;
+}
+
+@media only print {
+  .#{$prefix}inline-editor {
+    display: none;
+  }
+}

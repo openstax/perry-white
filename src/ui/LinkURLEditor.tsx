@@ -3,7 +3,7 @@ import sanitizeURL from '../sanitizeURL'
 import CustomButton from './CustomButton'
 import {ENTER} from './KeyCodes'
 import preventEventDefault from './preventEventDefault'
-
+import {prefixed} from '../util'
 const BAD_CHARACTER_PATTER = /\s/
 
 type Props = {
@@ -34,8 +34,8 @@ class LinkURLEditor extends React.Component<Props, any> {
         }
 
         return (
-            <div className="czi-image-url-editor">
-                <form className="czi-form" onSubmit={preventEventDefault}>
+            <div className={prefixed('image-url-editor')}>
+                <form className={prefixed('form')} onSubmit={preventEventDefault}>
                     <fieldset>
                         <legend>Add a Link</legend>
                         <input
@@ -48,7 +48,7 @@ class LinkURLEditor extends React.Component<Props, any> {
                             value={url || ''}
                         />
                     </fieldset>
-                    <div className="czi-form-buttons">
+                    <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
                         <CustomButton
                             active={true}

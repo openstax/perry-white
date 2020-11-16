@@ -1,13 +1,13 @@
 import * as React from 'react'
 import createPopUp from './createPopUp'
 import {atAnchorBottomCenter} from './PopUpPosition'
-import uuid from './uuid'
+import {uuid,prefixed} from '../util'
 
 class TooltipView extends React.Component<any, any> {
     render() {
         const {tooltip} = this.props
         return (
-            <div className="czi-tooltip-view czi-animation-fade-in">
+            <div className={`${prefixed('tooltip-view')} ${prefixed('animation-fade-in')}`}>
                 {tooltip}
             </div>
         )
@@ -32,7 +32,7 @@ class TooltipSurface extends React.Component<any, any> {
         return (
             <span
                 aria-label={tooltip}
-                className="czi-tooltip-surface"
+                className={prefixed('tooltip-surface')}
                 data-tooltip={tooltip}
                 id={this._id}
                 onMouseDown={tooltip && this._onMouseLeave}

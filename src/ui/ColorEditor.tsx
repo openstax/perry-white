@@ -1,6 +1,7 @@
 import Color from 'color'
 import * as React from 'react'
 
+import {prefixed} from '../util'
 import CustomButton from './CustomButton'
 import clamp from './clamp'
 
@@ -47,26 +48,26 @@ class ColorEditor extends React.Component<any, any> {
         const renderColor = this._renderColor
         const selectedColor = this.props.hex
         return (
-            <div className="czi-color-editor">
-                <div className="czi-color-editor-section">
+            <div className={prefixed('color-editor')}>
+                <div className={prefixed('color-editor-section')}>
                     <CustomButton
                         active={!selectedColor}
-                        className="czi-color-editor-color-transparent"
+                        className={prefixed('color-editor-color-transparent')}
                         label="Transparent"
                         onClick={this._onSelectColor}
                         value="rgba(0,0,0,0)"
                     />
                 </div>
-                <div className="czi-color-editor-section">
+                <div className={prefixed('color-editor-section')}>
                     {generateGreyColors(10).map(renderColor)}
                 </div>
-                <div className="czi-color-editor-section">
+                <div className={prefixed('color-editor-section')}>
                     {generateRainbowColors(10, 90, 50).map(renderColor)}
                 </div>
-                <div className="czi-color-editor-section">
+                <div className={prefixed('color-editor-section')}>
                     {generateRainbowColors(30, 70, 70).map(renderColor)}
                 </div>
-                <div className="czi-color-editor-section">
+                <div className={prefixed('color-editor-section')}>
                     {generateRainbowColors(30, 90, 30).map(renderColor)}
                 </div>
             </div>
@@ -81,7 +82,7 @@ class ColorEditor extends React.Component<any, any> {
         return (
             <CustomButton
                 active={active}
-                className="czi-color-editor-cell"
+                className={prefixed('color-editor-cell')}
                 key={`${hex}-${index}`}
                 label=""
                 onClick={this._onSelectColor}

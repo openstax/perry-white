@@ -2,10 +2,10 @@ import {Plugin, PluginKey} from 'prosemirror-state'
 import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
+import {prefixed} from './util'
 import isEditorStateEmpty from './isEditorStateEmpty'
 
-const CLASS_NAME_HAS_PLACEHOLDER = 'czi-has-placeholder'
+const CLASS_NAME_HAS_PLACEHOLDER = prefixed('has-placeholder')
 
 class ContentPlaceholderView {
     _el = null
@@ -19,7 +19,7 @@ class ContentPlaceholderView {
         this._el = el
         this._view = editorView
 
-        el.className = 'czi-editor-content-placeholder'
+        el.className = prefixed('editor-content-placeholder')
         editorView.dom.parentNode.appendChild(el)
         document.addEventListener('focusin', this._checkFocus, true)
         document.addEventListener('focusout', this._checkFocus, false)

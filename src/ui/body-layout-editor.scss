@@ -1,0 +1,11 @@
+.#{$prefix}body-layout-editor {
+  background: #fff;
+  box-shadow: var(--#{$prefix}overlay-shadow);
+  font-family: var(--#{$prefix}font-family);
+  font-size: var(--#{$prefix}font-size);
+  padding: 4px 10px;
+}
+
+.#{$prefix}body-layout-editor .#{$prefix}form {
+  width: 300px;
+}

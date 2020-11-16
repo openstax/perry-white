@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import CommandMenuButton from './CommandMenuButton'
 import {TABLE_COMMANDS_GROUP} from './EditorToolbarConfig'
+import {prefixed} from '../util'
 import Icon from './Icon'
 
 type Props = {
@@ -20,7 +21,7 @@ class TableCellMenu extends React.Component<any, any> {
         const {editorState, editorView} = this.props
         return (
             <CommandMenuButton
-                className="czi-table-cell-menu"
+                className={prefixed('table-cell-menu')}
                 commandGroups={TABLE_COMMANDS_GROUP}
                 dispatch={editorView.dispatch}
                 editorState={editorState}

@@ -4,7 +4,7 @@ import PopUp from './PopUp'
 // eslint-disable-next-line no-unused-vars
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import uuid from './uuid'
+import {uuid,prefixed} from '../util'
 
 export type PopUpHandle = {
     close: (val: any) => void
@@ -23,8 +23,8 @@ function showModalMask(): void {
     if (!element) {
         element = document.createElement('div')
         element.id = MODAL_MASK_ID
-        element.className = 'czi-pop-up-modal-mask'
-        element.setAttribute('data-mask-type', 'czi-pop-up-modal-mask')
+        element.className = prefixed('pop-up-modal-mask')
+        element.setAttribute('data-mask-type', prefixed('pop-up-modal-mask'))
         element.setAttribute('role', 'dialog')
         element.setAttribute('aria-modal', 'true')
     }
@@ -34,7 +34,7 @@ function showModalMask(): void {
     }
     const style: any = element.style
 
-    const selector = '.czi-pop-up-element[data-pop-up-modal]'
+    const selector = prefixed('pop-up-element[data-pop-up-modal]', { format: 'selector' })
     const zIndex = Array.from(document.querySelectorAll(selector)).reduce(
         // @ts-ignore
         (zz, el) => Math.max(zz, Number(el.style.zIndex)),
@@ -73,7 +73,7 @@ function getRootElement(
         element.setAttribute('data-pop-up-modal', 'y')
     }
 
-    element.className = 'czi-pop-up-element czi-vars'
+    element.className = `${prefixed('pop-up-element')} ${prefixed('vars')}`
     element.id = id
 
     const style: any = element.style

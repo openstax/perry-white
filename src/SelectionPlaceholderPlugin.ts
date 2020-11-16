@@ -1,6 +1,6 @@
 import {EditorState, Plugin, PluginKey, Transaction} from 'prosemirror-state'
 import {Decoration, DecorationSet} from 'prosemirror-view'
-
+import {prefixed} from './util'
 const PLACE_HOLDER_ID = {name: 'SelectionPlaceholderPlugin'}
 
 let singletonInstance = null
@@ -28,7 +28,7 @@ const SPEC = {
                     action.add.from,
                     action.add.to,
                     {
-                        class: 'czi-selection-placeholder',
+                        class: prefixed('selection-placeholder'),
                     },
                     {
                         id: PLACE_HOLDER_ID,

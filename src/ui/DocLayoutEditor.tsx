@@ -3,6 +3,7 @@ import {LAYOUT} from '../DocNodeSpec'
 import CustomButton from './CustomButton'
 import CustomRadioButton from './CustomRadioButton'
 import preventEventDefault from './preventEventDefault'
+import {prefixed} from '../util'
 
 export type DocLayoutEditorValue = {
     layout: string | null | undefined
@@ -74,8 +75,8 @@ class DocLayoutEditor extends React.Component<Props, any> {
         ) : null
 
         return (
-            <div className="czi-body-layout-editor">
-                <form className="czi-form" onSubmit={preventEventDefault}>
+            <div className={prefixed('body-layout-editor')}>
+                <form className={prefixed('form')} onSubmit={preventEventDefault}>
                     <fieldset>
                         <legend>Page Layout</legend>
                         <CustomRadioButton
@@ -113,7 +114,7 @@ class DocLayoutEditor extends React.Component<Props, any> {
                         {customOption}
                     </fieldset>
                     <hr />
-                    <div className="czi-form-buttons">
+                    <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
                         <CustomButton
                             active={true}

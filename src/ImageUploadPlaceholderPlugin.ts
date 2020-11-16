@@ -4,8 +4,9 @@ import {EditorState, TextSelection} from 'prosemirror-state'
 import {Decoration, DecorationSet} from 'prosemirror-view'
 import {EditorView} from 'prosemirror-view'
 
+import {prefixed} from './util'
 import {IMAGE} from './NodeNames'
-import uuid from './ui/uuid'
+import { uuid } from './util'
 
 const IMAGE_FILE_TYLES = new Set([
     'image/jpeg',
@@ -17,7 +18,7 @@ const IMAGE_FILE_TYLES = new Set([
 const TITLE = 'Uploading...'
 
 const INNER_HTML = new Array(4).join(
-    '<div class="czi-image-upload-placeholder-child"></div>',
+    `<div class="${prefixed('image-upload-placeholder-child')}"></div>`,
 )
 
 function isImageUploadPlaceholderPlugin(plugin: Plugin): boolean {
@@ -168,7 +169,7 @@ class ImageUploadPlaceholderPlugin extends Plugin {
                     if (action && action.add) {
                         const el = document.createElement('div')
                         el.title = TITLE
-                        el.className = 'czi-image-upload-placeholder'
+                        el.className = prefixed('image-upload-placeholder')
                         el.innerHTML = INNER_HTML
 
                         const deco = Decoration.widget(action.add.pos, el, {

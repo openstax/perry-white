@@ -5,10 +5,10 @@ import {MARK_FONT_SIZE} from '../MarkNames'
 import {HEADING} from '../NodeNames'
 import findActiveMark from '../findActiveMark'
 
-// This should map to `--czi-content-font-size` at `czi-editor.css`.
+// This should map to `--content-font-size` at `editor.css`.
 const FONT_PT_SIZE_DEFAULT = 11
 
-// This should map to `czi-heading.css`.
+// This should map to `heading.css`.
 const MAP_HEADING_LEVEL_TO_FONT_PT_SIZE = {
     '1': 20,
     '2': 18,

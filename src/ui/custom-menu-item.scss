@@ -1,0 +1,18 @@
+
+.#{$prefix}custom-menu-item.#{$prefix}custom-button {
+  border-radius: 0;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 8px 20px;
+}
+
+.#{$prefix}custom-menu-item.#{$prefix}custom-button:hover {
+  background-color: var(--#{$prefix}button-hover-background-color);
+}
+
+.#{$prefix}custom-menu-item-separator {
+  background-color: var(--#{$prefix}button-hover-background-color);
+  height: 1px;
+  margin: 8px 0;
+}

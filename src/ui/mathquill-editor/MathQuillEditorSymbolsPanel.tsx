@@ -2,6 +2,7 @@ import renderLaTeXAsHTML from '../renderLaTeXAsHTML'
 import CustomButton from '../CustomButton'
 import * as React from 'react'
 
+import {prefixed} from '../../util'
 import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
 
 class MathQuillEditorSymbolsPanel extends React.Component<any, any> {
@@ -18,11 +19,11 @@ class MathQuillEditorSymbolsPanel extends React.Component<any, any> {
         const {title, symbols} = this.props.symbols
         const buttons = symbols.map(this._renderButton)
         return (
-            <div className="czi-mathquill-editor-symbols-panel">
-                <div className="czi-mathquill-editor-symbols-panel-title">
+            <div className={prefixed('mathquill-editor-symbols-panel')}>
+                <div className={prefixed('mathquill-editor-symbols-panel-title')}>
                     {title}
                 </div>
-                <div className="czi-mathquill-editor-symbols-panel-body">
+                <div className={prefixed('mathquill-editor-symbols-panel-body')}>
                     {buttons}
                 </div>
             </div>
@@ -37,7 +38,7 @@ class MathQuillEditorSymbolsPanel extends React.Component<any, any> {
         const icon = <span dangerouslySetInnerHTML={{__html: html}} />
         return (
             <CustomButton
-                className="czi-mathquill-editor-symbols-panel-button"
+                className={prefixed('mathquill-editor-symbols-panel-button')}
                 icon={icon}
                 key={label + latex}
                 onClick={this.props.onSelect}

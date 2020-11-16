@@ -79,4 +79,4 @@ export interface EditorRuntime {
 
 }
 
-export type EditorState = any
+//export type EditorState = any

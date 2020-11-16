@@ -1,6 +1,7 @@
 import clamp from './clamp'
 import {fromHTMlElement, fromXY, isIntersected} from './rects'
 
+import {prefixed} from '../util'
 import {PositionHandler} from './PopUpPosition'
 import {Rect} from './rects'
 
@@ -154,7 +155,7 @@ class PopUpManager {
                 bodyStyle.left = `${x}px`
                 bodyStyle.top = `${y}px`
                 bodyStyle.setProperty(
-                    '--czi-pop-up-anchor-offset-left',
+                    prefixed('pop-up-anchor-offset-left', { format: 'cssVar' }),
                     `${ax}px`,
                 )
                 bodyRect.x = x

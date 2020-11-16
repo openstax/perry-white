@@ -16,6 +16,7 @@ function dryRunEditorStateProxyGetter(
     state: EditorState,
     propKey: string,
 ): any {
+    // @ts-ignore
     const val = state[propKey]
     if (propKey === 'tr' && val instanceof Transaction) {
         return val.setMeta('dryrun', true)
@@ -28,39 +29,40 @@ function dryRunEditorStateProxySetter(
     propKey: string,
     propValue: any,
 ): boolean {
+    // @ts-ignore
     state[propKey] = propValue
     // Indicate success
     return true
 }
 
-class UICommand {
+export class UICommand {
     static EventType = EventType
 
-    shouldRespondToUIEvent = (
+    shouldRespondToUIEvent(
         e: React.SyntheticEvent | MouseEvent,
-    ): boolean => {
+    ): boolean {
         return e.type === UICommand.EventType.CLICK
     }
 
-    renderLabel = (state: EditorState): any => {
+    renderLabel(state: EditorState):any {
         return null
     }
 
-    isActive = (state: EditorState): boolean => {
+    isActive(state: EditorState): boolean {
         return false
     }
 
-    isEnabled = (
+    isEnabled(
         state: EditorState,
         view: EditorView | null | undefined,
-    ): boolean => {
+    ): boolean {
         return this.dryRun(state, view)
     }
 
-    dryRun = (
+    dryRun(
         state: EditorState,
         view: EditorView | null | undefined,
-    ): boolean => {
+    ): boolean {
         const {Proxy} = window
 
         const dryRunState = Proxy
@@ -73,12 +75,13 @@ class UICommand {
         return this.execute(dryRunState, null, view)
     }
 
-    execute = (
+    execute(
         state: EditorState,
-        dispatch?: (tr: Transaction) => void | null,
+        dispatch: null | ((tr: Transaction | null) => void),
         view?: EditorView | null,
         event?: React.SyntheticEvent | null,
-    ): boolean => {
+    ): boolean {
+        // @ts-ignore
         this.waitForUserInput(state, dispatch, view, event)
             .then(inputs => {
                 this.executeWithUserInput(state, dispatch, view, inputs)
@@ -89,21 +92,21 @@ class UICommand {
         return false
     }
 
-    waitForUserInput = (
+    waitForUserInput(
         state: EditorState,
-        dispatch: (tr: Transaction) => void | null | undefined,
+        dispatch: null | ((tr: Transaction) => void),
         view: EditorView | null | undefined,
         event: React.SyntheticEvent | null | undefined,
-    ): Promise<any> => {
+    ): Promise<any> {
         return Promise.resolve(undefined)
     }
 
-    executeWithUserInput = (
+    executeWithUserInput(
         state: EditorState,
-        dispatch: (tr: Transaction) => void | null | undefined,
+        dispatch: null | ((tr: Transaction) => void),
         view: EditorView | null | undefined,
         inputs: any,
-    ): boolean => {
+    ): boolean {
         return false
     }
 

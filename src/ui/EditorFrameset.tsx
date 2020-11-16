@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import * as React from 'react'
+import {prefixed} from '../util'
 
 export type EditorFramesetProps = {
     body: React.ReactElement<any> | null | undefined
@@ -13,7 +14,7 @@ export type EditorFramesetProps = {
     width: (string | number) | null | undefined
 }
 
-export const FRAMESET_BODY_CLASSNAME = 'czi-editor-frame-body'
+export const FRAMESET_BODY_CLASSNAME = prefixed('editor-frame-body')
 
 function toCSS(val: (number | string) | null | undefined): string {
     if (typeof val === 'number') {
@@ -47,14 +48,13 @@ class EditorFrameset extends React.Component<any, any> {
         //  wrapping style for fit to content mode
         if (fitToContent) {
             mainClassName = cx(className, {
-                'czi-editor-frameset': true,
+                [prefixed('editor-frameset')]: true,
                 'with-fixed-layout': useFixedLayout,
                 fitToContent: fitToContent,
             })
         } else {
             mainClassName = cx(className, {
-
-                'czi-editor-frameset': true,
+                [prefixed('editor-frameset')]: true,
                 'with-fixed-layout': useFixedLayout,
                 embedded: embedded,
             })
@@ -75,18 +75,18 @@ class EditorFrameset extends React.Component<any, any> {
 
         return (
             <div className={mainClassName} style={mainStyle}>
-                <div className="czi-editor-frame-main">
-                    <div className="czi-editor-frame-head">
+                <div className={prefixed('editor-frame-main')}>
+                    <div className={prefixed('editor-frame-head')}>
                         {header}
                         {toolbarHeader}
                     </div>
                     <div className={FRAMESET_BODY_CLASSNAME}>
                         {toolbarBody}
-                        <div className="czi-editor-frame-body-scroll">
+                        <div className={prefixed('editor-frame-body-scroll')}>
                             {body}
                         </div>
                     </div>
-                    <div className="czi-editor-frame-footer" />
+                    <div className={prefixed('editor-frame-footer')} />
                 </div>
             </div>
         )

@@ -1,5 +1,5 @@
 import {Node} from 'prosemirror-model'
-
+import {prefixed} from './util'
 import {MarkSpec} from './Types'
 
 const TextSelectionMarkSpec: MarkSpec = {
@@ -10,12 +10,12 @@ const TextSelectionMarkSpec: MarkSpec = {
     group: 'inline',
     parseDOM: [
         {
-            tag: 'czi-text-selection',
+            tag: prefixed('text-selection'),
         },
     ],
 
     toDOM(node: Node) {
-        return ['czi-text-selection', {class: 'czi-text-selection'}, 0]
+        return [prefixed('text-selection'), {class: prefixed('text-selection')}, 0]
     },
 }
 

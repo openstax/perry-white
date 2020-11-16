@@ -3,6 +3,7 @@ import MathQuillEditorSymbolsPanel from './MathQuillEditorSymbolsPanel'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import cx from 'classnames'
+import {prefixed} from '../../util'
 
 // MathQuill requires this to get JQuery exported as global.
 // eslint-disable-next-line no-unused-vars
@@ -26,7 +27,7 @@ class MathQuillElement extends React.Component<any, any> {
     render() {
         return (
             <div
-                className="czi-mathquill-editor-element"
+                className={prefixed('mathquill-editor-element')}
                 dangerouslySetInnerHTML={{__html: this.props.value}}
             />
         )
@@ -55,13 +56,13 @@ class MathQuillEditor extends React.Component<any, any> {
         ].map(this._renderPanel)
 
         const empty = !value
-        const className = cx('czi-mathquill-editor', {empty})
+        const className = cx(prefixed('mathquill-editor'), {empty})
         return (
             <div className={className}>
-                <div className="czi-mathquill-editor-main">
+                <div className={prefixed('mathquill-editor-main')}>
                     <MathQuillElement ref={this._onElementRef} />
                 </div>
-                <div className="czi-mathquill-editor-side">{panels}</div>
+                <div className={prefixed('mathquill-editor-side')}>{panels}</div>
             </div>
         )
     }

@@ -9,7 +9,7 @@ export default function convertFromJSON(
     json: Object,
     schema: Schema | null | undefined,
     plugins: Array<Plugin> | null | undefined,
-): EditorState {
+): EditorState | null {
     let editorSchema = schema || EditorSchema
 
     // [FS][IRAD-???? 2020-08-17]

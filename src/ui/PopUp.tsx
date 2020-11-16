@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import PopUpManager from './PopUpManager'
 import {atAnchorBottomLeft, atViewportCenter} from './PopUpPosition'
-import uuid from './uuid'
+import { uuid } from '../util'
 
 import {PopUpDetails} from './PopUpManager'
 import {Rect} from './rects'

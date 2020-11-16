@@ -3,7 +3,7 @@ import * as React from 'react'
 import CustomButton from './CustomButton'
 import MathQuillEditor from './mathquill-editor/MathQuillEditor'
 import preventEventDefault from './preventEventDefault'
-import uuid from './uuid'
+import { uuid, prefixed } from '../util'
 
 type Props = {
     // eslint-disable-line no-unused-vars
@@ -24,8 +24,8 @@ class MathEditor extends React.Component<Props, any> {
     render() {
         const {initialValue, value} = this.state
         return (
-            <div className="czi-math-editor">
-                <form className="czi-form" onSubmit={preventEventDefault}>
+            <div className={prefixed('math-editor')}>
+                <form className={prefixed('form')} onSubmit={preventEventDefault}>
                     <fieldset>
                         <legend>Insert Math</legend>
                         <MathQuillEditor
@@ -33,7 +33,7 @@ class MathEditor extends React.Component<Props, any> {
                             value={value}
                         />
                     </fieldset>
-                    <div className="czi-form-buttons">
+                    <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
                         <CustomButton
                             active={true}

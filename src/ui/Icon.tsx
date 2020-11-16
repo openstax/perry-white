@@ -1,6 +1,8 @@
 import cx from 'classnames'
 import * as React from 'react'
 
+import {prefixed} from '../util'
+
 const VALID_CHARS = /[a-z_]+/
 const cached = {}
 
@@ -54,13 +56,13 @@ class Icon extends React.Component<any, any> {
         let children = ''
         const custom = CUSTOM[type]
         if (custom) {
-            className = cx('czi-icon', {[type]: true})
+            className = cx(prefixed('icon'), {[type]: true})
             children = custom
         } else if (!type || !VALID_CHARS.test(type)) {
-            className = cx('czi-icon-unknown')
+            className = prefixed('icon-unknown')
             children = title || type
         } else {
-            className = cx('czi-icon', {[type]: true})
+            className = cx(prefixed('icon'), {[type]: true})
             children = type
         }
         return <span className={className}>{children}</span>

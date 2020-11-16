@@ -1,7 +1,29 @@
-// @flow
+import React from 'react'
+import { UICommand } from '../../src/index'
+
+class SaveCommand extends UICommand {
+    //isEnabled() { return true }
+
+    isActive = (state) => {
+        return true
+    }
+    isEnabled = (state) => {
+        return true
+    }
+
+    execute = () => {
+        debugger
+    }
+
+//    isActive() { return true }
+}
 
 // This implements the interface of `EditorRuntime`.
-
+// class SaveCommand extends React.Component {
+//     render() {
+//         return <button>as</button>
+//     }
+// }
 import {
     POST
 } from '../../src/client/http'
@@ -53,6 +75,7 @@ class CustomRuntime {
         // groups.forEach(g => {
         //     delete g['[font_download] Font Type']
         // })
+        groups[9]['[save] Save'] = new SaveCommand
         return groups
     }
 }

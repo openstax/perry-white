@@ -21,7 +21,7 @@
 // This file is originally forked from
 // https://github.com/ProseMirror/prosemirror-tables/blob/0e74c6a1761651ccf3701eb8529fa9187ad5c91d/src/columnresizing.js
 // and most of the original codes had been modified to support the bevaviors
-// that czi-prosemirror needs.
+// that prosemirror needs.
 // The plugin provides the following behaviors:
 // - Let user resize a column without changing the total width of the table.
 // - Let user set the left margin of the table.

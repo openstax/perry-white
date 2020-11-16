@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom'
 import clamp from './clamp'
 import htmlElementToRect from './htmlElementToRect'
 import {fromHTMlElement, fromXY, isIntersected} from './rects'
+import {prefixed} from '../util'
 
 export type TableGridSizeEditorValue = {
     cols: number
@@ -26,7 +27,7 @@ class GridCell extends React.Component<any, any> {
             width: CELL_SIZE + 'px',
             height: CELL_SIZE + 'px',
         }
-        const className = cx('czi-table-grid-size-editor-cell', {
+        const className = cx(prefixed('table-grid-size-editor-cell'), {
             selected,
         })
         return <div className={className} style={style} />
@@ -99,16 +100,16 @@ class TableGridSizeEditor extends React.Component<any, any> {
         const bodyStyle = {width: w + 'px', height: h + 'px'}
 
         return (
-            <div className="czi-table-grid-size-editor" ref={this._onRef}>
+            <div className={prefixed('table-grid-size-editor')} ref={this._onRef}>
                 <div
-                    className="czi-table-grid-size-editor-body"
+                    className={prefixed('table-grid-size-editor-body')}
                     onMouseDown={this._onMouseDown}
                     onMouseEnter={this._onMouseEnter}
                     style={bodyStyle}
                 >
                     {cells}
                 </div>
-                <div className="czi-table-grid-size-editor-footer">
+                <div className={prefixed('table-grid-size-editor-footer')}>
                     {rows} X {cols}
                 </div>
             </div>

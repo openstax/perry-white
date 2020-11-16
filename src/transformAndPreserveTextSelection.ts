@@ -4,7 +4,7 @@ import {TextSelection, Transaction} from 'prosemirror-state'
 import {MARK_TEXT_SELECTION} from './MarkNames'
 import {PARAGRAPH, TEXT} from './NodeNames'
 import applyMark from './applyMark'
-import uuid from './ui/uuid'
+import { uuid } from './util'
 
 export type SelectionMemo = {
     schema: Schema

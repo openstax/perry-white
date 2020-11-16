@@ -1,7 +1,7 @@
 import {Node} from 'prosemirror-model'
 import {Decoration} from 'prosemirror-view'
 import * as React from 'react'
-
+import {prefixed} from '../util'
 import {
     ATTRIBUTE_BOOKMARK_ID,
     ATTRIBUTE_BOOKMARK_VISIBLE,
@@ -35,7 +35,7 @@ class BookmarkNodeView extends CustomNodeView {
     // @override
     createDOMElement(): HTMLElement {
         const el = document.createElement('a')
-        el.className = 'czi-bookmark-view'
+        el.className = prefixed('bookmark-view')
         this._updateDOM(el)
         return el
     }

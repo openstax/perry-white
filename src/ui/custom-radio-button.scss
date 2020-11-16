@@ -1,0 +1,68 @@
+.#{$prefix}custom-radio-button {
+  cursor: pointer;
+  display: block;
+  font-family: var(--#{$prefix}font-family);
+  font-size: var(--#{$prefix}font-size);
+  line-height: 25px;
+  margin: 0 12px 12px 0;
+  padding: 0 0 0 36px;
+  position: relative;
+  user-select: none;
+}
+
+.#{$prefix}custom-radio-button-input {
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.#{$prefix}custom-radio-button.inline {
+  display: inline-block;
+  margin: 0 12px 0 0;
+}
+
+.#{$prefix}custom-radio-button-icon {
+  background-color: #eee;
+  border-radius: 50%;
+  height: 25px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 25px;
+}
+
+.#{$prefix}custom-radio-button-input:focus + .#{$prefix}custom-radio-button-icon,
+.#{$prefix}custom-radio-button:hover .#{$prefix}custom-radio-button-icon {
+  background-color: #ccc;
+}
+
+.#{$prefix}custom-radio-button.checked .#{$prefix}custom-radio-button-icon {
+  background-color: #3981e7;
+}
+
+.#{$prefix}custom-radio-button.checked .#{$prefix}custom-radio-button-icon::after {
+  background: #fff;
+  border-radius: 50%;
+  content: '';
+  height: 8px;
+  left: 9px;
+  top: 9px;
+  width: 8px;
+  position: absolute;
+}
+
+.#{$prefix}custom-radio-button.disabled,
+.#{$prefix}custom-radio-button.disabled:hover {
+  color: #dedede;
+  cursor: unset;
+  pointer-events: none;
+}
+
+.#{$prefix}custom-radio-button-label {
+  display: inline-block;
+  vertical-align: middle;
+}
