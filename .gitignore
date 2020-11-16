@@ -2,6 +2,8 @@
 bin
 node_modules
 servers
+demo/build
+docs
 *.pyc
 *.code-workspace
 .vscode/

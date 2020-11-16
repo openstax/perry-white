@@ -13,7 +13,7 @@ module.exports = {
         styles: path.join(__dirname, 'src', 'styles.scss'),
     },
     output: {
-        path: path.join(__dirname, 'docs'),
+        path: path.join(__dirname, 'demo', 'build'),
         filename: '[name].bundle.js',
     },
     devtool: 'source-map',

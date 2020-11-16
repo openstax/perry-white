@@ -20,7 +20,9 @@
     "build:release": "NODE_ENV=production node scripts/build-release.js",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:js": "eslint \"**/*.{tsx,tsx}\"",
-    "start": "NODE_ENV=development webpack-cli serve"
+    "start": "NODE_ENV=development webpack-cli serve",
+    "deploy:demo": "run-s build:demo gh-pages:publish",
+    "gh-pages:publish": "gh-pages -d demo/build"
   },
   "files": [
     "dist/*"
@@ -69,6 +71,7 @@
     "fork-ts-checker-webpack-plugin": "^6.0.1",
     "formidable": "^1.2.2",
     "fs-extra": "^9.0.1",
+    "gh-pages": "^3.1.0",
     "html-loader": "^1.1.0",
     "html-webpack-inline-source-plugin": "1.0.0-beta.2",
     "html-webpack-plugin": "^4.3.0",
@@ -79,6 +82,7 @@
     "lint-staged": "^10.2.11",
     "microbundle": "^0.12.4",
     "mv": "^2.1.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "react": "^16.0",
     "react-dom": "^17.0.1",
