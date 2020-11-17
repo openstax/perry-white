@@ -12,7 +12,7 @@ class SaveCommand extends UICommand {
     }
 
     execute = () => {
-        debugger
+
     }
 
 //    isActive() { return true }
@@ -32,14 +32,19 @@ class CustomRuntime {
 
     // Image Proxy
     canProxyImageSrc() {
-        return false
+        return true
     }
 
     getProxyImageSrc(src) {
-        // This simulate a fake proxy.
-        const suffix = 'proxied=1'
-        return src.indexOf('?') === -1 ? `${src}?${suffix}` : `${src}&${suffix}`
+        console.log(src)
+        return src.startsWith('/') ? `https://archive.cnx.org${src}` : src
     }
+
+    // getProxyImageSrc(src) {
+    //     // This simulate a fake proxy.
+    //     const suffix = 'proxied=1'
+    //     return src.indexOf('?') === -1 ? `${src}?${suffix}` : `${src}&${suffix}`
+    // }
 
     // Image Upload
     canUploadImage() {

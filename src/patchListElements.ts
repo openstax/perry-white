@@ -17,7 +17,7 @@ import {ATTRIBUTE_CSS_BEFORE_CONTENT} from './patchStyleElements'
 export default function patchListElements(doc: Document): void {
     // In Google Doc, lists are exported as indented
     // (e.g. style="margin-left: 48pt") list elements which is the default DOM
-    // structure that `czi-prosemirror` supports. However, other doc providers
+    // structure that `prosemirror` supports. However, other doc providers
     // (e.g Office 365) may export lists as nested list elements that can't
     // be rendered properly.
     // Before proceeding further, it needs to convert the nested list elements
