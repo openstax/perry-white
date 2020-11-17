@@ -35,7 +35,7 @@ const EditorDemo = ({ defaultValue }) => {
 
             <div>
                 <button onClick={setContent}>Export as HTML</button>
-                <button onClick={() => setHTMLContent('')}>Clear</button>
+                <button onClick={() => htmlRef.current.innerHTML = ''}>Clear</button>
             </div>
 
             <hr />
