@@ -1,15 +1,15 @@
 
 
+[![Actions Status](https://github.com/openstax/perry-white/workflows/CI%20checks/badge.svg)](https://github.com/openstax/perry-white/actions)
 
+# Perry White
 
-<h1 align="center">Perry White</h1>
-
-<div align="center">
+<p align="center">
   <strong>WYSIWYG editor based on ProseMirror & React</strong>  <i>Perry White</i> was the newspaper editor for Clark Kent in SuperMan.
-</div>
-<div align="center">
+</p>
+<p align="center">
   Includes significant text markup including size, face, color, line spacing, strikethrough, bold, italic, etc.; multi-level bullet/number lists; images with text wrapping and resizing; and a powerful table (with images and markup within table)
-</div>
+</p>
 
 
 ## History
@@ -22,3 +22,9 @@ Perry White is based on several projects.
 * This fork converts from flow to Typescript, adds a few plugins and removes several that were not wanted
 
 ### [DEMO](https://openstax.github.io/perry-white/?pg=405335a3-7cff-4df2-a9ad-29062a4af261@8.14:95497188-90c9-4aff-9446-222d4d6f9743@9)
+
+
+## Development
+
+* `yarn start` will fire up webpack and serve the demo page for adhoc testing
+* `yarn build:release` will compile for distribution
