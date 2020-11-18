@@ -36,7 +36,6 @@ class CustomRuntime {
     }
 
     getProxyImageSrc(src) {
-        console.log(src)
         return src.startsWith('/') ? `https://archive.cnx.org${src}` : src
     }
 

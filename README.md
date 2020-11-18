@@ -21,4 +21,4 @@ Perry White is based on several projects.
 * That was extended further by the [Licit Editor](https://github.com/MO-Movia/licit)
 * This fork converts from flow to Typescript, adds a few plugins and removes several that were not wanted
 
-### [DEMO](https://nathanstitt.github.io/perry-white/?pg=405335a3-7cff-4df2-a9ad-29062a4af261@8.14:95497188-90c9-4aff-9446-222d4d6f9743@9)
+### [DEMO](https://openstax.github.io/perry-white/?pg=405335a3-7cff-4df2-a9ad-29062a4af261@8.14:95497188-90c9-4aff-9446-222d4d6f9743@9)
