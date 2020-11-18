@@ -15,7 +15,7 @@ import {prefixed} from '../util'
 
 const EMPTY_SRC =
     'data:image/gif;base64,' +
-    'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 class MathViewBody extends React.Component<NodeViewProps, any> {
 
@@ -43,7 +43,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
     render() {
         // TODO: Resolve `readOnly`;
         const readOnly = false
-        const {editorView, node, selected, focused} = this.props
+        const {node, selected, focused} = this.props
         const {attrs} = node
         const {math} = attrs
         const {isEditing} = this.state
@@ -166,7 +166,7 @@ class MathNodeView extends CustomNodeView {
 
     _updateDOM(el: HTMLElement): void {
         const {align} = this.props.node.attrs
-    let className = prefixed('math-view')
+        let className = prefixed('math-view')
         if (align) {
             className += ' align-' + align
         }

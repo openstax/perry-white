@@ -104,8 +104,8 @@ class EditorToolbar extends React.Component<Props, State> {
                 const obj = group[label]
                 if (isReactClass(obj)) {
                     // JSX requies the component to be named with upper camel case.
-                    const ThatComponent = obj;
-                    const {editorState, editorView, dispatchTransaction} = this.props;
+                    const ThatComponent = obj
+                    const {editorState, editorView, dispatchTransaction} = this.props
                     return (
                         <ThatComponent
                             dispatch={dispatchTransaction}
@@ -113,13 +113,13 @@ class EditorToolbar extends React.Component<Props, State> {
                             editorView={editorView}
                             key={label}
                         />
-                    );
+                    )
                 } else if (obj instanceof UICommand) {
-                    return this._renderButton(label, obj);
+                    return this._renderButton(label, obj)
                 } else if (Array.isArray(obj)) {
-                    return this._renderMenuButton(label, obj);
+                    return this._renderMenuButton(label, obj)
                 } else {
-                    return null;
+                    return null
                 }
             })
             .filter(Boolean)
