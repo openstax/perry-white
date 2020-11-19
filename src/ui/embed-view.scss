@@ -1,0 +1,19 @@
+
+.#{$prefix}embed-view-body {
+    .placeholder {
+        border: var(--#{$prefix}border-grey);
+        background: var(--#{$prefix}table-header-background-color);
+        border-width: 1px;
+        width: 716px; // px what youtube recommends
+        height: 403px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .pw-icon {
+            font-size: 180px;
+        }
+    }
+}

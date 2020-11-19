@@ -10,7 +10,7 @@ import {
     registerEditorView,
     releaseEditorView,
 } from '../CZIProseMirror'
-import {BOOKMARK, IMAGE, LIST_ITEM, MATH} from '../NodeNames'
+import {BOOKMARK, IMAGE, LIST_ITEM, MATH, EMBED} from '../NodeNames'
 import WebFontLoader from '../WebFontLoader'
 import {preLoadFonts} from '../FontTypeMarkSpec'
 import createEmptyEditorState from '../createEmptyEditorState'
@@ -21,6 +21,7 @@ import CustomNodeView from './CustomNodeView'
 import ImageNodeView from './ImageNodeView'
 import ListItemNodeView from './ListItemNodeView'
 import MathNodeView from './MathNodeView'
+import EmbedNodeView from './EmbedNodeView'
 import handleEditorDrop from './handleEditorDrop'
 import handleEditorKeyDown from './handleEditorKeyDown'
 import handleEditorPaste from './handleEditorPaste'
@@ -70,6 +71,7 @@ export const DEFAULT_NODE_VIEWS = Object.freeze({
     [MATH]: MathNodeView,
     [BOOKMARK]: BookmarkNodeView,
     [LIST_ITEM]: ListItemNodeView,
+    [EMBED]: EmbedNodeView,
 })
 
 const EDITOR_EMPTY_STATE = Object.freeze(createEmptyEditorState())

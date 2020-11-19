@@ -48,6 +48,7 @@ const {
     INDENT_LESS,
     INDENT_MORE,
     LINK_SET_URL,
+    EMBED_SET_URL,
     MATH_EDIT,
     OL,
     STRIKE,
@@ -160,6 +161,7 @@ export const COMMAND_GROUPS:COMMAND_GROUPS_T = [
         '[H1] Header 1': HeadingCommandMenuButton,
     },
     {
+        '[video_library] Insert video': EMBED_SET_URL,
         '[link] Apply link': LINK_SET_URL,
         '[image] Insert image': [
             {
