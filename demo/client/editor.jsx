@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef } from 'react'
 import { Editor } from '../../src/index'
 import convertFromHTML from '../../src/convertFromHTML'
 import convertToHTML from '../../src/convertToHTML'
+import convertToJSON from '../../src/convertToJSON'
 import CustomRuntime from './CustomRuntime'
 
 const EditorDemo = ({ defaultValue }) => {
@@ -19,6 +20,9 @@ const EditorDemo = ({ defaultValue }) => {
                .forEach(i => i.src = `https://archive.cnx.org${new URL(i.src).pathname}`)
     }
 
+    const logJSON = () => {
+        console.log(convertToJSON(editorView.state))
+    }
     return (
         <div style={{ height: '100%' }}>
 
@@ -35,6 +39,7 @@ const EditorDemo = ({ defaultValue }) => {
 
             <div>
                 <button onClick={setContent}>Export as HTML</button>
+                <button onClick={logJSON}>consoe.log state</button>
                 <button onClick={() => htmlRef.current.innerHTML = ''}>Clear</button>
             </div>
 

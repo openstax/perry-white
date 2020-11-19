@@ -58,6 +58,10 @@
   justify-content: flex-end;
 }
 
+.#{$prefix}form-buttons .spacer {
+  flex: 1;
+}
+
 .#{$prefix}form-buttons .#{$prefix}custom-button {
   margin: 0 5px;
 }
