@@ -1,46 +1,46 @@
 $prefix: pw-;
 
 :root {
-  --#{$prefix}blockquote-background-color: rgba(0, 0, 0, 0.05);
-  --#{$prefix}blockquote-border: solid 8px rgba(0, 0, 0, 0.6);
-  --#{$prefix}blockquote-color: #555;
-  --#{$prefix}blockquote-font-family: 'Open Sans';
-  --#{$prefix}border-blue: solid 1px #5882eb;
-  --#{$prefix}border-grey: solid 1px #ccc;
-  --#{$prefix}border-red: solid 1px #f00;
-  --#{$prefix}button-hover-background-color: rgba(0, 0, 0, 0.05);
-  --#{$prefix}button-radius: 5px;
-  --#{$prefix}button-text-color: #666;
-  --#{$prefix}color-grey-200: rgba(0, 0, 0, 0.46);
-  --#{$prefix}font-family: helvetica;
-  --#{$prefix}font-size-small: 12px;
-  --#{$prefix}font-size: 13px;
-  --#{$prefix}link-color: rgb(0, 0, 238);
-  --#{$prefix}overlay-radius: 3px;
-  --#{$prefix}overlay-shadow: 0 1px 2px rgba(0, 0, 0, 0.46);
-  --#{$prefix}page-background-color: #e6e6e6;
-  --#{$prefix}page-background-color: #e6e6e6;
-  --#{$prefix}placeholder-text-color: #dedede;
-  --#{$prefix}selection-highlight-color-dark: rgba(152, 204, 253, 0.8);
-  --#{$prefix}selection-highlight-color: rgba(152, 204, 253, 0.4);
-  --#{$prefix}table-header-background-color: rgba(0, 0, 0, 0.05);
-  --#{$prefix}table-border-color: #000;
-  --#{$prefix}doc-padding-default: 14.5mm;
-  --#{$prefix}doc-width-us-letter-portrait: 216mm;
-  --#{$prefix}doc-width-us-letter-landscape: 279mm;
-  --#{$prefix}doc-width-us-desktop-screen-4-3: 120vh;
-  --#{$prefix}doc-width-us-desktop-screen-16-9: 142vh;
+    --#{$prefix}blockquote-background-color: rgba(0, 0, 0, 0.05);
+    --#{$prefix}blockquote-border: solid 8px rgba(0, 0, 0, 0.6);
+    --#{$prefix}blockquote-color: #555;
+    --#{$prefix}blockquote-font-family: 'Open Sans';
+    --#{$prefix}border-blue: solid 1px #5882eb;
+    --#{$prefix}border-grey: solid 1px #ccc;
+    --#{$prefix}border-red: solid 1px #f00;
+    --#{$prefix}button-hover-background-color: rgba(0, 0, 0, 0.05);
+    --#{$prefix}button-radius: 5px;
+    --#{$prefix}button-text-color: #666;
+    --#{$prefix}color-grey-200: rgba(0, 0, 0, 0.46);
+    --#{$prefix}font-family: helvetica;
+    --#{$prefix}font-size-small: 12px;
+    --#{$prefix}font-size: 13px;
+    --#{$prefix}link-color: rgb(0, 0, 238);
+    --#{$prefix}overlay-radius: 3px;
+    --#{$prefix}overlay-shadow: 0 1px 2px rgba(0, 0, 0, 0.46);
+    --#{$prefix}page-background-color: #e6e6e6;
+    --#{$prefix}page-background-color: #e6e6e6;
+    --#{$prefix}placeholder-text-color: #dedede;
+    --#{$prefix}selection-highlight-color-dark: rgba(152, 204, 253, 0.8);
+    --#{$prefix}selection-highlight-color: rgba(152, 204, 253, 0.4);
+    --#{$prefix}table-header-background-color: rgba(0, 0, 0, 0.05);
+    --#{$prefix}table-border-color: #000;
+    --#{$prefix}doc-padding-default: 14.5mm;
+    --#{$prefix}doc-width-us-letter-portrait: 216mm;
+    --#{$prefix}doc-width-us-letter-landscape: 279mm;
+    --#{$prefix}doc-width-us-desktop-screen-4-3: 120vh;
+    --#{$prefix}doc-width-us-desktop-screen-16-9: 142vh;
 
-  /* content styles */
-  --#{$prefix}content-body-background-color: #fff;
-  --#{$prefix}content-font-color: #000;
-  --#{$prefix}content-font-family: arial;
-  --#{$prefix}content-font-size-h1: 18px;
-  --#{$prefix}content-font-size-h2: 16px;
-  --#{$prefix}content-font-size-h3: 13px;
-  --#{$prefix}content-font-size: 11pt;
+    /* content styles */
+    --#{$prefix}content-body-background-color: #fff;
+    --#{$prefix}content-font-color: #000;
+    --#{$prefix}content-font-family: arial;
+    --#{$prefix}content-font-size-h1: 18px;
+    --#{$prefix}content-font-size-h2: 16px;
+    --#{$prefix}content-font-size-h3: 13px;
+    --#{$prefix}content-font-size: 11pt;
 
-  /* This maps to the default line spacing value of 1.5 in Google Doc */
-  --#{$prefix}content-line-height: 138%;
-  --#{$prefix}content-link-color: rgb(0, 0, 238);
+    /* This maps to the default line spacing value of 1.5 in Google Doc */
+    --#{$prefix}content-line-height: 138%;
+    --#{$prefix}content-link-color: rgb(0, 0, 238);
 }

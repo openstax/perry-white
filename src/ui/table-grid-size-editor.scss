@@ -1,37 +1,37 @@
 .#{$prefix}table-grid-size-editor {
-  background: #fff;
-  box-shadow: var(--#{$prefix}overlay-shadow);
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
+    background: #fff;
+    box-shadow: var(--#{$prefix}overlay-shadow);
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
 }
 
 .#{$prefix}table-grid-size-editor-body {
-  position: relative;
+    position: relative;
 }
 
 .#{$prefix}table-grid-size-editor-body::after {
-  background: rgba(0, 0, 0, 0);
-  bottom: -50px;
-  content: '';
-  left: 0;
-  position: absolute;
-  right: -50px;
-  top: -50px;
+    background: rgba(0, 0, 0, 0);
+    bottom: -50px;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: -50px;
+    top: -50px;
 }
 
 .#{$prefix}table-grid-size-editor-cell {
-  border: var(--#{$prefix}border-grey);
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 2;
+    border: var(--#{$prefix}border-grey);
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 2;
 }
 
 .#{$prefix}table-grid-size-editor-cell.selected {
-  background: var(--#{$prefix}selection-highlight-color);
-  border-color: var(--#{$prefix}selection-highlight-color-dark);
+    background: var(--#{$prefix}selection-highlight-color);
+    border-color: var(--#{$prefix}selection-highlight-color-dark);
 }
 
 .#{$prefix}table-grid-size-editor-footer {
-  padding-bottom: 5px;
-  text-align: center;
+    padding-bottom: 5px;
+    text-align: center;
 }

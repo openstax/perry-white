@@ -1,173 +1,173 @@
 html {
-  counter-reset:
-    #{$prefix}counter-0 #{$prefix}counter-1 #{$prefix}counter-2 #{$prefix}counter-3
-    #{$prefix}counter-4 #{$prefix}counter-5 #{$prefix}counter-6 #{$prefix}counter-7;
+    counter-reset:
+        #{$prefix}counter-0 #{$prefix}counter-1 #{$prefix}counter-2 #{$prefix}counter-3
+        #{$prefix}counter-4 #{$prefix}counter-5 #{$prefix}counter-6 #{$prefix}counter-7;
 }
 
 .ProseMirror ol,
 .ProseMirror ul {
-  /*
+    /*
    * Use `column-span: all` and `display: flow-root` to force formatting context
    * https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context
    */
-  column-span: all;
-  counter-reset: none;
-  display: flow-root;
-  list-style-type: none;
-  margin-block-end: 0;
-  margin-block-start: 0;
-  margin: 0;
-  padding: 0;
+    column-span: all;
+    counter-reset: none;
+    display: flow-root;
+    list-style-type: none;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* bullet indentation */
 .ProseMirror li {
-  /* This assumes the space needed for 3 digits numbers */
-  display: block;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  zoom: 1;
+    /* This assumes the space needed for 3 digits numbers */
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    zoom: 1;
 }
 
 .ProseMirror li > p {
-  margin: 0;
-  margin-block-end: 0;
-  margin-block-start: 0;
-  padding-left: 24pt;
+    margin: 0;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-left: 24pt;
 }
 
 /* https://css-tricks.com/numbering-in-style/ */
 .ProseMirror ul li > p::before {
-  color: var(--#{$prefix}list-style-color);
+    color: var(--#{$prefix}list-style-color);
 
-  /* content: '\2022'; */
-  display: inline-block;
-  font-size: 1em;
-  line-height: 1em;
-  position: relative;
-  text-align: right;
-  top: 0;
-  left: -5px;
-  margin-left: -24pt;
-  width: 24pt;
+    /* content: '\2022'; */
+    display: inline-block;
+    font-size: 1em;
+    line-height: 1em;
+    position: relative;
+    text-align: right;
+    top: 0;
+    left: -5px;
+    margin-left: -24pt;
+    width: 24pt;
 }
 
 .ProseMirror ol {
-  /* counter-reset: #{$prefix}counter;
+    /* counter-reset: #{$prefix}counter;
   list-style-type: none; */
-  --#{$prefix}counter-name: #{$prefix}counter-0;
-  --#{$prefix}list-style-type: decimal;
-  --#{$prefix}counter-reset: 0;
+    --#{$prefix}counter-name: #{$prefix}counter-0;
+    --#{$prefix}list-style-type: decimal;
+    --#{$prefix}counter-reset: 0;
 
-  counter-reset: none;
+    counter-reset: none;
 }
 
 .ProseMirror ol > li {
-  counter-increment: var(--#{$prefix}counter-name);
+    counter-increment: var(--#{$prefix}counter-name);
 }
 
 .ProseMirror ol:not([data-counter-reset='none']) {
-  counter-reset: var(--#{$prefix}counter-name) var(--#{$prefix}counter-reset);
+    counter-reset: var(--#{$prefix}counter-name) var(--#{$prefix}counter-reset);
 }
 
 .ProseMirror ol[data-counter-reset='none'] {
-  counter-reset: none;
+    counter-reset: none;
 }
 
 .ProseMirror ol[type='decimal'][data-indent='6'] > li > ::before {
-  content: counter(#{$prefix}counter-6, decimal) '. ';
+    content: counter(#{$prefix}counter-6, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='5'] > li > p ::before {
-  content: counter(#{$prefix}counter-5, decimal) '. ';
+    content: counter(#{$prefix}counter-5, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='4'] > li > p ::before {
-  content: counter(#{$prefix}counter-4, decimal) '. ';
+    content: counter(#{$prefix}counter-4, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='3'] > li > ::before {
-  content: counter(#{$prefix}counter-3, decimal) '. ';
+    content: counter(#{$prefix}counter-3, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='2'] > li > p::before {
-  content: counter(#{$prefix}counter-2, decimal) '. ';
+    content: counter(#{$prefix}counter-2, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='1'] > li > p::before {
-  content: counter(#{$prefix}counter-1, decimal) '. ';
+    content: counter(#{$prefix}counter-1, decimal) '. ';
 }
 
 .ProseMirror ol[type='decimal'][data-indent='0'] > li > p::before {
-  color: var(--#{$prefix}list-style-color);
-  content: counter(#{$prefix}counter-0, decimal) '. ';
-  display: inline-block;
-  font-size: 1em;
-  line-height: 1em;
-  position: relative;
-  text-align: right;
-  top: 0;
-  left: -5px;
-  margin-left: -24pt;
-  width: 24pt;
+    color: var(--#{$prefix}list-style-color);
+    content: counter(#{$prefix}counter-0, decimal) '. ';
+    display: inline-block;
+    font-size: 1em;
+    line-height: 1em;
+    position: relative;
+    text-align: right;
+    top: 0;
+    left: -5px;
+    margin-left: -24pt;
+    width: 24pt;
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='6'] > li > p::before {
-  content: counter(#{$prefix}counter-6, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-6, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='5'] > li > p::before {
-  content: counter(#{$prefix}counter-5, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-5, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='4'] > li > p::before {
-  content: counter(#{$prefix}counter-4, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-4, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='3'] > li > p::before {
-  content: counter(#{$prefix}counter-3, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-3, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='2'] > li > p::before {
-  content: counter(#{$prefix}counter-2, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-2, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='1'] > li > p::before {
-  content: counter(#{$prefix}counter-1, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-1, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-alpha'][data-indent='0'] > li > p::before {
-  content: counter(#{$prefix}counter-0, lower-alpha) '. ';
+    content: counter(#{$prefix}counter-0, lower-alpha) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='6'] > li > p::before {
-  content: counter(#{$prefix}counter-6, lower-roman) '. ';
+    content: counter(#{$prefix}counter-6, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='5'] > li > p::before {
-  content: counter(#{$prefix}counter-5, lower-roman) '. ';
+    content: counter(#{$prefix}counter-5, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='4'] > li > p::before {
-  content: counter(#{$prefix}counter-4, lower-roman) '. ';
+    content: counter(#{$prefix}counter-4, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='3'] > li > p::before {
-  content: counter(#{$prefix}counter-3, lower-roman) '. ';
+    content: counter(#{$prefix}counter-3, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='2'] > li > p::before {
-  content: counter(#{$prefix}counter-2, lower-roman) '. ';
+    content: counter(#{$prefix}counter-2, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='1'] > li > ::before {
-  content: counter(#{$prefix}counter-1, lower-roman) '. ';
+    content: counter(#{$prefix}counter-1, lower-roman) '. ';
 }
 
 .ProseMirror ol[type='lower-roman'][data-indent='0'] > li::before {
-  content: counter(#{$prefix}counter-0, lower-roman) '. ';
+    content: counter(#{$prefix}counter-0, lower-roman) '. ';
 }
 
 /* [FS] IRAD-947 2020-05-26
@@ -179,18 +179,18 @@ Bullet list type changing fix */
 .ProseMirror ul[data-indent='4'] li > p::before,
 /* prettier-ignore */
 .ProseMirror ul[data-indent='1'] li > p::before {
-  content: '\25cb'; /* circle */
+    content: '\25cb'; /* circle */
 }
 
 /* prettier-ignore */
 .ProseMirror ul[data-indent='5'] li > p::before,
 /* prettier-ignore */
 .ProseMirror ul[data-indent='2'] li > p::before {
-  content: '\25a0'; /* square */
+    content: '\25a0'; /* square */
 }
 
 .ProseMirror ul[data-indent='6'] li > p::before,
 .ProseMirror ul[data-indent='3'] li > p::before,
 .ProseMirror ul[data-indent='0'] li > p::before {
-  content: '\2022'; /* circle */
+    content: '\2022'; /* circle */
 }

@@ -1,117 +1,117 @@
 .#{$prefix}image-view {
-  clear: both;
-  display: inline-block;
-  line-height: 0;
-  margin: 0 2px; /* This should be synced to the constant IMAGE_MARGIN in JS. */
-  max-width: 100%;
-  text-align: center;
-  vertical-align: baseline;
+    clear: both;
+    display: inline-block;
+    line-height: 0;
+    margin: 0 2px; /* This should be synced to the constant IMAGE_MARGIN in JS. */
+    max-width: 100%;
+    text-align: center;
+    vertical-align: baseline;
 }
 
 .#{$prefix}image-view.ProseMirror-selectednode {
-  outline: none;
+    outline: none;
 }
 
 .#{$prefix}image-view.align-left {
-  float: left;
-  margin: 0 40px 20px 0;
+    float: left;
+    margin: 0 40px 20px 0;
 }
 
 .#{$prefix}image-view.align-right {
-  float: right;
-  margin: 0 0 20px 40px;
+    float: right;
+    margin: 0 0 20px 40px;
 }
 
 .#{$prefix}image-view.align-center {
-  clear: both;
-  display: block;
-  float: none;
-  margin: 20px 0;
+    clear: both;
+    display: block;
+    float: none;
+    margin: 20px 0;
 }
 
 .#{$prefix}image-view-body-img-clip {
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .#{$prefix}image-view-body {
-  clear: both;
-  display: inline-block;
-  max-width: 100%;
-  position: relative;
+    clear: both;
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
 }
 
 .#{$prefix}image-view-body.loading::before {
-  animation: #{$prefix}animation_blink normal 800ms infinite ease-in-out;
-  background-color: #cdcdcd;
-  bottom: 0;
-  content: '';
-  cursor: wait;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 3;
+    animation: #{$prefix}animation_blink normal 800ms infinite ease-in-out;
+    background-color: #cdcdcd;
+    bottom: 0;
+    content: '';
+    cursor: wait;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
 }
 
 .#{$prefix}image-view-body.error::before {
-  background-color: #fff;
-  outline: solid 1px #cdcdcd;
-  bottom: 0;
-  content: '';
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 3;
+    background-color: #fff;
+    outline: solid 1px #cdcdcd;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
 }
 
 .#{$prefix}image-view-body .#{$prefix}icon.error {
-  color: red;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  z-index: 4;
-  margin: -11px 0 0 -11px;
-  font-size: 22px;
+    color: red;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    margin: -11px 0 0 -11px;
+    font-size: 22px;
 }
 
 .#{$prefix}image-view-body.selected::after {
-  /* simulated selection highlight */
-  background-color: var(--#{$prefix}selection-highlight-color-dark);
-  bottom: 0;
-  content: '';
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
+    /* simulated selection highlight */
+    background-color: var(--#{$prefix}selection-highlight-color-dark);
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
 }
 
 .#{$prefix}image-view-body.active.selected::after {
-  /* hide the highlight so user can resize the image easily. */
-  display: none;
+    /* hide the highlight so user can resize the image easily. */
+    display: none;
 }
 
 .#{$prefix}image-view-body.active {
-  background-color: transparent;
-  box-shadow: 0 0 0 2px var(--#{$prefix}selection-highlight-color-dark);
+    background-color: transparent;
+    box-shadow: 0 0 0 2px var(--#{$prefix}selection-highlight-color-dark);
 }
 
 .#{$prefix}image-view-body.error {
-  /* outline: var(--#{$prefix}border-red); */
+    /* outline: var(--#{$prefix}border-red); */
 }
 
 @media only print {
-  .#{$prefix}image-view-body.active {
-    box-shadow: none;
-  }
+    .#{$prefix}image-view-body.active {
+        box-shadow: none;
+    }
 }
 
 @keyframes #{$prefix}animation_blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }

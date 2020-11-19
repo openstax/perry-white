@@ -1,87 +1,87 @@
 .#{$prefix}custom-buttons {
-  white-space: nowrap;
-  margin: 0 8px;
+    white-space: nowrap;
+    margin: 0 8px;
 }
 
 .#{$prefix}custom-button {
-  background-clip: padding-box;
-  background-color: #fff;
-  border-radius: 5px;
-  border: var(--#{$prefix}border-grey);
-  box-sizing: border-box;
-  color: var(--#{$prefix}button-text-color);
-  cursor: pointer;
-  display: inline-block;
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  font-weight: normal;
-  line-height: 1.2em;
-  overflow: hidden;
-  padding: 6px 12px;
-  position: relative;
-  text-overflow: ellipsis;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
+    background-clip: padding-box;
+    background-color: #fff;
+    border-radius: 5px;
+    border: var(--#{$prefix}border-grey);
+    box-sizing: border-box;
+    color: var(--#{$prefix}button-text-color);
+    cursor: pointer;
+    display: inline-block;
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    font-weight: normal;
+    line-height: 1.2em;
+    overflow: hidden;
+    padding: 6px 12px;
+    position: relative;
+    text-overflow: ellipsis;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .#{$prefix}custom-button.use-icon {
-  border-color: transparent;
-  padding: 0;
+    border-color: transparent;
+    padding: 0;
 }
 
 .#{$prefix}custom-button:focus,
 .#{$prefix}custom-button:hover {
-  background-color: #f0f0f0;
-  border-color: #555;
-  outline: none;
+    background-color: #f0f0f0;
+    border-color: #555;
+    outline: none;
 }
 
 .#{$prefix}custom-button.active {
-  /*
+    /*
    * Use text-stroke to strengthen teh text, do not use "bold" because it will
    * cause layout reflow.
    * Firefox & Edge specifically only support the -webkit-text-stroke property.
    * https://caniuse.com/#feat=text-stroke
    */
-  -webkit-text-stroke-color: #000;
-  -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-width: 0.5px;
 
-  /* text-shadow: 0px 0px 1px #000; */
-  border-color: #666;
-  color: #000;
+    /* text-shadow: 0px 0px 1px #000; */
+    border-color: #666;
+    color: #000;
 }
 
 .#{$prefix}custom-button.pressed {
-  background-color: #e0e0e0;
+    background-color: #e0e0e0;
 }
 
 .#{$prefix}custom-button.disabled,
 .#{$prefix}custom-button.disabled:hover {
-  -webkit-text-stroke-width: 0;
-  background: #fff;
-  border-color: #ccc;
-  color: #dedede;
-  cursor: unset;
-  pointer-events: none;
+    -webkit-text-stroke-width: 0;
+    background: #fff;
+    border-color: #ccc;
+    color: #dedede;
+    cursor: unset;
+    pointer-events: none;
 }
 
 .#{$prefix}custom-buttons .#{$prefix}custom-button {
-  border-radius: 0;
-  margin-left: 0;
+    border-radius: 0;
+    margin-left: 0;
 }
 
 .#{$prefix}custom-buttons > .#{$prefix}custom-button:first-child {
-  border-top-left-radius: var(--#{$prefix}button-radius);
-  border-bottom-left-radius: var(--#{$prefix}button-radius);
+    border-top-left-radius: var(--#{$prefix}button-radius);
+    border-bottom-left-radius: var(--#{$prefix}button-radius);
 }
 
 .#{$prefix}custom-buttons > .#{$prefix}custom-button:last-child {
-  border-radius: 0;
-  border-top-right-radius: var(--#{$prefix}button-radius);
-  border-bottom-right-radius: var(--#{$prefix}button-radius);
+    border-radius: 0;
+    border-top-right-radius: var(--#{$prefix}button-radius);
+    border-bottom-right-radius: var(--#{$prefix}button-radius);
 }
 
 .#{$prefix}custom-buttons > .#{$prefix}custom-button:only-child {
-  border-radius: var(--#{$prefix}button-radius);
+    border-radius: var(--#{$prefix}button-radius);
 }

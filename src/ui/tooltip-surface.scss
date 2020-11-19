@@ -1,42 +1,42 @@
 .#{$prefix}tooltip-surface.#{$prefix}animation-fade-in {
-  display: contents;
+    display: contents;
 }
 
 .#{$prefix}tooltip-view {
-  background-color: #393939;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: #fff;
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  margin: 20px 0 0 0;
-  min-width: 100px;
-  padding: 6px 8px;
-  pointer-events: none;
-  text-align: center;
-  user-select: none;
+    background-color: #393939;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    margin: 20px 0 0 0;
+    min-width: 100px;
+    padding: 6px 8px;
+    pointer-events: none;
+    text-align: center;
+    user-select: none;
 }
 
 @media only print {
-  .#{$prefix}tooltip-view {
-    display: none;
-  }
+    .#{$prefix}tooltip-view {
+        display: none;
+    }
 }
 
 .#{$prefix}tooltip-view.#{$prefix}animation-fade-in {
-  animation-duration: 250ms;
-  animation-delay: 150ms;
+    animation-duration: 250ms;
+    animation-delay: 150ms;
 }
 
 .#{$prefix}tooltip-view::after {
-  background-color: #393939;
-  content: '';
-  height: 8px;
-  left: var(--#{$prefix}pop-up-anchor-offset-left);
-  margin-left: -6px;
-  position: absolute;
-  top: 16px;
-  transform: rotate(45deg);
-  width: 8px;
-  z-index: -1;
+    background-color: #393939;
+    content: '';
+    height: 8px;
+    left: var(--#{$prefix}pop-up-anchor-offset-left);
+    margin-left: -6px;
+    position: absolute;
+    top: 16px;
+    transform: rotate(45deg);
+    width: 8px;
+    z-index: -1;
 }

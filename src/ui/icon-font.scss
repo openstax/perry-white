@@ -2,11 +2,11 @@
 
 /* Now loaded locally, so that it work in closed network as well. */
 @font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local('Material Icons'),
-    local('MaterialIcons-Regular'),
-    url(./ui/fonts/MaterialIcons-Regular.ttf) format('truetype');
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(./ui/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }

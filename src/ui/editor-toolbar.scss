@@ -1,116 +1,116 @@
 .#{$prefix}editor-toolbar {
-  background: #fff;
-  height: 36px;
-  line-height: 32px;
-  pointer-events: none;
-  position: relative;
-  user-select: none;
+    background: #fff;
+    height: 36px;
+    line-height: 32px;
+    pointer-events: none;
+    position: relative;
+    user-select: none;
 }
 
 .#{$prefix}editor-toolbar-wrapped-anchor {
-  display: inline-block;
-  height: 1px;
-  vertical-align: middle;
-  width: 1px;
+    display: inline-block;
+    height: 1px;
+    vertical-align: middle;
+    width: 1px;
 }
 
 .#{$prefix}editor-toolbar-flex {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  /* Why 200px is hard-coded? */
+    /* Why 200px is hard-coded? */
 
-  /* See https://css-tricks.com/using-css-transitions-auto-dimensions/ */
-  height: 200px;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
+    /* See https://css-tricks.com/using-css-transitions-auto-dimensions/ */
+    height: 200px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
 }
 
 .#{$prefix}editor-toolbar .#{$prefix}editor-toolbar-body {
-  /* Only reveal the first row of buttons by default */
+    /* Only reveal the first row of buttons by default */
 
-  /* 0.162 =~ 36px */
-  flex: 0.162;
+    /* 0.162 =~ 36px */
+    flex: 0.162;
 
-  /* See https://css-tricks.com/using-css-transitions-auto-dimensions/ */
-  transition: flex 0.3s ease-out;
-  overflow: hidden;
+    /* See https://css-tricks.com/using-css-transitions-auto-dimensions/ */
+    transition: flex 0.3s ease-out;
+    overflow: hidden;
 }
 
 .#{$prefix}editor-toolbar.expanded .#{$prefix}editor-toolbar-body {
-  /* Reveal the all rows of buttons. */
-  flex: 1;
+    /* Reveal the all rows of buttons. */
+    flex: 1;
 }
 
 .#{$prefix}editor-toolbar-expand-button {
-  pointer-events: auto;
-  position: absolute;
-  right: 2px;
-  top: 2px;
+    pointer-events: auto;
+    position: absolute;
+    right: 2px;
+    top: 2px;
 }
 
 .#{$prefix}editor-toolbar-body-content {
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.26);
-  box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.26);
+    box-sizing: border-box;
 
-  /* [FS] IRAD-1018 2020-08-13
+    /* [FS] IRAD-1018 2020-08-13
      Handle map properly so that undo works correctly for */
 
-  /* min-width: 450px; */
-  overflow: hidden;
-  padding: 2px 40px 2px 0;
-  position: relative;
+    /* min-width: 450px; */
+    overflow: hidden;
+    padding: 2px 40px 2px 0;
+    position: relative;
 }
 
 .#{$prefix}editor-toolbar .#{$prefix}custom-button {
-  box-sizing: border-box;
-  height: 30px;
-  line-height: 28px;
-  padding: 0 6px;
-  pointer-events: auto;
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 28px;
+    padding: 0 6px;
+    pointer-events: auto;
 }
 
 .#{$prefix}editor-toolbar .#{$prefix}custom-buttons {
-  display: inline-block;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-  position: relative;
-  white-space: nowrap;
-  border-right: solid 1px #efefef;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: relative;
+    white-space: nowrap;
+    border-right: solid 1px #efefef;
 }
 
 .#{$prefix}editor-toolbar .#{$prefix}custom-button.#{$prefix}custom-button.#{$prefix}custom-button {
-  border-color: transparent;
-  border-radius: 5px;
+    border-color: transparent;
+    border-radius: 5px;
 }
 
 .#{$prefix}editor-toolbar .#{$prefix}custom-button.use-icon .#{$prefix}icon {
-  margin: 4px 0;
+    margin: 4px 0;
 }
 
 .#{$prefix}editor-toolbar-background {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 3;
-  pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    pointer-events: none;
 }
 
 .#{$prefix}editor-toolbar-background-line {
-  box-sizing: border-box;
-  height: 32px;
-  box-shadow: 0 1px 0 0.2px #efefef;
+    box-sizing: border-box;
+    height: 32px;
+    box-shadow: 0 1px 0 0.2px #efefef;
 }
 
 @media only print {
-  .#{$prefix}editor-toolbar {
-    display: none;
-  }
+    .#{$prefix}editor-toolbar {
+        display: none;
+    }
 }

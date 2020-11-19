@@ -1,89 +1,89 @@
 .#{$prefix}form {
-  background: #fff;
-  border: none;
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  margin: 0;
-  padding: 20px;
+    background: #fff;
+    border: none;
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    margin: 0;
+    padding: 20px;
 }
 
 .#{$prefix}form legend {
-  border: none;
-  margin: 0 0 20px 0;
-  padding: 0;
-  font-size: var(--#{$prefix}content-font-size-h2);
-  user-select: none;
+    border: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-size: var(--#{$prefix}content-font-size-h2);
+    user-select: none;
 }
 
 .#{$prefix}form hr {
-  background: #fff;
-  border: var(--#{$prefix}border-grey);
-  border-width: 1px 0 0 0;
-  height: 1px;
-  margin: 20px 0;
+    background: #fff;
+    border: var(--#{$prefix}border-grey);
+    border-width: 1px 0 0 0;
+    height: 1px;
+    margin: 20px 0;
 }
 
 .#{$prefix}form fieldset {
-  border: none;
-  margin: 0;
-  padding: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 .#{$prefix}form input[type="text"] {
-  border-width: 0 0 2px 0;
-  border: var(--#{$prefix}border-blue);
-  box-sizing: border-box;
-  display: block;
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  margin: 0 0 8px 0;
-  outline: none;
-  padding: 12px 0;
-  text-indent: 12px;
-  width: 100%;
+    border-width: 0 0 2px 0;
+    border: var(--#{$prefix}border-blue);
+    box-sizing: border-box;
+    display: block;
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    margin: 0 0 8px 0;
+    outline: none;
+    padding: 12px 0;
+    text-indent: 12px;
+    width: 100%;
 }
 
 .#{$prefix}form em {
-  color: var(--#{$prefix}color-grey-200);
-  display: block;
-  font-size: var(--#{$prefix}font-size-small);
-  font-style: normal;
-  margin: 0 0 8px 0;
-  user-select: none;
+    color: var(--#{$prefix}color-grey-200);
+    display: block;
+    font-size: var(--#{$prefix}font-size-small);
+    font-style: normal;
+    margin: 0 0 8px 0;
+    user-select: none;
 }
 
 .#{$prefix}form-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .#{$prefix}form-buttons .spacer {
-  flex: 1;
+    flex: 1;
 }
 
 .#{$prefix}form-buttons .#{$prefix}custom-button {
-  margin: 0 5px;
+    margin: 0 5px;
 }
 
 .alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-  width: 340px;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    width: 340px;
 }
 
 .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .closebtn:hover {
-  color: black;
+    color: black;
 }

@@ -1,62 +1,62 @@
 .#{$prefix}math-view {
-  display: inline-block;
-  margin: 0;
-  position: relative;
-  text-align: center;
-  white-space: nowrap;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .#{$prefix}math-view.ProseMirror-selectednode {
-  outline: none;
+    outline: none;
 }
 
 .#{$prefix}math-view-body.selected {
-  background-color: var(--#{$prefix}selection-highlight-color-dark);
+    background-color: var(--#{$prefix}selection-highlight-color-dark);
 }
 
 .#{$prefix}math-view-body.active {
-  background-color: transparent;
-  box-shadow: 0 0 1px 2px var(--#{$prefix}selection-highlight-color-dark);
+    background-color: transparent;
+    box-shadow: 0 0 1px 2px var(--#{$prefix}selection-highlight-color-dark);
 }
 
 .#{$prefix}math-view-body {
-  border: solid 1px transparent;
-  display: inline-block;
-  padding: 0 2px;
-  user-select: none;
+    border: solid 1px transparent;
+    display: inline-block;
+    padding: 0 2px;
+    user-select: none;
 }
 
 .#{$prefix}math-view-body-img {
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .#{$prefix}math-view-body-content {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .#{$prefix}math-view-body-content .katex {
-  font-display: block;
+    font-display: block;
 }
 
 .#{$prefix}math-view.align-left {
-  float: left;
-  margin: 0 20px 20px 0;
+    float: left;
+    margin: 0 20px 20px 0;
 }
 
 .#{$prefix}math-view.align-right {
-  float: right;
-  margin: 0 0 20px 20px;
+    float: right;
+    margin: 0 0 20px 20px;
 }
 
 .#{$prefix}math-view.align-center {
-  clear: both;
-  display: inline-block;
-  float: none;
-  margin: 20px 0;
-  width: 100%;
+    clear: both;
+    display: inline-block;
+    float: none;
+    margin: 20px 0;
+    width: 100%;
 }

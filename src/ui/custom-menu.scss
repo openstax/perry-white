@@ -1,8 +1,8 @@
 .#{$prefix}custom-menu {
-  background: #fff;
-  box-shadow: var(--#{$prefix}overlay-shadow);
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  max-height: 98vh;
-  overflow: auto;
+    background: #fff;
+    box-shadow: var(--#{$prefix}overlay-shadow);
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    max-height: 98vh;
+    overflow: auto;
 }

@@ -1,87 +1,87 @@
 .#{$prefix}editor-frameset {
-  position: relative;
+    position: relative;
 }
 
 .#{$prefix}editor-frame-main {
-  position: relative;
-  z-index: 0;
+    position: relative;
+    z-index: 0;
 }
 
 .#{$prefix}editor-frame-body {
-  background-color: var(--#{$prefix}page-background-color);
+    background-color: var(--#{$prefix}page-background-color);
 }
 
 .#{$prefix}editor-frameset.embedded .#{$prefix}editor-frame-body {
-  background-color: unset;
+    background-color: unset;
 }
 
 .#{$prefix}editor-frame-body-scroll {
-  box-sizing: border-box;
-  padding-top: 20px;
+    box-sizing: border-box;
+    padding-top: 20px;
 }
 
 .#{$prefix}editor-frameset.embedded .#{$prefix}editor-frame-body-scroll {
-  padding-top: unset;
+    padding-top: unset;
 }
 
 /* FS IRAD-1040 2020-17-09
  avoid padding top for fit to content propery  */
 .#{$prefix}editor-frameset.fitToContent .#{$prefix}editor-frame-body-scroll {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-main {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .#{$prefix}editor-frame-head {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.21);
-  position: relative;
-  z-index: 2;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.21);
+    position: relative;
+    z-index: 2;
 }
 
 .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body {
-  flex: 1;
-  position: relative;
-  z-index: 1;
+    flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body-scroll {
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .#{$prefix}editor-frame-footer {
-  display: flex;
+    display: flex;
 }
 
 @media only print {
-  .#{$prefix}editor-frame-body {
-    background-color: transparent;
-  }
+    .#{$prefix}editor-frame-body {
+        background-color: transparent;
+    }
 
-  .#{$prefix}editor-frameset.with-fixed-layout {
-    height: auto !important;
-    width: auto !important;
-  }
+    .#{$prefix}editor-frameset.with-fixed-layout {
+        height: auto !important;
+        width: auto !important;
+    }
 
-  .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frameset {
-    height: auto;
-  }
+    .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frameset {
+        height: auto;
+    }
 
-  .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body-scroll {
-    position: relative;
-  }
+    .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body-scroll {
+        position: relative;
+    }
 
-  .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body {
-    height: auto !important;
-    max-height: auto !important;
-    overflow: visible;
-  }
+    .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body {
+        height: auto !important;
+        max-height: auto !important;
+        overflow: visible;
+    }
 }

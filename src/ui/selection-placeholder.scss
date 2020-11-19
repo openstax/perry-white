@@ -1,13 +1,13 @@
 .#{$prefix}selection-placeholder {
-  background-color: var(--#{$prefix}selection-highlight-color-dark) !important;
-  -webkit-animation-name: #{$prefix}selection_blink;
-  -webkit-animation-duration: 0.5s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-direction: alternate;
+    background-color: var(--#{$prefix}selection-highlight-color-dark) !important;
+    -webkit-animation-name: #{$prefix}selection_blink;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-direction: alternate;
 }
 
 @-webkit-keyframes #{$prefix}selection_blink {
-  from { opacity: 1; }
-  to { opacity: 0.7; }
+    from { opacity: 1; }
+    to { opacity: 0.7; }
 }

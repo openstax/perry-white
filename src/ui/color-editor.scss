@@ -1,43 +1,43 @@
 .#{$prefix}color-editor {
-  background: #fff;
-  box-shadow: var(--#{$prefix}overlay-shadow);
-  font-family: var(--#{$prefix}font-family);
-  font-size: var(--#{$prefix}font-size);
-  padding: 4px 10px;
+    background: #fff;
+    box-shadow: var(--#{$prefix}overlay-shadow);
+    font-family: var(--#{$prefix}font-family);
+    font-size: var(--#{$prefix}font-size);
+    padding: 4px 10px;
 }
 
 .#{$prefix}color-editor .#{$prefix}custom-button {
-  border: solid 1px #fff;
-  height: 18px;
-  margin: 1px;
-  padding: 0;
-  width: 18px;
+    border: solid 1px #fff;
+    height: 18px;
+    margin: 1px;
+    padding: 0;
+    width: 18px;
 }
 
 .#{$prefix}color-editor .#{$prefix}custom-button.#{$prefix}color-editor-color-transparent {
-  display: block;
-  height: auto;
-  margin: 2px;
-  padding: 6px;
-  text-align: center;
-  width: auto;
+    display: block;
+    height: auto;
+    margin: 2px;
+    padding: 6px;
+    text-align: center;
+    width: auto;
 }
 
 .#{$prefix}color-editor .#{$prefix}custom-button.#{$prefix}color-editor-color-transparent:hover {
-  background-color: var(--#{$prefix}button-hover-background-color);
+    background-color: var(--#{$prefix}button-hover-background-color);
 }
 
 .#{$prefix}color-editor .#{$prefix}custom-button.active,
 .#{$prefix}color-editor .#{$prefix}custom-button:hover {
-  font-weight: normal;
-  outline: solid 1px #000;
+    font-weight: normal;
+    outline: solid 1px #000;
 }
 
 .#{$prefix}color-editor-section {
-  margin: 8px 0;
-  width: 200px;
+    margin: 8px 0;
+    width: 200px;
 }
 
 .#{$prefix}color-editor-section .#{$prefix}color-editor-cell {
-  border-radius: 0;
+    border-radius: 0;
 }

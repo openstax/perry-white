@@ -1,23 +1,23 @@
 .#{$prefix}pop-up-modal-mask,
 .#{$prefix}pop-up-element {
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 5000;
 }
 
 .#{$prefix}pop-up-element {
-  background-color: transparent;
-  height: auto;
-  width: auto;
+    background-color: transparent;
+    height: auto;
+    width: auto;
 }
 
 .#{$prefix}pop-up-element a:link,
 .#{$prefix}pop-up-element a:visited,
 .#{$prefix}pop-up-element a:hover,
 .#{$prefix}pop-up-element a:active {
-  color: var(--#{$prefix}link-color);
+    color: var(--#{$prefix}link-color);
 }
