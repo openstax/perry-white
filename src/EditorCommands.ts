@@ -7,6 +7,7 @@ import HeadingCommand from './HeadingCommand'
 import HistoryRedoCommand from './HistoryRedoCommand'
 import HistoryUndoCommand from './HistoryUndoCommand'
 import HorizontalRuleCommand from './HorizontalRuleCommand'
+import EmbedSetURLCommand from './EmbedSetURLCommand'
 import ImageFromURLCommand from './ImageFromURLCommand'
 import ImageUploadCommand from './ImageUploadCommand'
 import IndentCommand from './IndentCommand'
@@ -82,6 +83,7 @@ export const H6 = new HeadingCommand(6)
 export const HISTORY_REDO = new HistoryRedoCommand()
 export const HISTORY_UNDO = new HistoryUndoCommand()
 export const HR = new HorizontalRuleCommand()
+export const EMBED_SET_URL = new EmbedSetURLCommand()
 export const IMAGE_FROM_URL = new ImageFromURLCommand()
 export const IMAGE_UPLOAD = new ImageUploadCommand()
 export const INDENT_LESS = new IndentCommand(-1)

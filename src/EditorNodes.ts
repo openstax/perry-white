@@ -9,6 +9,7 @@ import HorizontalRuleNodeSpec from './HorizontalRuleNodeSpec'
 import ImageNodeSpec from './ImageNodeSpec'
 import ListItemNodeSpec from './ListItemNodeSpec'
 import MathNodeSpec from './MathNodeSpec'
+import EmbedNodeSpec from './EmbedNodeSpec'
 import * as NodeNames from './NodeNames'
 import OrderedListNodeSpec from './OrderedListNodeSpec'
 import ParagraphNodeSpec from './ParagraphNodeSpec'
@@ -27,6 +28,7 @@ const {
     IMAGE,
     LIST_ITEM,
     MATH,
+    EMBED,
     ORDERED_LIST,
     PARAGRAPH,
     TEXT,
@@ -50,6 +52,7 @@ const nodes = {
     [ORDERED_LIST]: OrderedListNodeSpec,
     [LIST_ITEM]: ListItemNodeSpec,
     [BOOKMARK]: BookmarkNodeSpec,
+    [EMBED]: EmbedNodeSpec,
 }
 
 const marks = {}
