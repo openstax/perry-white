@@ -29,3 +29,5 @@ Perry White is based on several projects.
 * `yarn start` will fire up webpack and serve the demo page for adhoc testing
   * The test page then then be viewed at http://localhost:3008/
 * `yarn build:release` will compile for distribution
+
+An example of how to add a custom node as well as insert, render and edit it is https://github.com/openstax/perry-white/pull/1
