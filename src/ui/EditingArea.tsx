@@ -185,9 +185,8 @@ class EditingArea extends React.Component<EditorProps, any> {
             onReady && onReady(view)
 
             this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
-            this._autoFocusTimer = (this.props.autoFocus
-                ? setTimeout(this.focus, AUTO_FOCUS_DELAY)
-                : 0) as number
+            this._autoFocusTimer = setTimeout(this.focus, AUTO_FOCUS_DELAY) as any as number
+
         }
 
         window.addEventListener('beforeprint', this._onPrintStart, false)
@@ -219,18 +218,16 @@ class EditingArea extends React.Component<EditorProps, any> {
             view.readOnly = !!readOnly || isPrinting
             view.disabled = !!disabled
             view.updateState(state)
-
-            this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
-            this._autoFocusTimer = (
-                !prevProps.autoFocus && this.props.autoFocus
-                    ? setTimeout(this.focus, AUTO_FOCUS_DELAY)
-                    : 0
-            ) as number
+            if (this._autoFocusTimer && !this.props.autoFocus) {
+                clearTimeout(this._autoFocusTimer)
+                this._autoFocusTimer = 0
+            }
         }
     }
 
     componentWillUnmount(): void {
         this._autoFocusTimer && clearTimeout(this._autoFocusTimer)
+        this._autoFocusTimer = 0
         this._editorView && this._editorView.destroy()
         this._editorView = null
         releaseEditorView(this._id)
@@ -274,6 +271,7 @@ class EditingArea extends React.Component<EditorProps, any> {
         if (view && !view.disabled && !view.readOnly) {
             view.focus()
         }
+        this._autoFocusTimer = 0
     }
 
     _isEditable = (): boolean => {
