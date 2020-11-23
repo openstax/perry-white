@@ -66,8 +66,10 @@ const {
 // editable tables, even though those don't work in ProseMirror. The only way
 // to turn these off is globally, which you might want to do with the
 // following code:
-document.execCommand('enableObjectResizing', false, 'false')
-document.execCommand('enableInlineTableEditing', false, 'false')
+if (typeof document['execCommand'] === 'function') {
+    document.execCommand('enableObjectResizing', false, 'false')
+    document.execCommand('enableInlineTableEditing', false, 'false')
+}
 // [FS][07-MAY-2020][IRAD-956]
 export const BLOCKQUOTE_TOGGLE = new BlockquoteToggleCommand();
 //  export const BLOCKQUOTE_INSERT_NEW_LINE = new BlockquoteInsertNewLineCommand();
