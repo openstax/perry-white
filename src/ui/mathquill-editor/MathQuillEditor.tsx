@@ -5,12 +5,15 @@ import * as ReactDOM from 'react-dom'
 import cx from 'classnames'
 import {prefixed} from '../../util'
 
-// MathQuill requires this to get JQuery exported as global.
-// eslint-disable-next-line no-unused-vars
+import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
 import jquery from 'jquery'
 
-import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
-import 'node-mathquill/build/mathquill.js'
+// MathQuill requires JQuery exported as global.
+if (!(window as any).jQuery) {
+    (window as any).jQuery = jquery
+}
+
+require('node-mathquill/build/mathquill.js')
 
 const MQ = (window as any).MathQuill.getInterface(2)
 
