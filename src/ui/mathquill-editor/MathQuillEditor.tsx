@@ -10,14 +10,10 @@ import {prefixed} from '../../util'
 import jquery from 'jquery'
 
 import {MathQuillEditorSymbol} from './MathQuillEditorSymbols'
+import 'node-mathquill/build/mathquill.js'
 
-// [FS] IRAD-1010 2020-07-24
-// With the latest to generate export default MathQuill these options need to be passed into exports loader
-// Moved this from webpack config to here, so that package could load fine with other application.
-const MQLoader = require('exports-loader?exports=default|MathQuill&type=module!node-mathquill/build/mathquill.js')
-const MathQuill = MQLoader.default
+const MQ = (window as any).MathQuill.getInterface(2)
 
-const MQ = MathQuill.getInterface(2)
 
 class MathQuillElement extends React.Component<any, any> {
     shouldComponentUpdate(): boolean {
