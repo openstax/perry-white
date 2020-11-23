@@ -1,5 +1,5 @@
 
-
+[![NPM](https://img.shields.io/npm/v/perry-white.svg)](https://www.npmjs.com/package/perry-white)
 [![Actions Status](https://github.com/openstax/perry-white/workflows/CI%20checks/badge.svg)](https://github.com/openstax/perry-white/actions)
 
 # Perry White
