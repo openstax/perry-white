@@ -69,14 +69,15 @@ function processPromise(
         return
     }
 
-    let img
+    let img:HTMLImageElement
 
     const onLoad = () => {
+
         if (img) {
             result.width = img.width
             result.height = img.height
-            result.naturalWidth = img.width
-            result.naturalHeight = img.height
+            result.width = img.naturalWidth
+            result.height = img.naturalHeight
             result.complete = true
         }
         resolve(result)

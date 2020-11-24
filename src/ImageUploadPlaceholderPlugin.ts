@@ -63,8 +63,7 @@ export function uploadImageFiles(
         return false
     }
 
-    const {uploadImage, canUploadImage} = runtime
-    if (!uploadImage || !canUploadImage) {
+    if (!runtime.uploadImage || !runtime.canUploadImage) {
         return false
     }
 
@@ -109,7 +108,7 @@ export function uploadImageFiles(
             view.dispatch(trNext)
         }
         const ff = nullthrows(imageFiles.shift())
-        uploadImage(ff)
+        runtime.uploadImage(ff)
             .then(done)
             .catch(done.bind(null, {src: null}))
     })

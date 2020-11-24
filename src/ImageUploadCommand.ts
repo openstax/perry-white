@@ -22,11 +22,10 @@ class ImageUploadCommand extends ImageSourceCommand {
             return false
         }
 
-        const {canUploadImage, uploadImage} = runtime
-        if (!canUploadImage || !uploadImage) {
+        if (!runtime.canUploadImage || !runtime.uploadImage) {
             return false
         }
-        if (!canUploadImage()) {
+        if (!runtime.canUploadImage()) {
             return false
         }
 

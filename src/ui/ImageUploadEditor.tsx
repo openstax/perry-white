@@ -95,12 +95,12 @@ class ImageUploadEditor extends React.Component<any, any> {
     _upload = async (file: Blob): Promise<void> => {
         try {
             const runtime = this.props.runtime || {}
-            const {canUploadImage, uploadImage} = runtime
-            if (!canUploadImage || !uploadImage || !canUploadImage()) {
+
+            if (!runtime.canUploadImage || !runtime.uploadImage || !runtime.canUploadImage()) {
                 throw new Error('feature is not available')
             }
             this.setState({pending: true, error: null})
-            const image = await uploadImage(file)
+            const image = await runtime.uploadImage(file)
             this._onSuccess(image)
         } catch (ex) {
             this._onError(ex)
