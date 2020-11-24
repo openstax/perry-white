@@ -28,6 +28,7 @@
  avoid padding top for fit to content propery  */
 .#{$prefix}editor-frameset.fitToContent .#{$prefix}editor-frame-body-scroll {
     padding-top: 0;
+    height: 100%;
 }
 
 .#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-main {
@@ -48,7 +49,7 @@
     z-index: 1;
 }
 
-.#{$prefix}editor-frameset.with-fixed-layout .#{$prefix}editor-frame-body-scroll {
+.#{$prefix}editor-frameset.with-fixed-layout:not(.fitToContent) .#{$prefix}editor-frame-body-scroll {
     bottom: 0;
     left: 0;
     overflow: auto;

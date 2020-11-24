@@ -54,12 +54,12 @@ export class Editor extends React.Component<Props, State> {
             disabled,
             embedded,
             header,
-            height,
             nodeViews,
             placeholder,
             readOnly,
-            width,
-            fitToContent,
+            width = '100%',
+            height = '100%',
+            fitToContent = true,
         } = this.props
 
         let { runtime} = this.props

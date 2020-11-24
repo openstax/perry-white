@@ -89,7 +89,7 @@ class EditorFrameset extends React.Component<any, any> {
                     <div className={prefixed('editor-frame-footer')} />
                 </div>
             </div>
-        )
+            )
     }
 }
 
