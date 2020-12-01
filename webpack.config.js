@@ -77,11 +77,6 @@ module.exports = {
             filename: './index.html',
             template: './demo/index.html',
         }),
-        new webpack.ProvidePlugin({
-            // jQuery (for Mathquill)
-            'window.jQuery': 'jquery',
-        }),
-
     ].filter(Boolean),
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],

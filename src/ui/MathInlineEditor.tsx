@@ -57,8 +57,8 @@ class MathInlineEditor extends React.Component<any, any> {
                 {buttons}
                 <CustomButton
                     key="edit"
-                    label="Edit"
-                    onClick={this._editMath}
+                    label="Edit Latex"
+                    onClick={this._editLatex}
                     value={math || ''}
                 />
             </div>
@@ -70,7 +70,7 @@ class MathInlineEditor extends React.Component<any, any> {
         this.props.onSelect({...value, align})
     }
 
-    _editMath = (math: string): void => {
+    _editLatex = (math: string): void => {
         if (this._popUp) {
             return
         }

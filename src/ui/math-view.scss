@@ -4,19 +4,38 @@
     position: relative;
     text-align: center;
     white-space: nowrap;
-}
 
-.#{$prefix}math-view.ProseMirror-selectednode {
-    outline: none;
-}
+    &.align-left {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
 
-.#{$prefix}math-view-body.selected {
-    background-color: var(--#{$prefix}selection-highlight-color-dark);
-}
+    &.align-right {
+        float: right;
+        margin: 0 0 20px 20px;
+    }
 
-.#{$prefix}math-view-body.active {
-    background-color: transparent;
-    box-shadow: 0 0 1px 2px var(--#{$prefix}selection-highlight-color-dark);
+    &.align-center {
+        clear: both;
+        display: inline-block;
+        float: none;
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .ProseMirror-selectednode {
+        outline: none;
+    }
+}
+.#{$prefix}math-editor {
+    .#{$prefix}form fieldset {
+        div {
+            padding: 20px;
+        }
+        input {
+            min-width: 400px;
+        }
+    }
 }
 
 .#{$prefix}math-view-body {
@@ -24,6 +43,15 @@
     display: inline-block;
     padding: 0 2px;
     user-select: none;
+
+    &.selected {
+        background-color: var(--#{$prefix}selection-highlight-color-dark);
+    }
+
+    &.active {
+        background-color: transparent;
+        box-shadow: 0 0 1px 2px var(--#{$prefix}selection-highlight-color-dark);
+    }
 }
 
 .#{$prefix}math-view-body-img {
@@ -35,28 +63,24 @@
     top: 0;
 }
 
-.#{$prefix}math-view-body-content {
-    pointer-events: none;
+.#{$prefix}inline-editor.math {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+
+    .controls {
+        display: flex;
+        align-items: center;
+    }
 }
 
-.#{$prefix}math-view-body-content .katex {
-    font-display: block;
-}
+// .#{$prefix}math-view-body-content {
+//     pointer-events: none;
+//     .katex {
+//         font-display: block;
+//     }
+// }
 
-.#{$prefix}math-view.align-left {
-    float: left;
-    margin: 0 20px 20px 0;
-}
 
-.#{$prefix}math-view.align-right {
-    float: right;
-    margin: 0 0 20px 20px;
-}
-
-.#{$prefix}math-view.align-center {
-    clear: both;
-    display: inline-block;
-    float: none;
-    margin: 20px 0;
-    width: 100%;
-}
+@import "~mathlive/dist/mathlive-fonts.css";
+// @import "~mathlive/dist/mathlive-static.css";

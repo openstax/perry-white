@@ -12,7 +12,8 @@ async function main() {
     el.style.setProperty('width', '90vw')
     el.style.setProperty('height', '80vh')
     let docHTML = `<p>
-<span style="font-family: Arial Black">First line Arial black</span>
+<span style="font-family: Arial Black">First line Arial black</span><span data-math="1.23 \\times 10^4\\,\\text{km/h}"></span>
+<span data-math="x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}"></span>
 <div class="frame-wrapper embed-responsive embed-responsive-16by9"><iframe width="660" height="371.4" src="https://www.openstaxcollege.org/l/02consernrgz"></iframe></div>
 <p>
         <ol data-indent="0" style="--czi-counter-name: czi-counter-0;--czi-counter-reset: 0;--czi-list-style-type: decimal" type="decimal"><li><p>List 1</p></li></ol><ol data-indent="1" style="--czi-counter-name: czi-counter-1;--czi-counter-reset: 0;--czi-list-style-type: lower-alpha" type="lower-alpha"><li><p>Child</p></li></ol><ol data-indent="0" data-counter-reset="none" style="--czi-counter-name: czi-counter-0;--czi-counter-reset: 0;--czi-list-style-type: decimal" type="decimal"><li><p>List 2</p></li></ol><p style="text-align: center;">Align</p><p><span style="color: #f20d96;">Font</span> <span style="background-color: #e5e5e5;">Color </span><strong>align </strong><a href="http:www.google.com" rel="noopener noreferrer nofollow" target="blank"><em>Link to google</em></a><em> </em><u>underline </u><em><strong><span style="color: #e5e5e5;"><span style="background-color: #979797;"><u>combined</u></span></span></strong></em></p><h1>Header 1</h1><p><img align="center" alt="" src="https:nathan.stitt.org/images/hippo.png" alt="a hippo portrait" title="a hippo"></p><p></p><table><tr><td><p><strong>Cell 1</strong></p></td><td><p>Cell 2</p></td></tr></table><p></p><p>Subscript <sup>2 </sup>

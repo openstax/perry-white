@@ -11,7 +11,7 @@ const exec = (cmd) => {
 
 exec('npm run build:clean');
 
-['ui/mathquill-editor/font', 'ui/fonts','fonts'].forEach(path => {
+['ui/fonts','fonts'].forEach(path => {
     fs.copySync(`src/${path}`, `dist/${path}`)
 })
 
