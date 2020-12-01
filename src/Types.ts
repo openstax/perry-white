@@ -1,4 +1,4 @@
-import * as React from 'react'
+import {EditorState} from 'prosemirror-state'
 import { COMMAND_GROUPS_T } from './ui/EditorToolbarConfig'
 
 export type NodeSpec = {
@@ -77,6 +77,7 @@ export interface EditorRuntime {
 
     filterCommandGroups?(groups: COMMAND_GROUPS_T): COMMAND_GROUPS_T
 
+    onBlur?: (state: EditorState, event: MouseEvent) => void
 }
 
 //export type EditorState = any

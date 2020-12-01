@@ -1,8 +1,9 @@
 import cx from 'classnames'
 import * as React from 'react'
 import {prefixed} from '../util'
+import { useOnClickOutside } from '../hooks/click-outside'
 
-export type EditorFramesetProps = {
+export interface EditorFramesetProps {
     body: React.ReactElement<any> | null | undefined
     className: string | null | undefined
     embedded: boolean | null | undefined
@@ -12,6 +13,7 @@ export type EditorFramesetProps = {
     toolbarPlacement?: 'header' | 'body' | null
     toolbar: React.ReactElement<any> | null | undefined
     width: (string | number) | null | undefined
+    onBlur?: (event: MouseEvent) => void
 }
 
 export const FRAMESET_BODY_CLASSNAME = prefixed('editor-frame-body')
@@ -26,71 +28,68 @@ function toCSS(val: (number | string) | null | undefined): string {
     return String(val)
 }
 
-class EditorFrameset extends React.Component<any, any> {
-    props: EditorFramesetProps
+export const EditorFrameset:React.FC<EditorFramesetProps> = ({
+    body,
+    className,
+    embedded,
+    header,
+    height,
+    toolbarPlacement,
+    toolbar,
+    width,
+    onBlur,
+    fitToContent,
+}) => {
+    const root = React.useRef<HTMLDivElement>()
 
-    render() {
-        const {
-            body,
-            className,
-            embedded,
-            header,
-            height,
-            toolbarPlacement,
-            toolbar,
-            width,
-            fitToContent,
-        } = this.props
+    useOnClickOutside(root, onBlur)
 
-        const useFixedLayout = width !== undefined || height !== undefined
-        let mainClassName = ''
-        //  FS IRAD-1040 2020-17-09
-        //  wrapping style for fit to content mode
-        if (fitToContent) {
-            mainClassName = cx(className, {
-                [prefixed('editor-frameset')]: true,
-                'with-fixed-layout': useFixedLayout,
-                fitToContent: fitToContent,
-            })
-        } else {
-            mainClassName = cx(className, {
-                [prefixed('editor-frameset')]: true,
-                'with-fixed-layout': useFixedLayout,
-                embedded: embedded,
-            })
-        }
-
-        const mainStyle = {
-            width: toCSS(
-                width === undefined && useFixedLayout ? 'auto' : width,
-            ),
-            height: toCSS(
-                height === undefined && useFixedLayout ? 'auto' : height,
-            ),
-        }
-
-        const toolbarHeader =
-            toolbarPlacement === 'header' || !toolbarPlacement ? toolbar : null
-        const toolbarBody = toolbarPlacement === 'body' && toolbar
-
-        return (
-            <div className={mainClassName} style={mainStyle}>
-                <div className={prefixed('editor-frame-main')}>
-                    <div className={prefixed('editor-frame-head')}>
-                        {header}
-                        {toolbarHeader}
-                    </div>
-                    <div className={FRAMESET_BODY_CLASSNAME}>
-                        {toolbarBody}
-                        <div className={prefixed('editor-frame-body-scroll')}>
-                            {body}
-                        </div>
-                    </div>
-                    <div className={prefixed('editor-frame-footer')} />
-                </div>
-            </div>
-            )
+    const useFixedLayout = width !== undefined || height !== undefined
+    let mainClassName = ''
+    //  FS IRAD-1040 2020-17-09
+    //  wrapping style for fit to content mode
+    if (fitToContent) {
+        mainClassName = cx(className, {
+            [prefixed('editor-frameset')]: true,
+            'with-fixed-layout': useFixedLayout,
+            fitToContent: fitToContent,
+        })
+    } else {
+        mainClassName = cx(className, {
+            [prefixed('editor-frameset')]: true,
+            'with-fixed-layout': useFixedLayout,
+            embedded: embedded,
+        })
     }
-}
 
-export default EditorFrameset
+    const mainStyle = {
+        width: toCSS(
+            width === undefined && useFixedLayout ? 'auto' : width,
+        ),
+        height: toCSS(
+            height === undefined && useFixedLayout ? 'auto' : height,
+        ),
+    }
+
+    const toolbarHeader =
+        toolbarPlacement === 'header' || !toolbarPlacement ? toolbar : null
+    const toolbarBody = toolbarPlacement === 'body' && toolbar
+
+    return (
+        <div ref={root} className={mainClassName} style={mainStyle}>
+            <div className={prefixed('editor-frame-main')}>
+                <div className={prefixed('editor-frame-head')}>
+                    {header}
+                    {toolbarHeader}
+                </div>
+                <div className={FRAMESET_BODY_CLASSNAME}>
+                    {toolbarBody}
+                    <div className={prefixed('editor-frame-body-scroll')}>
+                        {body}
+                    </div>
+                </div>
+                <div className={prefixed('editor-frame-footer')} />
+            </div>
+        </div>
+    )
+}

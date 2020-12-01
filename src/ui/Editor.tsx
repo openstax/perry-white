@@ -6,7 +6,7 @@ import cx from 'classnames'
 import CustomEditorView from './CustomEditorView'
 import createEmptyEditorState from '../createEmptyEditorState'
 import EditingArea from './EditingArea'
-import EditorFrameset from './EditorFrameset'
+import { EditorFrameset } from './EditorFrameset'
 import EditorToolbar from './EditorToolbar'
 import Frag from './Frag'
 import { uuid } from '../util'
@@ -107,13 +107,19 @@ export class Editor extends React.Component<Props, State> {
                 fitToContent={fitToContent}
                 header={header}
                 height={height}
+                onBlur={this._onBlur}
                 toolbar={toolbar}
                 width={width}
             />
         )
     }
 
-
+    _onBlur = (event: MouseEvent) => {
+        const { runtime } = this.props
+        if (runtime && runtime.onBlur) {
+            runtime.onBlur(this.state.editorState, event)
+        }
+    }
 
     _dispatchTransaction = (tr: Transaction): void => {
         const {onChange, readOnly} = this.props
