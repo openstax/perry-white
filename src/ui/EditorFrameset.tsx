@@ -46,7 +46,13 @@ export const EditorFrameset:React.FC<EditorFramesetProps> = ({
 }) => {
     const root = React.useRef<HTMLDivElement>()
 
-    useOnClickOutside(root, onBlur)
+    useOnClickOutside(root, React.useCallback((event: MouseEvent) => {
+        if (!onBlur) return
+        const target = (event.target as HTMLElement)
+        if (target.closest && !target.closest(prefixed('pop-up-element', { format: 'selector' }))) {
+            onBlur(event)
+        }
+    }, [onBlur]))
 
     const useFixedLayout = width !== undefined || height !== undefined
     let mainClassName = ''
