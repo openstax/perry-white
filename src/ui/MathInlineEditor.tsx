@@ -54,7 +54,7 @@ class MathInlineEditor extends React.Component<any, any> {
         })
 
         return (
-            <div ref={this.editorRef} className={prefixed('inline-editor')}>
+            <div className={prefixed('inline-editor')} ref={this.editorRef}>
                 {buttons}
                 <CustomButton
                     key="edit"
@@ -64,7 +64,7 @@ class MathInlineEditor extends React.Component<any, any> {
                 />
             </div>
         )
-            }
+    }
 
     _onClick = (align: string | null | undefined): void => {
         const value = this.props.value || {}

@@ -12,6 +12,6 @@ jobs:
       - name: Lint JS
         run: yarn run lint:js
       - name: Lint CSS
-        run: yarn run lint:js
+        run: yarn run lint:css
       - name: Build TS
         run: yarn run build:tsc --noEmit

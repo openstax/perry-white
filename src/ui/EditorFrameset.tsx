@@ -86,7 +86,7 @@ export const EditorFrameset:React.FC<EditorFramesetProps> = ({
     const toolbarBody = toolbarPlacement === 'body' && toolbar
 
     return (
-        <div ref={root} className={mainClassName} style={mainStyle}>
+        <div className={mainClassName} ref={root} style={mainStyle}>
             <div className={prefixed('editor-frame-main')}>
                 <div className={prefixed('editor-frame-head')}>
                     {header}

@@ -60,6 +60,7 @@ module.exports = {
         'requestAnimationFrame': false,
         'setTimeout': false,
         HTMLElement: false,
+        HTMLDivElement: false,
         HTMLButtonElement: false,
         HTMLInputElement: false,
         'window': false
