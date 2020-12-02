@@ -1,7 +1,8 @@
+import * as React from 'react'
 import CustomButton from './CustomButton'
 import CustomEditorView from './CustomEditorView'
 import MathEditor from './MathEditor'
-import * as React from 'react'
+import { getParentFrameSet } from './EditorFrameset'
 import createPopUp from './createPopUp'
 import {prefixed} from '../util'
 
@@ -29,7 +30,7 @@ class MathInlineEditor extends React.Component<any, any> {
         value: MathInlineEditorValue | null | undefined
         editorView: CustomEditorView | null | undefined
     }
-
+    editorRef = React.createRef<HTMLDivElement>()
     _popUp = null
 
     componentWillUnmount(): void {
@@ -53,7 +54,7 @@ class MathInlineEditor extends React.Component<any, any> {
         })
 
         return (
-            <div className={prefixed('inline-editor')}>
+            <div ref={this.editorRef} className={prefixed('inline-editor')}>
                 {buttons}
                 <CustomButton
                     key="edit"
@@ -63,7 +64,7 @@ class MathInlineEditor extends React.Component<any, any> {
                 />
             </div>
         )
-    }
+            }
 
     _onClick = (align: string | null | undefined): void => {
         const value = this.props.value || {}
@@ -79,9 +80,11 @@ class MathInlineEditor extends React.Component<any, any> {
             runtime: editorView ? editorView.runtime : null,
             initialValue: (value && value.math) || '',
         }
+
         this._popUp = createPopUp(MathEditor, props, {
             autoDismiss: false,
             modal: true,
+            container: getParentFrameSet(this.editorRef.current),
             onClose: math => {
                 if (this._popUp) {
                     this._popUp = null
