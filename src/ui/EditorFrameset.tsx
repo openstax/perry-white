@@ -28,6 +28,10 @@ function toCSS(val: (number | string) | null | undefined): string {
     return String(val)
 }
 
+export function getParentFrameSet(el:HTMLElement) : HTMLDivElement | undefined {
+    return el.closest(`.${FRAMESET_BODY_CLASSNAME}`)
+}
+
 export const EditorFrameset:React.FC<EditorFramesetProps> = ({
     body,
     className,
