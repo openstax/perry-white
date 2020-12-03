@@ -28,7 +28,7 @@ function toCSS(val: (number | string) | null | undefined): string {
     return String(val)
 }
 
-export function getParentFrameSet(el:HTMLElement) : HTMLDivElement | undefined {
+export function getParentFrameSet(el:Element) : HTMLDivElement | undefined {
     return el.closest(`.${FRAMESET_BODY_CLASSNAME}`)
 }
 
