@@ -1,6 +1,6 @@
 import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
-
+import {getParentFrameSet} from './EditorFrameset'
 import {DirectEditorProps, EditorRuntime} from '../Types'
 
 // https://github.com/ProseMirror/prosemirror-view/blob/master/src/index.js
@@ -9,6 +9,7 @@ class CustomEditorView extends EditorView {
     placeholder: (string | React.ReactElement<any>) | null | undefined
     readOnly: boolean
     runtime: EditorRuntime | null | undefined
+    frameset: HTMLDivElement
     constructor(place: HTMLElement, props: DirectEditorProps) {
         // @ts-ignore
         super(place, props)
@@ -16,6 +17,7 @@ class CustomEditorView extends EditorView {
         this.readOnly = true
         this.disabled = true
         this.placeholder = null
+        this.frameset = getParentFrameSet(place)!
     }
 
     destroy() {
@@ -25,9 +27,5 @@ class CustomEditorView extends EditorView {
     }
 
 }
-
-// export function isCustomEditorView(v: any): pet is Fish {
-//   return (pet as Fish).swim !== undefined;
-// }
 
 export default CustomEditorView
