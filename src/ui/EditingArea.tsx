@@ -120,6 +120,8 @@ class EditingArea extends React.Component<EditorProps, any> {
     _id = uuid()
     _editorView = null
 
+    panelRef = React.createRef<HTMLDivElement>()
+
     props: EditorProps
 
     state = {
@@ -143,7 +145,7 @@ class EditingArea extends React.Component<EditorProps, any> {
             transformPastedHTML,
         } = this.props
 
-        const editorNode = document.getElementById(this._id)
+        const editorNode = this.panelRef.current
         if (editorNode) {
             const effectiveNodeViews = Object.assign(
                 {},
@@ -251,6 +253,7 @@ class EditingArea extends React.Component<EditorProps, any> {
         return (
             <div
                 className={className}
+                ref={this.panelRef}
                 { ...{[prefixed('prosemirror-editor-id', { format: 'data' })]: this._id}}
                 id={this._id}
                 onBlur={this._onBlur}
