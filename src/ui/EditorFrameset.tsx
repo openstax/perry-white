@@ -16,6 +16,7 @@ export interface EditorFramesetProps {
     onBlur?: (event: MouseEvent) => void
 }
 
+export const FRAMESET_ROOT_CLASSNAME = prefixed('editor-frameset')
 export const FRAMESET_BODY_CLASSNAME = prefixed('editor-frame-body')
 
 function toCSS(val: (number | string) | null | undefined): string {
@@ -29,7 +30,7 @@ function toCSS(val: (number | string) | null | undefined): string {
 }
 
 export function getParentFrameSet(el:Element) : HTMLDivElement | undefined {
-    return el.closest(`.${FRAMESET_BODY_CLASSNAME}`)
+    return el.closest(`.${FRAMESET_ROOT_CLASSNAME}`)
 }
 
 export const EditorFrameset:React.FC<EditorFramesetProps> = ({
@@ -59,14 +60,12 @@ export const EditorFrameset:React.FC<EditorFramesetProps> = ({
     //  FS IRAD-1040 2020-17-09
     //  wrapping style for fit to content mode
     if (fitToContent) {
-        mainClassName = cx(className, {
-            [prefixed('editor-frameset')]: true,
+        mainClassName = cx(FRAMESET_ROOT_CLASSNAME, className, {
             'with-fixed-layout': useFixedLayout,
             fitToContent: fitToContent,
         })
     } else {
-        mainClassName = cx(className, {
-            [prefixed('editor-frameset')]: true,
+        mainClassName = cx(FRAMESET_ROOT_CLASSNAME, className, {
             'with-fixed-layout': useFixedLayout,
             embedded: embedded,
         })
