@@ -3,16 +3,13 @@ import {Fragment, Schema} from 'prosemirror-model'
 import {EditorState, Transaction} from 'prosemirror-state'
 import {TextSelection, NodeSelection} from 'prosemirror-state'
 import {EditorView} from 'prosemirror-view'
-import { getParentFrameSet } from './ui/EditorFrameset'
 
 import {
     hideCursorPlaceholder,
     showCursorPlaceholder,
 } from './CursorPlaceholderPlugin'
 import {MATH} from './NodeNames'
-import MathEditor from './ui/MathEditor'
 import UICommand from './ui/UICommand'
-import createPopUp from './ui/createPopUp'
 
 function insertMath(
     tr: Transaction,
@@ -47,11 +44,9 @@ function insertMath(
 }
 
 class MathEditCommand extends UICommand {
-    _popUp = null
 
     isEnabled = (
         state: EditorState,
-        view: EditorView | null | undefined,
     ): boolean => {
         const tr = state
         const {selection} = tr
@@ -64,13 +59,7 @@ class MathEditCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
-        event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
-        if (this._popUp) {
-            return Promise.resolve(undefined)
-        }
-
         if (dispatch) {
             dispatch(showCursorPlaceholder(state))
         }
