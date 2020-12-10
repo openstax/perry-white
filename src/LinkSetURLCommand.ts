@@ -1,7 +1,6 @@
 import {EditorState, Transaction} from 'prosemirror-state'
 import {TextSelection} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
-
+import CustomEditorView from './ui/CustomEditorView'
 import {MARK_LINK} from './MarkNames'
 import {
     hideSelectionPlaceholder,
@@ -33,7 +32,7 @@ class LinkSetURLCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: CustomEditorView | null | undefined,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -44,7 +43,6 @@ class LinkSetURLCommand extends UICommand {
             // @ts-ignore
             dispatch(showSelectionPlaceholder(state))
         }
-
         const {doc, schema, selection} = state
         const markType = schema.marks[MARK_LINK]
         if (!markType) {
@@ -58,6 +56,7 @@ class LinkSetURLCommand extends UICommand {
                 LinkURLEditor,
                 {href},
                 {
+                    container: view.frameset,
                     modal: true,
                     onClose: val => {
                         if (this._popUp) {
@@ -73,7 +72,7 @@ class LinkSetURLCommand extends UICommand {
     executeWithUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: CustomEditorView | null | undefined,
         href: string | null | undefined,
     ): boolean => {
         if (dispatch) {
