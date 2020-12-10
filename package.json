@@ -1,6 +1,6 @@
 {
   "name": "perry-white",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "subversion": "1",
   "description": "Rich text editor built with ProseMirror plus React",
   "main": "dist/index.js",
