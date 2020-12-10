@@ -41,18 +41,7 @@ module.exports = {
             },
             {
                 test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: (url, resourcePath, context) => {
-                                const relativePath = path.relative(context, resourcePath);
-                                const cleaned = relativePath.replace(/src\//, '') // .replace(/fonts\/.*/, 'fonts');
-                                return cleaned
-                            }
-                        }
-                    }
-                ]
+                use: 'file-loader',
             },
             {
                 test: /\.s[ac]ss$/i,
