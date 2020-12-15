@@ -4,7 +4,7 @@ import {getParentFrameSet} from './EditorFrameset'
 import {DirectEditorProps, EditorRuntime} from '../Types'
 
 // https://github.com/ProseMirror/prosemirror-view/blob/master/src/index.js
-class CustomEditorView extends EditorView {
+class PWEditorView extends EditorView {
     disabled: boolean
     placeholder: (string | React.ReactElement<any>) | null | undefined
     readOnly: boolean
@@ -28,4 +28,4 @@ class CustomEditorView extends EditorView {
 
 }
 
-export default CustomEditorView
+export default PWEditorView

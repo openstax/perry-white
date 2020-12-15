@@ -1,9 +1,8 @@
 import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
-
 /* eslint-disable-next-line */
 import * as React from "react"
 
+import EditorView from './ui/EditorView'
 import findActionableCell from './findActionableCell'
 import {atAnchorTopRight} from './ui/PopUpPosition'
 import TableCellMenu from './ui/TableCellMenu'
@@ -64,6 +63,7 @@ class TableCellTooltipView {
             // @ts-ignore
             if (!view.disabled) {
                 this._popUp = createPopUp(TableCellMenu, viewPops, {
+                    container: view.frameset,
                     anchor: cellEl,
                     autoDismiss: false,
                     onClose: this._onClose,

@@ -1,10 +1,9 @@
 import cx from 'classnames'
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import CustomEditorView from './CustomEditorView'
+import EditorView from './EditorView'
 import CommandButton from './CommandButton'
 import CommandMenuButton from './CommandMenuButton'
 import CustomButton from './CustomButton'
@@ -19,7 +18,7 @@ interface Props {
     disabled?: boolean | null | undefined
     dispatchTransaction?: (tr: Transaction) => void | null | undefined
     editorState: EditorState
-    editorView?: CustomEditorView
+    editorView?: EditorView
     onReady?: (view: EditorView) => void | null | undefined
     readOnly?: boolean | null | undefined
 }

@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 
+import EditorView from './EditorView'
 import CommandMenu from './CommandMenu'
 import CustomButton from './CustomButton'
 import UICommand from './UICommand'
@@ -24,7 +24,7 @@ interface Props {
     disabled?: boolean | null | undefined
     dispatch?: (tr: Transaction) => void
     editorState: EditorState
-    editorView: EditorView | null | undefined
+    editorView: EditorView
     icon?: string | React.ReactNode | React.ReactElement<any> | null
     label?: string | React.ReactNode | React.ReactElement<any> | null
     title?: string | null | undefined
@@ -120,6 +120,7 @@ class CommandMenuButton extends React.Component<Props, State> {
         } else {
             this._menu = createPopUp(CommandMenu, menuProps, {
                 anchor: document.getElementById(this._id),
+                container: this.props.editorView.frameset,
                 onClose: this._onClose,
             })
         }

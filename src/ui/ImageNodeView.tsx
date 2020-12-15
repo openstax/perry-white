@@ -262,7 +262,7 @@ class ImageViewBody extends React.Component<NodeViewProps, any> {
             this._inlineEditor = createPopUp(ImageInlineEditor, editorProps, {
                 anchor: el,
                 autoDismiss: false,
-                container: el.closest(`.${FRAMESET_BODY_CLASSNAME}`),
+                container: this.props.editorView.frameset,
                 position: atAnchorBottomCenter,
                 onClose: () => {
                     this._inlineEditor = null

@@ -2,7 +2,7 @@ import {Class} from 'utility-types'
 
 import {Fragment, Schema} from 'prosemirror-model'
 import {EditorState, TextSelection, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 import * as React from 'react'
 import {
     hideCursorPlaceholder,
@@ -54,15 +54,15 @@ class ImageSourceCommand extends UICommand {
 
     isEnabled = (
         state: EditorState,
-        view: EditorView | null | undefined,
+        view: EditorView,
     ): boolean => {
         return this.__isEnabled(state, view)
     }
 
     waitForUserInput = (
         state: EditorState,
-        dispatch?: (tr: Transaction) => void | null | undefined,
-        view?: EditorView | null | undefined,
+        dispatch: (tr: Transaction) => void | null | undefined,
+        view: EditorView,
         event?: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -77,6 +77,7 @@ class ImageSourceCommand extends UICommand {
             // @ts-ignore
             const props = {runtime: view ? view.runtime : null}
             this._popUp = createPopUp(this.getEditor(), props, {
+                container: view.frameset,
                 modal: true,
                 onClose: val => {
                     if (this._popUp) {
@@ -90,8 +91,8 @@ class ImageSourceCommand extends UICommand {
 
     executeWithUserInput = (
         state: EditorState,
-        dispatch?: (tr: Transaction) => void | null | undefined,
-        view?: EditorView | null,
+        dispatch: (tr: Transaction) => void | null | undefined,
+        view: EditorView,
         inputs?: ImageLike | null,
     ): boolean => {
         if (dispatch) {
@@ -112,7 +113,7 @@ class ImageSourceCommand extends UICommand {
 
     __isEnabled = (
         state: EditorState,
-        view: EditorView | null | undefined,
+        view: EditorView,
     ): boolean => {
         const tr = state
         const {selection} = tr

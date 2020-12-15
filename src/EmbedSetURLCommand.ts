@@ -1,6 +1,5 @@
 import {Fragment, Schema} from 'prosemirror-model'
 import {EditorState, Transaction,TextSelection} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 
 import {EMBED} from './NodeNames'
 import {MARK_LINK} from './MarkNames'
@@ -13,8 +12,8 @@ import {
     hideSelectionPlaceholder,
     showSelectionPlaceholder,
 } from './SelectionPlaceholderPlugin'
-import applyMark from './applyMark'
 import findNodesWithSameMark from './findNodesWithSameMark'
+import EditorView from './ui/EditorView'
 import EmbedURLEditor from './ui/EmbedURLEditor'
 import UICommand from './ui/UICommand'
 import createPopUp from './ui/createPopUp'
@@ -57,7 +56,7 @@ class EmbedSetURLCommand extends UICommand {
 
     isEnabled = (
         state: EditorState,
-        view: EditorView | null | undefined,
+        view: EditorView,
     ): boolean => {
         const tr = state
         const {selection} = tr
@@ -71,7 +70,7 @@ class EmbedSetURLCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -97,6 +96,7 @@ class EmbedSetURLCommand extends UICommand {
                 {src},
                 {
                     modal: true,
+                    container: view.frameset,
                     onClose: val => {
                         if (this._popUp) {
                             this._popUp = null
@@ -111,7 +111,7 @@ class EmbedSetURLCommand extends UICommand {
     executeWithUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         value?: {src?:string},
     ): boolean => {
 

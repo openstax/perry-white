@@ -1,7 +1,7 @@
 import {EditorState} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 
+import EditorView from './EditorView'
 import CommandMenuButton from './CommandMenuButton'
 import {TABLE_COMMANDS_GROUP} from './EditorToolbarConfig'
 import {prefixed} from '../util'

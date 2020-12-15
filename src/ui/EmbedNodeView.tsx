@@ -3,7 +3,6 @@ import * as React from 'react'
 import createPopUp from './createPopUp'
 import cx from 'classnames'
 import {Decoration} from 'prosemirror-view'
-import { getParentFrameSet } from './EditorFrameset'
 import {Node} from 'prosemirror-model'
 import {atViewportCenter} from './PopUpPosition'
 import { uuid } from '../util'
@@ -72,7 +71,7 @@ class EmbedViewBody extends React.Component<NodeViewProps, any> {
             this._inlineEditor = createPopUp(EmbedURLEditor, editorProps, {
                 anchor: el,
                 autoDismiss: false,
-                container: getParentFrameSet(el),
+                container: this.props.editorView.frameset,
                 position: atViewportCenter,
                 onClose: (attrs) => {
                     this._onChange(attrs)

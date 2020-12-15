@@ -1,6 +1,6 @@
 import nullthrows from 'nullthrows'
 import {EditorState, TextSelection, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 import insertTable from './insertTable'
 import {atAnchorRight} from './ui/PopUpPosition'
 import TableGridSizeEditor from './ui/TableGridSizeEditor'
@@ -41,7 +41,7 @@ class TableInsertCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -57,6 +57,7 @@ class TableInsertCommand extends UICommand {
             this._popUp = createPopUp(TableGridSizeEditor, null, {
                 anchor,
                 position: atAnchorRight,
+                container: view.frameset,
                 onClose: val => {
                     if (this._popUp) {
                         this._popUp = null

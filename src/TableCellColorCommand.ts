@@ -1,8 +1,8 @@
 import nullthrows from 'nullthrows'
 import {EditorState, Transaction} from 'prosemirror-state'
 import {setCellAttr} from 'prosemirror-tables'
-import {EditorView} from 'prosemirror-view'
 
+import EditorView from './ui/EditorView'
 import ColorEditor from './ui/ColorEditor'
 import {atAnchorRight} from './ui/PopUpPosition'
 import UICommand from './ui/UICommand'
@@ -27,7 +27,7 @@ class TableCellColorCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -43,6 +43,7 @@ class TableCellColorCommand extends UICommand {
             this._popUp = createPopUp(ColorEditor, null, {
                 anchor,
                 position: atAnchorRight,
+                container: view.frameset,
                 onClose: val => {
                     if (this._popUp) {
                         this._popUp = null

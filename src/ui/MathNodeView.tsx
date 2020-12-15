@@ -4,7 +4,6 @@ import * as React from 'react'
 import createPopUp from './createPopUp'
 import cx from 'classnames'
 import {Decoration} from 'prosemirror-view'
-import {FRAMESET_BODY_CLASSNAME} from './EditorFrameset'
 import {Node} from 'prosemirror-model'
 import {atAnchorBottomCenter} from './PopUpPosition'
 import {NodeSelection} from 'prosemirror-state'
@@ -94,7 +93,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             this._inlineEditor = createPopUp(MathInlineEditor, editorProps, {
                 anchor: el,
                 autoDismiss: false,
-                container: el.closest(`.${FRAMESET_BODY_CLASSNAME}`),
+                container: this.props.editorView.frameset,
                 position: atAnchorBottomCenter,
                 onClose: () => {
                     this._inlineEditor = null

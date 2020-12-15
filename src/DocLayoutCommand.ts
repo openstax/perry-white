@@ -1,8 +1,8 @@
 import {Schema} from 'prosemirror-model'
 import {EditorState} from 'prosemirror-state'
 import {Step} from 'prosemirror-transform'
-import {EditorView} from 'prosemirror-view'
 import {Transaction} from 'prosemirror-state'
+import EditorView from './ui/EditorView'
 import SetDocAttrStep from './SetDocAttrStep'
 import DocLayoutEditor from './ui/DocLayoutEditor'
 import UICommand from './ui/UICommand'
@@ -40,7 +40,7 @@ class DocLayoutCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -55,6 +55,7 @@ class DocLayoutCommand extends UICommand {
             }
             this._popUp = createPopUp(DocLayoutEditor, props, {
                 modal: true,
+                container: view.frameset,
                 onClose: val => {
                     if (this._popUp) {
                         this._popUp = null

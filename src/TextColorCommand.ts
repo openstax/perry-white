@@ -6,7 +6,7 @@ import findNodesWithSameMark from './findNodesWithSameMark'
 import isTextStyleMarkCommandEnabled from './isTextStyleMarkCommandEnabled'
 import nullthrows from 'nullthrows'
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 import {MARK_TEXT_COLOR} from './MarkNames'
 
 class TextColorCommand extends UICommand {
@@ -19,7 +19,7 @@ class TextColorCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -42,6 +42,7 @@ class TextColorCommand extends UICommand {
                 {hex},
                 {
                     anchor,
+                    container: view.frameset,
                     onClose: val => {
                         if (this._popUp) {
                             this._popUp = null

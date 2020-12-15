@@ -1,12 +1,13 @@
+import nullthrows from 'nullthrows'
+import {EditorState} from 'prosemirror-state'
+
 import ColorEditor from './ui/ColorEditor'
 import UICommand from './ui/UICommand'
 import applyMark from './applyMark'
 import createPopUp from './ui/createPopUp'
 import findNodesWithSameMark from './findNodesWithSameMark'
 import isTextStyleMarkCommandEnabled from './isTextStyleMarkCommandEnabled'
-import nullthrows from 'nullthrows'
-import {EditorState} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 import {MARK_TEXT_HIGHLIGHT} from './MarkNames'
 import {Transaction} from 'prosemirror-state'
 
@@ -20,7 +21,7 @@ class TextHighlightCommand extends UICommand {
     waitForUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         event: React.SyntheticEvent | null | undefined,
     ): Promise<any> => {
         if (this._popUp) {
@@ -42,6 +43,7 @@ class TextHighlightCommand extends UICommand {
                 ColorEditor,
                 {hex},
                 {
+                    container: view.frameset,
                     anchor,
                     onClose: val => {
                         if (this._popUp) {
@@ -57,7 +59,7 @@ class TextHighlightCommand extends UICommand {
     executeWithUserInput = (
         state: EditorState,
         dispatch: (tr: Transaction) => void | null | undefined,
-        view: EditorView | null | undefined,
+        view: EditorView,
         color: string | null | undefined,
     ): boolean => {
         if (dispatch && color !== undefined) {

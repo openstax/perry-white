@@ -61,7 +61,7 @@ export class UICommand {
 
     dryRun(
         state: EditorState,
-        view: EditorView | null | undefined,
+        view: EditorView,
     ): boolean {
         const {Proxy} = window
 
@@ -78,7 +78,7 @@ export class UICommand {
     execute(
         state: EditorState,
         dispatch: null | ((tr: Transaction | null) => void),
-        view?: EditorView | null,
+        view: EditorView | null,
         event?: React.SyntheticEvent | null,
     ): boolean {
         // @ts-ignore

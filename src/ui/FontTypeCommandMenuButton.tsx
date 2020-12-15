@@ -4,7 +4,7 @@ import {UICommands} from './UICommand'
 import * as React from 'react'
 import findActiveFontType from './findActiveFontType'
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './EditorView'
 import {FONT_TYPE_NAMES} from '../FontTypeMarkSpec'
 import {FONT_TYPE_NAME_DEFAULT} from './findActiveFontType'
 

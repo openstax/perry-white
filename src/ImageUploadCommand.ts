@@ -1,7 +1,7 @@
 import {Class} from 'utility-types'
 
 import {EditorState} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 import * as React from 'react'
 
 import ImageSourceCommand from './ImageSourceCommand'
@@ -10,7 +10,7 @@ import ImageUploadEditor from './ui/ImageUploadEditor'
 class ImageUploadCommand extends ImageSourceCommand {
     isEnabled = (
         state: EditorState,
-        view: EditorView | null | undefined,
+        view: EditorView,
     ): boolean => {
         if (!view) {
             return false

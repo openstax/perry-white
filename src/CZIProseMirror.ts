@@ -1,7 +1,5 @@
-import {EditorView} from 'prosemirror-view'
-
 import convertToJSON from './convertToJSON'
-import CustomEditorView from './ui/CustomEditorView'
+import EditorView from './ui/EditorView'
 import UICommand from './ui/UICommand'
 
 const commandsRegistery = new Map<any, any>()
@@ -33,7 +31,7 @@ export function registerEditorView(id: string, view: EditorView): void {
     if (viewsRegistery.has(id)) {
         throw new Error('view ${id} already registered')
     }
-    if (!(view instanceof CustomEditorView)) {
+    if (!(view instanceof EditorView)) {
         throw new Error(`invalid view ${id}`)
     }
     if (!id) {

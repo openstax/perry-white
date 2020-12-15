@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import {DOMSerializer, Schema} from 'prosemirror-model'
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import webfontloader from 'webfontloader'
 import {prefixed} from '../util'
@@ -16,7 +15,7 @@ import {preLoadFonts} from '../FontTypeMarkSpec'
 import createEmptyEditorState from '../createEmptyEditorState'
 import normalizeHTML from '../normalizeHTML'
 import BookmarkNodeView from './BookmarkNodeView'
-import CustomEditorView from './CustomEditorView'
+import EditorView from './EditorView'
 import CustomNodeView from './CustomNodeView'
 import ImageNodeView from './ImageNodeView'
 import ListItemNodeView from './ListItemNodeView'
@@ -165,7 +164,7 @@ class EditingArea extends React.Component<EditorProps, any> {
             })
 
             // Reference: http://prosemirror.net/examples/basic/
-            const view = (this._editorView = new CustomEditorView(editorNode, {
+            const view = (this._editorView = new EditorView(editorNode, {
                 clipboardSerializer: DOMSerializer.fromSchema(schema),
                 dispatchTransaction,
                 editable: this._isEditable,

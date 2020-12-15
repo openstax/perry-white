@@ -1,9 +1,8 @@
 import {EditorState, Transaction} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import cx from 'classnames'
 
-import CustomEditorView from './CustomEditorView'
+import EditorView from './EditorView'
 import createEmptyEditorState from '../createEmptyEditorState'
 import EditingArea from './EditingArea'
 import { EditorFrameset } from './EditorFrameset'
@@ -23,7 +22,7 @@ interface State {
     contentHeight?: number
     editorState: EditorState
     contentOverflowHidden?: boolean
-    editorView?: CustomEditorView
+    editorView?: EditorView
 }
 
 const EMPTY_EDITOR_RUNTIME = {}
@@ -137,9 +136,8 @@ export class Editor extends React.Component<Props, State> {
         }
     }
 
-    _onReady = (ev: EditorView): void => {
-        if (ev !== this.state.editorView) {
-            const editorView = ev as CustomEditorView
+    _onReady = (editorView: EditorView): void => {
+        if (editorView !== this.state.editorView) {
             this.setState({editorView})
             const {onReady} = this.props
             onReady && onReady(editorView)

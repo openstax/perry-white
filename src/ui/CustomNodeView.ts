@@ -1,13 +1,13 @@
 import {Node} from 'prosemirror-model'
-import {Decoration, EditorView} from 'prosemirror-view'
-import CustomEditorView from './CustomEditorView'
+import {Decoration} from 'prosemirror-view'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import EditorView from './EditorView'
 import SelectionObserver from './SelectionObserver'
 
 export type NodeViewProps = {
-    editorView: CustomEditorView
+    editorView: EditorView
     getPos: () => number
     node: Node
     selected: boolean
@@ -99,7 +99,7 @@ class CustomNodeView {
 
     constructor(
         node: Node,
-        editorView: CustomEditorView,
+        editorView: EditorView,
         getPos: () => number,
         decorations: Array<Decoration>,
     ) {

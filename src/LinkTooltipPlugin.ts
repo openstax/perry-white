@@ -1,8 +1,8 @@
 import {EditorState, Plugin, PluginKey} from 'prosemirror-state'
 import {TextSelection} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
 
 import {MARK_LINK} from './MarkNames'
+import EditorView from './ui/EditorView'
 import {
     hideSelectionPlaceholder,
     showSelectionPlaceholder,
@@ -140,6 +140,7 @@ class LinkTooltipView {
             LinkURLEditor,
             {href},
             {
+                container: view.frameset,
                 onClose: value => {
                     this._editor = null
                     this._onEditEnd(view, selection, value)

@@ -1,8 +1,7 @@
 import * as React from 'react'
 import CustomButton from './CustomButton'
-import CustomEditorView from './CustomEditorView'
+import EditorView from './EditorView'
 import MathEditor from './MathEditor'
-import { getParentFrameSet } from './EditorFrameset'
 import createPopUp from './createPopUp'
 import {prefixed} from '../util'
 
@@ -22,14 +21,16 @@ export type MathInlineEditorValue = {
     math: string
 }
 
-class MathInlineEditor extends React.Component<any, any> {
-    props: {
-        onEditEnd: () => void
-        onEditStart: () => void
-        onSelect: (val: any) => void
-        value: MathInlineEditorValue | null | undefined
-        editorView: CustomEditorView | null | undefined
-    }
+interface MathInlineEditorProps {
+    onEditEnd: () => void
+    onEditStart: () => void
+    onSelect: (val: any) => void
+    value: MathInlineEditorValue | null | undefined
+    editorView: EditorView
+}
+
+class MathInlineEditor extends React.Component<MathInlineEditorProps, any> {
+
     editorRef = React.createRef<HTMLDivElement>()
     _popUp = null
 
@@ -77,14 +78,14 @@ class MathInlineEditor extends React.Component<any, any> {
         }
         const {editorView, value} = this.props
         const props = {
-            runtime: editorView ? editorView.runtime : null,
+            runtime: editorView.runtime,
             initialValue: (value && value.math) || '',
         }
 
         this._popUp = createPopUp(MathEditor, props, {
             autoDismiss: false,
             modal: true,
-            container: getParentFrameSet(this.editorRef.current),
+            container: this.props.editorView.frameset,
             onClose: math => {
                 if (this._popUp) {
                     this._popUp = null
