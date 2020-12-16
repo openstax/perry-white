@@ -80,8 +80,9 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             this._inlineEditor && this._inlineEditor.close()
             return
         }
-        const {node} = this.props
+        const {node, editorView} = this.props
         const editorProps = {
+            editorView,
             value: node.attrs,
             onSelect: this._onChange,
             onEditStart: this._onPopupEditStart,
@@ -93,7 +94,7 @@ class MathViewBody extends React.Component<NodeViewProps, any> {
             this._inlineEditor = createPopUp(MathInlineEditor, editorProps, {
                 anchor: el,
                 autoDismiss: false,
-                container: this.props.editorView.frameset,
+                container: editorView.frameset,
                 position: atAnchorBottomCenter,
                 onClose: () => {
                     this._inlineEditor = null
