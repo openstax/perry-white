@@ -63,14 +63,9 @@ export class Mathfield extends React.Component<Props> {
             throw new Error('Component was not correctly initialized.')
         }
         if (prevProps.latex !== undefined) {
-            if (this.props.latex === undefined) {
-                throw new Error(
-                    'Cannot change from controlled to uncontrolled state!'
-                )
-            }
             if (this.props.latex !== prevProps.latex) {
-                if (this.props.latex === '') {
-                    this.mathfield.$perform('deleteAll')
+                if (!this.props.latex) {
+                    this.mathfield.setValue('')
                 } else {
                     this.mathfield.setValue(this.props.latex, {
                         suppressChangeNotifications: true,
