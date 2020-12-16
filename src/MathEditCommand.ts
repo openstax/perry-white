@@ -2,7 +2,7 @@ import * as React from 'react'
 import {Fragment, Schema} from 'prosemirror-model'
 import {EditorState, Transaction} from 'prosemirror-state'
 import {TextSelection, NodeSelection} from 'prosemirror-state'
-import {EditorView} from 'prosemirror-view'
+import EditorView from './ui/EditorView'
 
 import {
     hideCursorPlaceholder,
@@ -85,6 +85,13 @@ class MathEditCommand extends UICommand {
             }
             dispatch(tr)
             view && view.focus()
+            setTimeout(() => {
+                const input = view.frameset.querySelector('.math-rendered.selected textarea') as HTMLTextAreaElement
+                if (input) {
+                    input.focus()
+                }
+            }, 10)
+
         }
 
         return false
