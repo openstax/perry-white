@@ -1,5 +1,5 @@
 import * as React from 'react'
-import sanitizeURL from '../sanitizeURL'
+import {convertToEmbedURL} from '../URLs'
 import CustomButton from './CustomButton'
 import {ENTER} from './KeyCodes'
 import preventEventDefault from './preventEventDefault'
@@ -89,7 +89,7 @@ class EmbedURLEditor extends React.Component<Props, any> {
     _apply = (): void => {
         const {url} = this.state
         if (url && !BAD_CHARACTER_PATTER.test(url)) {
-            this.props.close({ src: sanitizeURL(url) })
+            this.props.close({ src: convertToEmbedURL(url) })
         }
     }
 }

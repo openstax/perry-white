@@ -6,7 +6,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import CustomNodeView from './CustomNodeView'
-import {FRAMESET_BODY_CLASSNAME} from './EditorFrameset'
 import Icon from './Icon'
 import ImageInlineEditor from './ImageInlineEditor'
 import ImageResizeBox from './ImageResizeBox'
