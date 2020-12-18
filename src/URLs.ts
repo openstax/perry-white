@@ -2,7 +2,7 @@ const HTTP_PREFIX = /^http(s?):*\/\//i
 
 export function sanitizeURL(url: string | null | undefined): string {
     if (!url) {
-        return 'http://'
+        return url
     }
     if (HTTP_PREFIX.test(url)) {
         return url
