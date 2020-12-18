@@ -1,5 +1,5 @@
 import * as React from 'react'
-import sanitizeURL from '../sanitizeURL'
+import {sanitizeURL} from '../URLs'
 import CustomButton from './CustomButton'
 import {ENTER} from './KeyCodes'
 import preventEventDefault from './preventEventDefault'

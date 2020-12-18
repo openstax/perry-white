@@ -1,7 +1,7 @@
 import {EditorView} from 'prosemirror-view'
 import * as React from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
-import sanitizeURL from '../sanitizeURL'
+import {sanitizeURL} from '../URLs'
 import CustomButton from './CustomButton'
 import {prefixed} from '../util'
 
