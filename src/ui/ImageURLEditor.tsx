@@ -19,6 +19,7 @@ interface State {
     height?: number
     id?: string
     width?: number;
+    alt?: string;
 }
 
 class ImageURLEditor extends React.Component<Props, State> {
@@ -56,7 +57,7 @@ class ImageURLEditor extends React.Component<Props, State> {
     }
 
     render() {
-        const {src, validValue} = this.state
+        const {src, alt, validValue} = this.state
         const preview = validValue ? (
             <div
                 className={prefixed('image-url-editor-input-preview')}
@@ -77,6 +78,13 @@ class ImageURLEditor extends React.Component<Props, State> {
                                 placeholder="Paste URL of Image..."
                                 type="text"
                                 value={src || ''}
+                            />
+                            <input
+                                className={prefixed('image-url-editor-alt-text-input')}
+                                onChange={this._onAltTextChange}
+                                placeholder="Alternative Text"
+                                type="text"
+                                value={alt || ''}
                             />
                             {preview}
                         </div>
@@ -111,6 +119,15 @@ class ImageURLEditor extends React.Component<Props, State> {
         )
     }
 
+    _onAltTextChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
+        // @ts-ignore
+        const alt = e.target.value
+        this.setState(
+            {
+                alt,
+            })
+    }
+
     _didSrcChange = (): void => {
         resolveImage(this.state.src).then(result => {
             if (this.state.src === result.src && !this._unmounted) {
@@ -125,7 +142,8 @@ class ImageURLEditor extends React.Component<Props, State> {
     }
 
     _insert = (): void => {
-        const {validValue} = this.state
+        const {validValue, alt} = this.state
+        if(validValue) validValue.alt = alt
         this.props.close(validValue)
     }
 }

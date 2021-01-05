@@ -227,7 +227,7 @@ class ImageViewBody extends React.Component<NodeViewProps, any> {
                 >
                     <span style={imageStyle}>
                         <img
-                            alt=''
+                            alt={attrs.alt || ''}
                             className={prefixed('image-view-body-img')}
                             data-align={align}
                             height={height}

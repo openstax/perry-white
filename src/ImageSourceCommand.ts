@@ -18,6 +18,7 @@ function insertImage(
     tr: Transaction,
     schema: Schema,
     src: string | null | undefined,
+    alt: string | null | undefined,
 ): Transaction {
     const {selection} = tr
     if (!selection) {
@@ -35,7 +36,7 @@ function insertImage(
 
     const attrs = {
         src: src || '',
-        alt: '',
+        alt: alt || '',
         title: '',
     }
 
@@ -101,8 +102,8 @@ class ImageSourceCommand extends UICommand {
             tr = view ? hideCursorPlaceholder(view.state) : tr
             tr = tr.setSelection(selection)
             if (inputs) {
-                const {src} = inputs
-                tr = insertImage(tr, schema, src)
+                const {src, alt} = inputs
+                tr = insertImage(tr, schema, src, alt)
             }
             dispatch(tr)
             view && view.focus()

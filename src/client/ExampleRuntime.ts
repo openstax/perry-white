@@ -41,6 +41,7 @@ class ExampleRuntime {
                         width: 0,
                         height: 0,
                         src: '',
+                        alt: '',
                     }
                     resolve(img)
                 },
