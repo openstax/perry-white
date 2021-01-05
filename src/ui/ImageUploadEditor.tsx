@@ -21,6 +21,7 @@ class ImageUploadEditor extends React.Component<any, any> {
         error: null,
         id: uuid(),
         pending: false,
+        alt: ''
     }
 
     componentWillUnmount(): void {
@@ -28,7 +29,7 @@ class ImageUploadEditor extends React.Component<any, any> {
     }
 
     render() {
-        const {id, error, pending} = this.state
+        const {id, error, pending, alt} = this.state
         const className = cx(prefixed('image-upload-editor'), {pending, error})
         let label: React.ReactNode = 'Choose an image file...'
 
@@ -56,6 +57,13 @@ class ImageUploadEditor extends React.Component<any, any> {
                                 onChange={this._onSelectFile}
                                 type="file"
                             />
+                            <input
+                                className={prefixed('image-url-editor-alt-text-input')}
+                                onChange={this._onAltTextChange}
+                                placeholder="Alternative Text"
+                                type="text"
+                                value={alt || ''}
+                            />
                         </div>
                     </fieldset>
                     <div className={prefixed('form-buttons')}>
@@ -64,6 +72,15 @@ class ImageUploadEditor extends React.Component<any, any> {
                 </form>
             </div>
         )
+    }
+
+    _onAltTextChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
+        // @ts-ignore
+        const alt = e.target.value
+        this.setState(
+            {
+                alt,
+            })
     }
 
     _onSelectFile = (event: React.SyntheticEvent): void => {
@@ -101,6 +118,7 @@ class ImageUploadEditor extends React.Component<any, any> {
             }
             this.setState({pending: true, error: null})
             const image = await runtime.uploadImage(file)
+            image.alt = this.state.alt
             this._onSuccess(image)
         } catch (ex) {
             this._onError(ex)
