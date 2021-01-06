@@ -8,7 +8,15 @@ import {prefixed,uuid} from '../util'
 
 import {EditorRuntime, ImageLike} from '../Types'
 
-class ImageUploadEditor extends React.Component<any, any> {
+interface State {
+    error: Object
+    id: string
+    pending: boolean
+    alt: string
+    image: ImageLike | null
+}
+
+class ImageUploadEditor extends React.Component<any, State> {
     _img = null
     _unmounted = false
 
@@ -17,11 +25,12 @@ class ImageUploadEditor extends React.Component<any, any> {
         close: (val?: ImageLike | null | undefined) => void
     }
 
-    state = {
+    state: State = {
         error: null,
         id: uuid(),
         pending: false,
-        alt: ''
+        alt: '',
+        image: null,
     }
 
     componentWillUnmount(): void {
@@ -29,7 +38,7 @@ class ImageUploadEditor extends React.Component<any, any> {
     }
 
     render() {
-        const {id, error, pending, alt} = this.state
+        const {error, pending, alt, image} = this.state
         const className = cx(prefixed('image-upload-editor'), {pending, error})
         let label: React.ReactNode = 'Choose an image file...'
 
@@ -45,18 +54,7 @@ class ImageUploadEditor extends React.Component<any, any> {
                     <fieldset>
                         <legend>Upload Image</legend>
                         <div className={prefixed('image-upload-editor-body')}>
-                            <div className={prefixed('image-upload-editor-label')}>
-                                {label}
-                            </div>
-                            <input
-                                accept="image/png,image/gif,image/jpeg,image/jpg"
-                                className={prefixed('image-upload-editor-input')}
-                                disabled={pending}
-                                id={id}
-                                key={id}
-                                onChange={this._onSelectFile}
-                                type="file"
-                            />
+                            {this._renderImage(label)}
                         </div>
                         <input
                             className={prefixed('image-upload-editor-alt-text-input')}
@@ -68,9 +66,41 @@ class ImageUploadEditor extends React.Component<any, any> {
                     </fieldset>
                     <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
+                        <CustomButton
+                            active={!!image}
+                            disabled={!image}
+                            label="Insert"
+                            onClick={this._insert}
+                        />
                     </div>
                 </form>
             </div>
+        )
+    }
+
+    _renderImage = (label) => {
+        const {image, id, pending, alt} = this.state
+
+        if(!image || (image && !image.src)) {
+            return (
+                <>
+                    <div className={prefixed('image-upload-editor-label')}>
+                        {label}
+                    </div>
+                    <input
+                        accept="image/png,image/gif,image/jpeg,image/jpg"
+                        className={prefixed('image-upload-editor-input')}
+                        disabled={pending}
+                        id={id}
+                        key={id}
+                        onChange={this._onSelectFile}
+                        type="file"
+                    />
+                </>
+            )
+        }
+        return (
+            <img alt={alt} height="100%" src={image.src}/>
         )
     }
 
@@ -95,7 +125,11 @@ class ImageUploadEditor extends React.Component<any, any> {
         if (this._unmounted) {
             return
         }
-        this.props.close(image)
+        this.setState({
+            image: image,
+            pending: false,
+            error: null,
+        })
     }
 
     _onError = (error: Error): void => {
@@ -118,11 +152,19 @@ class ImageUploadEditor extends React.Component<any, any> {
             }
             this.setState({pending: true, error: null})
             const image = await runtime.uploadImage(file)
-            image.alt = this.state.alt
             this._onSuccess(image)
         } catch (ex) {
             this._onError(ex)
         }
+    }
+
+    _insert = (): void => {
+        const {image, alt} = this.state
+        if (this._unmounted || !image) {
+            return
+        }
+        image.alt = alt
+        this.props.close(image)
     }
 
     _cancel = (): void => {
