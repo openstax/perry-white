@@ -104,8 +104,7 @@ class ImageUploadEditor extends React.Component<any, State> {
         )
     }
 
-    _onAltTextChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
-        // @ts-ignore
+    _onAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const alt = e.target.value
         this.setState(
             {

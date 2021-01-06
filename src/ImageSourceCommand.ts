@@ -17,8 +17,8 @@ import {ImageLike} from './Types'
 function insertImage(
     tr: Transaction,
     schema: Schema,
-    src: string | null | undefined,
-    alt: string | null | undefined,
+    src: string,
+    alt: string,
 ): Transaction {
     const {selection} = tr
     if (!selection) {
