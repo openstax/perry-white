@@ -53,6 +53,7 @@ export interface ImageLike {
     id: string
     src: string
     width: number
+    alt: string
 }
 
 export interface EditorRuntime {
