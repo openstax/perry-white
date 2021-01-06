@@ -57,14 +57,14 @@ class ImageUploadEditor extends React.Component<any, any> {
                                 onChange={this._onSelectFile}
                                 type="file"
                             />
-                            <input
-                                className={prefixed('image-url-editor-alt-text-input')}
-                                onChange={this._onAltTextChange}
-                                placeholder="Alternative Text"
-                                type="text"
-                                value={alt || ''}
-                            />
                         </div>
+                        <input
+                            className={prefixed('image-upload-editor-alt-text-input')}
+                            onChange={this._onAltTextChange}
+                            placeholder="Alternative Text"
+                            type="text"
+                            value={alt || ''}
+                        />
                     </fieldset>
                     <div className={prefixed('form-buttons')}>
                         <CustomButton label="Cancel" onClick={this._cancel} />
