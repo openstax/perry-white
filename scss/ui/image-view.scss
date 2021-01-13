@@ -1,11 +1,11 @@
 .#{$prefix}image-view {
     clear: both;
-    display: inline-block;
+    display: block;
     line-height: 0;
-    margin: 0 2px; /* This should be synced to the constant IMAGE_MARGIN in JS. */
+    margin: 20px 0; /* This should be synced to the constant IMAGE_MARGIN in JS. */
     max-width: 100%;
     text-align: center;
-    vertical-align: baseline;
+    float: none;
 }
 
 .#{$prefix}image-view.ProseMirror-selectednode {
@@ -20,13 +20,6 @@
 .#{$prefix}image-view.align-right {
     float: right;
     margin: 0 0 20px 40px;
-}
-
-.#{$prefix}image-view.align-center {
-    clear: both;
-    display: block;
-    float: none;
-    margin: 20px 0;
 }
 
 .#{$prefix}image-view-body-img-clip {
