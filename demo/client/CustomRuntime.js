@@ -15,19 +15,16 @@ class SaveCommand extends UICommand {
 
     }
 
-//    isActive() { return true }
+    //    isActive() { return true }
 }
 
-// This implements the interface of `EditorRuntime`.
-// class SaveCommand extends React.Component {
-//     render() {
-//         return <button>as</button>
-//     }
-// }
+
 import {
     POST
 } from '../../src/client/http'
 
+
+// This implements the interface of `EditorRuntime`.
 class CustomRuntime {
 
     // Image Proxy
@@ -79,7 +76,7 @@ class CustomRuntime {
         // groups.forEach(g => {
         //     delete g['[font_download] Font Type']
         // })
-        groups[groups.length-1]['[save] Save'] = new SaveCommand
+        groups[groups.length - 1]['[save] Save'] = new SaveCommand
         return groups
     }
 }

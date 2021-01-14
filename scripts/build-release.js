@@ -1,7 +1,6 @@
 /*eslint-env node*/
 
 const fs = require('fs-extra');
-const sass = require("sass");
 const cp = require('child_process');
 
 const exec = (cmd) => {
@@ -12,7 +11,7 @@ const exec = (cmd) => {
 exec('npm run build:clean');
 
 ['ui/fonts','fonts'].forEach(path => {
-    fs.copySync(`src/${path}`, `dist/${path}`)
+    fs.copySync(`scss/${path}`, `dist/${path}`)
 })
 
 exec('npm run build:css')
