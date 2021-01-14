@@ -24,7 +24,7 @@ const EditorDemo = ({ defaultValue }) => {
         console.log(convertToJSON(editorView.state))
     }
     return (
-        <div style={{ height: '100%' }}>
+        <div>
 
             <Editor
                 defaultEditorState={defaultEditorState}

@@ -10,7 +10,7 @@ module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     entry: {
         main: './demo/client/index.js',
-        styles: path.join(__dirname, 'src', 'styles.scss'),
+        styles: path.join(__dirname, 'scss', 'editor.scss'),
     },
     output: {
         path: path.join(__dirname, 'demo', 'build'),

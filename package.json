@@ -1,6 +1,6 @@
 {
   "name": "perry-white",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "subversion": "1",
   "description": "Rich text editor built with ProseMirror plus React",
   "main": "dist/index.js",
@@ -14,7 +14,7 @@
   "scripts": {
     "build:clean": "rm -rf dist/ && rm -f perry-white*.*.*.tgz",
     "build:tsc": "tsc",
-    "build:css": "sass src/styles.scss > dist/styles.css",
+    "build:css": "sass scss/editor.scss > dist/editor.css && sass scss/rendered-html.scss > dist/rendered-html.css; ",
     "build:demo": "NODE_ENV=production webpack-cli",
     "build:bundle": "microbundle --no-compress --format modern,cjs  --jsx React.createElement",
     "build:release": "NODE_ENV=production node scripts/build-release.js",
@@ -26,7 +26,8 @@
     "prepare": "run-s build:release"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "scss/*"
   ],
   "devDependencies": {
     "@babel/cli": "^7.10.4",
