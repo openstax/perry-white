@@ -25,7 +25,7 @@ const EMPTY_SRC =
     'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 /* This value must be synced with the margin defined at .image-view */
-const IMAGE_MARGIN = 2
+const IMAGE_MARGIN = 0
 
 const MAX_SIZE = 100000
 const IMAGE_PLACEHOLDER_SIZE = 24

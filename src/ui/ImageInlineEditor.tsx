@@ -4,10 +4,6 @@ import * as React from 'react'
 import {prefixed} from '../util'
 
 const ImageAlignValues = {
-    NONE: {
-        value: null,
-        text: 'Inline',
-    },
     LEFT: {
         value: 'left',
         text: 'Float left',
